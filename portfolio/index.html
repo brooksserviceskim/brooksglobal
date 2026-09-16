@@ -1,0 +1,1345 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>김현우 — 실무를 알고, 실무를 자동화합니다</title>
+<meta name="description" content="커머스·유통 본부장 김현우 포트폴리오. 상품기획, 미국 FDA·캐나다 Health Canada 인허가, 아마존·월마트 운영, 그룹 AX·DX 업무 자동화.">
+<link rel="canonical" href="https://www.brooksglobal.co.kr/portfolio/">
+<meta property="og:site_name" content="김현우 포트폴리오">
+<meta property="og:title" content="김현우 — 실무를 알고, 실무를 자동화합니다">
+<meta property="og:description" content="상품기획 → 해외 인허가 → 북미 채널 운영 → 그 과정을 직접 자동화하는 실무형 본부장.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:url" content="https://www.brooksglobal.co.kr/portfolio/">
+<meta property="og:image" content="https://www.brooksglobal.co.kr/media/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@800;900&display=swap">
+<link rel="preload" as="video" href="../media/clip_idle.mp4" type="video/mp4">
+<style>*{box-sizing:border-box}html{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>김현우 포트폴리오</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Nanum+Gothic+Coding:wght@700&display=swap">
+
+<style>
+:root{
+  --bg:#F3F1EC;         /* 따뜻한 오프화이트 */
+  --bg-2:#E7E3DB;
+  --card:#FFFFFF;
+  --ink:#171A1F;
+  --ink-2:#464B55;
+  --ink-3:#7A808B;
+  --line:#DAD6CE;
+  --green:#1E7B45;      /* 새마을 모자 */
+  --red:#D3372B;        /* 작업 조끼 */
+  --yellow:#FFC93C;     /* 자수 */
+  --teal:#2A8C86;       /* 안경 */
+  --kraft:#C99A5B;
+  --maxw:1180px;
+  --sans:'Noto Sans KR','Apple SD Gothic Neo','Pretendard','Malgun Gothic',sans-serif;
+  --mono:'Nanum Gothic Coding',monospace;
+  --shadow:0 18px 40px -18px rgba(23,26,31,.35);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.7;
+  word-break:keep-all;overflow-wrap:break-word;text-wrap:pretty;-webkit-font-smoothing:antialiased;overflow:hidden}
+h1,h2,h3,h4{margin:0;text-wrap:balance;word-break:keep-all;line-height:1.2}
+p{margin:0}
+a{color:inherit}
+button{font:inherit;color:inherit;border:none;background:none;cursor:pointer}
+:focus-visible{outline:3px solid var(--teal);outline-offset:3px;border-radius:8px}
+
+/* ---------- 로더 ---------- */
+#loader{position:fixed;inset:0;z-index:999;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;transition:opacity .45s,visibility .45s}
+#loader.done{opacity:0;visibility:hidden}
+#loader .lg{font-weight:900;font-size:22px;letter-spacing:-.02em}
+#loader .lg img{width:min(360px,64vw);height:auto;display:block}
+.bar{width:min(260px,64vw);height:8px;border-radius:99px;background:var(--bg-2);overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--green);border-radius:99px;transition:width .15s}
+#loader .pct{font-family:var(--mono);font-size:11px;color:var(--ink-3);letter-spacing:.12em}
+
+/* ---------- 상단 바 ---------- */
+.topbar{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:flex-end;gap:16px;
+  padding:16px max(22px,calc((100vw - var(--maxw))/2 + 22px));pointer-events:none}
+.topbar > *{pointer-events:auto}
+.topnav{display:flex;align-items:center;gap:4px;background:rgba(255,255,255,.72);backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:99px;padding:5px}
+.topnav button,.topnav a{text-decoration:none;font-size:14px;font-weight:700;color:var(--ink-2);padding:8px 14px;border-radius:99px;transition:background .15s,color .15s}
+.topnav button:hover,.topnav a:hover{background:var(--bg-2);color:var(--ink)}
+.topnav .cta{background:var(--ink);color:#fff}
+.topnav .cta:hover{background:var(--green);color:#fff}
+@media(max-width:720px){.topnav button:not(.cta){display:none}}
+
+/* ---------- 히어로 = 화면 전체 ---------- */
+.hero{position:fixed;inset:0;overflow:hidden;touch-action:pan-y;user-select:none;
+  background:
+    radial-gradient(60% 50% at 18% 18%,rgba(42,140,134,.14),transparent 70%),
+    radial-gradient(50% 45% at 84% 22%,rgba(255,201,60,.18),transparent 70%),
+    radial-gradient(70% 60% at 50% 100%,rgba(30,123,69,.12),transparent 70%),
+    linear-gradient(180deg,#F6F4F0,#EFECE6)}
+.wordmark{position:absolute;left:50%;top:clamp(78px,11vh,120px);transform:translateX(-50%);z-index:2;text-align:center;pointer-events:none;width:min(92vw,900px)}
+.puffy{font-family:Poppins,"Noto Sans KR",system-ui,sans-serif;font-weight:900;letter-spacing:-.03em;line-height:1;display:inline-block;
+  background:linear-gradient(180deg,#A9EDC0 0%,#5CC985 38%,#2E9A5A 62%,#1E7B45 100%);-webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 4px 0 #14532D) drop-shadow(0 10px 14px rgba(20,83,45,.28))}
+.wordmark .en.puffy{font-size:clamp(46px,8.6vw,104px);height:auto;padding:6px 10px}
+.navsvc{}
+.wordmark .en{height:clamp(44px,8.6vw,104px);width:auto;display:block;margin:0 auto;
+  filter:drop-shadow(0 14px 22px rgba(23,26,31,.20))}
+.wordmark .sub{display:flex;align-items:center;justify-content:center;gap:11px;margin-top:12px;flex-wrap:wrap}
+.wordmark .sub b{font-weight:900;font-size:clamp(15px,2.1vw,22px);letter-spacing:-.03em;color:var(--ink)}
+.wordmark .sub s{text-decoration:none;width:1px;height:13px;background:var(--line-2,#C9C4BA);display:block;flex:none}
+.wordmark em{font-style:normal;font-family:var(--mono);font-size:clamp(9px,1.2vw,11px);letter-spacing:.2em;color:var(--ink-3);white-space:nowrap}
+.wordmark i{display:block;margin-top:9px;font-style:normal;font-weight:700;font-size:clamp(14px,1.9vw,19px);color:var(--ink-2)}
+@media(max-width:640px){ .wordmark .sub{gap:8px} .wordmark .sub s{display:none} .wordmark em{white-space:normal;text-align:center;font-size:9px} }
+
+#stage{position:absolute;inset:0;z-index:5}
+
+
+/* ---- 물리 오브젝트 : 글로시 큐브 ---- */
+.obj{position:absolute;top:0;left:0;cursor:grab;will-change:transform;touch-action:none}
+.obj:active{cursor:grabbing}
+.cube{position:absolute;inset:0;transform-style:preserve-3d;animation:spin var(--dur,20s) linear infinite;animation-delay:var(--delay,0s)}
+@keyframes spin{from{transform:perspective(680px) rotateX(-16deg) rotateY(0deg)}to{transform:perspective(680px) rotateX(-16deg) rotateY(360deg)}}
+.cube.tilt{animation-name:spin2}
+@keyframes spin2{from{transform:perspective(680px) rotateX(14deg) rotateZ(8deg) rotateY(360deg)}to{transform:perspective(680px) rotateX(14deg) rotateZ(8deg) rotateY(0deg)}}
+.f{position:absolute;inset:0;display:grid;place-items:center;border-radius:14%;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.35),inset 0 -14px 20px -12px rgba(0,0,0,.35),inset 0 14px 18px -12px rgba(255,255,255,.75)}
+.f-fr{transform:translateZ(var(--h))}
+.f-bk{transform:rotateY(180deg) translateZ(var(--h))}
+.f-rt{transform:rotateY(90deg) translateZ(var(--h))}
+.f-lf{transform:rotateY(-90deg) translateZ(var(--h))}
+.f-tp{transform:rotateX(90deg) translateZ(var(--h))}
+.f-bm{transform:rotateX(-90deg) translateZ(var(--h))}
+.f b{font-weight:900;font-size:var(--fs,15px);line-height:1.15;color:#fff;text-align:center;letter-spacing:-.02em;white-space:nowrap;
+  text-shadow:0 1px 0 rgba(0,0,0,.18)}
+.f small{display:block;font-family:var(--mono);font-size:8px;letter-spacing:.16em;color:rgba(255,255,255,.8);margin-top:4px;font-weight:700}
+.f.deco b{font-size:calc(var(--fs,15px)*1.3)}
+.obj.pop{filter:brightness(1.2)}
+/* ---- 오브제 3D(GLB) 층. GLB 가 없으면 이 캔버스는 아예 만들어지지 않습니다 ---- */
+#objgl{position:absolute;inset:0;width:100%;height:100%;z-index:5;pointer-events:none}
+.obj.is3d .cube{visibility:hidden}
+.objlabel{position:absolute;left:50%;top:100%;transform:translateX(-50%);margin-top:6px;text-align:center;white-space:nowrap;
+  word-break:keep-all;overflow-wrap:break-word;pointer-events:none}
+.objlabel b{display:block;font-weight:900;font-size:13px;letter-spacing:-.02em;color:var(--ink)}
+.objlabel small{display:block;font-family:var(--mono);font-size:8px;letter-spacing:.16em;color:var(--ink-3);margin-top:2px}
+.objlabel.credit{margin-top:8px}
+.objlabel.credit small{display:block;font-size:8.5px;letter-spacing:.2em;color:var(--ink-3);margin-top:0}
+@media(max-width:640px){.objlabel{white-space:normal;width:96px;margin-top:4px;line-height:1.25}.objlabel b{font-size:10.5px;letter-spacing:-.03em}.objlabel small{display:none}
+  .objlabel.credit{width:auto;margin-top:5px}.objlabel.credit small{display:block;font-size:7.5px;letter-spacing:.14em}}
+
+/* ---- 아바타 ---- */
+.avatar{position:absolute;left:50%;top:56%;z-index:3;height:clamp(240px,53vh,490px);cursor:pointer;transform:translate(-50%,-50%)}
+.avatar video{position:fixed;left:-4000px;top:0;width:333px;height:880px;pointer-events:none}
+.avatar canvas,.avatar .exp{height:100%;width:auto;aspect-ratio:666/880;display:block;filter:drop-shadow(0 20px 26px rgba(23,26,31,.22))}
+.avatar .exp{position:absolute;inset:0;object-fit:contain}
+.bubble{position:absolute;z-index:6;left:calc(50% + min(125px,24vw));top:calc(50% - min(155px,26vw));
+  background:#fff;color:var(--ink);border-radius:18px;padding:11px 16px;font-weight:900;font-size:16px;line-height:1;white-space:nowrap;
+  box-shadow:var(--shadow);animation:wob 2.6s ease-in-out infinite}
+.bubble::after{content:"";position:absolute;left:18px;bottom:-9px;width:16px;height:16px;background:#fff;border-radius:3px;transform:rotate(45deg)}
+@keyframes wob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+
+/* HUD */
+.hud{position:absolute;left:0;right:0;bottom:58px;z-index:7;display:flex;align-items:center;justify-content:space-between;gap:14px;
+  padding:0 max(18px,calc((100vw - var(--maxw))/2 + 18px))}
+.gswitch{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.85);backdrop-filter:blur(10px);border:1px solid var(--line);
+  border-radius:99px;padding:8px 10px 8px 16px;box-shadow:var(--shadow);font-weight:700;font-size:13px}
+.knob{width:44px;height:24px;border-radius:99px;background:var(--bg-2);position:relative;transition:background .2s}
+.knob::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:var(--ink);transition:transform .2s cubic-bezier(.3,1.4,.5,1)}
+.gswitch[aria-pressed="true"] .knob{background:var(--green)}
+.gswitch[aria-pressed="true"] .knob::after{transform:translateX(20px);background:#fff}
+.hint{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--ink-3)}
+.foot{position:absolute;left:0;right:0;bottom:16px;z-index:7;text-align:center;pointer-events:none;
+  font-family:var(--mono);font-size:10.5px;line-height:1.75;letter-spacing:.08em;color:var(--ink-3);
+  padding:0 20px;word-break:keep-all;overflow-wrap:break-word}
+.foot b{font-weight:700;color:var(--ink-2);letter-spacing:.11em}
+.foot i{font-style:normal}
+.foot .mbr{display:none}
+@media(max-width:640px){.hint{display:none}
+  .foot{font-size:9px;letter-spacing:.04em;bottom:10px;padding:0 12px}
+  .foot .sep{display:none}
+  .foot .mbr{display:inline}
+  .hud{bottom:74px}
+  .avatar{height:auto;width:min(56vw,270px);top:57%}
+  .avatar canvas,.avatar .exp{width:100%;height:auto}}
+
+/* ---------- 패널 (모든 내용은 여기서) ---------- */
+#scrim{position:fixed;inset:0;z-index:100;background:rgba(23,26,31,.35);backdrop-filter:blur(4px);opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s}
+#scrim.open{opacity:1;visibility:visible}
+#panel{position:fixed;z-index:101;right:16px;top:16px;bottom:16px;width:min(520px,calc(100% - 32px));background:var(--card);border-radius:24px;
+  box-shadow:0 40px 80px -30px rgba(23,26,31,.5);transform:translateX(calc(100% + 32px));transition:transform .38s cubic-bezier(.22,.9,.28,1);display:flex;flex-direction:column;overflow:hidden}
+#panel.open{transform:none}
+@media(max-width:600px){#panel{right:0;left:0;top:auto;bottom:0;width:100%;height:88svh;border-radius:24px 24px 0 0;transform:translateY(102%)}}
+.phead{position:relative;padding:26px 28px 18px;border-bottom:1px solid var(--line)}
+.phead .chip{display:none}
+.phead span{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--ink-3);display:block}
+.phead h3{font-size:24px;font-weight:900;letter-spacing:-.02em;margin-top:6px}
+.pclose{position:absolute;right:16px;top:16px;width:36px;height:36px;border-radius:50%;background:var(--bg-2);display:grid;place-items:center;font-size:18px;line-height:1}
+.pbody{padding:22px 28px 30px;overflow-y:auto;display:flex;flex-direction:column;gap:18px}
+.pbody > p{font-size:15px;color:var(--ink-2);font-weight:500}
+.plist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.plist li{display:grid;grid-template-columns:18px 1fr;gap:10px;font-size:14px;color:var(--ink)}
+.plist li::before{content:"";width:10px;height:10px;border-radius:3px;background:var(--dot,var(--green));margin-top:7px}
+.pmeta{border-top:1px solid var(--line);padding-top:14px;font-size:13px;color:var(--ink-3)}
+.psub{font-size:12px;font-weight:900;letter-spacing:.12em;color:var(--ink-3);margin:6px 0 0;text-transform:uppercase}
+.pcases{display:flex;flex-direction:column;gap:12px}
+.pstory{font-size:14px;color:var(--ink);margin:0 0 6px}
+.pcase{border-top:1px solid var(--line);padding-top:10px}
+.pcase h5{font-size:14px;font-weight:900;margin:0 0 4px;color:var(--ink)}
+.pcase p{font-size:13.5px;color:var(--ink-2);margin:0}
+.pcred{border-left:3px solid var(--dot,var(--green));background:var(--bg);border-radius:0 12px 12px 0;
+  padding:13px 16px;font-size:13.5px;font-weight:500;color:var(--ink-2);line-height:1.7;
+  word-break:keep-all;overflow-wrap:break-word}
+.pcta{margin-top:auto;padding:16px 28px 22px;border-top:1px solid var(--line);background:var(--bg)}
+.pcta a{display:flex;align-items:center;justify-content:center;gap:9px;text-decoration:none;background:var(--ink);color:#fff;padding:14px;border-radius:14px;font-weight:700;font-size:15px}
+.pcta a:hover{background:var(--green)}
+/* 연락처 */
+#cform{display:flex;flex-direction:column;gap:14px}
+.fld{display:flex;flex-direction:column;gap:6px}
+.fld label{font-size:13px;font-weight:700;color:var(--ink-2);display:flex;align-items:center;gap:7px}
+.fld label em{font-style:normal;font-family:var(--mono);font-size:9px;letter-spacing:.14em;color:var(--green);
+  border:1px solid var(--line);border-radius:99px;padding:2px 7px}
+.fld input,.fld select,.fld textarea{font:inherit;font-size:15px;color:var(--ink);background:var(--bg);
+  border:1px solid var(--line);border-radius:12px;padding:12px 14px;width:100%;
+  word-break:keep-all;overflow-wrap:break-word;-webkit-appearance:none;appearance:none}
+.fld select{background-image:linear-gradient(45deg,transparent 50%,var(--ink-3) 50%),linear-gradient(135deg,var(--ink-3) 50%,transparent 50%);
+  background-position:calc(100% - 20px) 50%,calc(100% - 15px) 50%;background-size:5px 5px,5px 5px;background-repeat:no-repeat;padding-right:40px}
+.fld textarea{resize:vertical;min-height:118px;line-height:1.65}
+.fld input::placeholder,.fld textarea::placeholder{color:var(--ink-3);opacity:.8}
+.fld input:focus,.fld select:focus,.fld textarea:focus{background:var(--card);border-color:var(--green);outline:none}
+.fld.bad input,.fld.bad textarea{border-color:var(--red);background:#FDF3F2}
+.botcheck{position:absolute;left:-9999px;opacity:0;height:0;width:0}
+.cerr{font-size:13px;font-weight:700;color:var(--red);display:none}
+.cerr.on{display:block}
+.csend{background:var(--ink);color:#fff;padding:15px;border-radius:14px;font-weight:700;font-size:15px;text-align:center}
+.csend:hover{background:var(--green)}
+.csend[disabled]{opacity:.55;cursor:default}
+.cnote{font-size:12.5px;color:var(--ink-3);line-height:1.7}
+.lnk{font-size:12.5px;font-weight:700;color:var(--ink-2);text-decoration:underline;text-underline-offset:3px;padding:0}
+.lnk:hover{color:var(--green)}
+.cdone{background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:20px}
+.cdone h4{font-size:17px;font-weight:900;letter-spacing:-.02em}
+.cdone p{margin-top:9px;font-size:14px;color:var(--ink-2)}
+.cdone pre{margin:14px 0 0;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;
+  font-family:var(--mono);font-size:12px;line-height:1.75;white-space:pre-wrap;word-break:break-word;max-height:210px;overflow:auto;
+  user-select:all;-webkit-user-select:all}
+.cdone .row{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.cdone .row button,.cdone .row a{flex:1 1 150px;text-align:center;text-decoration:none;padding:11px 12px;border-radius:12px;
+  font-weight:700;font-size:14px;background:var(--card);border:1px solid var(--line);color:var(--ink)}
+.cdone .row button:hover,.cdone .row a:hover{background:var(--bg-2)}
+#toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,14px);z-index:300;background:var(--ink);color:#fff;
+  padding:12px 18px;border-radius:14px;font-size:13.5px;font-weight:700;box-shadow:var(--shadow);
+  opacity:0;visibility:hidden;transition:opacity .22s,transform .22s,visibility .22s;max-width:calc(100vw - 32px);
+  word-break:keep-all;overflow-wrap:break-word;text-align:center}
+#toast.on{opacity:1;visibility:visible;transform:translate(-50%,0)}
+/* 패널 안 목록형 콘텐츠 */
+.plinks{display:flex;flex-direction:column;gap:8px}
+.plinks button{display:flex;align-items:center;justify-content:space-between;gap:12px;text-align:left;padding:14px 16px;border-radius:14px;background:var(--bg);font-weight:700;font-size:15px}
+.plinks button:hover{background:var(--bg-2)}
+.plinks button i{width:12px;height:12px;border-radius:4px;background:var(--dot);flex:none;margin-right:10px}
+.plinks button em{font-style:normal;font-family:var(--mono);font-size:10px;color:var(--ink-3);letter-spacing:.12em}
+.facts{margin:0;border-top:1px solid var(--line)}
+.fact{display:grid;grid-template-columns:96px 1fr;gap:12px;padding:11px 0;border-bottom:1px solid var(--line);font-size:14px}
+.fact dt{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--ink-3);padding-top:4px}
+.fact dd{margin:0;font-weight:500}
+.steps{display:flex;flex-direction:column;gap:14px}
+.step{display:grid;grid-template-columns:34px 1fr;gap:12px}
+.step b{width:30px;height:30px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:13px;font-weight:900}
+.step h4{font-size:15px;font-weight:900}
+.step p{font-size:13.5px;color:var(--ink-2)}
+.portrait{border-radius:18px;overflow:hidden;aspect-ratio:4/3;background:var(--bg-2)}
+.portrait img{width:100%;height:100%;object-fit:cover;object-position:50% 20%;display:block}
+
+@media (prefers-reduced-motion:reduce){*{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}}
+</style>
+
+</head>
+<body>
+<div id="loader">
+  <div class="lg" id="loaderLogo"><span class="puffy" style="font-size:38px">hyunwoo kim</span></div>
+  <div class="bar"><i id="lbar"></i></div>
+  <div class="pct" id="lpct">0%</div>
+</div>
+
+<header class="topbar">
+  <nav class="topnav">
+    <button data-open="services">프로젝트</button>
+    <button data-open="about">소개</button>
+    <button data-open="process">경력</button>
+    <button data-svc="axdx" class="navsvc">AX·DX</button>
+    <button class="cta" data-open="contact">연락하기</button>
+  </nav>
+</header>
+
+<div class="hero" id="top">
+  <div class="wordmark" id="wordmark">
+    <div class="en puffy" aria-label="hyunwoo kim">hyunwoo kim</div>
+    <span class="sub"><b>김현우</b><s></s><em>COMMERCE · REGULATORY · AX / DX</em></span>
+    <i>실무를 알고, 실무를 자동화합니다</i>
+  </div>
+  <div class="avatar" id="avatar" role="button" tabindex="0" aria-label="동인천김씨">
+    <video id="idlev" muted loop playsinline autoplay preload="auto" aria-hidden="true"><source src="../media/clip_idle.mp4" type="video/mp4"><source src="../media/clip_idle.webm" type="video/webm"></video>
+    <video id="gestv" muted playsinline preload="auto" aria-hidden="true"></video>
+    <canvas id="headgl" width="2" height="2" aria-hidden="true"></canvas>
+    <img id="face" class="exp" src="../media/still.webp" alt="동인천김씨" hidden>
+  </div>
+  <div id="stage"></div>
+  <div class="bubble" id="bubble">눌러봐~</div>
+  <div class="hud">
+    <button class="gswitch" id="gswitch" aria-pressed="false"><span>중력</span><i class="knob"></i></button>
+    <div class="hint">DRAG · THROW · CLICK</div>
+  </div>
+  <div class="foot">
+    <b>김현우 Hyunwoo Kim</b><i class="sep"> · </i><br class="mbr">Incheon, Republic of Korea · <a href="https://www.brooksglobal.co.kr" style="color:inherit">brooksglobal.co.kr</a><br>
+    © <span id="fyear">2026</span> Hyunwoo Kim. All rights reserved.
+  </div>
+</div>
+
+<div id="scrim"></div>
+<div id="toast" role="status" aria-live="polite"></div>
+<aside id="panel" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="phead">
+    <div class="chip" id="pchip"></div>
+    <div><span id="pkicker"></span><h3 id="ptitle"></h3></div>
+    <button class="pclose" id="pclose" aria-label="닫기">×</button>
+  </div>
+  <div class="pbody" id="pbody">
+    <p id="plede"></p>
+    <ul class="plist" id="plist"></ul>
+    <p class="pmeta" id="pmeta"></p>
+  </div>
+  <div class="pcta"><a id="pmail" href="#">이 건으로 연락하기</a></div>
+</aside>
+
+<script src="../lib/matter.min.js"></script>
+<script src="../lib/three.min.js"></script>
+<script src="../lib/GLTFLoader.js"></script>
+<script>
+(function(){
+"use strict";
+
+/* ===== content ===== */
+var SERVICES=[
+ {id:'plan',color:'#E0A400',kicker:'2015 – 2019 · NATIONAL GEOGRAPHIC',tag:'상품기획<br>롱패딩 · 캐리어',
+  title:'한국 롱패딩과 흰색 캐리어의 시초를 기획했습니다',
+  lede:'더네이쳐홀딩스(내셔널지오그래픽) 온라인팀 첫 직원으로 들어가 판권 회수부터 온라인 사업 전체를 세웠습니다. 그 안에서 기획한 두 상품이 시장을 열었습니다.',
+  story:[['WHY','스트릿 패션 커뮤니티에서 롱패딩을 두고 「멋있다 · 스트릿과 안 어울린다」로 갈리는 논쟁을 보고, 아웃도어 브랜드가 10대에게 어필하는 롱패딩을 만들면 새 트렌드가 된다고 판단했습니다. 캐리어는 2016~2017 홈쇼핑 판매 데이터와 리뷰를 분석해 20~30대가 캐리어를 패션 아이템으로 쓴다는 점, 선호색이 흰색이라는 점을 찾았습니다.'],
+         ['HOW','「카이만 다운자켓」은 중·고등학생이 체육대회에서 반 응원복을 맞춰 입는 문화를 겨냥해 무신사와 「너희 반의 각을 보여줘」 이벤트를 기획했습니다. 흰색 캐리어 「N6604」는 내부와 공장의 반대를 「팔리지 않으면 제가 책임지겠습니다」로 뚫고, 무신사 쇼케이스와 한현민 모델 촬영으로 런칭했습니다.'],
+         ['RESULT','롱패딩은 10차 리오더까지 진행되어 한국 롱패딩 시장의 기폭제가 됐고, 2017년 아웃도어 브랜드 최초로 무신사 어워즈 베스트 아이템에 선정됐습니다. 흰색 캐리어는 초도 10,000개를 온라인에서 2주 만에 완판했고 지금도 스테디셀러입니다. 2016·2017년 연속 최우수팀 표창.']],
+  items:['연도별 사업계획·영업계획 수립, 시즌별 온라인 물량 기획(의류·용품·캐리어·캠핑)','온라인 전용 상품 기획, 종합몰·편집샵·자사몰 영업, 백화점 온라인 매장별 영업기획','자체 ERP 개발 참여(E-Biz 영역)'],
+  meta:'더네이쳐홀딩스 E-biz 대리 팀원 · 2015.09 ~ 2018.08'},
+ {id:'live',color:'#D3372B',kicker:'2019 – 2021 · BENSIMON · YOUMI',tag:'런칭 · 콜라보<br>라이브커머스',
+  title:'벤시몽 라이브커머스와 레노버 체중계 런칭',
+  lede:'에이피오13(벤시몽)에서 온라인 사업 시스템을 전부 세우고 월 매출 3,000만 원을 7개월 만에 4~5억 원으로 만들었습니다. 여우미에서는 전자제품을 패션 플랫폼에서 1위로 올렸습니다.',
+  story:[['WHY','2020년 네이버 모바일 라이브가 정식 출시되기 전, 이것이 다음 트렌드가 된다고 보고 제도권 패션 브랜드 중 가장 먼저 시도하자고 제안했습니다. 레노버 스마트 체중계는 시장이 이미 포화라 오픈마켓 대신 20대 초반 여성이 모인 패션 플랫폼을 골랐습니다.'],
+         ['HOW','독립영화 감독인 친구에게 조명·동선·대본을 배워 라이브 방송의 동선 설계, 조명, 출연진 섭외, 연기 지도까지 직접 했습니다. 비아플레인과의 콜라보는 디자이너가 없는 회사에서 제가 상품기획과 디자인을 총괄해 성사시켰습니다. 레노버는 서울스토어에 요가복 브랜드 안다르와의 콜라보 캠페인을 제안해 광고 소재를 교체했습니다.'],
+         ['RESULT','2020년 4월 30일 자사 쇼룸에서 진행한 첫 모바일 라이브 뒤 열흘 동안 벤시몽 상품이 네이버 쇼핑 랭킹 1~10위를 차지했고 GS홈쇼핑 진출로 이어졌습니다. 비아플레인 콜라보는 1.5배 높은 가격에도 초도 물량 60%가 2주 만에 소진됐습니다. 레노버 체중계는 서울스토어 종합 랭킹 1위, 60일 만에 목표 5,000개 완판.']],
+  items:['벤시몽 라이센스 디자인·상품기획 총괄, 온라인 사업 전 영역(영업·기획·물류·웹디자인·콘텐츠)','샤오미·레노버 국내 독점 총판 온라인 세일즈 총괄, 인플루언서 협찬·공동구매','테크 + 아웃도어 PB 브랜드 기획, 상표 국내·국제 출원'],
+  meta:'에이피오13 온라인팀 대리 팀장 · 2019.05 ~ 2020.06 / 여우미 브랜드2팀 대리 팀장 · 2020.07 ~ 2021.03 / 씨오리퍼블릭 영업부 차장 파트장 · 2021.04 ~ 2021.10 (입사 2개월 만에 여성복 「몽돌」 29cm 1위, 데님 「데케트」 무신사 50위, 부서장 승진)'},
+ {id:'fda',color:'#4A5568',kicker:'2021 – 2025 · SC HOLDINGS',tag:'미국 FDA<br>아마존 총판',
+  title:'FDA 인증을 독학해 아마존 미국 독점 총판을 열었습니다',
+  lede:'쿠팡에서 화장품을 사서 아마존에 되파는 연매출 15억 개인사업자에 들어가, 대행사 없이 직접 FDA 등록을 하는 회사로 바꿨습니다.',
+  story:[['WHY','아마존 미국 대행사들은 마케팅은 되지만 FDA 인증 기술이 없었습니다. 브랜드사는 인증 대행사에 큰 비용을 내고 있었습니다. 이 기술을 내재화하면 브랜드 독점 판권을 가져올 수 있다고 봤습니다.'],
+         ['HOW','약 6개월 동안 퇴근 후 FDA가 배포한 규정 전부를 정독해 매뉴얼로 만들었습니다. 일반 화장품 등록에 이어 두 달 뒤 OTC(의약외품) 등록 라이선스까지 확보했고, 이 과정을 한글 매뉴얼로 만들어 직원 교육을 했습니다. 「아마존 총판을 맡기면 FDA 인증을 무료로 제공한다」는 영업 전략을 세웠습니다.'],
+         ['RESULT','KT&G 자회사 코스모코스의 다나한·비프루브, 생활공작소, 한진그룹 투자 브랜드 원오세븐의 아마존 미국 독점 판매권, AHC 자외선 차단제 라인의 북미 수출 판매권을 확보했습니다. SKIN1004 · Numbuzin · Nutrione · Haruharu wonder 등 중·대형 브랜드 북미 독점 판권 계약.']],
+  items:['US FDA · CA Health Canada · JP PMDA 인증 직접 신청과 규정 준수 라벨링, OTC · NHP/DIN 구분 등록','Amazon US/CA/JP, Walmart.com WFS, Qoo10 JP, Shopee, H-Mart Canada 운영','COSMOCOS 등 제조사 아마존 규정 준수 라벨링·광고 문구 컨설팅, 북미 전용 상품 개발','홈플러스·올리브영 오프라인 벤더 사업, 비건 치즈 Sheese 국내 총판(코스트코·CU·GS25 납품)','E-Count ERP · Google Workspace 커스터마이징, 스프레드시트 공유 업무 관리 시스템'],
+  meta:'주식회사 에스시홀딩스 유통사업부 차장 본부장 · 2021.12 ~ 2025.09'},
+ {id:'canada',color:'#2A8C86',kicker:'2024 – NOW · HEALTH CANADA',tag:'캐나다 수출<br>정식 진출',
+  title:'중소기업 최초로 한국 화장품의 캐나다 정식 진출을 열었습니다',
+  lede:'미국 다음 시장으로 캐나다를 골랐습니다. 캐나다 보건부 인증을 직접 진행하는 회사는 당시 아모레퍼시픽 · 에이블C&C · LG생활건강과 에스시홀딩스뿐이었습니다.',
+  story:[['WHY','미국에서 잘 팔리는 한국 화장품이 캐나다에서는 소규모 한인 업체를 통해서만 들어가고 있었습니다. 제조사들은 캐나다 보건부 인증 지식이 없어 바이어가 대신 인증하는 방식으로만 수출이 됐습니다.'],
+         ['HOW','캐나다 정부와 보건부의 화장품 수입 통관·인증 규정을 독학해, 외국인 사업자 등록번호를 받아 수입자를 거치지 않고 아마존 캐나다와 월마트 캐나다 창고로 직접 발송하는 구조를 만들었습니다. 화장품과 기능성 식품 판매 라이선스를 받고, 캐나다 내 3PL·보건부 파트너를 확보했습니다.'],
+         ['RESULT','스킨천사 · 넘버즈인 · 믹순 · 하루하루원더 · 셀리맥스 등 K-뷰티 브랜드와 캐나다 총판 계약을 체결했습니다. 2021년 12월 입사 당시 연매출 15억 원 개인사업자를 법인으로 전환하고 2024년 연매출 80억 원 규모의 캐나다 수출 전문 회사로 키웠습니다. 지금은 루트82에서 이 기술을 브랜드가 사서 쓰는 서비스로 팔고, Health Canada 전문 에이전시 Ouah Co. & Trading Ltd.의 한국 운영 이사를 겸합니다.']],
+  items:['Health Canada 화장품 신고(CNF) · NHP, NRI 등록으로 셀러 직접 통관 구조','아마존 캐나다 FBA 영·불 라벨 요건, IOR · GST 처리 절차서','Health Canada 실무 매뉴얼 원고 집필 완료'],
+  meta:'에스시홀딩스(2024) → 루트82 글로벌 커머스 실장(2025.10 ~) · Ouah Co. & Trading Ltd. 한국 운영 이사'},
+ {id:'channel',color:'#C99A5B',kicker:'2025 – NOW · ROUTE82',tag:'북미 채널<br>온보딩',
+  title:'아마존 · 월마트 · 틱톡샵 · 메이시스를 한 번에 엽니다',
+  lede:'루트82 글로벌 커머스 실장으로 한국 화장품·식품 브랜드의 북미 채널 온보딩과 운영을 맡고 있습니다.',
+  story:[['HOW','Walmart US 1P 공급률 협상, TikTok Shop US 셀러 계정 개설, Macy\'s 마켓플레이스 한국 화장품 등록과 리스팅 거절 대응, SHEIN 한국 소싱 협업을 같은 기간에 진행했습니다. 화장품·식품 수출 특화 아마존 FBA 연계 서비스 「캡틴 FBA」를 론칭했고, 아이돌 콜라보 상품(라피스 센시블레 × ZEROBASEONE)의 아마존 FBA 입고·판매와 해외 바이어용 소개서·카탈로그 제작을 맡았습니다.'],
+         ['RESULT','아마존코리아 셀러 대상 웨비나와 월마트 아시아퍼시픽 마켓플레이스 팀 대상 웨비나를 진행했습니다. 아마존코리아 셀러 온보딩팀이 뷰티 셀러의 캐나다 진출을 지원할 규제·통관 파트너를 찾을 때 루트82가 후보로 올라 협업을 진행하고 있습니다.']],
+  items:['아마존 US/CA 리스팅 · PPC 운영, Walmart 1P, TikTok Shop US, Macy\'s, SHEIN','브랜드별 라벨·상세페이지 규정 검토 후 채널 등록','해외 바이어 소개서 · 카탈로그 · 세일즈 키트 제작'],
+  meta:'루트82 글로벌 커머스 실장 (인증·규제 본부장) · 2025.10 ~ 재직 중'},
+ {id:'axdx',color:'#2F5BEA',kicker:'2026 – NOW · GROUP AX · DX',tag:'그룹 AX·DX<br>업무 자동화',
+  title:'실무를 아는 사람이 직접 자동화합니다',
+  lede:'2026년 8월부터 더올마이티 그룹(더올마이티 · 슈퍼홀릭 · 라피스인터내셔널 · 루트82)의 AX·DX를 혼자 맡고 있습니다. 자료를 받아서 봇이 도는 데까지 한 주가 걸리지 않습니다.',
+  story:[['WHY','시스템이 서른 개가 넘는데 서로 연결이 안 되어 엑셀이 시스템 사이의 접착제 노릇을 하고 있었습니다. 사람이 내려받아 옮겨 적고 다시 올리는 일이 하루의 절반이었습니다. 외주 개발사는 그 업무를 모르고, 현업은 매뉴얼을 써 줄 시간이 없습니다.'],
+         ['HOW','매뉴얼을 요구하지 않고 쓰던 파일을 그대로 받습니다. 반복 업무를 규칙 · AI · 연동 · 사람 넷으로 나누고, 규칙으로 되는 것부터 직원이 이미 쓰는 슬랙에 붙입니다. 순서는 제거 → 표준화 → 연동 → 자동화 → AI. 규칙으로 되는 일은 AI로 하지 않고, 사람을 줄이는 자료는 만들지 않습니다.'],
+         ['RESULT','회의록 자동화 「헤임달」(녹음 → 전사·요약·할 일 → 슬랙 1:1, 회의실 태블릿, 사내 PC 한 대로 운영) · 슈퍼홀릭 컨버스팀 반복 업무 38건 진단 → 슬랙 봇 7건 가동(파일 올리면 9초 뒤 변환본, 검증 22/22 · 24/24 · 29/29) · 정부지원사업 자동 모니터링(법인 5곳, 첫날 1,540건 판정, 비용 0원) · FDA 전성분·문안 검토 엔진 · 골포스트 인스타그램 성과 자동 집계와 경기 카드 생성기.']],
+  items:['헤임달 — 회의록 자동화 시스템 기획·개발·운영 (Supabase · faster-whisper · Claude · Slack)','CONVERSEBOT — 송장 변환 · 주문 취합 · 재고 등록 · 현판가 대조 · 입고 3자 대조 · 일일 매출 보고','정부지원사업 모니터링 — GitHub Actions 매일 09:30, 슬랙 리스트','FDA RA 엔진 — 위키가 정본, 엔진은 파생물. 할루시네이션 방지가 설계 1순위','루트82 AI 봇(네이버웍스) · 회의실 태블릿 · 그룹 웹사이트 리뉴얼'],
+  meta:'그룹 AX·DX 담당 (1인) · 2026.08 ~ 재직 중 · 홍석진 대표 제정 AX·DX 팀 매뉴얼 v1.0 기준'},
+ {id:'web',color:'#1E7B45',kicker:'WEB · SYSTEM',tag:'웹사이트<br>시스템 구축',
+  title:'기획부터 디자인, 구현, 배포까지 혼자 만듭니다',
+  lede:'슈퍼홀릭 그룹 웹사이트를 기획·카피·디자인·구현·배포까지 혼자 맡아 2026년 9월 런칭했습니다. 지금 보고 계신 이 포트폴리오와 동인천상회 사이트도 같은 방식으로 만들었습니다.',
+  story:[['HOW','대표님의 「AI로 만든 티가 난다」는 지적을 받고 하루 만에 다시 짰습니다. 사진을 주인공으로, 서체는 파일 안에 내장, 배경 영상은 캔버스 코드 그래픽으로 교체했습니다. IR 자료 54장을 전수 정리해 회사 소개 문안을 자료 기반으로 다시 썼고, 계열사 구조를 실제대로 배치했습니다.'],
+         ['RESULT','superholics.co.kr 런칭(2026-09-07), 같은 날 영문 페이지 추가. 이전 회사들에서는 자체 ERP 개발 참여(더네이쳐홀딩스), E-Count ERP · Google Workspace 커스터마이징(에스시홀딩스), SG ERP 정산 영역 직접 개발을 했습니다.']],
+  items:['정적 사이트 · GitHub Pages · 가비아 호스팅 배포','문의 폼, OG, sitemap, 서치어드바이저·서치콘솔 등록','ERP · 그룹웨어 커스터마이징, 스프레드시트 기반 업무 관리 시스템'],
+  meta:'슈퍼홀릭 그룹 웹사이트 2026.09 · 동인천상회 www.brooksglobal.co.kr 2026.09'},
+ {id:'design',color:'#E4327F',kicker:'BROOKS GLOBAL · 동인천상회',tag:'패키지 · 라벨<br>디자인',
+  title:'디자인과 규정을 한 사람이 봅니다',
+  lede:'개인사업자 브룩스글로벌(대외 브랜드 동인천상회)로 화장품 용기·패키지 디자인, 라벨 표기 문구, 상세페이지, 브랜드 웹사이트, 미국·캐나다 규정 자문을 합니다.',
+  story:[['HOW','예쁘게 만드는 곳은 많지만 그 디자인이 FDA나 Health Canada 기준에 걸리는지, 문구 한 줄이 의약품 주장이 되는지까지 같이 보는 곳은 드뭅니다. 시안 단계에서 표시사항을 자리까지 잡아 두어 인쇄를 넘긴 뒤 되돌아오는 일을 없앱니다.'],
+         ['RESULT','K-POP 아이돌 굿즈 브랜드 블링원(Blingone)의 디자인 파트너로 마스크팩 파우치·단상자·영문 상세페이지를 진행 중입니다. 피앤디하우스(창고형 드럭스토어) 공식 사이트, 라피스 센시블레 × ZEROBASEONE 해외 세일즈 키트 제작.']],
+  items:['화장품 용기 · 패키지 디자인, 인쇄용 AI · PDF','라벨 표기 문구 작성(국문 · 영문), INCI 정리, Supplement · Nutrition · Drug Facts','상세페이지 기획 · 디자인, 브랜드 웹사이트 구축'],
+  meta:'브룩스글로벌 · 2026 ~ · www.brooksglobal.co.kr'}
+];
+var DECO=[{txt:'',color:'#1E7B45',label:'동인천김씨'},
+          {txt:'♥',color:'#E4327F',big:1.2,open:'design',label:'BLINGONE'}];
+
+var MAIL='brooksservices.kim@brooksglobal.co.kr';
+var MAILTO='mailto:'+MAIL+'?subject=';
+
+/* ===== avatar faces =====
+   avatar-idle / happy / wow / wink 파일을 받으면 아래 값만 교체하면 됩니다. */
+
+var LINES={idle:'눌러봐~',nod:'오~ 좀 치네',shades:'뭘 봐~',cap:'잠깐만~',chill:'냅둬유~',
+           jerky:'묵고 하자',yawn:'아직도 안 눌렀네~',tsk:'쯧',no:'거긴 아녀',blow:'저리 가~'};
+
+/* ===== video head: idle loop + gesture clips, colour on top half / alpha matte on bottom half, composited in WebGL ===== */
+var CLIPS={
+  nod:    {mp4:'../media/clip_nod.mp4',    webm:'../media/clip_nod.webm'},
+  shades: {mp4:'../media/clip_shades.mp4', webm:'../media/clip_shades.webm'},
+  cap:    {mp4:'../media/clip_cap.mp4',    webm:'../media/clip_cap.webm'},
+  chill:  {mp4:'../media/clip_chill.mp4',  webm:'../media/clip_chill.webm'},
+  jerky:  {mp4:'../media/clip_jerky.mp4',  webm:'../media/clip_jerky.webm'},
+  yawn:   {mp4:'../media/clip_yawn.mp4',   webm:'../media/clip_yawn.webm'},
+  tsk:    {mp4:'../media/clip_tsk.mp4',    webm:'../media/clip_tsk.webm'},
+  no:     {mp4:'../media/clip_no.mp4',     webm:'../media/clip_no.webm'},
+  blow:   {mp4:'../media/clip_blow.mp4',   webm:'../media/clip_blow.webm'}
+};
+var HEAD=(function(){
+  var cv=document.getElementById('headgl'), vid=document.getElementById('idlev'), gv=document.getElementById('gestv'), av=document.getElementById('avatar');
+  gv.style.cssText='position:fixed;left:-4000px;top:0;width:2px;height:2px';
+  var api={ready:false,set:function(){},use:function(){},tick:function(){},resize:function(){},busy:function(){return false;}};
+  var gl=null; try{ gl=cv.getContext('webgl',{alpha:true,premultipliedAlpha:true,antialias:false}); }catch(e){}
+  if(!gl) return null;
+  function sh(t,src){ var o=gl.createShader(t); gl.shaderSource(o,src); gl.compileShader(o); return o; }
+  var prog=gl.createProgram();
+  gl.attachShader(prog,sh(gl.VERTEX_SHADER,'attribute vec2 p;varying vec2 v;void main(){v=vec2(p.x*0.5+0.5,p.y*0.5+0.5);gl_Position=vec4(p,0.0,1.0);}'));
+  gl.attachShader(prog,sh(gl.FRAGMENT_SHADER,
+    'precision mediump float;varying vec2 v;uniform sampler2D tA;uniform sampler2D tB;uniform float m;'+
+    'vec4 samp(sampler2D t){vec3 c=texture2D(t,vec2(v.x,0.5+v.y*0.5)).rgb;float a=texture2D(t,vec2(v.x,v.y*0.5)).r;return vec4(c*a,a);}'+
+    'void main(){gl_FragColor=mix(samp(tA),samp(tB),m);}'));
+  gl.linkProgram(prog); gl.useProgram(prog);
+  var buf=gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER,buf);
+  gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
+  var loc=gl.getAttribLocation(prog,'p'); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
+  function mkTex(unit){
+    var t=gl.createTexture(); gl.activeTexture(gl.TEXTURE0+unit); gl.bindTexture(gl.TEXTURE_2D,t);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR); gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE); gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
+    gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,2,2,0,gl.RGBA,gl.UNSIGNED_BYTE,new Uint8Array(16));
+    return t;
+  }
+  var texA=mkTex(0), texB=mkTex(1);
+  gl.uniform1i(gl.getUniformLocation(prog,'tA'),0); gl.uniform1i(gl.getUniformLocation(prog,'tB'),1);
+  var uM=gl.getUniformLocation(prog,'m');
+  gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL,true);
+  gl.clearColor(0,0,0,0);
+
+  function resize(){
+    var w=cv.clientWidth, h=cv.clientHeight; if(!w||!h) return;
+    var dpr=Math.min(window.devicePixelRatio||1,2);
+    var W=Math.round(w*dpr), H=Math.round(h*dpr);
+    if(cv.width!==W||cv.height!==H){ cv.width=W; cv.height=H; gl.viewport(0,0,W,H); }
+  }
+  function upload(unit,tex,video){
+    gl.activeTexture(gl.TEXTURE0+unit); gl.bindTexture(gl.TEXTURE_2D,tex);
+    try{ gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,video); }catch(e){}
+  }
+  /* gesture state: 0 idle, 1 fading in, 2 playing, 3 fading out */
+  var gState=0, mix=0, FADE=0.22, current=null;
+  function draw(){
+    if(vid.readyState<2) return;
+    if(cv.width<=2 || Math.abs(cv.clientWidth*Math.min(window.devicePixelRatio||1,2)-cv.width)>2) resize();
+    upload(0,texA,vid);
+    if(gState && gv.readyState>=2) upload(1,texB,gv);
+    gl.uniform1f(uM,mix);
+    gl.clear(gl.COLOR_BUFFER_BIT); gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
+  }
+  vid.addEventListener('loadeddata',function(){ api.ready=true; resize(); draw(); });
+  var lastErr=null;
+  /* 바탕 영상이 막히면(절전·자동재생 정책) 정지 얼굴로 넘어가고, 다시 볼 수 있게 되면 되살린다 */
+  function tryIdle(){
+    var p=vid.play();
+    if(p&&p.catch) p.catch(function(err){ lastErr='idle:'+(err&&err.name); document.getElementById('face').hidden=false; });
+    if(p&&p.then) p.then(function(){ document.getElementById('face').hidden=true; });
+  }
+  tryIdle();
+  document.addEventListener('visibilitychange',function(){ if(vid.paused) tryIdle(); });
+  window.addEventListener('pointerdown',function(){ if(vid.paused) tryIdle(); },true);
+
+  var cpt=function(t){ try{ return gv.canPlayType(t); }catch(e){ return ''; } };
+  var vp9=cpt('video/webm; codecs="vp9"')==='probably', h264=cpt('video/mp4; codecs="avc1.42E01E"')!=='';
+  function clipSrc(k){
+    var c=CLIPS[k]; if(!c) return null;
+    var ok=function(u){ return u && u.indexOf('__')!==0; };
+    if(vp9&&ok(c.webm)) return c.webm;
+    if(h264&&ok(c.mp4)) return c.mp4;
+    return ok(c.mp4)?c.mp4:(ok(c.webm)?c.webm:null);
+  }
+  /* 반응 클립은 미리 받아 두어야 누른 그 프레임에 나옵니다.
+     다만 배포본에서는 클립이 별도 파일이라, 첫 화면까지 같이 기다리면 로딩이 길어집니다.
+     그래서 만들어만 두고 실제 내려받기는 화면이 뜬 뒤에 시작합니다. */
+  var players={}, warmed=false;
+  var inline = (function(){ var a=clipSrc('nod'); return !!a && a.slice(0,5)==='data:'; })();
+  Object.keys(CLIPS).forEach(function(k){
+    var src=clipSrc(k); if(!src) return;
+    var v=document.createElement('video');
+    v.muted=true; v.playsInline=true; v.setAttribute('playsinline',''); v.setAttribute('muted','');
+    v.style.cssText='position:fixed;left:-4000px;top:0;width:558px;height:760px;pointer-events:none';
+    if(inline){ v.preload='auto'; v.src=src; v.load(); }
+    else { v.preload='none'; v.dataset.src=src; }
+    v.addEventListener('ended',function(){ if(gState&&gv===v) gState=3; });
+    av.appendChild(v); players[k]=v;
+  });
+  function warm(){
+    if(warmed||inline) return; warmed=true;
+    Object.keys(players).forEach(function(k){
+      var v=players[k]; if(!v.dataset.src) return;
+      v.preload='auto'; v.src=v.dataset.src; v.load();
+    });
+  }
+  function warmOne(k){
+    var v=players[k]; if(!v||!v.dataset.src||v.src) return;
+    v.preload='auto'; v.src=v.dataset.src; v.load();
+  }
+  window.addEventListener('load',function(){ setTimeout(warm,400); });
+  setTimeout(warm,2500);
+  ['pointerdown','touchstart','keydown'].forEach(function(e){
+    window.addEventListener(e,warm,{once:true,passive:true});
+  });
+  var gen=0;                                   /* 반응 세대 번호 — 가로채기 판별용 */
+  function playGesture(k){
+    var v=players[k]; if(!v) return false;
+    if(!v.src && v.dataset.src) warmOne(k);       /* 아직 안 받았으면 지금 받습니다 */
+    var my=++gen;
+    if(gState && gv && gv!==v){ try{ gv.pause(); }catch(e){} mix=Math.min(mix,0.35); }
+    else if(gState && gv===v){ mix=Math.min(mix,0.35); }
+    else { mix=0; }
+    current=k; gv=v; gState=1;
+    /* every clip opens with a short still hold: skip it so the reaction is felt at once */
+    var skip={nod:0.9,shades:1.7,cap:0.6,chill:1.0,yawn:1.0,tsk:0.7,blow:1.7,jerky:0,no:0}[k]||0;
+    try{ v.currentTime=skip; }catch(e){}
+    var pp=v.play();
+    if(pp&&pp.catch) pp.catch(function(err){
+      /* 이 클립이 이미 다음 반응에 가로채인 것이라면(=흔한 AbortError) 새 반응 상태를 건드리지 않는다 */
+      if(my!==gen) return;
+      lastErr=k+':'+(err&&err.name);
+      gState=0; mix=0;
+    });
+    return true;
+  }
+
+  var yaw=0,pitch=0,roll=0, kick=0, kickT=0, bobT=0, idleN=0, quietSince=Date.now(), autoWait=26000+Math.random()*12000;
+  api.set=function(y,p,r){ yaw=y; pitch=p; roll=r||0; };
+  api.busy=function(){ return gState!==0; };
+  api.now=function(){ return current; };
+  api.touch=function(){ quietSince=Date.now(); };
+  api.diag=function(){
+    var vs=function(v){ return {ready:v.readyState,net:v.networkState,paused:v.paused,t:+v.currentTime.toFixed(2),dur:+(v.duration||0).toFixed(2),err:v.error?v.error.code:null,w:v.videoWidth,h:v.videoHeight}; };
+    var o={gState:gState,mix:+mix.toFixed(2),current:current,lastErr:lastErr,vp9:vp9,h264:h264,cv:[cv.width,cv.height],
+           faceShown:!document.getElementById('face').hidden,idle:vs(vid),clips:{}};
+    Object.keys(players).forEach(function(k){ o.clips[k]=vs(players[k]); });
+    return o;
+  };
+  api.use=function(k){
+    var played = playGesture(k) ? k : null;
+    if(!played){ kick=(k==='chill'||k==='blow')?1.6:1; kickT=0; }  /* 클립이 없으면 작게 튀는 것으로 대신 */
+    return played;
+  };
+  api.tick=function(dt){
+    var t=dt/1000; kickT+=t; bobT+=t;
+    if(gState===1){ if(gv.readyState>=2) mix=Math.min(1,mix+t/FADE); if(mix>=1) gState=2; }
+    else if(gState===3){ mix=Math.max(0,mix-t/FADE); if(mix<=0){ gState=0; current=null; try{ gv.pause(); gv.currentTime=0; }catch(e){} } }
+    else if(gState===0){
+      if(Date.now()-quietSince>autoWait){
+        autoWait=26000+Math.random()*14000; idleN++;
+        setFace(idleN%3===0?'yawn':'jerky');          /* 방치: 육포, 세 번에 한 번 하품. 끝나면 말풍선도 기본으로 */
+      }
+    }
+    draw();
+    var bounce = kick>0 ? Math.sin(kickT*11)*0.06*kick*Math.max(0,1-kickT/0.8) : 0;
+    if(kickT>0.8) kick=0;
+    var ry=(yaw*0.22)*180/Math.PI, rx=(pitch*0.18)*180/Math.PI, rz=roll*180/Math.PI;
+    av.style.transform='translate(-50%,calc(-50% + '+(Math.sin(bobT*1.05)*7).toFixed(1)+'px)) perspective(1200px) rotateY('+ry.toFixed(2)+'deg) rotateX('+rx.toFixed(2)+'deg) rotateZ('+rz.toFixed(2)+'deg) scale('+(1+bounce).toFixed(3)+')';
+  };
+  api.resize=function(){ resize(); draw(); };
+  window.addEventListener('resize',api.resize);
+  return api;
+})();
+if(!HEAD){ document.getElementById('face').hidden=false; document.getElementById('headgl').hidden=true; HEAD={ready:false,set:function(){},use:function(){return null;},tick:function(){},resize:function(){},busy:function(){return false;},now:function(){return null;},touch:function(){}}; }
+
+var faceEl=document.getElementById('face'), bubbleEl=document.getElementById('bubble'), faceTimer=null;
+var faceKey='idle';
+function setFace(k,hold,quiet){
+  faceKey=k;
+  if(!quiet) HEAD.touch();                    /* 사용자가 건드린 것만 방치 시계를 되돌린다 */
+  var played = (k==='idle') ? null : HEAD.use(k);
+  var key = played || k;
+  if(played) hold=5200;                       /* 클립 한 편이 5초 남짓 */
+  if(!quiet) bubbleEl.textContent=LINES[key]||LINES.idle;
+  clearTimeout(faceTimer);
+  if(hold) faceTimer=setTimeout(function(){ setFace('idle',0,quiet); },hold);
+}
+var av=document.getElementById('avatar');
+/* 얼굴 클릭 — 7가지 중 무작위, 직전 것과 겹치지 않게 */
+var FACE_POOL=['shades','cap','nod','no','blow','tsk','yawn'], lastFace=null;
+function tapFace(){
+  var pick;
+  do { pick=FACE_POOL[Math.floor(Math.random()*FACE_POOL.length)]; } while(pick===lastFace && FACE_POOL.length>1);
+  lastFace=pick; setFace(pick,1800);
+}
+av.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){e.preventDefault();tapFace();} });
+/* 화면 좌표가 얼굴 타원 안인지 — 큐브가 얼굴 위에 겹쳐 있어도 얼굴이 먼저다 */
+function onFace(x,y){
+  var r=av.getBoundingClientRect();
+  var nx=(x-(r.left+r.width/2))/(r.width*0.44), ny=(y-(r.top+r.height/2))/(r.height*0.46);
+  return nx*nx+ny*ny <= 1;
+}
+
+/* 푸터 연도는 자동으로 맞춥니다 */
+(function(){ var y=document.getElementById('fyear'); if(y) y.textContent=new Date().getFullYear(); })();
+
+/* ===== pages (nav) ===== */
+var LOGO='__LOGO__', MARK='__MARK__';
+var hasLogo=LOGO&&LOGO.indexOf('__')!==0, hasMark=MARK&&MARK.indexOf('__')!==0;
+/* 로딩 화면도 히어로와 같은 글로시 워드마크로. 같은 이미지를 재사용하므로 용량이 늘지 않습니다 */
+(function(){
+  var en=document.querySelector('#wordmark .en');
+  var lg=document.getElementById('loaderLogo');
+  if(en && lg && en.getAttribute('src')) lg.innerHTML='<img src="'+en.getAttribute('src')+'" alt="dongincheon">';
+})();
+/* 상단 바는 높이가 34px 밖에 안 되어 가로형 워드마크를 넣으면 영문 줄이 뭉갭니다.
+   브랜드 가이드대로 표식(mark)만 넣고 이름은 HTML 글자로 씁니다. 표식이 없으면 글자만 둡니다. */
+/* 집 모양 표식은 평면 선그림이라 글로시 3D 콘셉트와 맞지 않아 뺐습니다.
+   되살리려면 상단 바와 히어로 부제 줄에 MARK 이미지를 다시 끼우면 됩니다. */
+var PAGES={
+  services:{kicker:'PROJECTS',title:'프로젝트',lede:'2012년부터 지금까지, 시장을 연 상품과 채널, 그리고 그 뒤에서 만든 시스템입니다. 오브제를 누르셔도 됩니다.',
+    html:function(){ return '<div class="plinks">'+SERVICES.map(function(s){ return '<button data-svc="'+s.id+'" style="--dot:'+s.color+'"><span><i></i>'+s.title+'</span><em>'+s.kicker+'</em></button>'; }).join('')+'</div>'; }},
+  about:{kicker:'ABOUT',title:'실무형 본부장입니다',lede:'패션·뷰티 브랜드의 상품기획 → 국내·해외 채널 영업 → 미국 FDA·캐나다 Health Canada 인허가 → 아마존·월마트 운영까지 14년을 현장에서 했고, 지금은 그 실무를 직접 자동화하는 그룹 AX·DX를 혼자 맡고 있습니다.',
+    html:function(){ return '<div class="portrait"><img src="../media/portrait.webp" alt="김현우"></div>'+
+      '<p>만 25세에 작은 가방 브랜드의 첫 직원으로 들어가 상품기획·영업·물류·상세페이지를 다 했습니다. 내셔널지오그래픽 온라인팀을 처음 만들어 롱패딩과 흰색 캐리어를 기획했고, 벤시몽에서 네이버 모바일 라이브를 제도권 브랜드 최초로 했고, 수출 회사에서 FDA와 Health Canada 인허가를 독학으로 익혀 연매출 15억 개인사업자를 캐나다 수출 전문 법인으로 키웠습니다.</p>'+
+      '<p>두 가지를 동시에 하는 본부장입니다. 상품이 어느 채널에서 어떻게 팔리는지 알고, 그 과정에서 사람이 손으로 옮겨 적는 일이 어디인지 압니다. 아는 사람이 직접 고치기 때문에 빠릅니다.</p>'+
+      '<dl class="facts">'+
+      '<div class="fact"><dt>NOW</dt><dd>루트82 글로벌 커머스 실장(인증·규제 본부장) · 더올마이티 그룹 AX·DX 담당 · Ouah Co. & Trading Ltd. 한국 운영 이사 · 브룩스글로벌(동인천상회) 대표</dd></div>'+
+      '<div class="fact"><dt>FIELD</dt><dd>상품기획 · 온라인 MD · 해외영업 · 미국 FDA / Health Canada 인허가 · 글로벌 라벨링 · 아마존 US/CA 운영 · 업무 자동화</dd></div>'+
+      '<div class="fact"><dt>TALKS</dt><dd>아마존코리아 셀러 웨비나 · 월마트 아시아퍼시픽 마켓플레이스 팀 웨비나</dd></div>'+
+      '<div class="fact"><dt>BUILDS</dt><dd>회의록 자동화 헤임달 · 슬랙 업무 봇 · 정부지원사업 모니터링 · FDA 규정 검토 엔진 · 그룹 웹사이트 · 이 사이트</dd></div>'+
+      '<div class="fact"><dt>WRITES</dt><dd>Health Canada 실무 매뉴얼 원고 · FDA 인증 사내 매뉴얼 · 스레드 @dongincheon.kimc</dd></div>'+
+      '<div class="fact"><dt>BASE</dt><dd>인천 · 서울 · 경기 서부 근무 가능</dd></div></dl>'; }},
+  process:{kicker:'CAREER',title:'경력 14년',lede:'가방 브랜드 첫 직원에서 그룹 AX·DX 담당까지. 회사가 바뀔 때마다 맡는 범위가 넓어졌습니다.',
+    html:function(){ var st=[
+      ['루트82 · 글로벌 커머스 실장 (인증·규제 본부장) · 2025.10 ~ 현재','한국 화장품·식품 브랜드 미국·캐나다 수출 총괄. FDA MoCRA · Health Canada 인허가 서비스, 아마존·월마트·틱톡샵·메이시스 온보딩, 캡틴 FBA 론칭. 2026.08부터 더올마이티 그룹(더올마이티·슈퍼홀릭·라피스인터내셔널·루트82) AX·DX 1인 담당.'],
+      ['주식회사 에스시홀딩스 · 유통사업부 차장 본부장 · 2021.12 ~ 2025.09','FDA · Health Canada · PMDA 인증 직접 진행, 상품기획·해외 B2B/B2C·국내 영업 총괄. 연매출 15억 개인사업자를 캐나다 수출 전문 법인으로. AHC · 원오세븐 · 다나한 아마존 미국 독점 총판, K-뷰티 브랜드 캐나다 총판 계약.'],
+      ['㈜씨오리퍼블릭 · 영업부 차장 파트장 · 2021.04 ~ 2021.10','여성복 몽돌 · 유니섹스 데님 데케트 런칭. 입사 2개월 만에 29cm 1위 · 무신사 50위, 과장에서 부서장 승진. 몽돌 중국 Tmall 입점.'],
+      ['㈜여우미 · 브랜드2팀 대리 팀장 · 2020.07 ~ 2021.03','샤오미 · 레노버 국내 독점 총판 온라인 세일즈 총괄. 레노버 × 서울스토어 × 안다르 스마트 체중계 런칭, 플랫폼 1위 · 60일 5,000개 완판. 테크 + 아웃도어 PB 브랜드 기획·상표 출원.'],
+      ['주식회사 에이피오13 (벤시몽) · 온라인팀 대리 팀장 · 2019.05 ~ 2020.06','온라인 사업 시스템 전체 확립. 월 매출 3,000만 원 → 7개월 만에 4~5억 원. 제도권 패션 브랜드 최초 네이버 모바일 라이브(2020.04.30), 비아플레인 콜라보 29cm 쇼케이스.'],
+      ['와이에이치컴퍼니 · MD2팀 대리 팀장 · 2018.09 ~ 2019.05','침체된 스트릿 브랜드 프롬에이투비 BX·BI 재정립, 2개월 만에 리런칭. 일매출 20~80만 원 → 3개월 차 1,000만 원.'],
+      ['더네이쳐홀딩스 (내셔널지오그래픽) · E-biz 대리 팀원 · 2015.09 ~ 2018.08','판권 회수 후 온라인팀 창설 첫 직원. 롱패딩 카이만 다운자켓(10차 리오더, 무신사 어워즈 베스트 아이템), 흰색 캐리어 N6604(초도 10,000개 2주 완판). 2016·2017 최우수팀 표창, 자체 ERP 개발 참여.'],
+      ['엠에스티컴퍼니 · 온라인사업부 팀장 · 2012.08 ~ 2015.07','창립 첫 직원. 가방 브랜드 런칭, 내셔널지오그래픽 데이팩 라인 온라인 총판 계약, 온라인 몰 배너·상세페이지 제작, 멀티샵 락핑 런칭.']];
+      return '<div class="steps">'+st.map(function(x,i){ return '<div class="step"><b>'+(st.length-i)+'</b><div><h4>'+x[0]+'</h4><p>'+x[1]+'</p></div></div>'; }).join('')+'</div>'+
+      '<p class="pmeta">학력 강원대학교 행정경제학과(중퇴) · 한국방송통신대학교 생활과학부 재학 · 2010 모범 공익근무요원 표창(인천광역시 남동구청장). 이력서 전문과 경력기술서는 메일로 보내 드립니다.</p>'; }},
+  contact:{kicker:'CONTACT',title:'연락하기',lede:'채용 제안, 프로젝트 협업, 자동화 상담 모두 환영합니다. 확인하는 대로 회신드립니다.',nocta:true,
+    html:function(){
+      var kinds=['채용 · 포지션 제안','프로젝트 · 협업 제안','업무 자동화 상담','미국 · 캐나다 규정 문의'].map(function(x){ return '<option>'+x+'</option>'; }).join('');
+      return '<form id="cform" novalidate>'+
+        '<div class="fld"><label for="f_name">이름 <em>필수</em></label><input id="f_name" name="name" type="text" autocomplete="name" placeholder="홍길동"></div>'+
+        '<div class="fld"><label for="f_co">회사 · 브랜드</label><input id="f_co" name="company" type="text" autocomplete="organization" placeholder="회사명"></div>'+
+        '<div class="fld"><label for="f_mail">회신 받으실 메일 <em>필수</em></label><input id="f_mail" name="email" type="email" inputmode="email" autocomplete="email" placeholder="name@example.com"></div>'+
+        '<div class="fld"><label for="f_kind">어떤 일인가요</label><select id="f_kind" name="kind">'+kinds+'<option>기타</option></select></div>'+
+        '<div class="fld"><label for="f_msg">내용 <em>필수</em></label><textarea id="f_msg" name="message" rows="5" placeholder="포지션이나 프로젝트, 일정과 조건을 적어 주시면 바로 답할 수 있습니다."></textarea></div>'+
+        '<input type="checkbox" name="botcheck" id="f_bot" class="botcheck" tabindex="-1" autocomplete="off">'+
+        '<p class="cerr" id="cerr" role="alert"></p>'+
+        '<button type="submit" class="csend" id="csend">보내기</button>'+
+        '<p class="cnote">보내주신 내용은 회신 목적으로만 씁니다. 메일로 직접 보내셔도 됩니다 — <button type="button" class="lnk" id="mcopy">'+MAIL+' 복사</button></p>'+
+        '</form>'+
+        '<div class="cdone" id="cdone" hidden></div>'; }}
+};
+document.querySelectorAll('.topnav [data-svc]').forEach(function(b){ b.addEventListener('click',function(){ var s=SERVICES.filter(function(x){return x.id===b.getAttribute('data-svc');})[0]; if(s) openPanel(s); }); });
+function openPage(k){
+  var pg=PAGES[k]; if(!pg) return;
+  document.getElementById('pkicker').textContent=pg.kicker;
+  document.getElementById('ptitle').textContent=pg.title;
+  var body=document.getElementById('pbody');
+  body.innerHTML='<p>'+pg.lede+'</p>'+pg.html();
+  body.querySelectorAll('[data-svc]').forEach(function(btn){ btn.addEventListener('click',function(){ var s=SERVICES.filter(function(x){return x.id===btn.getAttribute('data-svc');})[0]; if(s) openPanel(s); }); });
+  var cp=document.getElementById('mcopy'); if(cp) cp.addEventListener('click',function(){ copyMail(); });
+  var mo=document.getElementById('mopen'); if(mo) mo.addEventListener('click',function(e){ mailClick(e,'[김현우 포트폴리오] 연락'); });
+  bindForm();
+  document.getElementById('pmail').href=MAILTO+encodeURIComponent('[김현우 포트폴리오] 연락');
+  document.querySelector('.pcta').style.display = pg.nocta ? 'none' : '';
+  showPanel();
+}
+
+/* ===== 메일 — 새 창이 막히는 환경(아티팩트 미리보기 등)에서도 주소가 남게 ===== */
+var toastEl=document.getElementById('toast'), toastT=null;
+function toast(msg){
+  if(!toastEl) return;
+  toastEl.textContent=msg; toastEl.classList.add('on');
+  clearTimeout(toastT); toastT=setTimeout(function(){ toastEl.classList.remove('on'); },3200);
+}
+function copyMail(){
+  var done=function(){ toast('메일 주소를 복사했습니다 · '+MAIL); };
+  try{
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(MAIL).then(done,fallbackCopy);
+      return;
+    }
+  }catch(e){}
+  fallbackCopy();
+}
+function fallbackCopy(){
+  var ok=false;
+  try{
+    var ta=document.createElement('textarea');
+    ta.value=MAIL; ta.setAttribute('readonly','');
+    ta.style.cssText='position:fixed;left:-9999px;top:0';
+    document.body.appendChild(ta); ta.select(); ta.setSelectionRange(0,MAIL.length);
+    ok=document.execCommand('copy'); document.body.removeChild(ta);
+  }catch(e){ ok=false; }
+  toast(ok ? ('메일 주소를 복사했습니다 · '+MAIL) : ('메일 주소 · '+MAIL));
+}
+/* ===== 문의 폼 ===== */
+var FORMKEY='6d4cfb96-cc8f-4f6c-8292-e10e7185486d';                 /* Web3Forms 액세스 키. 비어 있으면 메일 폴백으로만 동작합니다 */
+var FORMURL='https://api.web3forms.com/submit';
+
+function val(id){ var el=document.getElementById(id); return el ? el.value.trim() : ''; }
+function markBad(id,bad){ var el=document.getElementById(id); if(el&&el.parentNode) el.parentNode.classList[bad?'add':'remove']('bad'); }
+function formText(d){
+  return '이름: '+d.name+'\n'+
+         '회사 · 브랜드: '+(d.company||'-')+'\n'+
+         '회신 메일: '+d.email+'\n'+
+         '작업: '+d.kind+'\n\n'+
+         '내용:\n'+d.message;
+}
+function readForm(){
+  return {name:val('f_name'),company:val('f_co'),email:val('f_mail'),
+          kind:val('f_kind')||'미정',message:val('f_msg')};
+}
+function validate(d){
+  ['f_name','f_mail','f_msg'].forEach(function(i){ markBad(i,false); });
+  if(!d.name){ markBad('f_name',true); return ['이름을 적어주세요.','f_name']; }
+  if(!d.email){ markBad('f_mail',true); return ['회신 받으실 메일 주소를 적어주세요.','f_mail']; }
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(d.email)){ markBad('f_mail',true); return ['메일 주소를 다시 확인해주세요.','f_mail']; }
+  if(d.message.length<5){ markBad('f_msg',true); return ['내용을 조금만 더 적어주세요.','f_msg']; }
+  return null;
+}
+function showSent(d){
+  var f=document.getElementById('cform'), done=document.getElementById('cdone');
+  if(!done) return;
+  f.hidden=true; done.hidden=false;
+  done.innerHTML='<h4>문의를 보냈습니다</h4>'+
+    '<p>'+esc(d.name)+'님, 확인하는 대로 <b>'+esc(d.email)+'</b> 로 회신드리겠습니다.</p>';
+  done.scrollIntoView({block:'nearest'});
+}
+function showFallback(d,why){
+  var f=document.getElementById('cform'), done=document.getElementById('cdone');
+  if(!done) return;
+  var txt=formText(d);
+  f.hidden=true; done.hidden=false;
+  done.innerHTML='<h4>지금은 바로 보내지지 않았습니다</h4>'+
+    '<p>'+esc(why)+' 적어주신 내용은 그대로 아래에 있습니다. 복사해서 '+esc(MAIL)+' 로 보내주시면 똑같이 접수됩니다.</p>'+
+    '<pre id="cbody">'+esc(txt)+'</pre>'+
+    '<div class="row"><button type="button" id="ccopy">내용 복사</button>'+
+    '<a id="cmail" href="#">메일 앱으로 열기</a>'+
+    '<button type="button" id="cback">다시 쓰기</button></div>';
+  document.getElementById('ccopy').addEventListener('click',function(){ copyText(txt,'문의 내용을 복사했습니다'); });
+  document.getElementById('cmail').href=MAILTO+encodeURIComponent('[김현우 포트폴리오] '+d.kind)+'&body='+encodeURIComponent(txt);
+  document.getElementById('cmail').addEventListener('click',function(e){
+    var href=this.href, opened=false;
+    try{ opened=!!window.open(href,'_blank'); }catch(err){}
+    if(!opened){ try{ window.location.href=href; }catch(err2){} }
+    e.preventDefault(); copyText(txt,'문의 내용을 복사했습니다');
+  });
+  document.getElementById('cback').addEventListener('click',function(){ done.hidden=true; f.hidden=false; });
+  done.scrollIntoView({block:'nearest'});
+}
+function esc(t){ return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function bindForm(){
+  var f=document.getElementById('cform'); if(!f) return;
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var err=document.getElementById('cerr'), btn=document.getElementById('csend');
+    var d=readForm();
+    var bot=document.getElementById('f_bot');
+    if(bot&&bot.checked) return;                        /* 스팸 봇 */
+    var bad=validate(d);
+    if(bad){ err.textContent=bad[0]; err.classList.add('on'); var el=document.getElementById(bad[1]); if(el) el.focus(); return; }
+    err.classList.remove('on'); err.textContent='';
+    if(!FORMKEY){ showFallback(d,'전송 설정이 아직 연결되지 않았습니다.'); return; }
+    btn.disabled=true; btn.textContent='보내는 중…';
+    var payload={access_key:FORMKEY,
+      subject:'[김현우 포트폴리오] '+d.kind+' — '+d.name,
+      from_name:d.name, email:d.email,
+      '이름':d.name, '회사·브랜드':d.company||'-', '작업':d.kind, '내용':d.message};
+    var done=false, t=setTimeout(function(){ if(done) return; done=true;
+      btn.disabled=false; btn.textContent='문의 보내기';
+      showFallback(d,'전송이 응답하지 않았습니다.'); },12000);
+    fetch(FORMURL,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(payload)})
+      .then(function(r){ return r.json().catch(function(){ return {success:r.ok}; }); })
+      .then(function(j){ if(done) return; done=true; clearTimeout(t);
+        btn.disabled=false; btn.textContent='문의 보내기';
+        if(j&&j.success) showSent(d); else showFallback(d,'전송 서버가 요청을 받지 못했습니다.'); })
+      .catch(function(){ if(done) return; done=true; clearTimeout(t);
+        btn.disabled=false; btn.textContent='문의 보내기';
+        showFallback(d,'지금 화면에서는 바깥으로 보내는 것이 막혀 있습니다.'); });
+  });
+}
+
+function copyText(txt,msg){
+  var ok=false;
+  try{
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(function(){ toast(msg); },function(){ toast('아래 내용을 직접 복사해주세요'); });
+      return;
+    }
+  }catch(e){}
+  try{
+    var ta=document.createElement('textarea'); ta.value=txt; ta.setAttribute('readonly','');
+    ta.style.cssText='position:fixed;left:-9999px;top:0';
+    document.body.appendChild(ta); ta.select(); ta.setSelectionRange(0,txt.length);
+    ok=document.execCommand('copy'); document.body.removeChild(ta);
+  }catch(e){ ok=false; }
+  toast(ok?msg:'아래 내용을 직접 복사해주세요');
+}
+
+function mailClick(e,subject){
+  var href=MAILTO+encodeURIComponent(subject||'[김현우 포트폴리오] 연락');
+  var opened=false;
+  try{ opened=!!window.open(href,'_blank'); }catch(err){ opened=false; }
+  if(!opened){ try{ window.location.href=href; }catch(err2){} }
+  e.preventDefault();
+  copyMail();
+}
+document.querySelectorAll('[data-open]').forEach(function(b){ b.addEventListener('click',function(){ openPage(b.getAttribute('data-open')); }); });
+
+/* ===== panel ===== */
+var panel=document.getElementById('panel'), scrim=document.getElementById('scrim'), lastFocus=null;
+function showPanel(){
+  lastFocus=document.activeElement;
+  panel.classList.add('open'); scrim.classList.add('open'); panel.setAttribute('aria-hidden','false');
+  document.getElementById('pclose').focus();
+}
+function openPanel(s){
+  document.getElementById('pkicker').textContent=s.kicker;
+  document.getElementById('ptitle').textContent=s.title;
+  var body=document.getElementById('pbody');
+  body.innerHTML='<p>'+s.lede+'</p><ul class="plist" style="--dot:'+s.color+'">'+s.items.map(function(it){ return '<li>'+it+'</li>'; }).join('')+'</ul>'+
+    (s.story?s.story.map(function(x){ return '<h4 class="psub">'+x[0]+'</h4><p class="pstory">'+x[1]+'</p>'; }).join(''):'')+
+    (s.rules?'<h4 class="psub">지키는 순서</h4><ul class="plist" style="--dot:'+s.color+'">'+s.rules.map(function(it){ return '<li>'+it+'</li>'; }).join('')+'</ul>':'')+
+    (s.cases?'<h4 class="psub">사례 — 실제로 돌고 있는 것</h4><div class="pcases">'+s.cases.map(function(c){ return '<div class="pcase"><h5>'+c.h+'</h5><p>'+c.p+'</p></div>'; }).join('')+'</div>':'')+
+    (s.cred?'<p class="pcred" style="--dot:'+s.color+'">'+s.cred+'</p>':'')+'<p class="pmeta">'+s.meta+'</p>';
+  document.getElementById('pmail').href=MAILTO+encodeURIComponent('[김현우 포트폴리오] '+s.title);
+  document.querySelector('.pcta').style.display='';
+  showPanel();
+}
+function closePanel(){
+  panel.classList.remove('open'); scrim.classList.remove('open'); panel.setAttribute('aria-hidden','true');
+  if(lastFocus&&lastFocus.focus) lastFocus.focus();
+}
+document.getElementById('pmail').addEventListener('click',function(e){
+  var q=this.href.indexOf('subject='), sub=q<0?'':decodeURIComponent(this.href.slice(q+8));
+  mailClick(e,sub);
+});
+document.getElementById('pclose').addEventListener('click',closePanel);
+scrim.addEventListener('click',closePanel);
+document.addEventListener('keydown',function(e){ if(e.key==='Escape') closePanel(); });
+
+/* ===== physics playground ===== */
+var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var stage=document.getElementById('stage'), hero=document.querySelector('.hero');
+var Engine=Matter.Engine,World=Matter.World,Bodies=Matter.Bodies,Body=Matter.Body,
+    Composite=Matter.Composite,Mouse=Matter.Mouse,MouseConstraint=Matter.MouseConstraint,Events=Matter.Events;
+
+var engine=Engine.create(); engine.gravity.x=0; engine.gravity.y=0;
+var world=engine.world, W=hero.clientWidth, H=hero.clientHeight;
+var items=[], mc=null, mouse=null, avBody=null;
+function speedOf(b){ var vx=b.position.x-b.positionPrev.x, vy=b.position.y-b.positionPrev.y; return Math.max(Math.hypot(vx,vy), Math.hypot(b.velocity.x,b.velocity.y)); }
+
+function hexToRgb(h){h=h.replace('#','');return [parseInt(h.substr(0,2),16),parseInt(h.substr(2,2),16),parseInt(h.substr(4,2),16)];}
+function toHex(c){return '#'+c.map(function(v){v=Math.max(0,Math.min(255,Math.round(v)));return ('0'+v.toString(16)).slice(-2);}).join('');}
+function lighten(h,a){return toHex(hexToRgb(h).map(function(v){return v+(255-v)*a;}));}
+function darken(h,a){return toHex(hexToRgb(h).map(function(v){return v*(1-a);}));}
+
+function sizes(){
+  if(W<560) return {svc:78,deco:46};
+  if(W<900) return {svc:96,deco:54};
+  return {svc:Math.min(118,Math.min(W,H)*0.16),deco:64};
+}
+
+var FACE_KEYS=['f-tp','f-fr','f-bk','f-rt','f-lf','f-bm'];
+function makeCube(cfg,size,isDeco,i){
+  var el=document.createElement('div');
+  el.className='obj'+(isDeco?' deco':'');
+  el.style.width=size+'px'; el.style.height=size+'px';
+  var c=cfg.color;
+  var shade={'f-tp':lighten(c,.28),'f-fr':c,'f-bk':darken(c,.05),'f-rt':darken(c,.14),'f-lf':darken(c,.24),'f-bm':darken(c,.36)};
+  var fs=Math.max(11,Math.round(size*0.125));
+  var label=isDeco?('<b>'+cfg.txt+'</b>'):('<div><b>'+cfg.tag+'</b><small>'+cfg.kicker+'</small></div>');
+  var html='<div class="cube'+(i%2?' tilt':'')+'" style="--h:'+(size/2)+'px;--dur:'+(16+(i%5)*3.5)+'s;--delay:-'+(i*2.3)+'s">';
+  FACE_KEYS.forEach(function(k){
+    html+='<div class="f '+k+(isDeco?' deco':'')+'" style="--fs:'+fs+'px;background:linear-gradient(160deg,'+lighten(shade[k],.12)+','+shade[k]+' 55%,'+darken(shade[k],.1)+')">'+((k==='f-fr'||k==='f-bk')?label:'')+'</div>';
+  });
+  html+='</div>';
+  el.innerHTML=html;
+  if(!isDeco){
+    el.setAttribute('role','button'); el.tabIndex=0;
+    el.setAttribute('aria-label',cfg.title+' 자세히 보기');
+    el.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){e.preventDefault();openPanel(cfg);} });
+  }
+  else if(cfg.open){
+    el.setAttribute('role','button'); el.tabIndex=0;
+    el.setAttribute('aria-label',(cfg.label||'')+' 자세히 보기');
+    el.addEventListener('keydown',function(e){
+      if(e.key!=='Enter'&&e.key!==' ') return;
+      e.preventDefault();
+      var t=SERVICES.filter(function(x){return x.id===cfg.open;})[0]; if(t) openPanel(t);
+    });
+  }
+  stage.appendChild(el);
+  return el;
+}
+
+function buildWorld(){
+  Composite.clear(world,false,true);
+  items=[]; stage.innerHTML='';
+  W=hero.clientWidth; H=hero.clientHeight;
+  var S=sizes(), t=100;
+  World.add(world,[
+    Bodies.rectangle(W/2,-t/2+70,W*2,t,{isStatic:true}),
+    Bodies.rectangle(W/2,H+t/2-Math.round(H*0.12)+2,W*2,t,{isStatic:true,friction:.5}),
+    Bodies.rectangle(-t/2,H/2,t,H*2,{isStatic:true}),
+    Bodies.rectangle(W+t/2,H/2,t,H*2,{isStatic:true})
+  ]);
+  var avBox=document.getElementById('avatar').getBoundingClientRect();
+  var avR=Math.max(Math.min(W,H)*0.09, avBox.width*0.36);
+  avBody=Bodies.circle(W/2,H*0.52,avR,{isStatic:true,restitution:.7});
+  World.add(world,avBody);
+
+  var all=SERVICES.map(function(s){return {cfg:s,size:S.svc,deco:false};})
+        .concat(DECO.map(function(d){return {cfg:d,size:Math.round(S.deco*(d.big||1)),deco:true};}));
+  var mobile=W<640;
+  var SLOT_S = mobile ? [[0.14,0.25],[0.86,0.25],[0.12,0.42],[0.88,0.42],[0.12,0.60],[0.88,0.60],[0.36,0.80],[0.64,0.80]]
+                      : [[0.14,0.27],[0.09,0.52],[0.20,0.74],[0.86,0.27],[0.91,0.52],[0.80,0.74],[0.40,0.84],[0.60,0.84]];
+  var SLOT_D = mobile ? [[0.12,0.77],[0.88,0.78]]
+                      : [[0.05,0.12],[0.95,0.12]];
+  var si=0, di=0;
+  all.forEach(function(o,i){
+    var slot = o.deco ? SLOT_D[di++] : SLOT_S[si++];
+    if(!slot) return;
+    var x=W*slot[0], y=H*slot[1];
+    x=Math.max(o.size*0.8,Math.min(W-o.size*0.8,x));
+    y=Math.max(o.size*0.8+90,Math.min(H-o.size*0.75,y));
+    var b=Bodies.rectangle(x,y,o.size*1.04,o.size*1.04,{
+      chamfer:{radius:o.size*0.1},restitution:.6,friction:.05,frictionStatic:0,
+      frictionAir:.06,density:.0016,slop:.02
+    });
+    b.home={x:x,y:y};
+    var spring=Matter.Constraint.create({pointA:{x:x,y:y},bodyB:b,stiffness:0.0025,damping:0.02,length:0,render:{visible:false}});
+    b.spring=spring; World.add(world,spring);
+    var el=makeCube(o.cfg,o.size,o.deco,i);
+    items.push({body:b,el:el,cfg:o.cfg,deco:o.deco,size:o.size,tag:null});
+    World.add(world,b);
+  });
+  if(typeof OBJ3D!=='undefined' && OBJ3D) OBJ3D.refresh();
+}
+
+function sync(){
+  for(var i=0;i<items.length;i++){
+    var it=items[i], b=it.body, s=it.size;
+    it.el.style.transform='translate3d('+(b.position.x-s/2)+'px,'+(b.position.y-s/2)+'px,0) rotate('+b.angle+'rad)';
+    if(it.tag) it.tag.style.transform='translateX(-50%) rotate('+(-b.angle)+'rad)';
+  }
+}
+
+var driftT=0;
+function drift(){
+  if(engine.gravity.y!==0) return;
+  driftT+=0.016;
+  for(var i=0;i<items.length;i++){
+    var b=items[i].body, h=b.home; if(!h) continue;
+    /* the anchor itself bobs a little so the piece hovers instead of sitting dead still */
+    b.spring.pointA.x=h.x+Math.sin(driftT*0.6+i*1.7)*10;
+    b.spring.pointA.y=h.y+Math.cos(driftT*0.5+i*2.3)*14;
+    /* settle the spin back to upright between throws */
+    Body.setAngularVelocity(b, b.angularVelocity*0.96 - b.angle*0.002);
+  }
+}
+
+/* ===== 오브제 3D (GLB) =====
+   objects/ 폴더에 GLB 가 들어오면 build.py 가 data URI 로 채워 넣고, 그때만 이 층이 켜집니다.
+   GLB 가 없거나 WebGL 이 없거나 로딩이 실패하면 지금 CSS 큐브가 그대로 보입니다. */
+var GLB={plan:'../models/deco-star.glb',live:'../models/obj-detail.glb',fda:'../models/obj-ra.glb',canada:'../models/deco-plane.glb',channel:'../models/deco-box.glb',axdx:'../models/obj-axdx.glb',web:'../models/obj-web.glb',design:'../models/obj-package.glb',
+         d0:'../models/deco-cap.glb',d1:'../models/deco-bling.glb'};
+function glbSrc(k){ var v=GLB[k]; if(!v || v.indexOf('__')===0) return null;
+  return (v.slice(0,5)==='data:') ? (v.length>32 ? v : null) : v; }
+
+var OBJ3D=(function(){
+  var any=false; for(var k in GLB){ if(glbSrc(k)){ any=true; break; } }
+  if(!any || typeof THREE==='undefined' || typeof THREE.GLTFLoader!=='function') return null;
+
+  var cv=document.createElement('canvas'); cv.id='objgl'; cv.setAttribute('aria-hidden','true');
+  var r;
+  try{ r=new THREE.WebGLRenderer({canvas:cv,alpha:true,antialias:true,premultipliedAlpha:true}); }
+  catch(e){ return null; }
+  hero.insertBefore(cv,stage);
+  r.setClearAlpha(0);
+  r.setPixelRatio(Math.min(window.devicePixelRatio||1,2));
+  if(THREE.sRGBEncoding) r.outputEncoding=THREE.sRGBEncoding;
+
+  var scene=new THREE.Scene();
+  /* ---- 얼굴 마스터와 같은 조명 ----
+     오브제 이미지는 광택 없이 색의 면만 뽑아 오고, 광택과 방향광은 여기서 겁니다.
+     그래야 오브제가 돌아도 반사점이 화면에 고정되어 얼굴과 같은 빛을 받는 것처럼 보입니다. */
+  scene.add(new THREE.HemisphereLight(0xffffff,0xcfcabf,0.35));
+  var key =new THREE.DirectionalLight(0xFFFAF2,0.85); key.position.set(-1.05,1.25,1.35); scene.add(key);   /* 왼쪽 위 주광 */
+  var rim =new THREE.DirectionalLight(0x8FC9FF,0.95); rim.position.set(1.65,0.35,-0.75); scene.add(rim);   /* 오른쪽 뒤 차가운 림라이트 */
+  var fill=new THREE.DirectionalLight(0xFFFFFF,0.12); fill.position.set(0.60,-0.70,1.10); scene.add(fill); /* 아래쪽 채움 */
+
+  /* 스튜디오 환경 반사 — 위가 밝고 아래가 어두운 세로 그라데이션 한 장이면 충분합니다.
+     맑은 코팅(clearcoat)이 이걸 받아 젖은 느낌을 냅니다. */
+  var env=null;
+  try{
+    var ec=document.createElement('canvas'); ec.width=16; ec.height=128;
+    var ex=ec.getContext('2d'), gd=ex.createLinearGradient(0,0,0,128);
+    gd.addColorStop(0.00,'#F2F0EA'); gd.addColorStop(0.40,'#DEDBD4');
+    gd.addColorStop(0.54,'#B4B0A8'); gd.addColorStop(1.00,'#54514B');
+    ex.fillStyle=gd; ex.fillRect(0,0,16,128);
+    var et=new THREE.CanvasTexture(ec); et.mapping=THREE.EquirectangularReflectionMapping;
+    var pm=new THREE.PMREMGenerator(r);
+    env=pm.fromEquirectangular(et).texture;
+    scene.environment=env;
+    et.dispose(); pm.dispose();
+  }catch(e){}
+
+  /* Tripo 가 구워 온 밋밋한 텍스처에 맑은 코팅을 씌워 얼굴과 같은 재질로 만듭니다 */
+  function glossify(root){
+    root.traverse(function(m){
+      if(!m.isMesh) return;
+      var src=m.material;
+      var mat=new THREE.MeshPhysicalMaterial({
+        color: (src&&src.color) ? src.color.clone() : new THREE.Color(0xffffff),
+        map:   (src&&src.map)   ? src.map : null,
+        roughness:0.40, metalness:0.0,
+        clearcoat:1.0, clearcoatRoughness:0.09,
+        envMapIntensity:0.45
+      });
+      if(src&&src.vertexColors) mat.vertexColors=true;
+      /* 법선이 없는 GLB 는 조명 계산이 전부 0이 되어 새까맣게 나옵니다 */
+      if(m.geometry && !m.geometry.attributes.normal) m.geometry.computeVertexNormals();
+      m.material=mat;
+      m.frustumCulled=false; m.castShadow=false;
+    });
+  }
+
+  var cam=new THREE.OrthographicCamera(-1,1,1,-1,-4000,4000); cam.position.z=1200;
+
+  /* 아티팩트 안에서는 blob: 이 막힙니다. GLTFLoader 가 createImageBitmap 을 쓰지 않게 잠시 지우고,
+     GLB 안의 텍스처는 빌드 단계에서 data URI 로 바꿔 넣습니다. */
+  var loader=new THREE.GLTFLoader();
+  function b64buf(u){
+    var b=atob(u.slice(u.indexOf(',')+1)), n=b.length, a=new Uint8Array(n);
+    for(var i=0;i<n;i++) a[i]=b.charCodeAt(i);
+    return a.buffer;
+  }
+  var models={}, pending=0, cib=window.createImageBitmap;
+  try{ window.createImageBitmap=undefined; }catch(e){}
+  function restore(){ if(--pending<=0){ try{ window.createImageBitmap=cib; }catch(e){} } }
+  Object.keys(GLB).forEach(function(k){
+    var src=glbSrc(k); if(!src) return;
+    pending++;
+    var done=function(g){
+      var o=g.scene||(g.scenes&&g.scenes[0]);
+      if(o){ glossify(o); models[k]=o; }
+      restore(); refresh();
+    };
+    try{
+      /* 아티팩트에 넣을 때는 data URI, 배포본에서는 별도 파일 주소로 들어옵니다 */
+      if(src.slice(0,5)==='data:') loader.parse(b64buf(src),'',done,function(){ restore(); });
+      else loader.load(src,done,null,function(){ restore(); });
+    }catch(e){ restore(); }
+  });
+
+  var slots=[];   /* {item, group, spin} */
+
+  /* Tripo 가 앞면 이미지 하나로 뒷면을 지어내면서 두께를 과하게 잡는 경우가 있습니다.
+     스마트폰이 옆에서 식빵처럼 보여, 브라우저 창과 같은 두께 비율로 눌러 맞춥니다. */
+  var SQUASH = { live:[1,1,0.52] };
+  function shape(obj,key){
+    var q=SQUASH[key]; if(!q) return obj;
+    var g=new THREE.Group(); g.scale.set(q[0],q[1],q[2]); g.add(obj);
+    return g;
+  }
+
+  function fit(obj,size){
+    var box=new THREE.Box3().setFromObject(obj), c=new THREE.Vector3(), s=new THREE.Vector3();
+    box.getCenter(c); box.getSize(s);
+    var m=Math.max(s.x,s.y,s.z)||1;
+    var inner=new THREE.Group(); inner.add(obj);
+    obj.position.sub(c);
+    inner.scale.setScalar(size/m*0.92);
+    return inner;
+  }
+  function keyFor(it,i){
+    if(!it.deco) return it.cfg.id;
+    var n=0; for(var j=0;j<i;j++) if(items[j].deco) n++;
+    return 'd'+n;
+  }
+  function clear(){
+    slots.forEach(function(s){ scene.remove(s.group); });
+    slots=[];
+  }
+  function refresh(){
+    clear();
+    for(var i=0;i<items.length;i++){
+      var it=items[i], m=models[keyFor(it,i)];
+      it.el.classList.toggle('is3d',!!m);
+      if(!m) continue;
+      if(!it.el.querySelector('.objlabel') && !it.deco){
+        var lb=document.createElement('div'); lb.className='objlabel';
+        lb.innerHTML='<b>'+it.cfg.tag.replace(/<br>/g,' ')+'</b><small>'+it.cfg.kicker+'</small>';
+        it.el.appendChild(lb);
+      }
+      else if(!it.el.querySelector('.objlabel') && it.deco && it.cfg.label){
+        var lc=document.createElement('div'); lc.className='objlabel credit';
+        lc.innerHTML='<small>'+it.cfg.label+'</small>';
+        it.el.appendChild(lc);
+      }
+      var g=fit(shape(m.clone(true), keyFor(it,i)), it.size);
+      var wrap=new THREE.Group(); wrap.add(g); scene.add(wrap);
+      slots.push({item:it,group:wrap,spin:g,phase:i*0.7});
+    }
+    resize();
+  }
+  function resize(){
+    var w=hero.clientWidth,h=hero.clientHeight;
+    r.setSize(w,h,false);
+    cam.left=-w/2; cam.right=w/2; cam.top=h/2; cam.bottom=-h/2; cam.updateProjectionMatrix();
+  }
+  var t=0;
+  function render(dt){
+    if(!slots.length) return;
+    t+=dt/1000;
+    for(var i=0;i<slots.length;i++){
+      var s=slots[i], b=s.item.body;
+      s.group.position.set(b.position.x-hero.clientWidth/2, hero.clientHeight/2-b.position.y, 0);
+      s.group.rotation.z=-b.angle;
+      s.spin.rotation.y=t*0.6+s.phase;
+      s.spin.rotation.x=Math.sin(t*0.5+s.phase)*0.08;
+    }
+    r.render(scene,cam);
+  }
+  window.addEventListener('resize',resize);
+  return {refresh:refresh,render:render,resize:resize};
+})();
+
+function attachMouse(){
+  mouse=Mouse.create(hero);
+  mouse.pixelRatio=1;   /* DOM 좌표계는 CSS 픽셀. devicePixelRatio 를 넣으면 레티나에서 엉뚱한 큐브를 잡는다 */
+  mc=MouseConstraint.create(engine,{mouse:mouse,constraint:{stiffness:.18,damping:.12,render:{visible:false}}});
+  World.add(world,mc);
+  mouse.element.removeEventListener('wheel',mouse.mousewheel);
+  mouse.element.removeEventListener('DOMMouseScroll',mouse.mousewheel);
+  mouse.element.removeEventListener('touchstart',mouse.mousedown);
+  mouse.element.removeEventListener('touchmove',mouse.mousemove);
+  mouse.element.removeEventListener('touchend',mouse.mouseup);
+  function quiet(fn){
+    return function(e){
+      if(mc&&mc.body){ fn(e); return; }
+      var pd=e.preventDefault; e.preventDefault=function(){}; fn(e); e.preventDefault=pd;
+    };
+  }
+  mouse.element.addEventListener('touchstart',quiet(mouse.mousedown),{passive:false});
+  mouse.element.addEventListener('touchmove', quiet(mouse.mousemove),{passive:false});
+  mouse.element.addEventListener('touchend',  quiet(mouse.mouseup),  {passive:false});
+
+  var downAt=null, downBody=null, downTime=0, faceDown=false, uiDown=false;
+  var ptrHist=[];                                   /* 최근 포인터 위치 (플릭 속도 계산용) */
+  hero.addEventListener('pointermove',function(e){
+    var now=performance.now(); ptrHist.push({x:e.clientX,y:e.clientY,t:now});
+    while(ptrHist.length && now-ptrHist[0].t>140) ptrHist.shift();
+  });
+  function flickSpeed(){                            /* 놓기 직전 140ms 의 손 속도 (px/ms). 멈췄다 놓으면 0 */
+    if(ptrHist.length<2) return 0;
+    var a=ptrHist[0], b=ptrHist[ptrHist.length-1];
+    var dist=Math.hypot(b.x-a.x,b.y-a.y);
+    if(dist<60) return 0;                           /* 손이 60px 도 안 움직였으면 던진 게 아니다 */
+    return dist/Math.max(1,b.t-a.t);
+  }
+  Events.on(mc,'startdrag',function(e){
+    if(faceDown||uiDown){ mc.constraint.bodyB=null; mc.body=null; return; }   /* 얼굴이나 버튼을 눌렀으면 큐브를 끌지 않는다 */
+    downBody=e.body; if(!HEAD.busy()) setFace('nod');
+  });
+  Events.on(mc,'enddrag',function(e){
+    var v=flickSpeed();
+    hero.dataset.lastThrow=v.toFixed(2);
+    lastReleased=e.body; lastRelease=Date.now();
+    if(v>2.0) setFace('tsk');                /* 세게 던졌을 때 — 초당 2000px 넘는 플릭만 */
+    else if(!HEAD.busy()) setFace('idle',1400);
+  });
+  hero.addEventListener('pointerdown',function(e){
+    HEAD.touch();
+    downAt={x:e.clientX,y:e.clientY}; downTime=Date.now();
+    uiDown = !!(e.target.closest && e.target.closest('.hud,.topbar,#panel,#scrim'));
+    faceDown = !uiDown && onFace(e.clientX,e.clientY);
+    if(uiDown && mc){ mc.constraint.bodyB=null; mc.body=null; }   /* 버튼 위에서는 큐브를 잡지 않는다 */
+  });
+  hero.addEventListener('pointerup',function(e){
+    if(!downAt) return;
+    if(uiDown){ downAt=null; downBody=null; faceDown=false; uiDown=false; return; }   /* 버튼은 자기 일만 한다 */
+    var dx=e.clientX-downAt.x, dy=e.clientY-downAt.y, body=downBody||mc.body;
+    var tap=Math.sqrt(dx*dx+dy*dy)<7 && Date.now()-downTime<420;
+    if(tap && faceDown && onFace(e.clientX,e.clientY)){
+      tapFace();                              /* 얼굴이 최우선 */
+    }
+    else if(tap && body){
+      for(var i=0;i<items.length;i++){
+        if(items[i].body!==body) continue;
+        var oc=items[i].deco ? items[i].cfg.open : true;
+        if(!oc) break;
+        var target=items[i].deco ? SERVICES.filter(function(x){return x.id===oc;})[0] : items[i].cfg;
+        if(!target) break;
+        items[i].el.classList.add('pop');
+        (function(el){ setTimeout(function(){ el.classList.remove('pop'); },300); })(items[i].el);
+        openPanel(target); break;
+      }
+    }
+    else if(tap && !body && !e.target.closest('.obj,.avatar,.topbar,.hud,#panel,#scrim')){
+      if(!HEAD.busy()) setFace('no',1800);    /* 빈 곳 클릭 */
+    }
+    downAt=null; downBody=null; faceDown=false; uiDown=false;
+  });
+}
+
+/* 오브제가 얼굴에 부딪히면 입김 */
+var blowAt=0, lastReleased=null, lastRelease=0;
+Events.on(engine,'collisionStart',function(ev){
+  if(!avBody) return;
+  for(var i=0;i<ev.pairs.length;i++){
+    var pr=ev.pairs[i], other=null;
+    if(pr.bodyA===avBody) other=pr.bodyB; else if(pr.bodyB===avBody) other=pr.bodyA; else continue;
+    if(mc && mc.body===other) break;                              /* 손에 잡힌 채로 밀어 넣은 건 안 친다 */
+    var thrown = other===lastReleased && Date.now()-lastRelease<1800;  /* 방금 던진 큐브만 — 떨어지거나 떠다니다 스친 건 제외 */
+    var v=speedOf(other);
+    if(thrown && v>6 && Date.now()-blowAt>6000 && (!HEAD.busy()||HEAD.now()==='nod')){ blowAt=Date.now(); setFace('blow'); }
+    break;
+  }
+});
+
+var gs=document.getElementById('gswitch');
+gs.addEventListener('click',function(){
+  var on=gs.getAttribute('aria-pressed')==='true';
+  gs.setAttribute('aria-pressed',on?'false':'true');
+  engine.gravity.y=on?0:1;
+  setFace('chill',2200);
+  for(var i=0;i<items.length;i++){
+    var b=items[i].body;
+    b.frictionAir = on?0.06:0.012;
+    b.friction    = on?0.05:0.22;
+    b.restitution = on?0.6:0.42;
+    b.spring.stiffness = on?0.0025:0;   /* gravity on: let go of the anchors */
+    if(!on) Body.applyForce(b,b.position,{x:(Math.random()-.5)*0.004*b.mass,y:0.002*b.mass});
+  }
+});
+
+/* ===== head turning ===== */
+var hrx=0, hry=0, htx=0, hty=0, lastPointer=0, headT=0, nextWink=6000;
+hero.addEventListener('pointermove',function(e){
+  var r=hero.getBoundingClientRect();
+  var nx=(e.clientX-r.left)/r.width-0.5, ny=(e.clientY-r.top)/r.height-0.5;
+  hty=nx*60; htx=-ny*30; lastPointer=Date.now();
+});
+hero.addEventListener('pointerleave',function(){ lastPointer=0; });
+function headTick(dt){
+  headT+=dt/1000;
+  if(mc&&mc.body){
+    /* watch the cube being dragged */
+    var nx=mc.body.position.x/W-0.5, ny=mc.body.position.y/H-0.5;
+    hty=nx*62; htx=-ny*34;
+  } else if(Date.now()-lastPointer>2200){
+    /* nobody pointing: look around on its own */
+    hty=Math.sin(headT*0.55)*22+Math.sin(headT*1.9)*4;
+    htx=Math.sin(headT*0.83)*8-2;
+  }
+  hrx+=(htx-hrx)*0.09; hry+=(hty-hry)*0.09;
+  HEAD.set(hry*Math.PI/180, -hrx*Math.PI/180, Math.sin(headT*0.7)*0.02); HEAD.tick(dt);
+  nextWink-=dt;
+  if(nextWink<0){ nextWink=18000+Math.random()*10000; if(faceKey==='idle'&&!HEAD.busy()) setFace('shades',0,true); }
+}
+
+var running=false, raf=null, last=0;
+function loop(now){
+  if(!running) return;
+  var dt=Math.min(32,now-last||16.7); last=now;
+  drift(); Engine.update(engine,dt); sync(); if(OBJ3D) OBJ3D.render(dt); headTick(dt);
+  raf=requestAnimationFrame(loop);
+}
+function start(){ if(running||reduce) return; running=true; last=0; raf=requestAnimationFrame(loop); }
+function stop(){ running=false; if(raf) cancelAnimationFrame(raf); }
+
+var rt=null;
+window.addEventListener('resize',function(){
+  clearTimeout(rt);
+  rt=setTimeout(function(){
+    stop();
+    if(mc){ World.remove(world,mc); mc=null; }
+    buildWorld(); sync();
+    if(!reduce){ attachMouse(); start(); }
+  },220);
+});
+if('IntersectionObserver' in window){
+  new IntersectionObserver(function(en){
+    en.forEach(function(e){ if(e.isIntersecting) start(); else stop(); });
+  },{threshold:0.02}).observe(hero);
+}
+
+buildWorld(); sync();
+if(!reduce){ attachMouse(); start(); }
+/* 주소 뒤에 #debug 를 붙이면 검증 스크립트가 물리 상태를 만질 수 있다. 평소엔 아무것도 노출하지 않는다 */
+/* 진단용 postMessage 훅 — 주소 끝에 #debug 를 붙였을 때만 열린다 */
+if(location.hash.indexOf('debug')>=0) window.addEventListener('message',function(e){
+  var d=e.data; if(!d||d.dk!=='diag') return;
+  try{
+    if(d.act==='tap') tapFace();
+    else if(d.act==='use'&&d.k) setFace(d.k,1800);
+  }catch(err){}
+  setTimeout(function(){
+    var rep={dk:'diag-reply',hidden:document.hidden,bubble:bubbleEl.textContent,head:HEAD.diag?HEAD.diag():'no-webgl',ua:navigator.userAgent,vis:document.visibilityState};
+    try{ e.source.postMessage(rep,'*'); }catch(err){}
+  }, d.wait||0);
+});
+if(location.hash.indexOf('debug')>=0){ window.DK={engine:engine,Body:Body,get items(){return items;},get avBody(){return avBody;},setFace:setFace,head:HEAD}; }
+
+/* ===== loader =====
+   진행률은 「몇 번 그렸는가」가 아니라 「실제로 몇 초 지났는가」로 셉니다.
+   느린 기기에서 화면이 바쁘면 setInterval 이 밀리는데, 그때 로딩 화면이 하염없이 늘어나던 문제를 막습니다. */
+(function(){
+  var bar=document.getElementById('lbar'), pct=document.getElementById('lpct'), box=document.getElementById('loader');
+  var now=function(){ return (window.performance&&performance.now)?performance.now():Date.now(); };
+  var t0=now(), doneAt=0, v=0;
+  var SPAN=3200;          /* 준비가 안 끝나도 이 시간 동안 96% 까지 찹니다 */
+  var CLOSE=420;          /* 준비가 끝난 뒤 100% 까지 채우는 시간 */
+  var tick=setInterval(function(){
+    var el=now()-t0, t;
+    if(doneAt) t=Math.min(100, v + (100-v) * Math.min(1,(now()-doneAt)/CLOSE) + 1);
+    else       t=Math.min(96, el/SPAN*96);
+    if(t>v) v=t;
+    bar.style.width=v+'%'; pct.textContent=Math.round(v)+'%';
+    if(v>=99.5){
+      v=100; bar.style.width='100%'; pct.textContent='100%';
+      clearInterval(tick); box.classList.add('done');
+      setTimeout(function(){ box.style.display='none'; },560);
+    }
+  },40);
+  function ready(){ if(!doneAt) doneAt=now(); }
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(ready);
+  window.addEventListener('load',ready);
+  setTimeout(ready,SPAN);
+})();
+})();
+</script>
+
+</body>
+</html>
