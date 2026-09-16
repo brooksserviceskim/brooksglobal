@@ -16,7 +16,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@800;900&display=swap">
+<link rel="preload" as="image" href="wordmark.webp">
 <link rel="preload" as="video" href="../media/clip_idle.mp4" type="video/mp4">
 <style>*{box-sizing:border-box}html{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>김현우 포트폴리오</title>
@@ -258,7 +258,7 @@ button{font:inherit;color:inherit;border:none;background:none;cursor:pointer}
 </head>
 <body>
 <div id="loader">
-  <div class="lg" id="loaderLogo"><span class="puffy" style="font-size:38px">hyunwoo kim</span></div>
+  <div class="lg" id="loaderLogo">hyunwoo Kim</div>
   <div class="bar"><i id="lbar"></i></div>
   <div class="pct" id="lpct">0%</div>
 </div>
@@ -275,7 +275,7 @@ button{font:inherit;color:inherit;border:none;background:none;cursor:pointer}
 
 <div class="hero" id="top">
   <div class="wordmark" id="wordmark">
-    <div class="en puffy" aria-label="hyunwoo kim">hyunwoo kim</div>
+    <img class="en" src="wordmark.webp" alt="hyunwoo Kim">
     <span class="sub"><b>김현우</b><s></s><em>COMMERCE · REGULATORY · AX / DX</em></span>
     <i>실무를 알고, 실무를 자동화합니다</i>
   </div>
@@ -609,7 +609,7 @@ var hasLogo=LOGO&&LOGO.indexOf('__')!==0, hasMark=MARK&&MARK.indexOf('__')!==0;
 (function(){
   var en=document.querySelector('#wordmark .en');
   var lg=document.getElementById('loaderLogo');
-  if(en && lg && en.getAttribute('src')) lg.innerHTML='<img src="'+en.getAttribute('src')+'" alt="dongincheon">';
+  if(en && lg && en.getAttribute('src')) lg.innerHTML='<img src="'+en.getAttribute('src')+'" alt="hyunwoo Kim">';
 })();
 /* 상단 바는 높이가 34px 밖에 안 되어 가로형 워드마크를 넣으면 영문 줄이 뭉갭니다.
    브랜드 가이드대로 표식(mark)만 넣고 이름은 HTML 글자로 씁니다. 표식이 없으면 글자만 둡니다. */
