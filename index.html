@@ -185,6 +185,7 @@ button{font:inherit;color:inherit;border:none;background:none;cursor:pointer}
 .pcase{border-top:1px solid var(--line);padding-top:10px}
 .pcase h5{font-size:14px;font-weight:900;margin:0 0 4px;color:var(--ink)}
 .pcase p{font-size:13.5px;color:var(--ink-2);margin:0}
+.pbody a{color:inherit;font-weight:700;text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--dot,var(--green))}
 .pcred{border-left:3px solid var(--dot,var(--green));background:var(--bg);border-radius:0 12px 12px 0;
   padding:13px 16px;font-size:13.5px;font-weight:500;color:var(--ink-2);line-height:1.7;
   word-break:keep-all;overflow-wrap:break-word}
@@ -364,7 +365,8 @@ var SERVICES=[
          '성분이 쓸 수 있는 것인지, 한도를 넘지 않는지 봅니다',
          '캐나다는 화장품 신고(Cosmetic Notification) 요건을 확인해 드립니다',
          '라벨과 상세페이지가 기준에 맞는지 미리 보고 고칠 방향을 드립니다',
-         '통관에서 막혔다면 사유를 뜯어보고 다시 낼 방향을 잡아 드립니다'],
+         '통관에서 막혔다면 사유를 뜯어보고 다시 낼 방향을 잡아 드립니다',
+         '캐나다는 OUAH AI 등록 포털에서 전성분표만 올리면 경로와 견적을 1분 안에 볼 수 있습니다 — <a href="https://portal.ouahco.ca" target="_blank" rel="noopener">portal.ouahco.ca</a>'],
   cred:'아마존코리아와 월마트 아시아퍼시픽 마켓플레이스 파트에서 셀러 대상 웨비나를 진행했습니다. 캐나다 현지 Health Canada 전문 에이전시 Ouah Co. & Trading Ltd.의 한국 운영 이사를 맡고 있습니다.',
   meta:'대리인을 세워야 하는 절차는 범위와 책임을 먼저 나눈 다음 진행 여부를 정합니다. 대행이 아니라 자문과 검토로 맡습니다.'},
  {id:'axdx',art:'axdx',color:'#2F5BEA',kicker:'AX . DX',tag:'업무<br>자동화',
@@ -381,6 +383,8 @@ var SERVICES=[
          '병행 운영 뒤에 전환합니다. 전과 후를 실측해 숫자로 보여 드립니다',
          '사람을 줄이는 자료는 만들지 않습니다. 개인정보와 기밀은 받지 않습니다'],
   cases:[
+   {h:'전성분표를 올리면 Health Canada 등록 자료가 나옵니다 — 캐나다 등록 대행사 OUAH',
+    p:'성분 · 표현 판정, 견적 · 인보이스, 전개도를 읽은 영·불 라벨 문안, CNF · NPN 제출 자료까지 자동으로 갑니다. 사람은 입금 확인 · 검토 · 제출만 누릅니다. 한국어 · English · Français로 열려 있습니다 — <a href="https://portal.ouahco.ca" target="_blank" rel="noopener">portal.ouahco.ca</a> · <a href="https://ouahco.ca" target="_blank" rel="noopener">ouahco.ca</a>'},
    {h:'회의를 녹음하면 회의록이 슬랙으로 옵니다 — 계열사 5개를 둔 그룹',
     p:'녹음 파일을 올리면 전사 · 요약 · 하이라이트 · 할 일이 만들어지고 참석자와 팀장에게만 1:1로 갑니다. 회의실 태블릿에서 버튼 하나로 시작합니다. 열람 권한은 소속이 아니라 참석 여부로 정해지고, 클라우드 서버 없이 사내 PC 한 대로 돕니다.'},
    {h:'파일을 올리면 9초 뒤 변환본이 답글로 돌아옵니다 — 패션 브랜드 유통팀',
@@ -394,7 +398,9 @@ var SERVICES=[
   meta:'대상은 직원 5~50명 브랜드사 · 제조사 · 중소기업의 사무 반복 업무입니다. 진단 2주 뒤 첫 봇까지 1~2주가 걸리고, 비용은 진단 후 범위별로 견적을 드립니다. 파일 내보내기가 되는 시스템이 대상이며, 화면을 대신 눌러 주는 방식(RPA)은 하지 않습니다.'}
 ];
 var DECO=[{txt:'♥',color:'#E4327F',big:1.34,open:'pkg',label:'BLINGONE'},
-          {txt:'★',color:'#FFC93C'},{txt:'수출',color:'#1E7B45'},{txt:'OK',color:'#2A8C86'},{txt:'♥',color:'#D3372B'}];
+          {txt:'★',color:'#FFC93C'},{txt:'수출',color:'#1E7B45'},{txt:'OK',color:'#2A8C86'},{txt:'♥',color:'#D3372B'},
+          /* 2026-10-02 OUAH 로고 오브제 — 누르면 OUAH Health Canada AI 등록 포털로 */
+          {txt:'OUAH',color:'#5C3FFC',big:1.7,href:'https://portal.ouahco.ca',label:'OUAH AI PORTAL'}];
 var MAIL='brooksservices.kim@brooksglobal.co.kr';
 var MAILTO='mailto:'+MAIL+'?subject=';
 
@@ -888,6 +894,11 @@ function makeCube(cfg,size,isDeco,i){
     el.setAttribute('aria-label',cfg.title+' 자세히 보기');
     el.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){e.preventDefault();openPanel(cfg);} });
   }
+  else if(cfg.href){
+    el.setAttribute('role','link'); el.tabIndex=0;
+    el.setAttribute('aria-label','OUAH Health Canada AI 등록 포털 열기 (새 창)');
+    el.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); window.open(cfg.href,'_blank','noopener'); } });
+  }
   else if(cfg.open){
     el.setAttribute('role','button'); el.tabIndex=0;
     el.setAttribute('aria-label',(cfg.label||'')+' — 화장품 용기 · 패키지 디자인 자세히 보기');
@@ -922,8 +933,8 @@ function buildWorld(){
   var mobile=W<640;
   var SLOT_S = mobile ? [[0.15,0.26],[0.85,0.26],[0.12,0.47],[0.88,0.47],[0.38,0.81],[0.62,0.81]]
                       : [[0.16,0.29],[0.23,0.63],[0.84,0.29],[0.77,0.63],[0.40,0.835],[0.60,0.835]];
-  var SLOT_D = mobile ? [[0.13,0.635],[0.90,0.66],[0.11,0.77],[0.89,0.79]]
-                      : [[0.075,0.175],[0.06,0.52],[0.94,0.47],[0.25,0.82],[0.75,0.82]];
+  var SLOT_D = mobile ? [[0.13,0.635],[0.90,0.66],[0.11,0.77],[0.89,0.79],null,[0.86,0.9]]   /* 5번째(별)는 휴대폰에서 예전처럼 뺌 · 6번째 OUAH 만 */
+                      : [[0.075,0.175],[0.06,0.52],[0.94,0.47],[0.25,0.82],[0.75,0.82],[0.935,0.70]];
   var si=0, di=0;
   all.forEach(function(o,i){
     var slot = o.deco ? SLOT_D[di++] : SLOT_S[si++];
@@ -971,7 +982,7 @@ function drift(){
    objects/ 폴더에 GLB 가 들어오면 build.py 가 data URI 로 채워 넣고, 그때만 이 층이 켜집니다.
    GLB 가 없거나 WebGL 이 없거나 로딩이 실패하면 지금 CSS 큐브가 그대로 보입니다. */
 var GLB={pkg:'models/obj-package.glb',label:'models/obj-label.glb',detail:'models/obj-detail.glb',web:'models/obj-web.glb',ra:'models/obj-ra.glb',axdx:'models/obj-axdx.glb',
-         d0:'models/deco-bling.glb',d1:'models/deco-cap.glb',d2:'models/deco-box.glb',d3:'models/deco-plane.glb',d4:'models/deco-star.glb'};
+         d0:'models/deco-bling.glb',d1:'models/deco-cap.glb',d2:'models/deco-box.glb',d3:'models/deco-plane.glb',d4:'models/deco-star.glb',d5:'models/obj-ouah.glb'};
 function glbSrc(k){ var v=GLB[k]; if(!v || v.indexOf('__')===0) return null;
   return (v.slice(0,5)==='data:') ? (v.length>32 ? v : null) : v; }
 
@@ -1083,8 +1094,7 @@ var OBJ3D=(function(){
   }
   function keyFor(it,i){
     if(!it.deco) return it.cfg.id;
-    var n=0; for(var j=0;j<i;j++) if(items[j].deco) n++;
-    return 'd'+n;
+    return 'd'+DECO.indexOf(it.cfg);   /* 휴대폰에서 자리 없는 장식을 건너뛰어도 모델이 밀리지 않게 — 화면 순서가 아니라 DECO 순서로 */
   }
   function clear(){
     slots.forEach(function(s){ scene.remove(s.group); });
@@ -1125,7 +1135,8 @@ var OBJ3D=(function(){
       var s=slots[i], b=s.item.body;
       s.group.position.set(b.position.x-hero.clientWidth/2, hero.clientHeight/2-b.position.y, 0);
       s.group.rotation.z=-b.angle;
-      s.spin.rotation.y=t*0.6+s.phase;
+      /* OUAH 로고는 납작해서 계속 돌면 옆면(얇은 선)만 보일 때가 있습니다 — 좌우로 살짝만 흔듭니다 */
+      s.spin.rotation.y=(s.item.cfg && s.item.cfg.href) ? Math.sin(t*0.7+s.phase)*0.45 : t*0.6+s.phase;
       s.spin.rotation.x=Math.sin(t*0.5+s.phase)*0.08;
     }
     r.render(scene,cam);
@@ -1196,6 +1207,11 @@ function attachMouse(){
     else if(tap && body){
       for(var i=0;i<items.length;i++){
         if(items[i].body!==body) continue;
+        if(items[i].deco && items[i].cfg.href){   /* OUAH 오브제 — 포털을 새 창으로 */
+          items[i].el.classList.add('pop');
+          (function(el){ setTimeout(function(){ el.classList.remove('pop'); },300); })(items[i].el);
+          window.open(items[i].cfg.href,'_blank','noopener'); break;
+        }
         var oc=items[i].deco ? items[i].cfg.open : true;
         if(!oc) break;
         var target=items[i].deco ? SERVICES.filter(function(x){return x.id===oc;})[0] : items[i].cfg;

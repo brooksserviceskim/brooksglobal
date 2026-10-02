@@ -189,6 +189,7 @@ button{font:inherit;color:inherit;border:none;background:none;cursor:pointer}
 .pcase{border-top:1px solid var(--line);padding-top:10px}
 .pcase h5{font-size:14px;font-weight:900;margin:0 0 4px;color:var(--ink)}
 .pcase p{font-size:13.5px;color:var(--ink-2);margin:0}
+.pbody a{color:inherit;font-weight:700;text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--dot,var(--green))}
 .pcred{border-left:3px solid var(--dot,var(--green));background:var(--bg);border-radius:0 12px 12px 0;
   padding:13px 16px;font-size:13.5px;font-weight:500;color:var(--ink-2);line-height:1.7;
   word-break:keep-all;overflow-wrap:break-word}
@@ -352,7 +353,7 @@ var SERVICES=[
   story:[['WHY','미국에서 잘 팔리는 한국 화장품이 캐나다에서는 소규모 한인 업체를 통해서만 들어가고 있었습니다. 제조사들은 캐나다 보건부 인증 지식이 없어 바이어가 대신 인증하는 방식으로만 수출이 됐습니다.'],
          ['HOW','캐나다 정부와 보건부의 화장품 수입 통관·인증 규정을 독학해, 외국인 사업자 등록번호를 받아 수입자를 거치지 않고 아마존 캐나다와 월마트 캐나다 창고로 직접 발송하는 구조를 만들었습니다. 화장품과 기능성 식품 판매 라이선스를 받고, 캐나다 내 3PL·보건부 파트너를 확보했습니다.'],
          ['RESULT','스킨천사 · 넘버즈인 · 믹순 · 하루하루원더 · 셀리맥스 등 K-뷰티 브랜드와 캐나다 총판 계약을 체결했습니다. 2021년 12월 입사 당시 연매출 15억 원 개인사업자를 법인으로 전환하고 2024년 연매출 80억 원 규모의 캐나다 수출 전문 회사로 키웠습니다. 지금은 루트82에서 이 기술을 브랜드가 사서 쓰는 서비스로 팔고, Health Canada 전문 에이전시 Ouah Co. & Trading Ltd.의 한국 운영 이사를 겸합니다.']],
-  items:['Health Canada 화장품 신고(CNF) · NHP, NRI 등록으로 셀러 직접 통관 구조','아마존 캐나다 FBA 영·불 라벨 요건, IOR · GST 처리 절차서','Health Canada 실무 매뉴얼 원고 집필 완료'],
+  items:['OUAH Health Canada AI 등록 포털 — 판정 · 인보이스 · 영·불 라벨 문안 · CNF/NPN 제출 자료 자동화 (2026.09 ~, <a href="https://portal.ouahco.ca" target="_blank" rel="noopener">portal.ouahco.ca</a>)','Health Canada 화장품 신고(CNF) · NHP, NRI 등록으로 셀러 직접 통관 구조','아마존 캐나다 FBA 영·불 라벨 요건, IOR · GST 처리 절차서','Health Canada 실무 매뉴얼 원고 집필 완료'],
   meta:'에스시홀딩스(2024) → 루트82 글로벌 커머스 실장(2025.10 ~) · Ouah Co. & Trading Ltd. 한국 운영 이사'},
  {id:'channel',color:'#C99A5B',kicker:'2025 – NOW · ROUTE82',tag:'북미 채널<br>온보딩',
   title:'아마존 · 월마트 · 틱톡샵 · 메이시스를 한 번에 엽니다',
@@ -367,7 +368,7 @@ var SERVICES=[
   story:[['WHY','시스템이 서른 개가 넘는데 서로 연결이 안 되어 엑셀이 시스템 사이의 접착제 노릇을 하고 있었습니다. 사람이 내려받아 옮겨 적고 다시 올리는 일이 하루의 절반이었습니다. 외주 개발사는 그 업무를 모르고, 현업은 매뉴얼을 써 줄 시간이 없습니다.'],
          ['HOW','매뉴얼을 요구하지 않고 쓰던 파일을 그대로 받습니다. 반복 업무를 규칙 · AI · 연동 · 사람 넷으로 나누고, 규칙으로 되는 것부터 직원이 이미 쓰는 슬랙에 붙입니다. 순서는 제거 → 표준화 → 연동 → 자동화 → AI. 규칙으로 되는 일은 AI로 하지 않고, 사람을 줄이는 자료는 만들지 않습니다.'],
          ['RESULT','회의록 자동화 「헤임달」(녹음 → 전사·요약·할 일 → 슬랙 1:1, 회의실 태블릿, 사내 PC 한 대로 운영) · 슈퍼홀릭 컨버스팀 반복 업무 38건 진단 → 슬랙 봇 7건 가동(파일 올리면 9초 뒤 변환본, 검증 22/22 · 24/24 · 29/29) · 정부지원사업 자동 모니터링(법인 5곳, 첫날 1,540건 판정, 비용 0원) · FDA 전성분·문안 검토 엔진 · 골포스트 인스타그램 성과 자동 집계와 경기 카드 생성기.']],
-  items:['헤임달 — 회의록 자동화 시스템 기획·개발·운영 (Supabase · faster-whisper · Claude · Slack)','CONVERSEBOT — 송장 변환 · 주문 취합 · 재고 등록 · 현판가 대조 · 입고 3자 대조 · 일일 매출 보고','정부지원사업 모니터링 — GitHub Actions 매일 09:30, 슬랙 리스트','FDA RA 엔진 — 위키가 정본, 엔진은 파생물. 할루시네이션 방지가 설계 1순위','루트82 AI 봇(네이버웍스) · 회의실 태블릿 · 그룹 웹사이트 리뉴얼'],
+  items:['OUAH Health Canada AI 등록 포털 — 전성분표 · 전개도를 올리면 제출 자료까지 자동, 사람은 확인 · 제출만 (<a href="https://portal.ouahco.ca" target="_blank" rel="noopener">portal.ouahco.ca</a>)','헤임달 — 회의록 자동화 시스템 기획·개발·운영 (Supabase · faster-whisper · Claude · Slack)','CONVERSEBOT — 송장 변환 · 주문 취합 · 재고 등록 · 현판가 대조 · 입고 3자 대조 · 일일 매출 보고','정부지원사업 모니터링 — GitHub Actions 매일 09:30, 슬랙 리스트','FDA RA 엔진 — 위키가 정본, 엔진은 파생물. 할루시네이션 방지가 설계 1순위','루트82 AI 봇(네이버웍스) · 회의실 태블릿 · 그룹 웹사이트 리뉴얼'],
   meta:'그룹 AX·DX 담당 (1인) · 2026.08 ~ 재직 중 · 홍석진 대표 제정 AX·DX 팀 매뉴얼 v1.0 기준'},
  {id:'web',color:'#1E7B45',kicker:'WEB · SYSTEM',tag:'웹사이트<br>시스템 구축',
   title:'기획부터 디자인, 구현, 배포까지 혼자 만듭니다',
