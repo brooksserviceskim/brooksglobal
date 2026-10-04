@@ -202,10 +202,10 @@ button{font:inherit;color:inherit;border:none;background:none;cursor:pointer}
 .plist li::before{content:"";width:10px;height:10px;border-radius:3px;background:var(--dot,var(--green));margin-top:7px}
 .pmeta{border-top:1px solid var(--line);padding-top:14px;font-size:13px;color:var(--ink-3)}
 .psub{font-size:12px;font-weight:900;letter-spacing:.12em;color:var(--ink-3);margin:6px 0 0;text-transform:uppercase}
-.pcases{display:flex;flex-direction:column;gap:12px}
-.pcase{border-top:1px solid var(--line);padding-top:10px}
-.pcase h5{font-size:14px;font-weight:900;margin:0 0 4px;color:var(--ink)}
-.pcase p{font-size:13.5px;color:var(--ink-2);margin:0}
+/* 모듈 패널의 「자세한 범위」 접힘 */
+.pmore{border:1px solid var(--line);border-radius:14px;padding:12px 16px;word-break:keep-all;overflow-wrap:break-word}
+.pmore summary{cursor:pointer;font-weight:800;font-size:14px;color:var(--ink-2)}
+.pmore[open] > * + *{margin-top:14px}
 .pbody a{color:inherit;font-weight:700;text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--dot,var(--green))}
 .pcred{border-left:3px solid var(--dot,var(--green));background:var(--bg);border-radius:0 12px 12px 0;
   padding:13px 16px;font-size:13.5px;font-weight:500;color:var(--ink-2);line-height:1.7;
@@ -365,19 +365,27 @@ button{font:inherit;color:inherit;border:none;background:none;cursor:pointer}
 /* 2026-10-04 리뉴얼 — Sprint 6단계 순서(브리프 8.2). 이 배열 순서가 오브제 자리와 정렬 순서다 */
 var SERVICES=[
  {id:'ra',art:'ra',color:'#4A5568',kicker:'SPRINT 01 · REGULATORY',tag:'01 규제 경로',short:'01 규제',
-  title:'미국 · 캐나다 화장품 규정 자문',
-  lede:'미국과 캐나다에 화장품을 내보낼 때 무엇이 필요한지, 지금 만들어 두신 아트워크와 문구로 통과가 되는지를 서류 단위로 봐 드립니다.',
+  title:'갈 수 있는 길부터 확인합니다',
+  lede:'디자인을 시작하기 전에 이 제품이 그 나라에 어떤 경로로 들어갈 수 있는지부터 봅니다. 캐나다는 OUAH 포털과 현지 전문가를 통해 경로를 확인합니다.',
+  role:['갈 수 있는 경로와 필요한 자료, 외부 절차를 정리합니다',
+        '금지·제한 성분과 쓰면 안 되는 문구를 먼저 걸러 냅니다',
+        '여기서 정한 경로가 라벨·패키지·판매자료의 기준이 됩니다'],
+  solo:'규정 검토만 따로 맡기실 수도 있습니다. 대행이 아니라 자문과 검토로 맡습니다.',
   items:['MoCRA 시설 등록과 제품 리스팅에 무엇이 필요한지 정리해 드립니다',
          '성분이 쓸 수 있는 것인지, 한도를 넘지 않는지 봅니다',
          '캐나다는 화장품 신고(Cosmetic Notification) 요건을 확인해 드립니다',
          '라벨과 상세페이지가 기준에 맞는지 미리 보고 고칠 방향을 드립니다',
-         '통관에서 막혔다면 사유를 뜯어보고 다시 낼 방향을 잡아 드립니다',
-         '캐나다는 OUAH AI 등록 포털에서 전성분표만 올리면 경로와 견적을 1분 안에 볼 수 있습니다 — <a href="https://portal.ouahco.ca" target="_blank" rel="noopener">portal.ouahco.ca</a>'],
-  cred:'아마존코리아와 월마트 아시아퍼시픽 마켓플레이스 파트에서 셀러 대상 웨비나를 진행했습니다. 캐나다 현지 Health Canada 전문 에이전시 Ouah Co. & Trading Ltd.의 한국 운영 이사를 맡고 있습니다.',
+         '통관에서 막혔다면 사유를 뜯어보고 다시 낼 방향을 잡아 드립니다'],
+  canada:true,
+  cred:'아마존코리아와 월마트 아시아퍼시픽 마켓플레이스 파트에서 셀러 대상 웨비나를 진행했습니다.',   /* OUAH 직함 문장은 D4(관계 문구 승인) 뒤 */
   meta:'대리인을 세워야 하는 절차는 범위와 책임을 먼저 나눈 다음 진행 여부를 정합니다. 대행이 아니라 자문과 검토로 맡습니다.'},
  {id:'label',art:'label',color:'#2A8C86',kicker:'SPRINT 02 · LABEL',tag:'02 표기 문구',short:'02 표기',
-  title:'라벨 표기 문구 작성 (국문 · 영문)',
-  lede:'번역이 아니라 규정에 맞춰 새로 씁니다. 식약처 기준과 미국 FDA 기준을 같이 놓고 문구를 잡습니다.',
+  title:'번역이 아니라 시장별로 다시 씁니다',
+  lede:'클레임과 필수 문구를 나라 기준에 맞게 정리합니다. 한 나라 문구를 옮겨 적지 않고, 그 나라 규정에 맞춰 새로 씁니다.',
+  role:['01 단계에서 정한 경로에 맞춰 필수 표기 항목을 정리합니다',
+        '영문·불문 등 시장별 문안을 쓰고, 기능성이나 의약품 주장으로 읽히는 표현을 걸러 냅니다',
+        '전성분을 INCI 명으로 정리합니다'],
+  solo:'라벨 표기 문구만 따로 맡기실 수도 있습니다.',
   items:['국문과 영문 문구를 쓰고, 한 면에 같이 넣을지 나눌지 정해 드립니다',
          '전성분을 INCI 명으로 정리합니다',
          '건강기능식품은 Supplement Facts, 일반식품은 Nutrition Facts, OTC는 Drug Facts로 구성합니다',
@@ -385,8 +393,12 @@ var SERVICES=[
          '수출만 하실지 국내에도 같이 푸실지에 따라 표기를 나눠 드립니다'],
   meta:'국내에 유통하는 화장품은 화장품법 제10조에 따라 1차·2차 포장에 한글 표기가 있어야 합니다. 국내에도 같이 푸실 제품이면 처음부터 병기로 잡는 편이 낫습니다. EU CPNP 문구는 기준이 달라 별도 건으로 봅니다.'},
  {id:'pkg',art:'pkg',color:'#1E7B45',kicker:'SPRINT 03 · PACKAGE',tag:'03 패키지',short:'03 패키지',
-  title:'화장품 용기 · 패키지 디자인',
-  lede:'인쇄소에 그대로 넘길 수 있는 파일로 드립니다. 표시사항은 시안을 그릴 때 같이 앉혀 두기 때문에, 다 그려 놓고 문구 때문에 뜯어고치는 일이 없습니다.',
+  title:'만들기 전에 먼저 확인합니다',
+  lede:'규정과 필수 표기를 먼저 잡아 두고 디자인을 시작합니다. 다 그려 놓고 문구 때문에 다시 뜯어고치는 일을 줄입니다.',
+  role:['필수 표기가 들어갈 자리를 시안 단계에서 먼저 잡습니다',
+        '지금 패키지에서 고칠 곳을 표시하거나 적용 파일을 만듭니다',
+        '인쇄소에 그대로 넘길 수 있는 파일로 마무리합니다'],
+  solo:'용기·패키지 디자인만 따로 맡기실 수도 있습니다.',
   items:['파우치와 용기는 전개도에 맞춰 그리고, 인쇄용 AI 원본과 PDF를 함께 드립니다',
          '단상자는 칼선을 받아 그대로 앉힙니다',
          '전성분과 표시사항은 시안 단계에서 자리까지 잡아 둡니다',
@@ -396,17 +408,35 @@ var SERVICES=[
   cred:'K-POP 아이돌 굿즈 브랜드 블링원의 디자인 파트너입니다.',
   meta:'제품 촬영과 모델·스튜디오 비용, 인쇄와 감리, 부자재, 별도 폰트 라이선스는 용역비에 들어가지 않습니다. 인쇄를 넘긴 뒤에 되돌아오는 일을 줄이는 것이 이 작업의 목적입니다.'},
  {id:'detail',art:'ax',color:'#E0A400',kicker:'SPRINT 04 · SALES PAGE',tag:'04 판매자료',short:'04 판매',
-  title:'상세페이지 기획 · 디자인',
-  lede:'판매 화면을 용기·패키지와 같은 톤으로 짭니다. 문구 한 줄이 의약품 주장이 되는지 보면서 씁니다.',
+  title:'패키지와 판매언어를 맞춥니다',
+  lede:'제품이 말할 수 있는 범위 안에서 구매 정보를 설계합니다. 패키지와 같은 논리, 같은 표현으로 판매 화면을 만듭니다.',
+  role:['패키지·라벨에서 정한 표현 범위 안에서 판매 문구를 씁니다',
+        '영문 상세페이지 핵심 구조 또는 완성본을 만듭니다',
+        '바이어와 고객이 확인할 브랜드 웹사이트가 필요하면 같은 흐름으로 붙입니다'],
+  solo:'상세페이지나 브랜드 웹사이트만 따로 맡기실 수도 있습니다.',
   items:['영문 상세페이지를 가로 860px로 만들고 2배수 파일을 같이 드립니다',
          '자사몰과 마켓플레이스에 함께 쓸 대표 페이지 한 벌을 만듭니다',
          '내세울 점을 정리하되 쓰면 안 되는 표현은 걸러 냅니다',
          '국문 페이지, 언어 추가, 품목 추가는 건별로 따로 잡습니다',
          '시안을 드린 뒤 두 번까지 무상으로 고쳐 드립니다'],
+  more:[{h:'브랜드 웹사이트',
+         items:['기획부터 디자인, 화면 구현까지 한 사람이 맡습니다. 브랜드 사이트, 회사 소개 사이트, 제안용 데모 사이트를 만듭니다',
+                '컴퓨터, 태블릿, 휴대폰 세 가지 화면에 맞춰 만듭니다',
+                '쓰시는 도메인을 연결하고 https를 걸어 드립니다',
+                '검색에 잡히도록 제목과 설명, 공유했을 때 뜨는 카드 이미지, sitemap을 넣고 네이버 서치어드바이저와 구글 서치콘솔에 등록해 드립니다',
+                '문의 폼을 붙이고 받으실 메일 주소로 연결합니다',
+                '소스 전체와 배포된 사이트, 운영 안내서를 함께 드립니다',
+                '문을 연 뒤 30일 동안 하자는 무상으로 고칩니다'],
+         meta:'쇼핑몰, 회원가입, 예약, 게시판, 관리자 화면은 기본 범위에 없습니다. 필요하시면 따로 견적을 드립니다. 언어를 늘리는 것은 한 언어 단위로 잡습니다.'}],
+  cred:'지금 보고 계신 이 사이트도 같은 방식으로 직접 만들었습니다.',
   meta:'860px는 네이버 스마트스토어와 카페24가 쓰는 국내 표준 폭입니다. 채널마다 규격을 따로 만들지는 않습니다.'},
  {id:'sub',art:'sub',color:'#D3372B',kicker:'SPRINT 05 · SUBMISSION',tag:'05 제출 준비',short:'05 제출',
-  title:'업무 자동화 (AX · DX)',
-  lede:'손으로 옮겨 적는 일부터 없앱니다. 엑셀을 내려받아 다시 입력하고, 매일 눈으로 대조하는 일을 규칙으로 돌립니다. AI는 규칙으로 안 되는 자리에만 씁니다.',
+  title:'반복 서류는 시스템에 맡깁니다',
+  lede:'자료 검증, 견적, 초안과 진행 상태를 자동화하고, 판단은 사람이 합니다.',
+  role:['제출과 제작에 필요한 자료가 빠짐없이 모였는지 확인합니다',
+        '반복 입력과 초안 작성은 시스템이 줄이고, 규제 판단과 최종 승인은 사람이 합니다',
+        '지금 어디까지 왔고 다음에 누가 무엇을 정해야 하는지 한눈에 보이게 합니다'],
+  solo:'사무 반복 업무 자동화만 따로 맡기실 수도 있습니다.',
   items:['진단 2주 — 지금 쓰는 파일을 그대로 받습니다. 새로 써 달라고 하지 않습니다. 반복 업무를 규칙 · AI · 연동 · 사람 넷으로 나누고, 그대로 두는 게 나은 일도 같이 적어 드립니다',
          '메신저 봇 — 파일을 올리면 변환본이 답글로 돌아옵니다. 새 프로그램을 깔지 않고 이미 쓰는 슬랙에 붙입니다. 송장 변환, 주문 취합, 등록 양식 생성, 일일 보고',
          '회의록 자동화 — 녹음하면 전사 · 요약 · 할 일이 정리되어 메신저로 옵니다',
@@ -417,26 +447,15 @@ var SERVICES=[
          '규칙으로 되는 일은 AI로 하지 않습니다. 99번 맞고 1번 틀리면 그 1번을 사람이 못 잡습니다',
          '병행 운영 뒤에 전환합니다. 전과 후를 실측해 숫자로 보여 드립니다',
          '사람을 줄이는 자료는 만들지 않습니다. 개인정보와 기밀은 받지 않습니다'],
-  cases:[
-   {h:'전성분표를 올리면 Health Canada 등록 자료가 나옵니다 — 캐나다 등록 대행사 OUAH',
-    p:'성분 · 표현 판정, 견적 · 인보이스, 전개도를 읽은 영·불 라벨 문안, CNF · NPN 제출 자료까지 자동으로 갑니다. 사람은 입금 확인 · 검토 · 제출만 누릅니다. 한국어 · English · Français로 열려 있습니다 — <a href="https://portal.ouahco.ca" target="_blank" rel="noopener">portal.ouahco.ca</a> · <a href="https://ouahco.ca" target="_blank" rel="noopener">ouahco.ca</a>'},
-   {h:'회의를 녹음하면 회의록이 슬랙으로 옵니다 — 계열사 5개를 둔 그룹',
-    p:'녹음 파일을 올리면 전사 · 요약 · 하이라이트 · 할 일이 만들어지고 참석자와 팀장에게만 1:1로 갑니다. 회의실 태블릿에서 버튼 하나로 시작합니다. 열람 권한은 소속이 아니라 참석 여부로 정해지고, 클라우드 서버 없이 사내 PC 한 대로 돕니다.'},
-   {h:'파일을 올리면 9초 뒤 변환본이 답글로 돌아옵니다 — 패션 브랜드 유통팀',
-    p:'팀이 쓰던 자료 397쪽을 그대로 받아 반복 업무 38가지를 규칙 22 · AI 7 · 연동 3 · 사람 6으로 나눴습니다. 규칙으로 되는 7가지를 슬랙 봇 하나에 붙였습니다. 합성 자료 46건과 실제 자료 29조합을 전부 통과한 뒤 가동했고, 받은 파일은 처리 직후 지웁니다.'},
-   {h:'매일 아침 정부 지원 공고를 법인별로 판정합니다 — 법인 5곳',
-    p:'매일 09:30에 기업마당과 K-Startup 신규 공고를 모아 법인마다 「지원 가능 · 확인 필요 · 자료 부족 · 대상 아님」으로 판정해 슬랙 리스트에 올립니다. 첫날 1,540건을 판정했고, 비용 0원에 PC를 꺼도 돕니다.'},
-   {h:'인스타그램 성과와 경쟁 매체를 자동으로 읽습니다 — 스포츠 전문 매체',
-    p:'팔로워 6만 명대 계정을 메타 API에 연결해 도달 · 조회 · 상호작용과 경쟁 매체 5곳의 게시 현황을 가져옵니다. 경기 결과 카드는 디자이너 원본 파일의 배너를 그대로 쓰고 글자만 갈아 끼우는 생성기로 만듭니다.'},
-   {h:'화장품 전성분과 문안을 규정표에 대조합니다 — 화장품 수출 대행사',
-    p:'미국 FDA 등록 실무 가운데 전성분 검토 · 문안 검토 · 견적까지 자동화했습니다. 판정 근거는 전부 규정 위키가 정본이라 AI가 지어내는 답이 끼어들 자리가 없고, 사람은 검토 결과를 확인하는 자리에만 있습니다.'}],
+  /* 사례 6건은 고객·고용주 권리 확인 전이라 뺐습니다(브리프 8.4). 확인되면 proof 패널로 — D6. 원문은 git 4855d51 */
   meta:'대상은 직원 5~50명 브랜드사 · 제조사 · 중소기업의 사무 반복 업무입니다. 진단 2주 뒤 첫 봇까지 1~2주가 걸리고, 비용은 진단 후 범위별로 견적을 드립니다. 파일 내보내기가 되는 시스템이 대상이며, 화면을 대신 눌러 주는 방식(RPA)은 하지 않습니다.'},
  {id:'launch',art:'launch',color:'#C99A5B',kicker:'SPRINT 06 · LAUNCH',tag:'06 출시',short:'06 출시',
   title:'출시 뒤에 누가 무엇을 받는지 정리합니다',
   lede:'최종 파일과 제출·제작 체크리스트를 넘기고, 다음 담당자와 일정까지 적어서 인수인계합니다.',
-  items:['인쇄소와 제조사에 그대로 넘길 수 있는 최종 파일을 드립니다',
+  role:['인쇄소와 제조사에 그대로 넘길 수 있는 최종 파일을 드립니다',
          '제출·제작·출시에 필요한 일을 체크리스트 한 장으로 정리합니다',
          '다음에 누가 무엇을 언제 받는지, 담당자와 일정을 적어서 넘깁니다'],
+  solo:'월 유지관리는 Sprint 를 마친 뒤에만 제안합니다.',
   meta:'정부 수수료, 시험성적서 발급, 인쇄·용기·단상자 생산비는 포함되지 않습니다.'}
 ];
 /* 장식 오브제(하트·별·수출·OK·OUAH 로고)는 2026-10-04 첫 화면 재설계로 뺐습니다. 블링원·OUAH 는 패널 글로 옮깁니다 */
@@ -959,15 +978,28 @@ function showPanel(){
   document.getElementById('pclose').focus();
 }
 function openPanel(s){
+  /* 1-5 리뉴얼 — 모듈 패널: 핵심 한 줄 → Sprint 에서 하는 일 → 자세한 범위(접힘) → 단독 작업 안내 → 적합성 확인 */
   document.getElementById('pkicker').textContent=s.kicker;
   document.getElementById('ptitle').textContent=s.title;
   var body=document.getElementById('pbody');
-  body.innerHTML='<p>'+s.lede+'</p><ul class="plist" style="--dot:'+s.color+'">'+s.items.map(function(it){ return '<li>'+it+'</li>'; }).join('')+'</ul>'+
-    (s.rules?'<h4 class="psub">지키는 순서</h4><ul class="plist" style="--dot:'+s.color+'">'+s.rules.map(function(it){ return '<li>'+it+'</li>'; }).join('')+'</ul>':'')+
-    (s.cases?'<h4 class="psub">사례 — 실제로 돌고 있는 것</h4><div class="pcases">'+s.cases.map(function(c){ return '<div class="pcase"><h5>'+c.h+'</h5><p>'+c.p+'</p></div>'; }).join('')+'</div>':'')+
-    (s.cred?'<p class="pcred" style="--dot:'+s.color+'">'+s.cred+'</p>':'')+'<p class="pmeta">'+s.meta+'</p>';
-  document.getElementById('pmail').href=MAILTO+encodeURIComponent('[동인천상회] '+s.title+' 문의');
-  document.querySelector('.pcta').style.display='';
+  var more='';
+  if(s.items){
+    more='<details class="pmore"><summary>자세한 범위</summary>'+ul(s.items,s.color)+
+      (s.rules?'<h4 class="psub">지키는 순서</h4>'+ul(s.rules,s.color):'')+
+      (s.more||[]).map(function(m){ return '<h4 class="psub">'+m.h+'</h4>'+ul(m.items,s.color)+(m.meta?'<p class="pmeta">'+m.meta+'</p>':''); }).join('')+
+      (s.meta?'<p class="pmeta">'+s.meta+'</p>':'')+'</details>';
+  }
+  body.innerHTML='<p>'+s.lede+'</p>'+
+    '<h4 class="psec">이 단계가 Sprint 에서 하는 일</h4>'+ul(s.role,s.color)+
+    (s.canada?canadaCard():'')+
+    more+
+    (!s.items&&s.meta?'<p class="pmeta">'+s.meta+'</p>':'')+
+    (s.cred?'<p class="pcred" style="--dot:'+s.color+'">'+s.cred+'</p>':'')+
+    '<p class="pmeta">'+s.solo+'</p>'+
+    go('fit','우리 제품도 맞는지 확인하기 →');
+  body.querySelectorAll('[data-go]').forEach(function(btn){ btn.addEventListener('click',function(){ openPage(btn.getAttribute('data-go')); }); });
+  body.scrollTop=0;
+  document.querySelector('.pcta').style.display='none';
   showPanel();
 }
 function closePanel(){
