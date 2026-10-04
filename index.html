@@ -78,21 +78,33 @@ button{font:inherit;color:inherit;border:none;background:none;cursor:pointer}
 @media(max-width:720px){.topnav button:not(.cta):not(.keep){display:none}}
 
 /* ---------- 히어로 = 화면 전체 ---------- */
-.hero{position:fixed;inset:0;overflow:hidden;touch-action:pan-y;user-select:none;
+.hero{--face-y:58%;--face-h:clamp(220px,48vh,450px);position:fixed;inset:0;overflow:hidden;touch-action:pan-y;user-select:none;
   background:
     radial-gradient(60% 50% at 18% 18%,rgba(42,140,134,.14),transparent 70%),
     radial-gradient(50% 45% at 84% 22%,rgba(255,201,60,.18),transparent 70%),
     radial-gradient(70% 60% at 50% 100%,rgba(30,123,69,.12),transparent 70%),
     linear-gradient(180deg,#F6F4F0,#EFECE6)}
-.wordmark{position:absolute;left:50%;top:clamp(78px,11vh,120px);transform:translateX(-50%);z-index:2;text-align:center;pointer-events:none;width:min(92vw,900px)}
-.wordmark .en{height:clamp(44px,8.6vw,104px);width:auto;display:block;margin:0 auto;
+.wordmark{position:absolute;left:50%;top:clamp(60px,8vh,96px);transform:translateX(-50%);z-index:6;text-align:center;pointer-events:none;width:min(92vw,1040px)}
+.wordmark .en{height:clamp(40px,7vw,84px);width:auto;display:block;margin:0 auto;
   filter:drop-shadow(0 14px 22px rgba(23,26,31,.20))}
 .wordmark .sub{display:flex;align-items:center;justify-content:center;gap:11px;margin-top:12px;flex-wrap:wrap}
 .wordmark .sub b{font-weight:900;font-size:clamp(15px,2.1vw,22px);letter-spacing:-.03em;color:var(--ink)}
 .wordmark .sub s{text-decoration:none;width:1px;height:13px;background:var(--line-2,#C9C4BA);display:block;flex:none}
 .wordmark em{font-style:normal;font-family:var(--mono);font-size:clamp(9px,1.2vw,11px);letter-spacing:.2em;color:var(--ink-3);white-space:nowrap}
-.wordmark i{display:block;margin-top:9px;font-style:normal;font-weight:700;font-size:clamp(14px,1.9vw,19px);color:var(--ink-2)}
-@media(max-width:640px){ .wordmark .sub{gap:8px} .wordmark .sub s{display:none} }
+/* 첫 화면 글 블록 — 키커 · 대표 제목 · 설명 · 대표 CTA · 마이크로카피 */
+.hero-copy{margin-top:clamp(10px,1.6vh,16px);word-break:keep-all;overflow-wrap:break-word}
+.hero-copy .kicker{display:block;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.2em;color:var(--green)}
+.hero-copy h1{margin-top:6px;font-size:clamp(20px,1.9vw,27px);font-weight:900;letter-spacing:-.035em;color:var(--ink)}
+.hero-copy p{max-width:620px;margin:8px auto 0;font-size:clamp(13px,1.05vw,15px);line-height:1.6;color:var(--ink-2)}
+.hero-cta{pointer-events:auto;margin-top:14px;display:inline-block;background:var(--ink);color:#fff;font-weight:800;font-size:15px;line-height:1.3;
+  padding:12px 22px;border-radius:99px;box-shadow:var(--shadow);transition:background .15s}
+.hero-cta:hover,.hero-cta:focus-visible{background:var(--green)}
+.hero-copy .micro{display:block;margin-top:8px;font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--ink-3)}
+@media(max-width:640px){ .wordmark .sub{gap:8px} .wordmark .sub s{display:none}
+  .wordmark{top:76px} .wordmark .sub{margin-top:6px} .hero-copy{margin-top:8px} .hero-cta{margin-top:10px} .hero-copy .micro{margin-top:6px}
+  .hero-copy p{display:none} .hero-copy h1{font-size:clamp(17px,4.6vw,20px)} .hero-cta{display:block;width:100%;font-size:14.5px}
+  /* 폰은 양옆 세로줄에 오브제가 서 있어서 말풍선을 모자 오른쪽 위로 */
+  .hero .bubble{left:calc(50% + 2px);top:calc(var(--face-y) - var(--face-h)*0.5 - 4px)} }
 
 #stage{position:absolute;inset:0;z-index:5}
 
@@ -130,11 +142,11 @@ button{font:inherit;color:inherit;border:none;background:none;cursor:pointer}
   .objlabel.credit{width:auto;margin-top:5px}.objlabel.credit small{display:block;font-size:7.5px;letter-spacing:.14em}}
 
 /* ---- 아바타 ---- */
-.avatar{position:absolute;left:50%;top:56%;z-index:3;height:clamp(240px,53vh,490px);cursor:pointer;transform:translate(-50%,-50%)}
+.avatar{position:absolute;left:50%;top:var(--face-y);z-index:3;height:var(--face-h);cursor:pointer;transform:translate(-50%,-50%)}
 .avatar video{position:fixed;left:-4000px;top:0;width:333px;height:880px;pointer-events:none}
 .avatar canvas,.avatar .exp{height:100%;width:auto;aspect-ratio:666/880;display:block;filter:drop-shadow(0 20px 26px rgba(23,26,31,.22))}
 .avatar .exp{position:absolute;inset:0;object-fit:contain}
-.bubble{position:absolute;z-index:6;left:calc(50% + min(125px,24vw));top:calc(50% - min(155px,26vw));
+.bubble{position:absolute;z-index:6;left:calc(50% + min(125px,24vw));top:calc(var(--face-y) - var(--face-h)*0.44);
   background:#fff;color:var(--ink);border-radius:18px;padding:11px 16px;font-weight:900;font-size:16px;line-height:1;white-space:nowrap;
   box-shadow:var(--shadow);animation:wob 2.6s ease-in-out infinite}
 .bubble::after{content:"";position:absolute;left:18px;bottom:-9px;width:16px;height:16px;background:#fff;border-radius:3px;transform:rotate(45deg)}
@@ -276,7 +288,13 @@ button{font:inherit;color:inherit;border:none;background:none;cursor:pointer}
   <div class="wordmark" id="wordmark">
     <img class="en" src="media/wordmark.webp" alt="dongincheon">
     <span class="sub"><b>동인천상회</b><s></s><em>DONGINCHEON TRADING CO.</em></span>
-    <i>브랜드의 겉면을 만듭니다</i>
+    <div class="hero-copy">
+      <small class="kicker">K-BEAUTY EXPORT LAUNCH SYSTEM</small>
+      <h1>규정부터 패키지와 영문 판매자료까지, 해외 출시 준비를 한 번에.</h1>
+      <p>여러 업체 사이에서 같은 설명을 반복하지 마세요. 동인천상회가 출시 경로를 먼저 확인하고, 소비자에게 보이는 결과물과 제출 준비를 한 흐름으로 연결합니다.</p>
+      <button class="hero-cta" id="heroCta" data-open="fit">내 제품의 출시 준비 확인하기 →</button>
+      <small class="micro">1~3분 · 예산과 일정이 정해진 프로젝트 우선</small>
+    </div>
   </div>
   <div class="avatar" id="avatar" role="button" tabindex="0" aria-label="동인천김씨">
     <video id="idlev" muted loop playsinline autoplay preload="auto" aria-hidden="true"><source src="media/clip_idle.mp4" type="video/mp4"><source src="media/clip_idle.webm" type="video/webm"></video>
@@ -873,7 +891,7 @@ function lighten(h,a){return toHex(hexToRgb(h).map(function(v){return v+(255-v)*
 function darken(h,a){return toHex(hexToRgb(h).map(function(v){return v*(1-a);}));}
 
 function sizes(){
-  if(W<560) return {svc:78,deco:46};
+  if(W<560) return {svc:68,deco:40};   /* 리뉴얼: 첫 화면 글 블록이 길어져 폰 오브제를 줄임 (78·46 → 68·40) */
   if(W<900) return {svc:96,deco:54};
   return {svc:Math.min(118,Math.min(W,H)*0.16),deco:64};
 }
@@ -916,10 +934,22 @@ function makeCube(cfg,size,isDeco,i){
   return el;
 }
 
+/* 얼굴은 첫 화면 글 블록 바로 아래, 남은 높이에 맞춰 놓는다.
+   글 블록 높이가 화면마다 달라서 고정 % 로는 CTA 가 모자 위에 겹친다. 말풍선·물리 원은 이 값을 따라간다 */
+function fitFace(){
+  var wm=document.getElementById('wordmark').getBoundingClientRect();
+  var phone=W<640, top=wm.bottom+(phone?10:14);
+  var room=H-top-(phone?246:62);            /* 폰은 얼굴 아래에 오브제 한 줄과 중력 스위치 자리를 남긴다 */
+  var h=Math.max(180,Math.min(phone?300:450,room));
+  hero.style.setProperty('--face-h',h+'px');
+  hero.style.setProperty('--face-y',(top+h/2)+'px');
+}
+
 function buildWorld(){
   Composite.clear(world,false,true);
   items=[]; stage.innerHTML='';
   W=hero.clientWidth; H=hero.clientHeight;
+  fitFace();
   var S=sizes(), t=100;
   World.add(world,[
     Bodies.rectangle(W/2,-t/2+70,W*2,t,{isStatic:true}),
@@ -929,15 +959,17 @@ function buildWorld(){
   ]);
   var avBox=document.getElementById('avatar').getBoundingClientRect();
   var avR=Math.max(Math.min(W,H)*0.09, avBox.width*0.36);
-  avBody=Bodies.circle(W/2,H*0.52,avR,{isStatic:true,restitution:.7});
+  avBody=Bodies.circle(W/2,avBox.top+avBox.height*0.43,avR,   /* 얼굴 윗부분(모자) 중심 — CSS 위치를 따라감 */
+    {isStatic:true,restitution:.7});
   World.add(world,avBody);
 
   var all=SERVICES.map(function(s){return {cfg:s,size:S.svc,deco:false};})
         .concat(DECO.map(function(d){return {cfg:d,size:Math.round(S.deco*(d.big||1)),deco:true};}));
   var mobile=W<640;
-  var SLOT_S = mobile ? [[0.15,0.26],[0.85,0.26],[0.12,0.47],[0.88,0.47],[0.38,0.81],[0.62,0.81]]
-                      : [[0.16,0.29],[0.23,0.63],[0.84,0.29],[0.77,0.63],[0.40,0.835],[0.60,0.835]];
-  var SLOT_D = mobile ? [[0.13,0.635],[0.90,0.66],[0.11,0.77],[0.89,0.79],null,[0.86,0.9]]   /* 5번째(별)는 휴대폰에서 예전처럼 뺌 · 6번째 OUAH 만 */
+  /* 2026-10-04 리뉴얼 — 첫 화면 글 블록이 길어져 슬롯을 다시 잡음. 위쪽 오브제는 글 블록 아래로, 아래 둘은 얼굴 옆으로 */
+  var SLOT_S = mobile ? [[0.12,0.417],[0.88,0.417],[0.12,0.571],[0.88,0.571],[0.44,0.782],[0.72,0.782]]
+                      : [[0.13,0.36],[0.23,0.63],[0.87,0.36],[0.77,0.63],[0.31,0.80],[0.69,0.80]];
+  var SLOT_D = mobile ? [[0.12,0.711],[0.90,0.835],[0.12,0.815],[0.50,0.905],null,[0.87,0.716]]   /* 5번째(빨간 하트)는 휴대폰에서 뺌 · 6번째 OUAH */
                       : [[0.075,0.175],[0.06,0.52],[0.94,0.47],[0.25,0.82],[0.75,0.82],[0.935,0.70]];
   var si=0, di=0;
   all.forEach(function(o,i){
@@ -1196,7 +1228,7 @@ function attachMouse(){
   hero.addEventListener('pointerdown',function(e){
     HEAD.touch();
     downAt={x:e.clientX,y:e.clientY}; downTime=Date.now();
-    uiDown = !!(e.target.closest && e.target.closest('.hud,.topbar,#panel,#scrim'));
+    uiDown = !!(e.target.closest && e.target.closest('.hud,.topbar,.hero-cta,#panel,#scrim'));
     faceDown = !uiDown && onFace(e.clientX,e.clientY);
     if(uiDown && mc){ mc.constraint.bodyB=null; mc.body=null; }   /* 버튼 위에서는 큐브를 잡지 않는다 */
   });
@@ -1316,6 +1348,11 @@ if('IntersectionObserver' in window){
 
 buildWorld(); sync();
 if(!reduce){ attachMouse(); start(); }
+/* 웹폰트가 늦게 오면 제목 줄바꿈이 달라져 글 블록 높이가 바뀐다. 그때 한 번 다시 배치 */
+if(document.fonts&&document.fonts.ready) document.fonts.ready.then(function(){
+  var before=hero.style.getPropertyValue('--face-y'); fitFace();
+  if(hero.style.getPropertyValue('--face-y')!==before) window.dispatchEvent(new Event('resize'));
+});
 /* 주소 뒤에 #debug 를 붙이면 검증 스크립트가 물리 상태를 만질 수 있다. 평소엔 아무것도 노출하지 않는다 */
 /* 진단용 postMessage 훅 — 주소 끝에 #debug 를 붙였을 때만 열린다 */
 if(location.hash.indexOf('debug')>=0) window.addEventListener('message',function(e){
