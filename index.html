@@ -229,6 +229,19 @@ button{font:inherit;color:inherit;border:none;background:none;cursor:pointer}
 .fld input:focus,.fld select:focus,.fld textarea:focus{background:var(--card);border-color:var(--green);outline:none}
 .fld.bad input,.fld.bad textarea{border-color:var(--red);background:#FDF3F2}
 .botcheck{position:absolute;left:-9999px;opacity:0;height:0;width:0}
+/* 1-6 적합성 폼 — 체크 묶음 · 칸 설명 · 미정일 때 열리는 칸 */
+.fld .flabel{font-size:13px;font-weight:700;color:var(--ink-2);display:flex;align-items:center;gap:7px}
+.fld .flabel em{font-style:normal;font-family:var(--mono);font-size:9px;letter-spacing:.14em;color:var(--green);border:1px solid var(--line);border-radius:99px;padding:2px 7px}
+.fld .fhint{font-size:12.5px;color:var(--ink-3);line-height:1.6;word-break:keep-all;overflow-wrap:break-word}
+.checks{display:flex;flex-wrap:wrap;gap:8px}
+.fld .checks label{display:inline-flex;align-items:center;gap:7px;background:var(--bg);border:1px solid var(--line);border-radius:99px;
+  padding:8px 13px;font-size:14px;font-weight:600;color:var(--ink);cursor:pointer;word-break:keep-all}
+.fld .checks input{width:16px;height:16px;padding:0;margin:0;flex:none;accent-color:var(--green)}
+.fld.bad .checks label{border-color:var(--red)}
+.fld.bad select{border-color:var(--red);background-color:#FDF3F2}
+.fld .row2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media(max-width:420px){.fld .row2{grid-template-columns:1fr}}
+.fld.sub{margin-top:-6px;padding-left:12px;border-left:3px solid var(--line)}
 .cerr{font-size:13px;font-weight:700;color:var(--red);display:none}
 .cerr.on{display:block}
 .csend{background:var(--ink);color:#fff;padding:15px;border-radius:14px;font-weight:700;font-size:15px;text-align:center}
@@ -743,11 +756,41 @@ var PAGES={
       '<p class="pmeta">맞춤 제안서는 예산, 최종 결정권자, 희망일, 구매하지 않을 조건이 확인된 프로젝트에만 씁니다. 아직 정해지지 않았다면 가능한 범위와 결정 예정일을 받습니다. 맞지 않으면 다른 길을 안내해 드리고, 제안서 전에 필요한 맞춤 분석은 유료 진단으로 합니다.</p>'+
       go('about','동인천상회는 누구인가',true)+
       go('fit','우리 제품도 맞는지 확인하기 →'); }},
+  fitform:{kicker:'CHECK LAUNCH FIT',title:'프로젝트 적합성 확인',nocta:true,
+    lede:'맞춤 제안서는 예산, 최종 결정권자, 희망일과 구매하지 않을 조건이 확인된 프로젝트에만 작성합니다. 아직 정해지지 않았다면 가능한 범위와 결정 예정일을 적어 주세요.',
+    html:function(){
+      function fld(id,label,input,hint,sub){ return '<div class="fld'+(sub?' sub':'')+'"'+(sub?' hidden':'')+'>'+(label?'<label for="'+id+'">'+label+'</label>':'')+input+(hint?'<p class="fhint">'+hint+'</p>':'')+'</div>'; }
+      function req(t){ return t+' <em>필수</em>'; }
+      function box(name,vals){ return vals.map(function(v){ return '<label><input type="checkbox" name="'+name+'" value="'+v+'">'+v+'</label>'; }).join(''); }
+      return '<form id="cform" data-kind="fit" novalidate>'+
+        '<div class="fld"><span class="flabel">'+req('1) 회사와 담당자')+'</span>'+
+          '<div class="row2"><input id="q_co" type="text" autocomplete="organization" placeholder="회사 또는 브랜드" aria-label="회사 또는 브랜드">'+
+          '<input id="q_name" type="text" autocomplete="name" placeholder="담당자 이름" aria-label="담당자 이름"></div></div>'+
+        fld('q_mail','',  '<input id="q_mail" type="email" inputmode="email" autocomplete="email" placeholder="회신 받으실 메일" aria-label="회신 받으실 메일">')+
+        fld('q_sku',req('2) 제품과 SKU 수'),'<input id="q_sku" type="text" placeholder="예: 크림 1종, SKU 2개">')+
+        '<div class="fld"><span class="flabel">'+req('희망 국가')+'</span><div class="checks" id="q_cty">'+box('cty',['캐나다','미국','기타'])+'</div></div>'+
+        fld('q_cty_etc','기타 국가','<input id="q_cty_etc" type="text" placeholder="국가 이름">','',true)+
+        '<div class="fld"><span class="flabel">'+req('3) 지금 갖고 계신 자료')+'</span><div class="checks" id="q_have">'+box('have',['전성분표','아트워크','상세페이지','시험성적서','아직 없음'])+'</div></div>'+
+        /* 예산 선택지는 최소예산선(D2) 결정 뒤 채운다. 그 전에는 「미정」만 — 배포하지 않음 */
+        fld('q_budget',req('4) 예산 범위'),'<select id="q_budget"><option value="">골라주세요</option><option value="미정">아직 정하지 못했습니다</option></select>')+
+        fld('q_budget_when','가능한 범위와 결정 예정일','<input id="q_budget_when" type="text" placeholder="예: 다음 달 말까지 결정">','',true)+
+        fld('q_who',req('5) 최종 결정권자'),'<select id="q_who"><option value="">골라주세요</option><option>본인</option><option>대표</option><option>임원</option><option>부서장</option><option value="미정">아직 정해지지 않았습니다</option></select>')+
+        fld('q_how','승인 방식','<input id="q_how" type="text" placeholder="예: 대표 결재 후 진행">','',true)+
+        fld('q_who_when','결정권자가 정해질 예정일','<input id="q_who_when" type="text" placeholder="예: 이번 분기 안">','',true)+
+        '<div class="fld"><label for="q_date">'+req('6) 희망 출시·납품 시기')+'</label><input id="q_date" type="month">'+
+          '<div class="checks"><label><input type="checkbox" id="q_date_un">아직 정하지 못했어요</label></div></div>'+
+        fld('q_date_when','언제쯤 정해질지','<input id="q_date_when" type="text" placeholder="예: 시험성적서 나온 뒤">','',true)+
+        fld('q_nobuy',req('7) 어떤 조건이면 진행하지 않으시나요'),'<textarea id="q_nobuy" rows="3" placeholder="예: 예산을 넘거나, 출시일을 못 맞추면 진행하지 않습니다"></textarea>')+
+        fld('q_block',req('8) 지금 가장 막힌 한 가지'),'<textarea id="q_block" rows="3" placeholder="예: 캐나다 라벨에 무엇을 넣어야 하는지 모릅니다"></textarea>')+
+        '<input type="checkbox" name="botcheck" id="f_bot" class="botcheck" tabindex="-1" autocomplete="off">'+
+        '<p class="cerr" id="cerr" role="alert"></p>'+
+        '<button type="submit" class="csend" id="csend">적합성 확인 요청 보내기</button>'+
+        '<p class="cnote">보내주신 내용은 회신 목적으로만 씁니다. 폼이 안 되면 메일로 보내주셔도 됩니다 — <button type="button" class="lnk" id="mcopy">'+MAIL+' 복사</button></p>'+
+        '</form><div class="cdone" id="cdone" hidden></div>'; }},
   fit:{kicker:'CHECK LAUNCH FIT',title:'무엇이 가장 필요하신가요?',nocta:true,
     lede:'고르시면 맞는 다음 단계로 안내합니다.',
     html:function(){ return '<div class="plinks choice">'+
-      /* 1·3번은 1-6 적합성 폼(fitform)이 생기기 전까지 기존 문의 폼으로 */
-      '<button type="button" data-go="contact" style="--dot:#1E7B45"><span><i></i>규제·라벨·패키지·판매자료를 한 번에 준비하고 싶어요</span><em>SPRINT</em></button>'+
+      '<button type="button" data-go="fitform" style="--dot:#1E7B45"><span><i></i>규제·라벨·패키지·판매자료를 한 번에 준비하고 싶어요</span><em>SPRINT</em></button>'+
       '<button type="button" data-go="canada" style="--dot:#4A5568"><span><i></i>캐나다 Health Canada 등록 가능 여부부터 확인하고 싶어요</span><em>CANADA</em></button>'+
       '<button type="button" data-go="undecided" style="--dot:#C99A5B"><span><i></i>아직 국가와 제품이 정해지지 않았어요</span><em>START</em></button>'+
       '</div>'; }},
@@ -757,7 +800,7 @@ var PAGES={
       '<h4 class="psec">유료 방향설정 세션</h4>'+
       '<p>어느 나라부터, 어떤 제품부터 내보낼지 순서를 같이 정합니다. 정해진 뒤에는 그 결과로 적합성 확인부터 다시 시작하시면 됩니다.</p>'+
       '<p class="pmeta">가격은 문의 주시면 안내합니다.</p>'+   /* D7 */
-      go('contact','방향설정 세션 문의하기 →'); }},
+      go('fitform','방향설정 세션 요청하기 →'); }},
   canada:{kicker:'WORKING PROOF · CANADA',title:'전성분표 한 장에서 등록 준비까지',nocta:true,
     lede:'OUAH AI 포털은 전성분표와 제품 질문을 바탕으로 Health Canada 예상 경로와 견적을 먼저 보여 줍니다. 영·불 라벨 문안과 제출자료 초안은 시스템이 준비하고, 최종 검토와 제출은 캐나다 현지 전문가가 맡습니다.',
     html:function(){ return ''+   /* 포털 화면 캡처는 D5, 관계 문구는 D4 뒤 */
@@ -861,19 +904,62 @@ var FORMKEY='6d4cfb96-cc8f-4f6c-8292-e10e7185486d';                 /* Web3Forms
 var FORMURL='https://api.web3forms.com/submit';
 
 function val(id){ var el=document.getElementById(id); return el ? el.value.trim() : ''; }
-function markBad(id,bad){ var el=document.getElementById(id); if(el&&el.parentNode) el.parentNode.classList[bad?'add':'remove']('bad'); }
-function formText(d){
-  return '이름: '+d.name+'\n'+
-         '회사 · 브랜드: '+(d.company||'-')+'\n'+
-         '회신 메일: '+d.email+'\n'+
-         '작업: '+d.kind+'\n\n'+
-         '내용:\n'+d.message;
-}
+function markBad(id,bad){ var el=document.getElementById(id); var box=el&&((el.closest&&el.closest('.fld'))||el.parentNode); if(box) box.classList[bad?'add':'remove']('bad'); }
+/* 폼이 둘이다: 문의(contact)와 적합성 확인(fit). 같은 #cform 자리를 쓰고, data-kind 로 읽는 칸을 고른다 */
+function formKind(){ var f=document.getElementById('cform'); return f ? (f.getAttribute('data-kind')||'contact') : 'contact'; }
+function formText(d){ return d.text; }
+function checked(name){ return [].slice.call(document.querySelectorAll('#cform input[name="'+name+'"]:checked')).map(function(x){ return x.value; }); }
 function readForm(){
-  return {name:val('f_name'),company:val('f_co'),email:val('f_mail'),
+  if(formKind()==='fit') return readFit();
+  var d={name:val('f_name'),company:val('f_co'),email:val('f_mail'),
           kind:val('f_kind')||'미정',message:val('f_msg')};
+  d.subject='[동인천상회] '+d.kind+' 문의 — '+d.name;
+  d.text='이름: '+d.name+'\n'+'회사 · 브랜드: '+(d.company||'-')+'\n'+'회신 메일: '+d.email+'\n'+'작업: '+d.kind+'\n\n'+'내용:\n'+d.message;
+  d.payload={'이름':d.name,'회사·브랜드':d.company||'-','작업':d.kind,'내용':d.message};
+  return d;
+}
+function readFit(){
+  var cty=checked('cty'); if(cty.indexOf('기타')>=0 && val('q_cty_etc')) cty[cty.indexOf('기타')]='기타('+val('q_cty_etc')+')';
+  var und=document.getElementById('q_date_un'), dateUn=!!(und&&und.checked);
+  var d={kind:'fit',company:val('q_co'),name:val('q_name'),email:val('q_mail'),sku:val('q_sku'),cty:cty,have:checked('have'),
+         budget:val('q_budget'),budgetWhen:val('q_budget_when'),who:val('q_who'),how:val('q_how'),whoWhen:val('q_who_when'),
+         date:dateUn?'미정':val('q_date'),dateWhen:val('q_date_when'),nobuy:val('q_nobuy'),block:val('q_block')};
+  var budget=d.budget==='미정'?'미정 — '+d.budgetWhen:d.budget;
+  var who=d.who==='미정'?'미정 — 결정 예정 '+d.whoWhen:d.who+(d.how?' / 승인 방식: '+d.how:'');
+  var date=d.date==='미정'?'미정 — '+d.dateWhen:d.date;
+  d.subject='[동인천상회] 적합성 확인 — '+d.company+' · '+(cty.join(', ')||'-');
+  var rows=[['회사·브랜드',d.company],['담당자',d.name],['회신 메일',d.email],['제품·SKU 수',d.sku],['희망 국가',cty.join(', ')],
+            ['보유 자료',d.have.join(', ')],['예산 범위',budget],['최종 결정권자',who],['희망 출시·납품일',date],
+            ['구매하지 않을 조건',d.nobuy],['지금 가장 막힌 한 가지',d.block]];
+  d.text=rows.map(function(r){ return r[0]+': '+r[1]; }).join('\n');
+  d.payload={}; rows.forEach(function(r){ d.payload[r[0]]=r[1]; });
+  return d;
+}
+function validateFit(d){
+  var ids=['q_co','q_name','q_mail','q_sku','q_cty','q_cty_etc','q_have','q_budget','q_budget_when','q_who','q_how','q_who_when','q_date','q_date_when','q_nobuy','q_block'];
+  ids.forEach(function(i){ markBad(i,false); });
+  function bad(id,msg){ markBad(id,true); return [msg,id]; }
+  if(!d.company) return bad('q_co','회사 또는 브랜드 이름을 적어주세요.');
+  if(!d.name) return bad('q_name','담당자 이름을 적어주세요.');
+  if(!d.email) return bad('q_mail','회신 받으실 메일 주소를 적어주세요.');
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(d.email)) return bad('q_mail','메일 주소를 다시 확인해주세요.');
+  if(!d.sku) return bad('q_sku','제품과 SKU 수를 적어주세요.');
+  if(!d.cty.length) return bad('q_cty','희망 국가를 하나 이상 골라주세요.');
+  if(d.cty.join().indexOf('기타')>=0 && !val('q_cty_etc')) return bad('q_cty_etc','기타 국가 이름을 적어주세요.');
+  if(!d.have.length) return bad('q_have','지금 갖고 계신 자료를 골라주세요. 없으면 「아직 없음」을 골라주세요.');
+  if(!d.budget) return bad('q_budget','예산 범위를 골라주세요.');
+  if(d.budget==='미정' && !d.budgetWhen) return bad('q_budget_when','가능한 범위와 결정 예정일을 적어주세요.');
+  if(!d.who) return bad('q_who','최종 결정권자를 골라주세요.');
+  if(d.who==='미정' && !d.whoWhen) return bad('q_who_when','결정권자가 정해질 예정일을 적어주세요.');
+  if(d.who!=='미정' && !d.how) return bad('q_how','승인 방식을 적어주세요.');
+  if(!d.date) return bad('q_date','희망 출시·납품 시기를 골라주세요. 정하지 못했으면 「아직 정하지 못했어요」를 눌러주세요.');
+  if(d.date==='미정' && !d.dateWhen) return bad('q_date_when','언제쯤 정해질지 적어주세요.');
+  if(d.nobuy.length<2) return bad('q_nobuy','어떤 조건이면 진행하지 않으실지 적어주세요.');
+  if(d.block.length<2) return bad('q_block','지금 가장 막힌 한 가지를 적어주세요.');
+  return null;
 }
 function validate(d){
+  if(d.kind==='fit') return validateFit(d);
   ['f_name','f_mail','f_msg'].forEach(function(i){ markBad(i,false); });
   if(!d.name){ markBad('f_name',true); return ['이름을 적어주세요.','f_name']; }
   if(!d.email){ markBad('f_mail',true); return ['회신 받으실 메일 주소를 적어주세요.','f_mail']; }
@@ -885,8 +971,9 @@ function showSent(d){
   var f=document.getElementById('cform'), done=document.getElementById('cdone');
   if(!done) return;
   f.hidden=true; done.hidden=false;
-  done.innerHTML='<h4>문의를 보냈습니다</h4>'+
-    '<p>'+esc(d.name)+'님, 확인하는 대로 <b>'+esc(d.email)+'</b> 로 회신드리겠습니다.</p>';
+  done.innerHTML= d.kind==='fit'
+    ? '<h4>적합성 확인 요청을 보냈습니다</h4><p>'+esc(d.name)+'님, 적어주신 내용을 보고 <b>'+esc(d.email)+'</b> 로 다음 단계를 안내드리겠습니다.</p>'
+    : '<h4>문의를 보냈습니다</h4><p>'+esc(d.name)+'님, 확인하는 대로 <b>'+esc(d.email)+'</b> 로 회신드리겠습니다.</p>';
   done.scrollIntoView({block:'nearest'});
 }
 function showFallback(d,why){
@@ -901,7 +988,7 @@ function showFallback(d,why){
     '<a id="cmail" href="#">메일 앱으로 열기</a>'+
     '<button type="button" id="cback">다시 쓰기</button></div>';
   document.getElementById('ccopy').addEventListener('click',function(){ copyText(txt,'문의 내용을 복사했습니다'); });
-  document.getElementById('cmail').href=MAILTO+encodeURIComponent('[동인천상회] '+d.kind+' 문의')+'&body='+encodeURIComponent(txt);
+  document.getElementById('cmail').href=MAILTO+encodeURIComponent(d.subject)+'&body='+encodeURIComponent(txt);
   document.getElementById('cmail').addEventListener('click',function(e){
     var href=this.href, opened=false;
     try{ opened=!!window.open(href,'_blank'); }catch(err){}
@@ -912,8 +999,29 @@ function showFallback(d,why){
   done.scrollIntoView({block:'nearest'});
 }
 function esc(t){ return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function bindFit(f){
+  function toggle(id,on){ var el=document.getElementById(id); if(!el) return; el.parentNode.hidden=!on; if(!on) el.value=''; }
+  function sync(){
+    toggle('q_budget_when',val('q_budget')==='미정');
+    toggle('q_who_when',val('q_who')==='미정');
+    var how=document.getElementById('q_how'); if(how) how.parentNode.hidden=(val('q_who')==='미정');
+    toggle('q_cty_etc',checked('cty').indexOf('기타')>=0);
+    var un=document.getElementById('q_date_un'), dt=document.getElementById('q_date');
+    if(un&&dt){ dt.disabled=un.checked; if(un.checked) dt.value=''; toggle('q_date_when',un.checked); }
+    /* 「아직 없음」과 다른 자료는 같이 고를 수 없게 */
+  }
+  f.addEventListener('change',function(e){
+    if(e.target.name==='have'){
+      var none=e.target.value==='아직 없음';
+      [].slice.call(f.querySelectorAll('input[name="have"]')).forEach(function(x){ if(x!==e.target && e.target.checked && (none || x.value==='아직 없음')) x.checked=false; });
+    }
+    sync();
+  });
+  sync();
+}
 function bindForm(){
   var f=document.getElementById('cform'); if(!f) return;
+  if(formKind()==='fit') bindFit(f);
   f.addEventListener('submit',function(e){
     e.preventDefault();
     var err=document.getElementById('cerr'), btn=document.getElementById('csend');
@@ -921,24 +1029,22 @@ function bindForm(){
     var bot=document.getElementById('f_bot');
     if(bot&&bot.checked) return;                        /* 스팸 봇 */
     var bad=validate(d);
-    if(bad){ err.textContent=bad[0]; err.classList.add('on'); var el=document.getElementById(bad[1]); if(el) el.focus(); return; }
+    if(bad){ err.textContent=bad[0]; err.classList.add('on'); var el=document.getElementById(bad[1]);
+      if(el){ var tgt=el.matches('input,select,textarea')?el:el.querySelector('input,select,textarea'); if(tgt) tgt.focus(); el.scrollIntoView({block:'center'}); } return; }
     err.classList.remove('on'); err.textContent='';
     if(!FORMKEY){ showFallback(d,'전송 설정이 아직 연결되지 않았습니다.'); return; }
-    btn.disabled=true; btn.textContent='보내는 중…';
-    var payload={access_key:FORMKEY,
-      subject:'[동인천상회] '+d.kind+' 문의 — '+d.name,
-      from_name:d.name, email:d.email,
-      '이름':d.name, '회사·브랜드':d.company||'-', '작업':d.kind, '내용':d.message};
+    var label=btn.textContent; btn.disabled=true; btn.textContent='보내는 중…';
+    var payload=Object.assign({access_key:FORMKEY,subject:d.subject,from_name:d.name,email:d.email},d.payload);
     var done=false, t=setTimeout(function(){ if(done) return; done=true;
-      btn.disabled=false; btn.textContent='문의 보내기';
+      btn.disabled=false; btn.textContent=label;
       showFallback(d,'전송이 응답하지 않았습니다.'); },12000);
     fetch(FORMURL,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(payload)})
       .then(function(r){ return r.json().catch(function(){ return {success:r.ok}; }); })
       .then(function(j){ if(done) return; done=true; clearTimeout(t);
-        btn.disabled=false; btn.textContent='문의 보내기';
+        btn.disabled=false; btn.textContent=label;
         if(j&&j.success) showSent(d); else showFallback(d,'전송 서버가 요청을 받지 못했습니다.'); })
       .catch(function(){ if(done) return; done=true; clearTimeout(t);
-        btn.disabled=false; btn.textContent='문의 보내기';
+        btn.disabled=false; btn.textContent=label;
         showFallback(d,'지금 화면에서는 바깥으로 보내는 것이 막혀 있습니다.'); });
   });
 }
