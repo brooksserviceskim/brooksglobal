@@ -72,7 +72,10 @@ button{font:inherit;color:inherit;border:none;background:none;cursor:pointer}
 .topnav button:hover,.topnav a:hover{background:var(--bg-2);color:var(--ink)}
 .topnav .cta{background:var(--ink);color:#fff}
 .topnav .cta:hover{background:var(--green);color:#fff}
-@media(max-width:720px){.topnav button:not(.cta){display:none}}
+/* 영문 메뉴는 모노 대문자. 한글 CTA(.cta)는 본문 글꼴 그대로 */
+.topnav button:not(.cta){font-family:var(--mono);font-size:11.5px;letter-spacing:.12em}
+/* 폰은 LAUNCH SPRINT(.keep)와 적합성 확인(.cta)만 */
+@media(max-width:720px){.topnav button:not(.cta):not(.keep){display:none}}
 
 /* ---------- 히어로 = 화면 전체 ---------- */
 .hero{position:fixed;inset:0;overflow:hidden;touch-action:pan-y;user-select:none;
@@ -261,10 +264,11 @@ button{font:inherit;color:inherit;border:none;background:none;cursor:pointer}
 
 <header class="topbar">
   <nav class="topnav">
-    <button data-open="services">하는 일</button>
-    <button data-open="about">소개</button>
-    <button data-open="process">진행 순서</button>
-    <button class="cta" data-open="contact">문의하기</button>
+    <button class="keep" data-open="sprint">LAUNCH SPRINT</button>
+    <button data-open="canada">CANADA AI</button>
+    <button data-open="how">HOW IT WORKS</button>
+    <button data-open="proof">PROOF</button>
+    <button class="cta" data-open="fit">적합성 확인</button>
   </nav>
 </header>
 
@@ -476,8 +480,9 @@ var HEAD=(function(){
   /* 바탕 영상이 막히면(절전·자동재생 정책) 정지 얼굴로 넘어가고, 다시 볼 수 있게 되면 되살린다 */
   function tryIdle(){
     var p=vid.play();
-    if(p&&p.catch) p.catch(function(err){ lastErr='idle:'+(err&&err.name); document.getElementById('face').hidden=false; });
-    if(p&&p.then) p.then(function(){ document.getElementById('face').hidden=true; });
+    /* then 과 catch 를 한 줄로 이어야 거절이 「처리되지 않은 오류」로 콘솔에 남지 않는다 */
+    if(p&&p.then) p.then(function(){ document.getElementById('face').hidden=true; })
+                   .catch(function(err){ lastErr='idle:'+(err&&err.name); document.getElementById('face').hidden=false; });
   }
   tryIdle();
   document.addEventListener('visibilitychange',function(){ if(vid.paused) tryIdle(); });
