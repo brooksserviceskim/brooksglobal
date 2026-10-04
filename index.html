@@ -92,6 +92,16 @@ button{font:inherit;color:inherit;border:none;background:none;cursor:pointer}
 .wordmark .sub s{text-decoration:none;width:1px;height:13px;background:var(--line-2,#C9C4BA);display:block;flex:none}
 .wordmark em{font-style:normal;font-family:var(--mono);font-size:clamp(9px,1.2vw,11px);letter-spacing:.2em;color:var(--ink-3);white-space:nowrap}
 /* 첫 화면 글 블록 — 키커 · 대표 제목 · 설명 · 대표 CTA · 마이크로카피 */
+/* 폭 900 이상은 좌우 분할: 글은 왼쪽 열, 얼굴과 오브제는 오른쪽 (설계 0-1) */
+@media(min-width:900px){
+  .wordmark{left:6vw;top:50%;transform:translateY(-50%);width:min(42vw,600px);text-align:left}
+  .wordmark .en{margin:0;height:clamp(40px,5vw,72px)}
+  .wordmark .sub{justify-content:flex-start}
+  .hero-copy{margin-top:clamp(18px,3vh,30px)}
+  .hero-copy h1{font-size:clamp(28px,2.7vw,40px);line-height:1.25}
+  .hero-copy p{margin:14px 0 0;max-width:500px}
+  .hero-cta{margin-top:22px}
+}
 .hero-copy{margin-top:clamp(10px,1.6vh,16px);word-break:keep-all;overflow-wrap:break-word}
 .hero-copy .kicker{display:block;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.2em;color:var(--green)}
 .hero-copy h1{margin-top:6px;font-size:clamp(20px,1.9vw,27px);font-weight:900;letter-spacing:-.035em;color:var(--ink)}
@@ -104,7 +114,7 @@ button{font:inherit;color:inherit;border:none;background:none;cursor:pointer}
   .wordmark{top:76px} .wordmark .sub{margin-top:6px} .hero-copy{margin-top:8px} .hero-cta{margin-top:10px} .hero-copy .micro{margin-top:6px}
   .hero-copy p{display:none} .hero-copy h1{font-size:clamp(17px,4.6vw,20px)} .hero-cta{display:block;width:100%;font-size:14.5px}
   /* 폰은 양옆 세로줄에 오브제가 서 있어서 말풍선을 모자 오른쪽 위로 */
-  .hero .bubble{left:calc(50% + 2px);top:calc(var(--face-y) - var(--face-h)*0.5 - 4px)} }
+  .hero .bubble{left:calc(var(--face-x,50%) + 2px);top:calc(var(--face-y) - var(--face-h)*0.5 - 4px)} }
 
 #stage{position:absolute;inset:0;z-index:5}
 
@@ -127,7 +137,6 @@ button{font:inherit;color:inherit;border:none;background:none;cursor:pointer}
 .f b{font-weight:900;font-size:var(--fs,15px);line-height:1.15;color:#fff;text-align:center;letter-spacing:-.02em;white-space:nowrap;
   text-shadow:0 1px 0 rgba(0,0,0,.18)}
 .f small{display:block;font-family:var(--mono);font-size:8px;letter-spacing:.16em;color:rgba(255,255,255,.8);margin-top:4px;font-weight:700}
-.f.deco b{font-size:calc(var(--fs,15px)*1.3)}
 .obj.pop{filter:brightness(1.2)}
 /* ---- 오브제 3D(GLB) 층. GLB 가 없으면 이 캔버스는 아예 만들어지지 않습니다 ---- */
 #objgl{position:absolute;inset:0;width:100%;height:100%;z-index:5;pointer-events:none}
@@ -135,18 +144,16 @@ button{font:inherit;color:inherit;border:none;background:none;cursor:pointer}
 .objlabel{position:absolute;left:50%;top:100%;transform:translateX(-50%);margin-top:6px;text-align:center;white-space:nowrap;
   word-break:keep-all;overflow-wrap:break-word;pointer-events:none}
 .objlabel b{display:block;font-weight:900;font-size:13px;letter-spacing:-.02em;color:var(--ink)}
-.objlabel small{display:block;font-family:var(--mono);font-size:8px;letter-spacing:.16em;color:var(--ink-3);margin-top:2px}
-.objlabel.credit{margin-top:8px}
-.objlabel.credit small{display:block;font-size:8.5px;letter-spacing:.2em;color:var(--ink-3);margin-top:0}
-@media(max-width:640px){.objlabel{white-space:normal;width:96px;margin-top:4px;line-height:1.25}.objlabel b{font-size:10.5px;letter-spacing:-.03em}.objlabel small{display:none}
-  .objlabel.credit{width:auto;margin-top:5px}.objlabel.credit small{display:block;font-size:7.5px;letter-spacing:.14em}}
+/* 이름표: 데스크톱은 「01 규제 경로」, 폰은 「01 규제」 */
+.objlabel .short{display:none}
+@media(max-width:640px){.objlabel{margin-top:4px}.objlabel b{font-size:11px;letter-spacing:-.03em}.objlabel .long{display:none}.objlabel .short{display:block}}
 
 /* ---- 아바타 ---- */
-.avatar{position:absolute;left:50%;top:var(--face-y);z-index:3;height:var(--face-h);cursor:pointer;transform:translate(-50%,-50%)}
+.avatar{position:absolute;left:var(--face-x,50%);top:var(--face-y);z-index:3;height:var(--face-h);cursor:pointer;transform:translate(-50%,-50%)}
 .avatar video{position:fixed;left:-4000px;top:0;width:333px;height:880px;pointer-events:none}
 .avatar canvas,.avatar .exp{height:100%;width:auto;aspect-ratio:666/880;display:block;filter:drop-shadow(0 20px 26px rgba(23,26,31,.22))}
 .avatar .exp{position:absolute;inset:0;object-fit:contain}
-.bubble{position:absolute;z-index:6;left:calc(50% + min(125px,24vw));top:calc(var(--face-y) - var(--face-h)*0.44);
+.bubble{position:absolute;z-index:6;left:calc(var(--face-x,50%) + min(125px,24vw));top:calc(var(--face-y) - var(--face-h)*0.44);
   background:#fff;color:var(--ink);border-radius:18px;padding:11px 16px;font-weight:900;font-size:16px;line-height:1;white-space:nowrap;
   box-shadow:var(--shadow);animation:wob 2.6s ease-in-out infinite}
 .bubble::after{content:"";position:absolute;left:18px;bottom:-9px;width:16px;height:16px;background:#fff;border-radius:3px;transform:rotate(45deg)}
@@ -338,48 +345,9 @@ button{font:inherit;color:inherit;border:none;background:none;cursor:pointer}
 "use strict";
 
 /* ===== content ===== */
+/* 2026-10-04 리뉴얼 — Sprint 6단계 순서(브리프 8.2). 이 배열 순서가 오브제 자리와 정렬 순서다 */
 var SERVICES=[
- {id:'pkg',art:'pkg',color:'#1E7B45',kicker:'PACKAGE',tag:'용기·패키지<br>디자인',
-  title:'화장품 용기 · 패키지 디자인',
-  lede:'인쇄소에 그대로 넘길 수 있는 파일로 드립니다. 표시사항은 시안을 그릴 때 같이 앉혀 두기 때문에, 다 그려 놓고 문구 때문에 뜯어고치는 일이 없습니다.',
-  items:['파우치와 용기는 전개도에 맞춰 그리고, 인쇄용 AI 원본과 PDF를 함께 드립니다',
-         '단상자는 칼선을 받아 그대로 앉힙니다',
-         '전성분과 표시사항은 시안 단계에서 자리까지 잡아 둡니다',
-         '국내에 파는 제품과 수출만 하는 제품은 표시가 다릅니다. 어느 쪽인지 먼저 정하고 시작합니다',
-         '아이돌 IP나 캐릭터를 얹는 굿즈 패키지도 합니다',
-         '시안을 드린 뒤 두 번까지 무상으로 고쳐 드립니다'],
-  cred:'K-POP 아이돌 굿즈 브랜드 블링원(Blingone)의 디자인 파트너를 맡고 있습니다. 마스크팩 파우치와 단상자, 영문 상세페이지를 함께 진행합니다.',
-  meta:'제품 촬영과 모델·스튜디오 비용, 인쇄와 감리, 부자재, 별도 폰트 라이선스는 용역비에 들어가지 않습니다. 인쇄를 넘긴 뒤에 되돌아오는 일을 줄이는 것이 이 작업의 목적입니다.'},
- {id:'label',art:'label',color:'#2A8C86',kicker:'LABELING',tag:'라벨 표기<br>문구 작성',
-  title:'라벨 표기 문구 작성 (국문 · 영문)',
-  lede:'번역이 아니라 규정에 맞춰 새로 씁니다. 식약처 기준과 미국 FDA 기준을 같이 놓고 문구를 잡습니다.',
-  items:['국문과 영문 문구를 쓰고, 한 면에 같이 넣을지 나눌지 정해 드립니다',
-         '전성분을 INCI 명으로 정리합니다',
-         '건강기능식품은 Supplement Facts, 일반식품은 Nutrition Facts, OTC는 Drug Facts로 구성합니다',
-         '기능성으로 읽히는 표현, 의약품 주장이 되는 표현을 걸러 냅니다',
-         '수출만 하실지 국내에도 같이 푸실지에 따라 표기를 나눠 드립니다'],
-  meta:'국내에 유통하는 화장품은 화장품법 제10조에 따라 1차·2차 포장에 한글 표기가 있어야 합니다. 국내에도 같이 푸실 제품이면 처음부터 병기로 잡는 편이 낫습니다. EU CPNP 문구는 기준이 달라 별도 건으로 봅니다.'},
- {id:'detail',art:'ax',color:'#E0A400',kicker:'DETAIL PAGE',tag:'상세페이지<br>기획·디자인',
-  title:'상세페이지 기획 · 디자인',
-  lede:'판매 화면을 용기·패키지와 같은 톤으로 짭니다. 문구 한 줄이 의약품 주장이 되는지 보면서 씁니다.',
-  items:['영문 상세페이지를 가로 860px로 만들고 2배수 파일을 같이 드립니다',
-         '자사몰과 마켓플레이스에 함께 쓸 대표 페이지 한 벌을 만듭니다',
-         '내세울 점을 정리하되 쓰면 안 되는 표현은 걸러 냅니다',
-         '국문 페이지, 언어 추가, 품목 추가는 건별로 따로 잡습니다',
-         '시안을 드린 뒤 두 번까지 무상으로 고쳐 드립니다'],
-  meta:'860px는 네이버 스마트스토어와 카페24가 쓰는 국내 표준 폭입니다. 채널마다 규격을 따로 만들지는 않습니다.'},
- {id:'web',art:'web',color:'#D3372B',kicker:'WEBSITE',tag:'브랜드<br>웹사이트 구축',
-  title:'브랜드 웹사이트 구축',
-  lede:'기획부터 디자인, 화면 구현까지 한 사람이 맡습니다. 브랜드 사이트, 회사 소개 사이트, 제안용 데모 사이트를 만듭니다.',
-  items:['컴퓨터, 태블릿, 휴대폰 세 가지 화면에 맞춰 만듭니다',
-         '쓰시는 도메인을 연결하고 https를 걸어 드립니다',
-         '검색에 잡히도록 제목과 설명, 공유했을 때 뜨는 카드 이미지, sitemap을 넣고 네이버 서치어드바이저와 구글 서치콘솔에 등록해 드립니다',
-         '문의 폼을 붙이고 받으실 메일 주소로 연결합니다',
-         '소스 전체와 배포된 사이트, 운영 안내서를 함께 드립니다',
-         '문을 연 뒤 30일 동안 하자는 무상으로 고칩니다'],
-  cred:'지금 보고 계신 이 사이트도 같은 방식으로 직접 만들었습니다.',
-  meta:'쇼핑몰, 회원가입, 예약, 게시판, 관리자 화면은 기본 범위에 없습니다. 필요하시면 따로 견적을 드립니다. 언어를 늘리는 것은 한 언어 단위로 잡습니다.'},
- {id:'ra',art:'ra',color:'#4A5568',kicker:'US . CA REGULATORY',tag:'미국·캐나다<br>규정 자문',
+ {id:'ra',art:'ra',color:'#4A5568',kicker:'SPRINT 01 · REGULATORY',tag:'01 규제 경로',short:'01 규제',
   title:'미국 · 캐나다 화장품 규정 자문',
   lede:'미국과 캐나다에 화장품을 내보낼 때 무엇이 필요한지, 지금 만들어 두신 아트워크와 문구로 통과가 되는지를 서류 단위로 봐 드립니다.',
   items:['MoCRA 시설 등록과 제품 리스팅에 무엇이 필요한지 정리해 드립니다',
@@ -390,7 +358,36 @@ var SERVICES=[
          '캐나다는 OUAH AI 등록 포털에서 전성분표만 올리면 경로와 견적을 1분 안에 볼 수 있습니다 — <a href="https://portal.ouahco.ca" target="_blank" rel="noopener">portal.ouahco.ca</a>'],
   cred:'아마존코리아와 월마트 아시아퍼시픽 마켓플레이스 파트에서 셀러 대상 웨비나를 진행했습니다. 캐나다 현지 Health Canada 전문 에이전시 Ouah Co. & Trading Ltd.의 한국 운영 이사를 맡고 있습니다.',
   meta:'대리인을 세워야 하는 절차는 범위와 책임을 먼저 나눈 다음 진행 여부를 정합니다. 대행이 아니라 자문과 검토로 맡습니다.'},
- {id:'axdx',art:'axdx',color:'#2F5BEA',kicker:'AX . DX',tag:'업무<br>자동화',
+ {id:'label',art:'label',color:'#2A8C86',kicker:'SPRINT 02 · LABEL',tag:'02 표기 문구',short:'02 표기',
+  title:'라벨 표기 문구 작성 (국문 · 영문)',
+  lede:'번역이 아니라 규정에 맞춰 새로 씁니다. 식약처 기준과 미국 FDA 기준을 같이 놓고 문구를 잡습니다.',
+  items:['국문과 영문 문구를 쓰고, 한 면에 같이 넣을지 나눌지 정해 드립니다',
+         '전성분을 INCI 명으로 정리합니다',
+         '건강기능식품은 Supplement Facts, 일반식품은 Nutrition Facts, OTC는 Drug Facts로 구성합니다',
+         '기능성으로 읽히는 표현, 의약품 주장이 되는 표현을 걸러 냅니다',
+         '수출만 하실지 국내에도 같이 푸실지에 따라 표기를 나눠 드립니다'],
+  meta:'국내에 유통하는 화장품은 화장품법 제10조에 따라 1차·2차 포장에 한글 표기가 있어야 합니다. 국내에도 같이 푸실 제품이면 처음부터 병기로 잡는 편이 낫습니다. EU CPNP 문구는 기준이 달라 별도 건으로 봅니다.'},
+ {id:'pkg',art:'pkg',color:'#1E7B45',kicker:'SPRINT 03 · PACKAGE',tag:'03 패키지',short:'03 패키지',
+  title:'화장품 용기 · 패키지 디자인',
+  lede:'인쇄소에 그대로 넘길 수 있는 파일로 드립니다. 표시사항은 시안을 그릴 때 같이 앉혀 두기 때문에, 다 그려 놓고 문구 때문에 뜯어고치는 일이 없습니다.',
+  items:['파우치와 용기는 전개도에 맞춰 그리고, 인쇄용 AI 원본과 PDF를 함께 드립니다',
+         '단상자는 칼선을 받아 그대로 앉힙니다',
+         '전성분과 표시사항은 시안 단계에서 자리까지 잡아 둡니다',
+         '국내에 파는 제품과 수출만 하는 제품은 표시가 다릅니다. 어느 쪽인지 먼저 정하고 시작합니다',
+         '아이돌 IP나 캐릭터를 얹는 굿즈 패키지도 합니다',
+         '시안을 드린 뒤 두 번까지 무상으로 고쳐 드립니다'],
+  cred:'K-POP 아이돌 굿즈 브랜드 블링원의 디자인 파트너입니다.',
+  meta:'제품 촬영과 모델·스튜디오 비용, 인쇄와 감리, 부자재, 별도 폰트 라이선스는 용역비에 들어가지 않습니다. 인쇄를 넘긴 뒤에 되돌아오는 일을 줄이는 것이 이 작업의 목적입니다.'},
+ {id:'detail',art:'ax',color:'#E0A400',kicker:'SPRINT 04 · SALES PAGE',tag:'04 판매자료',short:'04 판매',
+  title:'상세페이지 기획 · 디자인',
+  lede:'판매 화면을 용기·패키지와 같은 톤으로 짭니다. 문구 한 줄이 의약품 주장이 되는지 보면서 씁니다.',
+  items:['영문 상세페이지를 가로 860px로 만들고 2배수 파일을 같이 드립니다',
+         '자사몰과 마켓플레이스에 함께 쓸 대표 페이지 한 벌을 만듭니다',
+         '내세울 점을 정리하되 쓰면 안 되는 표현은 걸러 냅니다',
+         '국문 페이지, 언어 추가, 품목 추가는 건별로 따로 잡습니다',
+         '시안을 드린 뒤 두 번까지 무상으로 고쳐 드립니다'],
+  meta:'860px는 네이버 스마트스토어와 카페24가 쓰는 국내 표준 폭입니다. 채널마다 규격을 따로 만들지는 않습니다.'},
+ {id:'sub',art:'sub',color:'#D3372B',kicker:'SPRINT 05 · SUBMISSION',tag:'05 제출 준비',short:'05 제출',
   title:'업무 자동화 (AX · DX)',
   lede:'손으로 옮겨 적는 일부터 없앱니다. 엑셀을 내려받아 다시 입력하고, 매일 눈으로 대조하는 일을 규칙으로 돌립니다. AI는 규칙으로 안 되는 자리에만 씁니다.',
   items:['진단 2주 — 지금 쓰는 파일을 그대로 받습니다. 새로 써 달라고 하지 않습니다. 반복 업무를 규칙 · AI · 연동 · 사람 넷으로 나누고, 그대로 두는 게 나은 일도 같이 적어 드립니다',
@@ -416,12 +413,16 @@ var SERVICES=[
     p:'팔로워 6만 명대 계정을 메타 API에 연결해 도달 · 조회 · 상호작용과 경쟁 매체 5곳의 게시 현황을 가져옵니다. 경기 결과 카드는 디자이너 원본 파일의 배너를 그대로 쓰고 글자만 갈아 끼우는 생성기로 만듭니다.'},
    {h:'화장품 전성분과 문안을 규정표에 대조합니다 — 화장품 수출 대행사',
     p:'미국 FDA 등록 실무 가운데 전성분 검토 · 문안 검토 · 견적까지 자동화했습니다. 판정 근거는 전부 규정 위키가 정본이라 AI가 지어내는 답이 끼어들 자리가 없고, 사람은 검토 결과를 확인하는 자리에만 있습니다.'}],
-  meta:'대상은 직원 5~50명 브랜드사 · 제조사 · 중소기업의 사무 반복 업무입니다. 진단 2주 뒤 첫 봇까지 1~2주가 걸리고, 비용은 진단 후 범위별로 견적을 드립니다. 파일 내보내기가 되는 시스템이 대상이며, 화면을 대신 눌러 주는 방식(RPA)은 하지 않습니다.'}
+  meta:'대상은 직원 5~50명 브랜드사 · 제조사 · 중소기업의 사무 반복 업무입니다. 진단 2주 뒤 첫 봇까지 1~2주가 걸리고, 비용은 진단 후 범위별로 견적을 드립니다. 파일 내보내기가 되는 시스템이 대상이며, 화면을 대신 눌러 주는 방식(RPA)은 하지 않습니다.'},
+ {id:'launch',art:'launch',color:'#C99A5B',kicker:'SPRINT 06 · LAUNCH',tag:'06 출시',short:'06 출시',
+  title:'출시 뒤에 누가 무엇을 받는지 정리합니다',
+  lede:'최종 파일과 제출·제작 체크리스트를 넘기고, 다음 담당자와 일정까지 적어서 인수인계합니다.',
+  items:['인쇄소와 제조사에 그대로 넘길 수 있는 최종 파일을 드립니다',
+         '제출·제작·출시에 필요한 일을 체크리스트 한 장으로 정리합니다',
+         '다음에 누가 무엇을 언제 받는지, 담당자와 일정을 적어서 넘깁니다'],
+  meta:'정부 수수료, 시험성적서 발급, 인쇄·용기·단상자 생산비는 포함되지 않습니다.'}
 ];
-var DECO=[{txt:'♥',color:'#E4327F',big:1.34,open:'pkg',label:'BLINGONE'},
-          {txt:'★',color:'#FFC93C'},{txt:'수출',color:'#1E7B45'},{txt:'OK',color:'#2A8C86'},{txt:'♥',color:'#D3372B'},
-          /* 2026-10-02 OUAH 로고 오브제 — 누르면 OUAH Health Canada AI 등록 포털로 */
-          {txt:'OUAH',color:'#5C3FFC',big:1.7,href:'https://portal.ouahco.ca',label:'OUAH AI PORTAL'}];
+/* 장식 오브제(하트·별·수출·OK·OUAH 로고)는 2026-10-04 첫 화면 재설계로 뺐습니다. 블링원·OUAH 는 패널 글로 옮깁니다 */
 var MAIL='brooksservices.kim@brooksglobal.co.kr';
 var MAILTO='mailto:'+MAIL+'?subject=';
 
@@ -891,45 +892,29 @@ function lighten(h,a){return toHex(hexToRgb(h).map(function(v){return v+(255-v)*
 function darken(h,a){return toHex(hexToRgb(h).map(function(v){return v*(1-a);}));}
 
 function sizes(){
-  if(W<560) return {svc:68,deco:40};   /* 리뉴얼: 첫 화면 글 블록이 길어져 폰 오브제를 줄임 (78·46 → 68·40) */
-  if(W<900) return {svc:96,deco:54};
-  return {svc:Math.min(118,Math.min(W,H)*0.16),deco:64};
+  if(W<560) return {svc:68};   /* 리뉴얼: 첫 화면 글 블록이 길어져 폰 오브제를 줄임 (78 → 68) */
+  if(W<900) return {svc:96};
+  return {svc:Math.min(124,Math.min(W,H)*0.15)};
 }
 
 var FACE_KEYS=['f-tp','f-fr','f-bk','f-rt','f-lf','f-bm'];
-function makeCube(cfg,size,isDeco,i){
+function makeCube(cfg,size,i){
   var el=document.createElement('div');
-  el.className='obj'+(isDeco?' deco':'');
+  el.className='obj';
   el.style.width=size+'px'; el.style.height=size+'px';
   var c=cfg.color;
   var shade={'f-tp':lighten(c,.28),'f-fr':c,'f-bk':darken(c,.05),'f-rt':darken(c,.14),'f-lf':darken(c,.24),'f-bm':darken(c,.36)};
   var fs=Math.max(11,Math.round(size*0.125));
-  var label=isDeco?('<b>'+cfg.txt+'</b>'):('<div><b>'+cfg.tag+'</b><small>'+cfg.kicker+'</small></div>');
+  var label='<div><b>'+cfg.tag+'</b></div>';
   var html='<div class="cube'+(i%2?' tilt':'')+'" style="--h:'+(size/2)+'px;--dur:'+(16+(i%5)*3.5)+'s;--delay:-'+(i*2.3)+'s">';
   FACE_KEYS.forEach(function(k){
-    html+='<div class="f '+k+(isDeco?' deco':'')+'" style="--fs:'+fs+'px;background:linear-gradient(160deg,'+lighten(shade[k],.12)+','+shade[k]+' 55%,'+darken(shade[k],.1)+')">'+((k==='f-fr'||k==='f-bk')?label:'')+'</div>';
+    html+='<div class="f '+k+'" style="--fs:'+fs+'px;background:linear-gradient(160deg,'+lighten(shade[k],.12)+','+shade[k]+' 55%,'+darken(shade[k],.1)+')">'+((k==='f-fr'||k==='f-bk')?label:'')+'</div>';
   });
   html+='</div>';
   el.innerHTML=html;
-  if(!isDeco){
-    el.setAttribute('role','button'); el.tabIndex=0;
-    el.setAttribute('aria-label',cfg.title+' 자세히 보기');
-    el.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){e.preventDefault();openPanel(cfg);} });
-  }
-  else if(cfg.href){
-    el.setAttribute('role','link'); el.tabIndex=0;
-    el.setAttribute('aria-label','OUAH Health Canada AI 등록 포털 열기 (새 창)');
-    el.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); window.open(cfg.href,'_blank','noopener'); } });
-  }
-  else if(cfg.open){
-    el.setAttribute('role','button'); el.tabIndex=0;
-    el.setAttribute('aria-label',(cfg.label||'')+' — 화장품 용기 · 패키지 디자인 자세히 보기');
-    el.addEventListener('keydown',function(e){
-      if(e.key!=='Enter'&&e.key!==' ') return;
-      e.preventDefault();
-      var t=SERVICES.filter(function(x){return x.id===cfg.open;})[0]; if(t) openPanel(t);
-    });
-  }
+  el.setAttribute('role','button'); el.tabIndex=0;
+  el.setAttribute('aria-label',cfg.tag+' — '+cfg.title+' 자세히 보기');
+  el.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){e.preventDefault();openPanel(cfg);} });
   stage.appendChild(el);
   return el;
 }
@@ -937,9 +922,17 @@ function makeCube(cfg,size,isDeco,i){
 /* 얼굴은 첫 화면 글 블록 바로 아래, 남은 높이에 맞춰 놓는다.
    글 블록 높이가 화면마다 달라서 고정 % 로는 CTA 가 모자 위에 겹친다. 말풍선·물리 원은 이 값을 따라간다 */
 function fitFace(){
+  if(W>=900){                                 /* 좌우 분할 — 글은 왼쪽 열, 얼굴은 오른쪽 영역 가운데 */
+    var hs=Math.min(H*0.58,520);
+    hero.style.setProperty('--face-x',Math.round(W*0.71)+'px');
+    hero.style.setProperty('--face-h',hs+'px');
+    hero.style.setProperty('--face-y',Math.round(H*0.52)+'px');
+    return;
+  }
+  hero.style.removeProperty('--face-x');
   var wm=document.getElementById('wordmark').getBoundingClientRect();
   var phone=W<640, top=wm.bottom+(phone?10:14);
-  var room=H-top-(phone?246:62);            /* 폰은 얼굴 아래에 오브제 한 줄과 중력 스위치 자리를 남긴다 */
+  var room=H-top-(phone?170:62);            /* 폰은 얼굴 아래에 중력 스위치와 푸터 자리를 남긴다 */
   var h=Math.max(180,Math.min(phone?300:450,room));
   hero.style.setProperty('--face-h',h+'px');
   hero.style.setProperty('--face-y',(top+h/2)+'px');
@@ -959,21 +952,20 @@ function buildWorld(){
   ]);
   var avBox=document.getElementById('avatar').getBoundingClientRect();
   var avR=Math.max(Math.min(W,H)*0.09, avBox.width*0.36);
-  avBody=Bodies.circle(W/2,avBox.top+avBox.height*0.43,avR,   /* 얼굴 윗부분(모자) 중심 — CSS 위치를 따라감 */
+  avBody=Bodies.circle(avBox.left+avBox.width/2,avBox.top+avBox.height*0.43,avR,   /* 얼굴 윗부분(모자) 중심 — CSS 위치를 따라감 */
     {isStatic:true,restitution:.7});
   World.add(world,avBody);
 
-  var all=SERVICES.map(function(s){return {cfg:s,size:S.svc,deco:false};})
-        .concat(DECO.map(function(d){return {cfg:d,size:Math.round(S.deco*(d.big||1)),deco:true};}));
+  var all=SERVICES.map(function(s){return {cfg:s,size:S.svc};});
   var mobile=W<640;
-  /* 2026-10-04 리뉴얼 — 첫 화면 글 블록이 길어져 슬롯을 다시 잡음. 위쪽 오브제는 글 블록 아래로, 아래 둘은 얼굴 옆으로 */
-  var SLOT_S = mobile ? [[0.12,0.417],[0.88,0.417],[0.12,0.571],[0.88,0.571],[0.44,0.782],[0.72,0.782]]
-                      : [[0.13,0.36],[0.23,0.63],[0.87,0.36],[0.77,0.63],[0.31,0.80],[0.69,0.80]];
-  var SLOT_D = mobile ? [[0.12,0.711],[0.90,0.835],[0.12,0.815],[0.50,0.905],null,[0.87,0.716]]   /* 5번째(빨간 하트)는 휴대폰에서 뺌 · 6번째 OUAH */
-                      : [[0.075,0.175],[0.06,0.52],[0.94,0.47],[0.25,0.82],[0.75,0.82],[0.935,0.70]];
-  var si=0, di=0;
+  /* 2026-10-04 첫 화면 재설계 — 6단계 오브제. 왼쪽 줄 01·02·03, 오른쪽 줄 04·05·06 (위에서 아래로)
+     split(폭 900 이상)은 글이 왼쪽이라 오브제가 얼굴(가로 70%) 둘레에만 선다 */
+  var split=W>=900;
+  var SLOT_S = mobile ? [[0.12,0.43],[0.12,0.60],[0.12,0.77],[0.88,0.43],[0.88,0.60],[0.88,0.77]]
+             : split  ? [[0.53,0.27],[0.51,0.53],[0.56,0.80],[0.89,0.27],[0.92,0.53],[0.86,0.80]]
+                      : [[0.13,0.36],[0.13,0.63],[0.31,0.80],[0.87,0.36],[0.87,0.63],[0.69,0.80]];
   all.forEach(function(o,i){
-    var slot = o.deco ? SLOT_D[di++] : SLOT_S[si++];
+    var slot = SLOT_S[i];
     if(!slot) return;
     var x=W*slot[0], y=H*slot[1];
     x=Math.max(o.size*0.8,Math.min(W-o.size*0.8,x));
@@ -985,8 +977,8 @@ function buildWorld(){
     b.home={x:x,y:y};
     var spring=Matter.Constraint.create({pointA:{x:x,y:y},bodyB:b,stiffness:0.0025,damping:0.02,length:0,render:{visible:false}});
     b.spring=spring; World.add(world,spring);
-    var el=makeCube(o.cfg,o.size,o.deco,i);
-    items.push({body:b,el:el,cfg:o.cfg,deco:o.deco,size:o.size,tag:null});
+    var el=makeCube(o.cfg,o.size,i);
+    items.push({body:b,el:el,cfg:o.cfg,size:o.size,tag:null});
     World.add(world,b);
   });
   if(typeof OBJ3D!=='undefined' && OBJ3D) OBJ3D.refresh();
@@ -1017,8 +1009,8 @@ function drift(){
 /* ===== 오브제 3D (GLB) =====
    objects/ 폴더에 GLB 가 들어오면 build.py 가 data URI 로 채워 넣고, 그때만 이 층이 켜집니다.
    GLB 가 없거나 WebGL 이 없거나 로딩이 실패하면 지금 CSS 큐브가 그대로 보입니다. */
-var GLB={pkg:'models/obj-package.glb',label:'models/obj-label.glb',detail:'models/obj-detail.glb',web:'models/obj-web.glb',ra:'models/obj-ra.glb',axdx:'models/obj-axdx.glb',
-         d0:'models/deco-bling.glb',d1:'models/deco-cap.glb',d2:'models/deco-box.glb',d3:'models/deco-plane.glb',d4:'models/deco-star.glb',d5:'models/obj-ouah.glb'};
+/* 키는 SERVICES 의 id. 파일 대응은 build_deploy.py·build.py 의 GLBS 목록 */
+var GLB={ra:'models/step-1-regulatory.glb',label:'models/obj-label.glb',pkg:'models/obj-package.glb',detail:'models/obj-detail.glb',sub:'models/step-5-submission.glb',launch:'models/deco-plane.glb'};
 function glbSrc(k){ var v=GLB[k]; if(!v || v.indexOf('__')===0) return null;
   return (v.slice(0,5)==='data:') ? (v.length>32 ? v : null) : v; }
 
@@ -1128,10 +1120,7 @@ var OBJ3D=(function(){
     inner.scale.setScalar(size/m*0.92);
     return inner;
   }
-  function keyFor(it,i){
-    if(!it.deco) return it.cfg.id;
-    return 'd'+DECO.indexOf(it.cfg);   /* 휴대폰에서 자리 없는 장식을 건너뛰어도 모델이 밀리지 않게 — 화면 순서가 아니라 DECO 순서로 */
-  }
+  function keyFor(it){ return it.cfg.id; }
   function clear(){
     slots.forEach(function(s){ scene.remove(s.group); });
     slots=[];
@@ -1139,20 +1128,15 @@ var OBJ3D=(function(){
   function refresh(){
     clear();
     for(var i=0;i<items.length;i++){
-      var it=items[i], m=models[keyFor(it,i)];
+      var it=items[i], m=models[keyFor(it)];
       it.el.classList.toggle('is3d',!!m);
       if(!m) continue;
-      if(!it.el.querySelector('.objlabel') && !it.deco){
+      if(!it.el.querySelector('.objlabel')){
         var lb=document.createElement('div'); lb.className='objlabel';
-        lb.innerHTML='<b>'+it.cfg.tag.replace(/<br>/g,' ')+'</b><small>'+it.cfg.kicker+'</small>';
+        lb.innerHTML='<b class="long">'+it.cfg.tag+'</b><b class="short">'+it.cfg.short+'</b>';
         it.el.appendChild(lb);
       }
-      else if(!it.el.querySelector('.objlabel') && it.deco && it.cfg.label){
-        var lc=document.createElement('div'); lc.className='objlabel credit';
-        lc.innerHTML='<small>'+it.cfg.label+'</small>';
-        it.el.appendChild(lc);
-      }
-      var g=fit(shape(m.clone(true), keyFor(it,i)), it.size);
+      var g=fit(shape(m.clone(true), keyFor(it)), it.size);
       var wrap=new THREE.Group(); wrap.add(g); scene.add(wrap);
       slots.push({item:it,group:wrap,spin:g,phase:i*0.7});
     }
@@ -1171,8 +1155,7 @@ var OBJ3D=(function(){
       var s=slots[i], b=s.item.body;
       s.group.position.set(b.position.x-hero.clientWidth/2, hero.clientHeight/2-b.position.y, 0);
       s.group.rotation.z=-b.angle;
-      /* OUAH 로고는 납작해서 계속 돌면 옆면(얇은 선)만 보일 때가 있습니다 — 좌우로 살짝만 흔듭니다 */
-      s.spin.rotation.y=(s.item.cfg && s.item.cfg.href) ? Math.sin(t*0.7+s.phase)*0.45 : t*0.6+s.phase;
+      s.spin.rotation.y=t*0.6+s.phase;
       s.spin.rotation.x=Math.sin(t*0.5+s.phase)*0.08;
     }
     r.render(scene,cam);
@@ -1243,15 +1226,7 @@ function attachMouse(){
     else if(tap && body){
       for(var i=0;i<items.length;i++){
         if(items[i].body!==body) continue;
-        if(items[i].deco && items[i].cfg.href){   /* OUAH 오브제 — 포털을 새 창으로 */
-          items[i].el.classList.add('pop');
-          (function(el){ setTimeout(function(){ el.classList.remove('pop'); },300); })(items[i].el);
-          window.open(items[i].cfg.href,'_blank','noopener'); break;
-        }
-        var oc=items[i].deco ? items[i].cfg.open : true;
-        if(!oc) break;
-        var target=items[i].deco ? SERVICES.filter(function(x){return x.id===oc;})[0] : items[i].cfg;
-        if(!target) break;
+        var target=items[i].cfg;
         items[i].el.classList.add('pop');
         (function(el){ setTimeout(function(){ el.classList.remove('pop'); },300); })(items[i].el);
         openPanel(target); break;
