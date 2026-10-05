@@ -197,7 +197,15 @@ body.touring .topbar,body.touring .botnav{opacity:0;pointer-events:none;transiti
 #tbubble{position:absolute;z-index:10;left:0;bottom:0;width:max-content;max-width:min(400px,86vw);background:#fff;color:var(--ink);border-radius:22px;
   padding:16px 20px;font-size:19px;font-weight:800;line-height:1.5;box-shadow:var(--shadow);word-break:keep-all;overflow-wrap:break-word}
 #tbubble::after{content:"";position:absolute;left:var(--tail,50%);margin-left:-9px;bottom:-9px;width:18px;height:18px;background:#fff;border-radius:3px;transform:rotate(45deg)}
+#tbubble.side::after{left:auto;right:-9px;bottom:auto;top:var(--taily,50%);margin:-9px 0 0}
 #tbubble small{display:block;margin-top:8px;font-size:13px;font-weight:500;line-height:1.55;color:var(--ink-2)}
+#tbubble .tlist{margin:10px 0 0;padding:0;list-style:none;font-size:14px;font-weight:600;line-height:1.5;counter-reset:t;word-break:keep-all;overflow-wrap:break-word}
+#tbubble .tlist li{padding:8px 0 8px 26px;border-top:1px solid var(--line);position:relative}
+#tbubble ol.tlist li::before{counter-increment:t;content:counter(t)")";position:absolute;left:0;top:8px;font-family:var(--mono);font-size:12px;color:var(--green)}
+#tbubble .tprice li{padding-left:0;display:flex;justify-content:space-between;align-items:baseline;gap:14px}
+#tbubble .tprice li span i{display:block;font-style:normal;font-size:12px;font-weight:500;color:var(--ink-3)}
+#tbubble .tprice li b{font-size:16px;font-weight:900;white-space:nowrap}
+#tbubble .tprice li:last-child{color:var(--green)}
 #tbubble.pop{animation:tpop .45s cubic-bezier(.3,1.5,.5,1)}
 @keyframes tpop{from{transform:translateY(8px) scale(.95);opacity:.3}to{transform:none;opacity:1}}
 #tdots{position:absolute;z-index:10;left:50%;bottom:calc(30px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);display:flex;gap:8px}
@@ -211,6 +219,35 @@ body.touring .topbar,body.touring .botnav{opacity:0;pointer-events:none;transiti
 #thint{position:absolute;z-index:10;left:0;right:0;bottom:calc(8px + env(safe-area-inset-bottom,0px));text-align:center;font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--ink-3)}
 @media(prefers-reduced-motion:reduce){#tbubble.pop{animation:none}}
 
+/* 1분 출시 확인 */
+.quiz{word-break:keep-all;overflow-wrap:break-word}
+.qtop{display:flex;align-items:center;gap:14px;min-height:32px}
+.qtop .fprog{flex:1}
+.qback{font-size:13px;font-weight:700;color:var(--ink-2);padding:6px 0;white-space:nowrap}
+.qback:hover{color:var(--green)}
+.quiz .qq{margin:18px 0 14px;font-size:21px;font-weight:900;letter-spacing:-.03em;line-height:1.35;outline:none}
+.quiz .qhint{margin:-6px 0 14px;font-size:13px;color:var(--ink-3)}
+.quiz .plinks.choice button[aria-pressed=true],.quiz .plinks.choice button.sel{background:#fff;box-shadow:inset 0 0 0 2px var(--green)}
+.quiz .plinks.choice button[aria-pressed=false] i{background:var(--bg-2);box-shadow:inset 0 0 0 1.5px var(--ink-3)}
+.quiz [data-qnext]{margin-top:14px}
+.quiz [data-qnext][disabled]{opacity:.4;cursor:default;background:var(--ink)}
+.qres{background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:18px 18px 6px;outline:none}
+.qres h5{margin:16px 0 6px;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.12em;color:var(--green)}
+.qres h5:first-child{margin-top:0}
+.qres .qlead{font-size:18px;font-weight:900;letter-spacing:-.02em}
+.qroute{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.qroute li{display:flex;gap:10px;font-size:15px;font-weight:700;line-height:1.5}
+.qroute li b{flex:none;min-width:52px;font-family:var(--mono);font-size:12px;color:var(--ink-3);padding-top:2px}
+.qcost{font-size:26px;font-weight:900;letter-spacing:-.03em}
+.qsub{margin-top:4px;font-size:13px;color:var(--ink-2);line-height:1.6}
+.qagain{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:16px;flex-wrap:wrap}
+.qagain .pgo{width:auto;flex:1 1 220px}
+.qnext{margin-top:12px}
+.qres p{font-size:14.5px;line-height:1.6}
+.qres .qlead{font-size:18px}
+.qres .qcost{font-size:26px;line-height:1.3}
+.quiz .psec{margin:26px 0 12px}
+@media(max-width:420px){#tbubble .tlist{margin-top:6px;font-size:13.5px} #tbubble .tlist li{padding-top:6px;padding-bottom:6px} #tbubble ol.tlist li::before{top:6px} #tbubble small{margin-top:6px}}
 /* HUD */
 .hud{position:absolute;left:0;right:0;bottom:58px;z-index:7;display:flex;align-items:center;justify-content:space-between;gap:14px;
   padding:0 max(18px,calc((100vw - var(--maxw))/2 + 18px))}
@@ -271,34 +308,27 @@ body.touring .topbar,body.touring .botnav{opacity:0;pointer-events:none;transiti
 #cform{display:flex;flex-direction:column;gap:14px}
 .fld{display:flex;flex-direction:column;gap:6px}
 .fld label{font-size:13px;font-weight:700;color:var(--ink-2);display:flex;align-items:center;gap:7px}
-.fld label em{font-style:normal;font-family:var(--mono);font-size:9px;letter-spacing:.14em;color:var(--green);
-  border:1px solid var(--line);border-radius:99px;padding:2px 7px}
-.fld input,.fld select,.fld textarea{font:inherit;font-size:15px;color:var(--ink);background:var(--bg);
+.fld input,.fld textarea{font:inherit;font-size:15px;color:var(--ink);background:var(--bg);
   border:1px solid var(--line);border-radius:12px;padding:12px 14px;width:100%;
   word-break:keep-all;overflow-wrap:break-word;-webkit-appearance:none;appearance:none}
-.fld select{background-image:linear-gradient(45deg,transparent 50%,var(--ink-3) 50%),linear-gradient(135deg,var(--ink-3) 50%,transparent 50%);
-  background-position:calc(100% - 20px) 50%,calc(100% - 15px) 50%;background-size:5px 5px,5px 5px;background-repeat:no-repeat;padding-right:40px}
-.fld textarea{resize:vertical;min-height:118px;line-height:1.65}
+.fld textarea{resize:vertical;min-height:72px;line-height:1.65}
 .fld input::placeholder,.fld textarea::placeholder{color:var(--ink-3);opacity:.8}
-.fld input:focus,.fld select:focus,.fld textarea:focus{background:var(--card);border-color:var(--green);outline:none}
+.fld input:focus,.fld textarea:focus{background:var(--card);border-color:var(--green);outline:none}
 .fld.bad input,.fld.bad textarea{border-color:var(--red);background:#FDF3F2}
 .botcheck{position:absolute;left:-9999px;opacity:0;height:0;width:0}
-/* 1-6 적합성 폼 — 체크 묶음 · 칸 설명 · 미정일 때 열리는 칸 */
+/* 진단 신청 폼 — 칸 제목 · 고르기 묶음 */
 .fld .flabel{font-size:13px;font-weight:700;color:var(--ink-2);display:flex;align-items:center;gap:7px}
 .fld .flabel em{font-style:normal;font-family:var(--mono);font-size:9px;letter-spacing:.14em;color:var(--green);border:1px solid var(--line);border-radius:99px;padding:2px 7px}
-.fld .fhint{font-size:12.5px;color:var(--ink-3);line-height:1.6;word-break:keep-all;overflow-wrap:break-word}
 .checks{display:flex;flex-wrap:wrap;gap:8px}
 .fld .checks label{display:inline-flex;align-items:center;gap:7px;background:var(--bg);border:1px solid var(--line);border-radius:99px;
   padding:8px 13px;font-size:14px;font-weight:600;color:var(--ink);cursor:pointer;word-break:keep-all}
 .fld .checks input{width:16px;height:16px;padding:0;margin:0;flex:none;accent-color:var(--green)}
 .fld.bad .checks label{border-color:var(--red)}
-.fld.bad select{border-color:var(--red);background-color:#FDF3F2}
 .fld .row2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 @media(max-width:420px){.fld .row2{grid-template-columns:1fr}}
-.fld.sub{margin-top:-6px;padding-left:12px;border-left:3px solid var(--line)}
 /* 폼 상태 (G5, UX UI 레퍼런스 「Glassy OTP」의 동작) — 완료는 초록, 오류는 빨강. 색은 기존 토큰 */
-.fld.ok input:not([type=checkbox]),.fld.ok select,.fld.ok textarea{border-color:var(--green)}
-.fld.ok input:not([type=checkbox]):not([type=month]),.fld.ok textarea{padding-right:38px;
+.fld.ok input:not([type=checkbox]):not([type=radio]),.fld.ok textarea{border-color:var(--green)}
+.fld.ok input:not([type=checkbox]):not([type=radio]),.fld.ok textarea{padding-right:38px;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231E7B45' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5 12.5 4.5 4.5L19 7.5'/%3E%3C/svg%3E");
   background-repeat:no-repeat;background-size:18px;background-position:right 12px top 13px}
 .fld .checks label:has(input:checked){border-color:var(--green);background:#fff}
@@ -433,7 +463,7 @@ body.touring .topbar,body.touring .botnav{opacity:0;pointer-events:none;transiti
     <div id="tbubble" aria-live="polite"></div>
     <div id="tdots" aria-hidden="true"></div>
     <div id="tdoors" hidden>
-      <button type="button" class="pgo" id="tfit" data-en="Check if my product fits →">내 제품도 맞는지 확인하기 →</button>
+      <button type="button" class="pgo" id="tfit" data-en="Start the 1-minute check →">1분 출시 확인 시작 →</button>
       <button type="button" class="pgo ghost" id="tsprint" data-en="See pricing and process">가격과 진행 순서 보기</button>
     </div>
     <div id="thint" data-en="Tap to continue · Esc to skip">눌러서 넘기기 · Esc 건너뛰기</div>
@@ -589,7 +619,7 @@ function track(name, props){
 }
 var curView='';   /* 지금 열린 패널 — 이벤트가 어디서 났는지(from) 적는 데 쓴다 */
 /* 지금 보는 메뉴 표시 — 오브제 패널은 LAUNCH SPRINT, 적합성 확인 계열은 가운데 버튼 */
-var NAV_OF={sprint:'sprint',canada:'canada',how:'how',proof:'proof',fit:'fit',fitform:'fit',undecided:'fit',
+var NAV_OF={sprint:'sprint',canada:'canada',how:'how',proof:'proof',fit:'fit',
             ra:'sprint',label:'sprint',pkg:'sprint',detail:'sprint',sub:'sprint',launch:'sprint'};
 function markNav(view){
   var g=NAV_OF[view]||'';
@@ -603,8 +633,6 @@ function markNav(view){
 function goTo(target){
   var from=curView;
   if(target==='fit') track('hero_fit_click',{from:'panel:'+from});
-  if(from==='fit' && target==='fitform') track('path_sprint_select');
-  if(from==='fit' && target==='canada') track('path_canada_select');
   openPage(target);
 }
 function bindGo(body){
@@ -908,7 +936,7 @@ var PAGES={
           '월 유지관리는 Sprint 를 마친 뒤에만 제안합니다'])+
       '<p class="pmeta">모든 가격은 부가세 별도입니다. 정부 수수료, 시험성적서와 실험실 시험, 인쇄·생산비, 제품 촬영과 영상, 법률 의견서는 들어가지 않습니다. 등록 승인을 보장하지는 않으며, 정한 횟수를 넘는 수정은 따로 견적을 드립니다. FDA 제품 등록은 제조 시설이 FDA 에 등록되어 있는 경우를 기준으로 하며, 시설 등록과 미국 대리인은 맡지 않습니다. 필요하시면 따로 견적을 드립니다.</p>'+
       canadaCard()+
-      go('fit','우리 제품도 맞는지 확인하기 →'); }},
+      go('fit','1분 출시 확인하기 →'); }},
   how:{kicker:'HOW IT WORKS',title:'적합성 확인부터 착수까지',
     lede:'순서가 정해져 있습니다. 단계마다 고객이 무엇을 정하는지 먼저 알려 드립니다.',
     html:function(){ return steps([
@@ -920,63 +948,11 @@ var PAGES={
         ['월 유지관리','Sprint 를 마친 뒤에만 제안합니다. 규제·라벨 자문, SKU·아트워크 변경 검토, 웹·상세페이지 업데이트를 맡습니다.']])+   /* 범위·시작 조건 D9 */
       '<p class="pmeta">맞춤 제안서는 예산, 최종 결정권자, 희망일, 구매하지 않을 조건이 확인된 프로젝트에만 씁니다. 아직 정해지지 않았다면 가능한 범위와 결정 예정일을 받습니다. 맞지 않으면 다른 길을 안내해 드리고, 제안서 전에 필요한 맞춤 분석은 유료 진단으로 합니다.</p>'+
       go('about','동인천상회 소개 보기',true)+
-      go('fit','우리 제품도 맞는지 확인하기 →'); }},
-  fitform:{kicker:'CHECK LAUNCH FIT',title:T('프로젝트 적합성 확인','Project fit check'),
-    lede:T('맞춤 제안서는 예산, 최종 결정권자, 희망일과 구매하지 않을 조건이 확인된 프로젝트에만 작성합니다. 아직 정해지지 않았다면 가능한 범위와 결정 예정일을 적어 주세요.',
-           'We write custom proposals only once the budget, final decision-maker, target date and no-go conditions are clear. If something is still open, give us a likely range and a decision date.'),
-    html:function(){
-      function fld(id,label,input,hint,sub){ return '<div class="fld'+(sub?' sub':'')+'"'+(sub?' hidden':'')+'>'+(label?'<label for="'+id+'">'+label+'</label>':'')+input+(hint?'<p class="fhint">'+hint+'</p>':'')+'</div>'; }
-      function req(t){ return t+' <em>'+T('필수','Required')+'</em>'; }
-      /* 값은 동작에 쓰는 한국어 그대로, 보이는 글자만 언어별 */
-      function box(name,vals){ return vals.map(function(v){ return '<label><input type="checkbox" name="'+name+'" value="'+v[0]+'">'+v[1]+'</label>'; }).join(''); }
-      function opt(v,label){ return '<option value="'+v+'">'+label+'</option>'; }
-      return '<form id="cform" data-kind="fit" novalidate>'+
-        '<div class="fprog" aria-live="polite"><i><b id="fprogBar"></b></i><span id="fprogTxt">0 / 8</span></div>'+
-        '<div class="fld"><span class="flabel">'+req(T('1) 회사와 담당자','1) Company and contact'))+'</span>'+
-          '<div class="row2"><input id="q_co" type="text" autocomplete="organization" placeholder="'+T('회사 또는 브랜드','Company or brand')+'" aria-label="'+T('회사 또는 브랜드','Company or brand')+'">'+
-          '<input id="q_name" type="text" autocomplete="name" placeholder="'+T('담당자 이름','Contact name')+'" aria-label="'+T('담당자 이름','Contact name')+'"></div></div>'+
-        fld('q_mail','',  '<input id="q_mail" type="email" inputmode="email" autocomplete="email" placeholder="'+T('회신 받으실 메일','Reply email')+'" aria-label="'+T('회신 받으실 메일','Reply email')+'">')+
-        fld('q_sku',req(T('2) 제품과 SKU 수','2) Product and number of SKUs')),'<input id="q_sku" type="text" placeholder="'+T('예: 크림 1종, SKU 2개','e.g. one cream, 2 SKUs')+'">')+
-        '<div class="fld"><span class="flabel">'+req(T('희망 국가','Target markets'))+'</span><div class="checks" id="q_cty">'+box('cty',[['캐나다',T('캐나다','Canada')],['미국',T('미국','USA')],['기타',T('기타','Other')]])+'</div></div>'+
-        fld('q_cty_etc',T('기타 국가','Other market'),'<input id="q_cty_etc" type="text" placeholder="'+T('국가 이름','Country')+'">','',true)+
-        '<div class="fld"><span class="flabel">'+req(T('3) 지금 갖고 계신 자료','3) What you already have'))+'</span><div class="checks" id="q_have">'+
-          box('have',[['전성분표',T('전성분표','Ingredient list')],['아트워크',T('아트워크','Artwork')],['상세페이지',T('상세페이지','Product page')],['시험성적서',T('시험성적서','Test reports')],['아직 없음',T('아직 없음','None yet')]])+'</div></div>'+
-        /* 예산 선택지 — 디자인 300만 + 등록 기준(2026-10-05 D2). 300만 미만은 진단·단독 작업으로 안내. 영어판은 USD(1,000원 = 1달러) */
-        fld('q_budget',req(T('4) 예산 범위','4) Budget')),'<select id="q_budget">'+opt('',T('골라주세요','Select'))+
-          opt(T('300만 원 미만','Under USD 3,000'),T('300만 원 미만','Under USD 3,000'))+opt(T('300만~500만 원','USD 3,000–5,000'),T('300만~500만 원','USD 3,000–5,000'))+
-          opt(T('500만~1,000만 원','USD 5,000–10,000'),T('500만~1,000만 원','USD 5,000–10,000'))+opt(T('1,000만 원 이상','Over USD 10,000'),T('1,000만 원 이상','Over USD 10,000'))+
-          opt('미정',T('아직 정하지 못했습니다','Not decided yet'))+'</select>')+
-        fld('q_budget_when',T('가능한 범위와 결정 예정일','Likely range and decision date'),'<input id="q_budget_when" type="text" placeholder="'+T('예: 다음 달 말까지 결정','e.g. decided by the end of next month')+'">','',true)+
-        fld('q_who',req(T('5) 최종 결정권자','5) Final decision-maker')),'<select id="q_who">'+opt('',T('골라주세요','Select'))+
-          opt(T('본인','본인'),T('본인','Me'))+opt(T('대표','CEO'),T('대표','CEO'))+opt(T('임원','Executive'),T('임원','Executive'))+opt(T('부서장','Department head'),T('부서장','Department head'))+
-          opt('미정',T('아직 정해지지 않았습니다','Not decided yet'))+'</select>')+
-        fld('q_how',T('승인 방식','Approval process'),'<input id="q_how" type="text" placeholder="'+T('예: 대표 결재 후 진행','e.g. CEO sign-off')+'">','',true)+
-        fld('q_who_when',T('결정권자가 정해질 예정일','Expected decision date'),'<input id="q_who_when" type="text" placeholder="'+T('예: 이번 분기 안','e.g. within this quarter')+'">','',true)+
-        '<div class="fld"><label for="q_date">'+req(T('6) 희망 출시·납품 시기','6) Target launch or delivery date'))+'</label><input id="q_date" type="month">'+
-          '<div class="checks"><label><input type="checkbox" id="q_date_un">'+T('아직 정하지 못했습니다','Not decided yet')+'</label></div></div>'+
-        fld('q_date_when',T('언제쯤 정해질지','When it will be decided'),'<input id="q_date_when" type="text" placeholder="'+T('예: 시험성적서 나온 뒤','e.g. once the test reports are in')+'">','',true)+
-        fld('q_nobuy',req(T('7) 어떤 조건이면 진행하지 않으시나요','7) What would stop you from going ahead?')),'<textarea id="q_nobuy" rows="3" placeholder="'+T('예: 예산을 넘거나, 출시일을 못 맞추면 진행하지 않습니다','e.g. going over budget or missing the launch date')+'"></textarea>')+
-        fld('q_block',req(T('8) 지금 가장 막힌 한 가지','8) The one thing blocking you now')),'<textarea id="q_block" rows="3" placeholder="'+T('예: 캐나다 라벨에 무엇을 넣어야 하는지 모릅니다','e.g. we do not know what the Canadian label must include')+'"></textarea>')+
-        '<input type="checkbox" name="botcheck" id="f_bot" class="botcheck" tabindex="-1" autocomplete="off">'+
-        '<p class="cerr" id="cerr" role="alert"></p>'+
-        '<button type="submit" class="csend" id="csend">'+T('적합성 확인 요청 보내기','Send fit check')+'</button>'+
-        '<p class="cnote">'+T('보내주신 내용은 회신에만 씁니다. 양식이 보내지지 않으면 메일로 보내주셔도 됩니다 — ','We use your details only to reply. If the form does not send, you can email us — ')+
-          '<button type="button" class="lnk" id="mcopy">'+T(MAIL+' 복사','Copy '+MAIL)+'</button></p>'+
-        '</form><div class="cdone" id="cdone" hidden></div>'; }},
-  fit:{kicker:'CHECK LAUNCH FIT',title:'무엇이 가장 필요하신가요?',
-    lede:'고르시면 맞는 다음 단계로 안내합니다.',
-    html:function(){ return '<div class="plinks choice">'+
-      '<button type="button" data-go="fitform" style="--dot:#1E7B45"><span><i></i>규제·라벨·패키지·판매자료를 한 번에 준비하려고 합니다</span><em>SPRINT</em></button>'+
-      '<button type="button" data-go="canada" style="--dot:#4A5568"><span><i></i>캐나다 보건부(Health Canada) 등록 가능 여부부터 확인하려고 합니다</span><em>CANADA</em></button>'+
-      '<button type="button" data-go="undecided" style="--dot:#C99A5B"><span><i></i>아직 수출할 나라와 제품을 정하지 못했습니다</span><em>START</em></button>'+
-      '</div>'; }},
-  undecided:{kicker:'NOT DECIDED YET',title:'아직 정해지지 않았다면',
-    lede:'출시할 나라와 제품이 정해지지 않았다면 Sprint 보다 먼저 방향을 정하는 것이 맞습니다.',
-    html:function(){ return ''+   /* 무료 자료는 아직 없어 숨김 — D7 */
-      '<h4 class="psec">유료 방향 상담</h4>'+
-      '<p>어느 나라부터, 어떤 제품부터 내보낼지 순서를 같이 정합니다. 정해진 뒤에는 그 결과로 적합성 확인부터 다시 시작하시면 됩니다.</p>'+
-      '<p class="pmeta">가격은 문의 주시면 안내합니다.</p>'+   /* D7 */
-      go('fitform','방향 상담 요청하기 →'); }},
+      go('fit','1분 출시 확인하기 →'); }},
+  /* 2026-10-05 전환설계 — 탭 6번으로 예상 절차·비용·준비 자료를 먼저 보여 주고, 그 결과로 짧은 진단 신청을 받는다 (D10·D11) */
+  fit:{kicker:'CHECK LAUNCH FIT',title:T('1분 출시 확인','1-minute launch check'),
+    lede:T('여섯 가지만 골라 주시면 예상 절차와 비용, 준비하실 자료를 바로 보여 드립니다.','Answer six quick questions and we will show you the likely procedure, cost and what to prepare.'),
+    html:function(){ return '<div id="quiz" class="quiz"></div>'; }},
   canada:{kicker:'WORKING PROOF · CANADA',title:'전성분표 한 장에서 등록 준비까지',
     lede:'OUAH AI 포털은 전성분표와 제품 질문을 바탕으로 Health Canada 예상 경로와 견적을 먼저 보여 줍니다. 영·불 라벨 문안과 제출자료 초안은 시스템이 준비하고, 최종 검토와 제출은 캐나다 현지 전문가가 맡습니다.',
     html:function(){ return ''+   /* 포털 화면 캡처는 D5, 관계 문구는 D4 뒤 */
@@ -994,7 +970,7 @@ var PAGES={
     html:function(){ return ''+   /* 사례 2건은 D6. 카드 틀: 문제 / 무엇을 연결했는지 / 무엇이 줄었는지 / 산출물 / 승인된 수치·증언 */
       canadaCard()+
       '<p class="pmeta">K-POP 아이돌 굿즈 브랜드 블링원의 디자인 파트너입니다.</p>'+
-      go('fit','우리 제품도 맞는지 확인하기 →'); }},
+      go('fit','1분 출시 확인하기 →'); }},
   about:{kicker:'ABOUT',title:'디자인과 규정, 반복되는 서류 업무까지 한곳에서 맡습니다',
     lede:'동인천상회는 한국 화장품 브랜드가 해외에 나갈 때 규정 검토, 디자인, 등록을 따로 맡기면서 생기는 빈틈을 줄입니다. 규정을 아는 사람이 라벨과 패키지까지 직접 보기 때문에 판매 화면과 제출 서류가 같은 기준으로 만들어집니다. 반복 입력과 자료 확인은 시스템으로 줄이고, 판단과 책임은 사람이 집니다.',
     html:function(){ return '<div class="portrait"><img src="../media/portrait.webp" alt="동인천김씨 김현우"></div>'+
@@ -1007,7 +983,7 @@ var PAGES={
       '<div class="fact"><dt>TALKS</dt><dd>아마존코리아 셀러 웨비나, 월마트 아시아퍼시픽 마켓플레이스 파트너 세션</dd></div>'+
       '<div class="fact"><dt>BASE</dt><dd>인천 동인천에 있고, 원격으로도 함께 일합니다</dd></div></dl>'+
       '<p class="pmeta">Company name: Brooks Global · Jemulpo-gu, Incheon, Republic of Korea · © '+new Date().getFullYear()+' Brooks Global. All rights reserved.</p>'+
-      go('fit','우리 제품도 맞는지 확인하기 →'); }}
+      go('fit','1분 출시 확인하기 →'); }}
 };
 /* 영어판 패널 (G6) — 한국어판과 같은 사실, 영어 업무 문체 */
 var PAGES_EN={
@@ -1050,7 +1026,7 @@ var PAGES_EN={
       ul(['SKUs with identical design and copy that differ only in size are 50% off','Monthly maintenance is offered only after the Sprint'])+
       '<p class="pmeta">Prices exclude applicable taxes. Not included: government fees, test reports and laboratory testing, printing and production, photography and video, and legal opinions. We do not guarantee registration approval, and revisions beyond the agreed rounds are quoted separately. FDA product listing assumes the manufacturing facility is already registered with FDA. We do not handle facility registration or US agent services, but we can quote them separately.</p>'+
       canadaCard()+
-      go('fit','Check if your product fits →'); }},
+      go('fit','Take the 1-minute check →'); }},
   how:{kicker:'HOW IT WORKS',title:'From fit check to kickoff',
     lede:'The order is fixed, and we tell you in advance what you decide at each step.',
     html:function(){ return steps([
@@ -1062,21 +1038,7 @@ var PAGES_EN={
         ['Monthly maintenance','Offered only after the Sprint: regulatory and label advice, SKU and artwork change reviews, and website or product page updates.']])+
       '<p class="pmeta">Custom proposals are written only once the budget, final decision-maker, target date and no-go conditions are confirmed. If any of these is still open, we ask for a likely range and a decision date. If the project is not a fit, we point you to another option, and any custom analysis needed before a proposal is done as a paid diagnosis.</p>'+
       go('about','About Dongincheon Trading Co.',true)+
-      go('fit','Check if your product fits →'); }},
-  fit:{kicker:'CHECK LAUNCH FIT',title:'What do you need most?',
-    lede:'Choose one and we will take you to the right next step.',
-    html:function(){ return '<div class="plinks choice">'+
-      '<button type="button" data-go="fitform" style="--dot:#1E7B45"><span><i></i>Prepare regulatory, label, packaging and sales materials together</span><em>SPRINT</em></button>'+
-      '<button type="button" data-go="canada" style="--dot:#4A5568"><span><i></i>First check whether we can register with Health Canada</span><em>CANADA</em></button>'+
-      '<button type="button" data-go="undecided" style="--dot:#C99A5B"><span><i></i>We have not chosen the market or product yet</span><em>START</em></button>'+
-      '</div>'; }},
-  undecided:{kicker:'NOT DECIDED YET',title:'If you have not decided yet',
-    lede:'If the market and product are not settled, it is better to set the direction before a Sprint.',
-    html:function(){ return ''+
-      '<h4 class="psec">Paid direction session</h4>'+
-      '<p>We decide together which market and which product to start with. Once that is settled, you can start again from the fit check.</p>'+
-      '<p class="pmeta">Contact us for pricing.</p>'+
-      go('fitform','Request a direction session →'); }},
+      go('fit','Take the 1-minute check →'); }},
   canada:{kicker:'WORKING PROOF · CANADA',title:'From one ingredient list to a registration-ready file',
     lede:'The OUAH AI portal shows the expected Health Canada route and a quote first, based on your ingredient list and product questions. The system drafts the English and French label copy and the submission files; a Canadian specialist makes the final review and files the submission.',
     html:function(){ return ''+
@@ -1094,7 +1056,7 @@ var PAGES_EN={
     html:function(){ return ''+
       canadaCard()+
       '<p class="pmeta">Design partner of Blingone, a K-pop idol merchandise brand.</p>'+
-      go('fit','Check if your product fits →'); }},
+      go('fit','Take the 1-minute check →'); }},
   about:{kicker:'ABOUT',title:'Design, regulations and the paperwork in between, in one place',
     lede:'Dongincheon Trading Co. closes the gaps that appear when a cosmetic brand orders regulatory review, design and registration separately for an overseas launch. Because the person who knows the rules also works on the label and packaging, the product page and the filing documents follow the same standard. The system cuts repetitive entry and checks; judgement and responsibility stay with people.',
     html:function(){ return '<div class="portrait"><img src="../media/portrait.webp" alt="Brooks Hyeonwoo Kim"></div>'+
@@ -1107,7 +1069,7 @@ var PAGES_EN={
       '<div class="fact"><dt>TALKS</dt><dd>Seller webinar for Amazon Korea, partner session for Walmart Asia-Pacific Marketplace</dd></div>'+
       '<div class="fact"><dt>BASE</dt><dd>Based in Dongincheon, Incheon, Korea, working with clients remotely</dd></div></dl>'+
       '<p class="pmeta">Company name: Brooks Global · Jemulpo-gu, Incheon, Republic of Korea · © '+new Date().getFullYear()+' Brooks Global. All rights reserved.</p>'+
-      go('fit','Check if your product fits →'); }}
+      go('fit','Take the 1-minute check →'); }}
 };
 if(LANG==='en') Object.keys(PAGES_EN).forEach(function(k){ PAGES[k]=PAGES_EN[k]; });
 function openPage(k){
@@ -1121,6 +1083,7 @@ function openPage(k){
   bindGo(body);
   body.scrollTop=0;
   bindForm();
+  bindQuiz();
   showPanel();
 }
 
@@ -1158,57 +1121,43 @@ var FORMURL='https://api.web3forms.com/submit';
 
 function val(id){ var el=document.getElementById(id); return el ? el.value.trim() : ''; }
 function markBad(id,bad){ var el=document.getElementById(id); var box=el&&((el.closest&&el.closest('.fld'))||el.parentNode); if(box) box.classList[bad?'add':'remove']('bad'); }
-/* 폼은 적합성 확인 하나(1-7 에서 옛 문의 폼을 뺐다). d.subject / d.text / d.payload 를 readFit 이 만든다 */
+/* 폼은 1분 출시 확인 결과 아래의 진단 신청 하나. d.subject / d.text / d.payload 를 readDiag 가 만든다 */
 function formText(d){ return d.text; }
 function checked(name){ return [].slice.call(document.querySelectorAll('#cform input[name="'+name+'"]:checked')).map(function(x){ return x.value; }); }
-function readForm(){ return readFit(); }
-function readFit(){
-  var cty=checked('cty'); if(cty.indexOf('기타')>=0 && val('q_cty_etc')) cty[cty.indexOf('기타')]='기타('+val('q_cty_etc')+')';
-  var und=document.getElementById('q_date_un'), dateUn=!!(und&&und.checked);
-  var d={kind:'fit',company:val('q_co'),name:val('q_name'),email:val('q_mail'),sku:val('q_sku'),cty:cty,have:checked('have'),
-         budget:val('q_budget'),budgetWhen:val('q_budget_when'),who:val('q_who'),how:val('q_how'),whoWhen:val('q_who_when'),
-         date:dateUn?'미정':val('q_date'),dateWhen:val('q_date_when'),nobuy:val('q_nobuy'),block:val('q_block')};
-  var budget=d.budget==='미정'?'미정 — '+d.budgetWhen:d.budget;
-  var who=d.who==='미정'?'미정 — 결정 예정 '+d.whoWhen:d.who+(d.how?' / 승인 방식: '+d.how:'');
-  var date=d.date==='미정'?'미정 — '+d.dateWhen:d.date;
-  d.subject='[동인천상회'+(LANG==='en'?' · EN':'')+'] 적합성 확인 — '+d.company+' · '+(cty.join(', ')||'-');
-  var rows=[['회사·브랜드',d.company],['담당자',d.name],['회신 메일',d.email],['제품·SKU 수',d.sku],['희망 국가',cty.join(', ')],
-            ['보유 자료',d.have.join(', ')],['예산 범위',budget],['최종 결정권자',who],['희망 출시·납품일',date],
-            ['구매하지 않을 조건',d.nobuy],['지금 가장 막힌 한 가지',d.block]];
+function readForm(){ return readDiag(); }
+function readDiag(){
+  var f=document.getElementById('cform'), dir=f&&f.getAttribute('data-kind')==='direction';
+  var d={kind:dir?'direction':'diag',company:val('q_co'),name:val('q_name'),email:val('q_mail'),tel:val('q_tel'),bud:checked('bud')[0]||'',dec:checked('dec')[0]||'',block:val('q_block')};
+  var R=QUIZ.res||{};
+  d.subject='[동인천상회'+(LANG==='en'?' · EN':'')+'] '+(dir?'방향 상담 신청':'진단 신청')+' — '+d.company+' · '+(R.cty||'-');
+  var rows=[['회사·브랜드',d.company],['담당자',d.name],['회신 메일',d.email],['연락처',d.tel||'-'],
+            ['나라',R.cty||'-'],['제품 종류',R.kind||'-'],['SKU 수',R.sku||'-'],['보유 자료',R.have||'-'],['맡길 범위',R.scope||'-'],['시기',R.when||'-'],
+            ['예상 절차',R.route||'-'],['예상 비용',R.cost||'-']];
+  if(!dir) rows.push(['예산 안에 드는지',d.bud]);
+  rows.push(['최종 결정',d.dec],['지금 가장 막힌 점',d.block||'-']);
   d.text=rows.map(function(r){ return r[0]+': '+r[1]; }).join('\n');
   d.payload={}; rows.forEach(function(r){ d.payload[r[0]]=r[1]; });
   return d;
 }
-function validateFit(d){
-  var ids=['q_co','q_name','q_mail','q_sku','q_cty','q_cty_etc','q_have','q_budget','q_budget_when','q_who','q_how','q_who_when','q_date','q_date_when','q_nobuy','q_block'];
-  ids.forEach(function(i){ markBad(i,false); });
+function validateDiag(d){
+  ['q_co','q_name','q_mail','q_bud','q_dec'].forEach(function(i){ markBad(i,false); });
   function bad(id,msg){ markBad(id,true); return [msg,id]; }
   if(!d.company) return bad('q_co',T('회사 또는 브랜드 이름을 적어주세요.','Please enter your company or brand.'));
   if(!d.name) return bad('q_name',T('담당자 이름을 적어주세요.','Please enter a contact name.'));
   if(!d.email) return bad('q_mail',T('회신 받으실 메일 주소를 적어주세요.','Please enter an email for our reply.'));
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(d.email)) return bad('q_mail',T('메일 주소를 다시 확인해주세요.','Please check the email address.'));
-  if(!d.sku) return bad('q_sku',T('제품과 SKU 수를 적어주세요.','Please enter the product and number of SKUs.'));
-  if(!d.cty.length) return bad('q_cty',T('희망 국가를 하나 이상 골라주세요.','Please choose at least one target market.'));
-  if(d.cty.join().indexOf('기타')>=0 && !val('q_cty_etc')) return bad('q_cty_etc',T('기타 국가 이름을 적어주세요.','Please enter the other market.'));
-  if(!d.have.length) return bad('q_have',T('지금 갖고 계신 자료를 골라주세요. 없으면 「아직 없음」을 골라주세요.','Please choose what you already have, or choose “None yet”.'));
-  if(!d.budget) return bad('q_budget',T('예산 범위를 골라주세요.','Please choose a budget.'));
-  if(d.budget==='미정' && !d.budgetWhen) return bad('q_budget_when',T('가능한 범위와 결정 예정일을 적어주세요.','Please give a likely range and a decision date.'));
-  if(!d.who) return bad('q_who',T('최종 결정권자를 골라주세요.','Please choose the final decision-maker.'));
-  if(d.who==='미정' && !d.whoWhen) return bad('q_who_when',T('결정권자가 정해질 예정일을 적어주세요.','Please give the date the decision-maker will be confirmed.'));
-  if(d.who!=='미정' && !d.how) return bad('q_how',T('승인 방식을 적어주세요.','Please describe the approval process.'));
-  if(!d.date) return bad('q_date',T('희망 출시·납품 시기를 골라주세요. 정하지 못했으면 「아직 정하지 못했습니다」를 눌러주세요.','Please choose a target date, or tick “Not decided yet”.'));
-  if(d.date==='미정' && !d.dateWhen) return bad('q_date_when',T('언제쯤 정해질지 적어주세요.','Please tell us when it will be decided.'));
-  if(d.nobuy.length<2) return bad('q_nobuy',T('어떤 조건이면 진행하지 않으실지 적어주세요.','Please tell us what would stop you from going ahead.'));
-  if(d.block.length<2) return bad('q_block',T('지금 가장 막힌 한 가지를 적어주세요.','Please tell us the one thing blocking you now.'));
+  if(d.kind==='diag' && !d.bud) return bad('q_bud',T('예상 비용이 예산 안에 드는지 골라주세요.','Please tell us whether the estimate fits your budget.'));
+  if(!d.dec) return bad('q_dec',T('최종 결정은 누가 하시는지 골라주세요.','Please tell us who makes the final decision.'));
   return null;
 }
-function validate(d){ return validateFit(d); }
+function validate(d){ return validateDiag(d); }
 function showSent(d){
   var f=document.getElementById('cform'), done=document.getElementById('cdone');
   if(!done) return;
   f.hidden=true; done.hidden=false;
-  track('fit_form_complete');
-  done.innerHTML='<div class="cok" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></div><h4>'+T('적합성 확인 요청을 보냈습니다','Your fit check has been sent')+'</h4><p>'+T(esc(d.name)+'님, 적어주신 내용을 보고 <b>'+esc(d.email)+'</b> 로 다음 단계를 안내드리겠습니다.','Thank you, '+esc(d.name)+'. We will review your answers and reply to <b>'+esc(d.email)+'</b> with the next step.')+'</p>';
+  track('fit_form_complete',{kind:d.kind});
+  done.innerHTML='<div class="cok" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></div><h4>'+T('신청을 받았습니다','Request received')+'</h4><p>'+T(esc(d.name)+'님, 2영업일 안에 <b>'+esc(d.email)+'</b> 로 메일 드립니다.','Thank you, '+esc(d.name)+'. We will email <b>'+esc(d.email)+'</b> within two business days.')+'</p>'+
+    '<ol class="plist qnext"><li>'+T('보내 주신 답을 보고 진단 범위를 확인합니다.','We check the scope of the diagnosis against your answers.')+'</li><li>'+T('진단 인보이스와 필요한 자료 목록을 메일로 보내 드립니다.','We email the diagnosis invoice and the list of files we need.')+'</li><li>'+T('자료를 받으면 진단 결과와 제안을 드립니다.','Once we have the files, we send the diagnosis and a proposal.')+'</li></ol>';
   done.scrollIntoView({block:'nearest'});
 }
 function showFallback(d,why){
@@ -1234,61 +1183,24 @@ function showFallback(d,why){
   done.scrollIntoView({block:'nearest'});
 }
 function esc(t){ return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-function bindFit(f){
+function bindDiag(f){
   /* 첫 포커스나 첫 입력 중 먼저 오는 쪽에서 한 번 — 자동완성은 포커스 없이 값이 들어온다 */
-  var started=false; function start(){ if(started) return; started=true; track('fit_form_start'); }
+  var started=false; function start(){ if(started) return; started=true; track('diag_request_start',{kind:f.getAttribute('data-kind')}); }
   ['focusin','input','change'].forEach(function(t){ f.addEventListener(t,start); });
-  function toggle(id,on){ var el=document.getElementById(id); if(!el) return; el.parentNode.hidden=!on; if(!on) el.value=''; }
-  function sync(){
-    toggle('q_budget_when',val('q_budget')==='미정');
-    toggle('q_who_when',val('q_who')==='미정');
-    var how=document.getElementById('q_how'); if(how) how.parentNode.hidden=(val('q_who')==='미정');
-    toggle('q_cty_etc',checked('cty').indexOf('기타')>=0);
-    var un=document.getElementById('q_date_un'), dt=document.getElementById('q_date');
-    if(un&&dt){ dt.disabled=un.checked; if(un.checked) dt.value=''; toggle('q_date_when',un.checked); }
-    /* 「아직 없음」과 다른 자료는 같이 고를 수 없게 */
-  }
-  /* 칸별 완료 표시와 진행 막대 — 8개 항목 기준 */
-  function okVal(id){
-    var el=document.getElementById(id); if(!el) return false;
-    if(id==='q_mail') return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(el.value.trim());
-    if(el.tagName==='TEXTAREA') return el.value.trim().length>=2;
-    return !!el.value.trim();
-  }
+  function okMail(){ return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(val('q_mail')); }
   function paint(){
-    var d=readFit(), n=0;
-    var g=[d.company&&d.name&&okVal('q_mail'),
-           d.sku&&d.cty.length&&(d.cty.join().indexOf('기타')<0||val('q_cty_etc')),
-           d.have.length,
-           d.budget&&(d.budget!=='미정'||d.budgetWhen),
-           d.who&&(d.who==='미정'?d.whoWhen:d.how),
-           d.date&&(d.date!=='미정'||d.dateWhen),
-           d.nobuy.length>=2, d.block.length>=2];
-    g.forEach(function(x){ if(x) n++; });
-    var bar=document.getElementById('fprogBar'), txt=document.getElementById('fprogTxt');
-    if(bar) bar.style.width=(n/8*100)+'%'; if(txt) txt.textContent=n+' / 8';
-    ['q_sku','q_cty_etc','q_budget','q_budget_when','q_who','q_how','q_who_when','q_date_when','q_nobuy','q_block'].forEach(function(id){
-      var el=document.getElementById(id); if(el) el.closest('.fld').classList.toggle('ok',okVal(id)); });
-    var top=document.getElementById('q_co'); if(top) top.closest('.fld').classList.toggle('ok',!!(d.company&&d.name));
-    var m=document.getElementById('q_mail'); if(m) m.closest('.fld').classList.toggle('ok',okVal('q_mail'));
-    var dt=document.getElementById('q_date'); if(dt) dt.closest('.fld').classList.toggle('ok',!!d.date);
-    [['q_cty',d.cty.length],['q_have',d.have.length]].forEach(function(x){ var el=document.getElementById(x[0]); if(el) el.closest('.fld').classList.toggle('ok',!!x[1]); });
+    var top=document.getElementById('q_co'); if(top) top.closest('.fld').classList.toggle('ok',!!(val('q_co')&&val('q_name')));
+    var m=document.getElementById('q_mail'); if(m) m.closest('.fld').classList.toggle('ok',okMail());
   }
   /* 고치려고 입력을 시작하면 빨간 표시를 바로 지운다 */
   f.addEventListener('input',function(e){ var box=e.target.closest&&e.target.closest('.fld'); if(box) box.classList.remove('bad','shake'); paint(); });
+  f.addEventListener('change',function(e){ var box=e.target.closest&&e.target.closest('.fld'); if(box) box.classList.remove('bad','shake'); paint(); });
   f.addEventListener('focusout',paint);
-  f.addEventListener('change',function(e){
-    if(e.target.name==='have'){
-      var none=e.target.value==='아직 없음';
-      [].slice.call(f.querySelectorAll('input[name="have"]')).forEach(function(x){ if(x!==e.target && e.target.checked && (none || x.value==='아직 없음')) x.checked=false; });
-    }
-    sync(); paint();
-  });
-  sync(); paint();
+  paint();
 }
 function bindForm(){
   var f=document.getElementById('cform'); if(!f) return;
-  bindFit(f);
+  bindDiag(f);
   f.addEventListener('submit',function(e){
     e.preventDefault();
     var err=document.getElementById('cerr'), btn=document.getElementById('csend');
@@ -1314,6 +1226,154 @@ function bindForm(){
         btn.disabled=false; btn.textContent=label;
         showFallback(d,T('지금 화면에서는 전송이 차단되어 있습니다.','Sending is blocked on this page.')); });
   });
+}
+
+/* ===== 1분 출시 확인 (전환설계 2026-10-05) =====
+   질문 6개 → 결과 카드(예상 절차·비용·준비 자료·기간) → 짧은 진단 신청.
+   일반 기준에 따른 자동 안내다. 제품별 판정은 유료 진단에서 한다(브리프 원칙: 무료 판정 없음). 금액은 PRICE 에서만 */
+var QUIZ={a:{},step:0,res:null};
+function qo(v,ko,en){ return {v:v,ko:ko,t:T(ko,en)}; }
+var QZ=[
+  {k:'cty',q:T('어느 나라에 내보내시나요?','Which market are you shipping to?'),o:[qo('us','미국','United States'),qo('ca','캐나다','Canada'),qo('both','미국과 캐나다 둘 다','Both'),qo('none','아직 정하지 않았어요','Not decided yet')]},
+  {k:'kind',q:T('어떤 제품인가요?','What kind of product is it?'),o:[qo('gen','일반 스킨케어·메이크업','Everyday skincare or makeup'),qo('spf','자외선차단 기능이 있어요','It has sun protection (SPF)'),qo('claim','미백·주름·여드름 같은 기능을 내세워요','It claims whitening, anti-wrinkle, acne or similar effects'),qo('body','샴푸·바디·기타','Hair, body or other'),qo('unk','잘 모르겠어요','Not sure')]},
+  {k:'sku',q:T('제품이 몇 가지(SKU)인가요?','How many products (SKUs)?'),hint:T('용량이나 색이 다르면 SKU를 따로 셉니다.','Each size or shade counts as a separate SKU.'),o:[qo('1','1개','1'),qo('2-3','2~3개','2–3'),qo('4+','4개 이상','4 or more')]},
+  {k:'have',multi:true,q:T('지금 갖고 계신 것을 모두 골라 주세요','What do you already have? Choose all that apply'),o:[qo('inci','전성분표','Ingredient list'),qo('art','국내 라벨·패키지 디자인','Current label or packaging artwork'),qo('page','상세페이지','Product page'),qo('none','아직 없어요','None yet')]},
+  {k:'scope',q:T('어디까지 맡기실 건가요?','How much should we handle?'),o:[qo('reg','등록과 라벨 문구','Registration and label copy'),qo('all','디자인과 영문 상세페이지까지 전부','Everything, including design and the English product page')]},
+  {k:'when',q:T('언제쯤 내보내실 계획인가요?','When do you plan to ship?'),o:[qo('3','3개월 안','Within 3 months'),qo('6','6개월 안','Within 6 months'),qo('unk','아직 몰라요','Not sure yet')]}
+];
+/* 나라 × 제품 종류 → 예상 절차와 SKU당 등록비 범위. 확정이 아니라 「진단에서 확정」으로 안내한다 */
+function qr(ko,en,lo,hi,nko,nen){ return {ko:ko,t:T(ko,en),lo:lo,hi:hi,note:nko?T(nko,nen):''}; }
+var QROUTE={
+  us:{gen:qr('FDA 화장품 리스팅','FDA cosmetic product listing',PRICE.fda,PRICE.fda),
+      body:qr('FDA 화장품 리스팅','FDA cosmetic product listing',PRICE.fda,PRICE.fda),
+      spf:qr('OTC 의약품 절차 — 미국은 자외선차단제를 의약품으로 봅니다','OTC drug procedure — the US treats sunscreen as a drug',PRICE.otc,PRICE.otc),
+      claim:qr('표현에 따라 화장품 리스팅 또는 OTC 의약품 — 진단에서 확정','Cosmetic listing or OTC drug depending on the claims — confirmed in the diagnosis',PRICE.fda,PRICE.otc),
+      unk:qr('화장품 리스팅인지 OTC 의약품인지 진단에서 확정','Cosmetic listing or OTC drug — confirmed in the diagnosis',PRICE.fda,PRICE.otc)},
+  ca:{gen:qr('Health Canada 화장품 신고(CNF)','Health Canada cosmetic notification (CNF)',PRICE.cnf,PRICE.cnf),
+      body:qr('Health Canada 화장품 신고(CNF)','Health Canada cosmetic notification (CNF)',PRICE.cnf,PRICE.cnf),
+      spf:qr('천연건강제품(NHP) 또는 의약품(DIN) — 성분에 따라 갈립니다','Natural health product (NHP) or drug (DIN) — depends on the ingredients',PRICE.nhp,PRICE.nhp,'의약품(DIN) 경로면 따로 견적을 드립니다.','If it is a DIN drug, we quote separately.'),
+      claim:qr('표현을 고치면 화장품 신고(CNF)로 갈 수 있는지 먼저 봅니다','We first check whether changing the claims lets it go as a cosmetic (CNF)',PRICE.cnf,PRICE.nhp),
+      unk:qr('화장품 신고(CNF)인지 다른 절차인지 진단에서 확정','Cosmetic notification (CNF) or another procedure — confirmed in the diagnosis',PRICE.cnf,PRICE.nhp)}
+};
+function qLabel(k,v){ var q=QZ.filter(function(x){ return x.k===k; })[0], o=q.o.filter(function(x){ return x.v===v; })[0]; return o||{ko:v,t:v}; }
+function qRange(lo,hi,plus){ return (lo===hi?money(lo):money(lo)+' ~ '+money(hi))+(plus?T(' 이상',' or more'):''); }
+function quizResult(){
+  var a=QUIZ.a, R={};
+  R.cty=qLabel('cty',a.cty).ko;
+  if(a.cty==='none'){ QUIZ.res=R; return {dir:true}; }
+  var mk=a.cty==='both'?['us','ca']:[a.cty], routes=mk.map(function(m){ return {m:m,r:QROUTE[m][a.kind]}; });
+  var n=a.sku==='1'?[1,1]:a.sku==='2-3'?[2,3]:[4,4], per=[0,0];
+  routes.forEach(function(x){ per[0]+=x.r.lo; per[1]+=x.r.hi; });
+  if(a.scope==='all'){ per[0]+=PRICE.design; per[1]+=PRICE.design; }
+  var lo=per[0]*n[0], hi=per[1]*n[1], plus=a.sku==='4+';
+  var miss=[];
+  if(a.have.indexOf('inci')<0) miss.push(T('전성분표 — INCI 이름과 함량(%)','Ingredient list — INCI names and percentages'));
+  if(a.have.indexOf('art')<0) miss.push(T('지금 라벨·단상자 전개도','Current label and carton dielines'));
+  miss.push(T('제조사 영문 이름과 주소','Manufacturer name and address in English'));
+  if(mk.indexOf('us')>=0) miss.push(T('제조사의 FDA 시설 등록 번호','The manufacturer’s FDA facility registration number'));
+  if(a.scope==='all' && a.have.indexOf('page')<0) miss.push(T('제품 사진이나 국내 상세페이지 자료','Product photos or your Korean product page'));
+  R.kind=qLabel('kind',a.kind).ko; R.sku=qLabel('sku',a.sku).ko; R.scope=qLabel('scope',a.scope).ko; R.when=qLabel('when',a.when).ko;
+  R.have=a.have.map(function(v){ return qLabel('have',v).ko; }).join(', ');
+  R.route=routes.map(function(x){ return (x.m==='us'?'미국':'캐나다')+': '+x.r.ko; }).join(' / ');
+  R.cost=(lo===hi?(lo/10000)+'만 원':(lo/10000)+'만 ~ '+(hi/10000)+'만 원')+(plus?' 이상':'')+' (부가세 별도, 진단 별도)';
+  QUIZ.res=R;
+  return {routes:routes,lo:lo,hi:hi,plus:plus,miss:miss,n:n};
+}
+function quizStepHtml(i){
+  var q=QZ[i], a=QUIZ.a[q.k];
+  return '<div class="qtop">'+(i>0?'<button type="button" class="qback" data-qback>'+T('← 이전','← Back')+'</button>':'')+
+    '<div class="fprog"><i><b style="width:'+(i/QZ.length*100)+'%"></b></i><span>'+(i+1)+' / '+QZ.length+'</span></div></div>'+
+    '<h4 class="qq" tabindex="-1">'+q.q+'</h4>'+(q.hint?'<p class="qhint">'+q.hint+'</p>':'')+
+    '<div class="plinks choice" role="group" aria-label="'+q.q+'">'+q.o.map(function(o){
+      var on=q.multi?(a||[]).indexOf(o.v)>=0:a===o.v;
+      return '<button type="button" data-qv="'+o.v+'"'+(q.multi?' aria-pressed="'+on+'"':'')+(on&&!q.multi?' class="sel"':'')+' style="--dot:var(--green)"><span><i></i>'+o.t+'</span></button>'; }).join('')+'</div>'+
+    (q.multi?'<button type="button" class="pgo" data-qnext'+((a||[]).length?'':' disabled')+'>'+T('다음','Next')+'</button>':'');
+}
+function diagForm(dir){
+  function rad(name,id,label,opts){ return '<div class="fld"><span class="flabel" id="'+id+'_l">'+label+' <em>'+T('필수','Required')+'</em></span><div class="checks" id="'+id+'" role="radiogroup" aria-labelledby="'+id+'_l">'+
+    opts.map(function(o){ return '<label><input type="radio" name="'+name+'" value="'+o[0]+'">'+o[1]+'</label>'; }).join('')+'</div></div>'; }
+  return '<form id="cform" data-kind="'+(dir?'direction':'diag')+'" novalidate>'+
+    '<div class="fld"><span class="flabel">'+T('회사와 담당자','Company and contact')+' <em>'+T('필수','Required')+'</em></span>'+
+      '<div class="row2"><input id="q_co" type="text" autocomplete="organization" placeholder="'+T('회사 또는 브랜드','Company or brand')+'" aria-label="'+T('회사 또는 브랜드','Company or brand')+'">'+
+      '<input id="q_name" type="text" autocomplete="name" placeholder="'+T('담당자 이름','Contact name')+'" aria-label="'+T('담당자 이름','Contact name')+'"></div></div>'+
+    '<div class="fld"><input id="q_mail" type="email" inputmode="email" autocomplete="email" placeholder="'+T('회신 받으실 메일','Reply email')+'" aria-label="'+T('회신 받으실 메일','Reply email')+'"></div>'+
+    '<div class="fld"><input id="q_tel" type="tel" autocomplete="tel" placeholder="'+T('연락처 (선택)','Phone (optional)')+'" aria-label="'+T('연락처 (선택)','Phone (optional)')+'"></div>'+
+    (dir?'':rad('bud','q_bud',T('위 예상 비용이 예산 안에 드나요?','Does the estimate fit your budget?'),[['네',T('네','Yes')],['조정이 필요해요',T('조정이 필요해요','It needs adjusting')],['아직 몰라요',T('아직 몰라요','Not sure yet')]]))+
+    rad('dec','q_dec',T('최종 결정은 누가 하시나요?','Who makes the final decision?'),[['제가 결정해요',T('제가 결정해요','I do')],['대표나 다른 분이 결정해요',T('대표나 다른 분이 결정해요','Someone else, e.g. the CEO')]])+
+    '<div class="fld"><textarea id="q_block" rows="2" placeholder="'+T('지금 가장 막힌 점 (선택)','What is blocking you most right now? (optional)')+'" aria-label="'+T('지금 가장 막힌 점 (선택)','What is blocking you most right now? (optional)')+'"></textarea></div>'+
+    '<input type="checkbox" name="botcheck" id="f_bot" class="botcheck" tabindex="-1" autocomplete="off">'+
+    '<p class="cerr" id="cerr" role="alert"></p>'+
+    '<button type="submit" class="csend" id="csend">'+(dir?T('방향 상담 신청하기','Request a direction session'):T('이 결과로 진단 신청하기','Request a diagnosis with these answers'))+'</button>'+
+    '<p class="cnote">'+(dir?T('2영업일 안에 메일 드립니다. 상담 비용도 메일로 안내합니다.','We reply within two business days, including the session fee.'):
+      T('2영업일 안에 메일 드립니다. 진단 범위를 확인한 뒤 인보이스를 메일로 보내 드립니다.','We reply within two business days. After confirming the scope, we email you the invoice.'))+' '+
+      T('보내주신 내용은 회신에만 씁니다. 양식이 보내지지 않으면 메일로 보내주셔도 됩니다 — ','We use your details only to reply. If the form does not send, you can email us — ')+
+      '<button type="button" class="lnk" id="mcopy">'+T(MAIL+' 복사','Copy '+MAIL)+'</button></p>'+
+    '</form><div class="cdone" id="cdone" hidden></div>';
+}
+function quizResultHtml(){
+  var r=quizResult(), again='<div class="qagain"><button type="button" class="qback" data-qrestart>'+T('처음부터 다시','Start over')+'</button></div>';
+  if(r.dir) return '<div class="qres"><h5>'+T('결과','RESULT')+'</h5><p class="qlead">'+T('나라부터 정하는 것이 순서입니다.','The first step is choosing the market.')+'</p>'+
+    '<p>'+T('어느 나라부터, 어떤 제품부터 내보낼지 순서를 같이 정하는 방향 상담을 해 드립니다. 정해진 뒤에는 이 확인을 다시 하시면 예상 비용까지 보실 수 있습니다.','We run a direction session to decide which market and which product to start with. Once that is settled, run this check again to see a cost estimate.')+'</p></div>'+
+    '<h4 class="psec">'+T('방향 상담 신청','Request a direction session')+'</h4>'+diagForm(true)+again;
+  var cost=qRange(r.lo,r.hi,r.plus);
+  var how=(QUIZ.a.scope==='all'?T('디자인 SKU당 ','Design ')+money(PRICE.design)+T(' + 등록',' per SKU + registration'):T('등록 SKU당 비용','Registration per SKU'))+
+    T(' × SKU ',' × ')+(r.n[0]===r.n[1]?r.n[0]:r.n[0]+'~'+r.n[1])+T('개',' SKUs')+'.';
+  var notes=r.routes.map(function(x){ return x.r.note; }).filter(Boolean);
+  return '<div class="qres">'+
+    '<h5>'+T('예상 절차','LIKELY PROCEDURE')+'</h5><ul class="qroute">'+r.routes.map(function(x){ return '<li><b>'+(x.m==='us'?T('미국','US'):T('캐나다','Canada'))+'</b><span>'+x.r.t+'</span></li>'; }).join('')+'</ul>'+
+    '<h5>'+T('예상 비용 · 부가세 별도','ESTIMATED COST · TAX EXTRA')+'</h5><p class="qcost">'+cost+'</p>'+
+    '<p class="qsub">'+how+' '+(QUIZ.a.scope==='all'&&r.n[1]>1?T('디자인과 문구가 같고 용량만 다른 SKU는 디자인비를 50% 할인합니다. ','SKUs that differ only in size get 50% off design. '):'')+
+      T('시작 전 진단은 SKU당 ','The diagnosis before we start is ')+money(PRICE.diag)+T('이며, 30일 안에 계약하시면 전액 차감합니다.',' per SKU, fully credited if you sign within 30 days.')+(notes.length?' '+notes.join(' '):'')+'</p>'+
+    '<h5>'+T('준비하실 자료','WHAT TO PREPARE')+'</h5>'+ul(r.miss)+
+    '<h5>'+T('예상 기간','TIMELINE')+'</h5><p>'+T('보통 4주입니다. 기관의 심사·처리 기간은 따로 걸립니다.','About four weeks. Agency review and processing time is extra.')+'</p>'+
+    '<p class="pmeta">'+T('일반 기준에 따른 자동 안내입니다. 제품별 절차는 진단에서 확정하며, 등록이나 승인 결과를 보장하지 않습니다.','This is an automatic estimate based on general rules. The procedure for your product is confirmed in the diagnosis, and we do not guarantee registration or approval results.')+'</p>'+
+    '</div>'+
+    (QUIZ.a.cty==='ca'&&QUIZ.a.scope==='reg'?canadaCard():'')+
+    '<h4 class="psec">'+T('이 결과로 진단 신청하기','Request a diagnosis')+'</h4>'+diagForm(false)+
+    '<div class="qagain"><button type="button" class="qback" data-qrestart>'+T('처음부터 다시','Start over')+'</button>'+go('sprint',T('가격과 진행 순서 자세히 보기','See pricing and process in detail'),true)+'</div>';
+}
+function bindQuiz(){
+  var box=document.getElementById('quiz'); if(!box) return;
+  var body=document.getElementById('pbody');
+  QUIZ={a:{},step:0,res:null};
+  function render(){
+    var lede=body.querySelector(':scope > p'); if(lede) lede.hidden=QUIZ.step>=QZ.length;
+    if(QUIZ.step>=QZ.length){
+      box.innerHTML=quizResultHtml();
+      var R=QUIZ.res||{};
+      track('fit_result_view',{cty:QUIZ.a.cty,kind:QUIZ.a.kind||'',scope:QUIZ.a.scope||''});
+      bindGo(box); bindForm();
+      var cp=document.getElementById('mcopy'); if(cp) cp.addEventListener('click',function(){ copyMail(); });
+    } else box.innerHTML=quizStepHtml(QUIZ.step);
+    body.scrollTop=0;
+    var h=box.querySelector('.qq,.qres'); if(h){ if(!h.hasAttribute('tabindex')) h.setAttribute('tabindex','-1'); h.focus({preventScroll:true}); }
+  }
+  function answer(q,v){
+    if(QUIZ.step===0) track('fit_quiz_start');
+    QUIZ.a[q.k]=v; track('fit_quiz_step',{step:QUIZ.step+1,q:q.k,v:Array.isArray(v)?v.join(','):v});
+    if(q.k==='cty' && (v==='ca'||v==='both')) track('path_canada_select');
+    if(q.k==='scope' && v==='all') track('path_sprint_select');
+    QUIZ.step=(q.k==='cty'&&v==='none')?QZ.length:QUIZ.step+1;
+    render();
+  }
+  box.addEventListener('click',function(e){
+    var t=e.target.closest('button'); if(!t||!box.contains(t)) return;
+    if(t.hasAttribute('data-qrestart')){ QUIZ={a:{},step:0,res:null}; render(); return; }
+    if(t.hasAttribute('data-qback')){ QUIZ.step=Math.max(0,QUIZ.step-1); render(); return; }
+    var q=QZ[QUIZ.step]; if(!q) return;
+    if(t.hasAttribute('data-qnext')){ answer(q,(QUIZ.a[q.k]||[]).slice()); return; }
+    var v=t.getAttribute('data-qv'); if(v===null) return;
+    if(q.multi){
+      var cur=(QUIZ.a[q.k]||[]).slice(), k=cur.indexOf(v);
+      if(k>=0) cur.splice(k,1); else { cur.push(v); cur=v==='none'?['none']:cur.filter(function(x){ return x!=='none'; }); }   /* 「아직 없어요」와 다른 자료는 같이 고를 수 없게 */
+      QUIZ.a[q.k]=cur;
+      box.querySelectorAll('[data-qv]').forEach(function(b){ b.setAttribute('aria-pressed',cur.indexOf(b.getAttribute('data-qv'))>=0); });
+      var nx=box.querySelector('[data-qnext]'); if(nx) nx.disabled=!cur.length;
+      return;
+    }
+    answer(q,v);
+  });
+  render();
 }
 
 function copyText(txt,msg){
@@ -1376,7 +1436,7 @@ function openPanel(s){
     (!s.items&&s.meta?'<p class="pmeta">'+s.meta+'</p>':'')+
     (s.cred?'<p class="pcred" style="--dot:'+s.color+'">'+s.cred+'</p>':'')+
     '<p class="pmeta">'+s.solo+'</p>'+
-    go('fit',T('우리 제품도 맞는지 확인하기 →','Check if your product fits →'));
+    go('fit',T('1분 출시 확인하기 →','Take the 1-minute check →'));
   curView=s.id; markNav(s.id);
   bindGo(body);
   body.scrollTop=0;
@@ -1395,35 +1455,53 @@ document.getElementById('pclose').addEventListener('click',closePanel);
    portal.ouahco.ca 첫 방문 인사와 같은 방식: 말풍선에 글자를 하나씩, 장면마다 반응 클립, 가만두면 넘어가고 누르면 바로 넘어감.
    마지막 장면에서 적합성 확인 · Sprint 패널로. 움직임 줄이기 설정이면 타이핑 없이 보여 준다 */
 var TOUR=T([
-  {say:'안녕하세요!<br>동인천상회예요.',clip:'cap'},
-  {say:'한국 화장품을 <b>미국·캐나다</b>에 내보낼 때 필요한 일을 한곳에서 해 드려요.',clip:'nod',wait:2600},
-  {say:'먼저 그 나라 규정으로 <b>팔 수 있는 제품인지</b> 확인하고, 그 기준으로 라벨 문구를 써요.',small:'미국 FDA · 캐나다 Health Canada 기준이에요.',clip:'chill',wait:3200},
-  {say:'용기·단상자 디자인과 <b>영문 상세페이지</b>도 같은 기준으로 만들어요.',small:'다 만든 디자인을 규정 때문에 다시 고칠 일이 줄어요.',clip:'shades',wait:3200},
-  {say:'<b>FDA·Health Canada 등록</b>까지 맡아요.',small:'디자인은 SKU당 '+money(PRICE.design)+', 등록은 '+money(PRICE.fda)+'부터예요.',clip:'nod',wait:3000},
-  {say:'보통 <b>4주</b>면 출시 준비가 끝나요.',small:'이 묶음을 Export-Ready Launch Sprint 라고 불러요.',clip:'chill',wait:2800},
-  {say:'내 제품도 되는지<br>확인해 볼까요?',clip:'nod',end:true}
+  {say:'안녕하세요!<br>동인천상회예요.',small:'한국 화장품을 미국·캐나다에 내보낼 때 필요한 라벨, 패키지, 등록 서류를 준비해 드려요.',clip:'cap'},
+  {say:'국내에서 잘 팔리는 제품도 <b>라벨을 그대로</b> 가져가면 그 나라에서는 못 팔 수 있어요.',small:'나라마다 꼭 넣어야 하는 문구와 쓰면 안 되는 표현이 달라서요.',clip:'chill'},
+  {say:'예를 들면 이런 것들이에요.',list:['캐나다는 라벨에 <b>영어와 불어</b>를 함께 써야 해요.','「미백」「여드름 개선」 같은 표현이 들어가면 화장품이 아니라 <b>의약품</b>으로 분류될 수 있어요.','자외선차단제는 미국에서 <b>OTC 의약품</b>이라 절차가 따로 있어요.'],clip:'shades'},
+  {say:'그래서 먼저 <b>전성분표</b>를 보고, 어떤 절차로 팔 수 있는지 판정해요.',small:'화장품 신고로 되는지, 의약품이나 천연건강제품 절차가 필요한지 가려요.',clip:'nod'},
+  {say:'판정한 기준대로 <b>라벨 문구</b>를 써 드려요.',small:'지금 라벨 위에 「여기를 지우고 이 문장을 넣으세요」라고 표시해 드려요. 디자이너가 그대로 옮기면 돼요.',clip:'chill'},
+  {say:'용기·단상자 디자인과 <b>영문 상세페이지</b>까지 같은 문구로 만들어요.',small:'규정을 모르는 디자이너가 만든 뒤 다시 고치는 일이 없어요.',clip:'shades'},
+  {say:'미국 <b>FDA 화장품 리스팅</b>과 <b>Health Canada</b> 신고·등록도 이어서 준비해요.',small:'캐나다 제출은 현지 전문가가 맡아요.',clip:'nod'},
+  {say:'비용은 이렇게 돼요.',price:[['진단 · SKU당',money(PRICE.diag),'계약하면 전액 차감'],['디자인 · SKU당',money(PRICE.design),'라벨 문구 포함'],['등록 · SKU당',money(PRICE.fda)+'부터',''],['예) 일반 화장품 1개, 미국',money(PRICE.design+PRICE.fda),'']],small:'보통 4주 걸려요. 부가세는 별도예요.',clip:'chill'},
+  {say:'제품 하나만 알려 주시면 어떤 절차가 필요하고 <b>얼마쯤 드는지</b> 바로 보여 드릴게요.',clip:'nod',end:true}
 ],[
-  {say:'Hi!<br>We’re Dongincheon Trading Co.',clip:'cap'},
-  {say:'We handle everything a cosmetic brand needs to launch in <b>the US and Canada</b>, in one place.',clip:'nod',wait:2600},
-  {say:'First we check that your product <b>can be sold</b> under the local rules, then write the label copy to that standard.',small:'US FDA and Health Canada requirements.',clip:'chill',wait:3200},
-  {say:'Containers, cartons and an <b>English product page</b> are designed to the same standard.',small:'So finished artwork does not need redoing because of regulations.',clip:'shades',wait:3200},
-  {say:'We also handle <b>FDA and Health Canada registration</b>.',small:'Design is '+money(PRICE.design)+' per SKU, registration from '+money(PRICE.fda)+'.',clip:'nod',wait:3000},
-  {say:'Most launches are ready in about <b>four weeks</b>.',small:'We call this the Export-Ready Launch Sprint.',clip:'chill',wait:2800},
-  {say:'Want to check<br>if your product fits?',clip:'nod',end:true}
+  {say:'Hi!<br>We’re Dongincheon Trading Co.',small:'We prepare the labels, packaging and registration files Korean cosmetic brands need to sell in the US and Canada.',clip:'cap'},
+  {say:'A product that sells well in Korea may not be sellable abroad <b>with the same label</b>.',small:'Each market has its own mandatory wording and its own banned claims.',clip:'chill'},
+  {say:'For example:',list:['Canada requires labels in <b>English and French</b>.','Claims like “whitening” or “treats acne” can make a cosmetic count as a <b>drug</b>.','In the US, sunscreen is an <b>OTC drug</b> with its own procedure.'],clip:'shades'},
+  {say:'So we start with your <b>ingredient list</b> and work out how the product can legally be sold.',small:'Cosmetic notification, or a drug or natural health product procedure.',clip:'nod'},
+  {say:'Then we write the <b>label copy</b> to that standard.',small:'We mark your current label: “delete this, put this sentence here.” Your designer just follows it.',clip:'chill'},
+  {say:'Containers, cartons and the <b>English product page</b> use the same copy.',small:'No redesign after a designer who did not know the rules has finished.',clip:'shades'},
+  {say:'We also prepare <b>FDA cosmetic product listing</b> and <b>Health Canada</b> filings.',small:'Canadian filings are submitted by a local specialist.',clip:'nod'},
+  {say:'Here is what it costs.',price:[['Diagnosis · per SKU',money(PRICE.diag),'credited if you sign'],['Design · per SKU',money(PRICE.design),'label copy included'],['Registration · per SKU','from '+money(PRICE.fda),''],['e.g. one cosmetic, US',money(PRICE.design+PRICE.fda),'']],small:'Most projects take about four weeks. Taxes are extra.',clip:'chill'},
+  {say:'Tell us about one product and we will show you the procedure and <b>a cost estimate</b> right away.',clip:'nod',end:true}
 ]);
 var tourEl=document.getElementById('tour'), tBub=document.getElementById('tbubble'), tDots=document.getElementById('tdots'), tDoors=document.getElementById('tdoors');
 var tStep=-1, tType=null, tNextT=null, tLastFocus=null;
 window.__tourOpen=function(){ return !tourEl.hidden; };
-function tourHtml(st){ return st.say+(st.small?'<small>'+st.small+'</small>':''); }
+function tourHtml(st){
+  var x='';
+  if(st.list) x='<ol class="tlist">'+st.list.map(function(t){ return '<li>'+t+'</li>'; }).join('')+'</ol>';
+  if(st.price) x='<ul class="tlist tprice">'+st.price.map(function(r){ return '<li><span>'+r[0]+(r[2]?'<i>'+r[2]+'</i>':'')+'</span><b>'+r[1]+'</b></li>'; }).join('')+'</ul>';
+  return st.say+x+(st.small?'<small>'+st.small+'</small>':'');
+}
+/* 다음 장면까지 기다리는 시간 — 읽을 글자 수에 맞춘다 (한 글자 70ms, 2.4~10초) */
+function tourWait(st){ var d=document.createElement('div'); d.innerHTML=tourHtml(st); return Math.max(2400,Math.min(10000,1200+d.textContent.length*70)); }
 /* 말풍선을 얼굴 머리 위에 — 완성된 글로 먼저 크기를 재고 그 크기로 고정한다(타이핑 중 크기가 흔들리지 않게) */
 function tourPlace(st){
   tBub.style.width=''; tBub.style.minHeight=''; tBub.style.visibility='hidden'; tBub.innerHTML=tourHtml(st);
   var br=tBub.getBoundingClientRect(), bw=Math.ceil(br.width)+1, bh=Math.ceil(br.height), hero=tourEl.getBoundingClientRect();   /* 올림 — 내림하면 마지막 글자가 다음 줄로 떨어진다 */
   var av=document.getElementById('avatar').getBoundingClientRect();
   var cx=av.left+av.width/2-hero.left, left=Math.max(12,Math.min(hero.width-bw-12,cx-bw/2));
-  var top=Math.max(56,av.top-hero.top-bh-20);
+  var top=av.top-hero.top-bh-20, side=false;
+  /* 머리 위에 다 안 들어가면 — 옆에 자리가 있는 넓은 화면은 얼굴 왼쪽으로, 없으면 위에 붙인다 */
+  if(top<56 && av.left-hero.left>=bw+48){
+    side=true; left=av.left-hero.left-bw-22;
+    top=Math.max(56,Math.min(hero.height-bh-120,av.top-hero.top+av.height*0.3-bh/2));
+  } else top=Math.max(56,top);
+  tBub.classList.toggle('side',side);
   tBub.style.left=left+'px'; tBub.style.top=top+'px'; tBub.style.bottom='auto';
   tBub.style.setProperty('--tail',Math.max(24,Math.min(bw-24,cx-left))+'px');
+  tBub.style.setProperty('--taily',Math.max(24,Math.min(bh-24,av.top-hero.top+av.height*0.3-top))+'px');
   tBub.style.width=bw+'px'; tBub.style.minHeight=bh+'px'; tBub.style.visibility='';
 }
 function tourShow(i){
@@ -1444,7 +1522,7 @@ function tourShow(i){
     if(b>=cells[a][1].length){ a++; b=0; }
   },30);
 }
-function tourSchedule(st){ if(!st.end) tNextT=setTimeout(function(){ tourShow(tStep+1); },st.wait||1800); else document.getElementById('tfit').focus(); }
+function tourSchedule(st){ if(!st.end) tNextT=setTimeout(function(){ tourShow(tStep+1); },tourWait(st)); else document.getElementById('tfit').focus(); }
 function tourNext(){
   if(tType){ clearInterval(tType); tType=null; tBub.innerHTML=tourHtml(TOUR[tStep]); tourSchedule(TOUR[tStep]); return; }   /* 타이핑 중이면 끝까지 보여 주기만 */
   if(TOUR[tStep].end) return;
