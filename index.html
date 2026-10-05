@@ -399,6 +399,8 @@ html[lang=en] .odemo [data-lang=kr],html:not([lang=en]) .odemo [data-lang=en]{di
 .qagain{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:16px;flex-wrap:wrap}
 .qagain .pgo{width:auto;flex:1 1 220px}
 .qnext{margin-top:12px}
+.qcad{margin-top:4px;font-size:14.5px;font-weight:800;color:var(--ink)}
+.quiz .qportal{margin-top:18px}
 .qres p{font-size:14.5px;line-height:1.6}
 .qres .qlead{font-size:18px}
 .qres .qcost{font-size:26px;line-height:1.3}
@@ -1033,7 +1035,9 @@ var hasLogo=LOGO&&LOGO.indexOf('__')!==0, hasMark=MARK&&MARK.indexOf('__')!==0;
 /* 집 모양 표식은 평면 선그림이라 글로시 3D 콘셉트와 맞지 않아 뺐습니다.
    되살리려면 상단 바와 히어로 부제 줄에 MARK 이미지를 다시 끼우면 됩니다. */
 /* 가격 (원, 부가세 별도) — 2026-10-05 김현우 확정. 영어판은 1,000원 = 1달러로 USD 표기 */
-var PRICE={diag:300000,design:3000000,fda:200000,cnf:400000,otc:2000000,nhp:2500000};
+var PRICE={diag:300000,design:3000000,fda:200000,otc:2000000,nhp:2500000};
+/* 캐나다 화장품 신고(CNF)는 동인천상회 상품이 아니라 OUAH 포털에서 바로 진행 — 포털 대행료(GST 5% 별도). 2026-10-05 결정 */
+var CNF_CAD=350;
 function money(won){
   if(LANG==='en') return 'USD '+(won/1000).toLocaleString('en-US');
   return (won/10000).toLocaleString('ko-KR')+'만 원';
@@ -1085,7 +1089,7 @@ var PAGES={
       '<div class="bc"><small>예시 · 일반 화장품 1 SKU, 미국</small><b>'+money(PRICE.design+PRICE.fda)+'</b><p>디자인 '+money(PRICE.design)+'과 FDA 화장품 리스팅 '+money(PRICE.fda)+'을 더한 금액입니다.</p></div>'+
       '<div class="bento-h">등록 · SKU당 추가 · 라벨 문구 검토 보고서 포함</div>'+
       '<div class="bc"><small>FDA</small><b>'+money(PRICE.fda)+'</b><p>미국 FDA 화장품 리스팅</p></div>'+
-      '<div class="bc"><small>CNF</small><b>'+money(PRICE.cnf)+'</b><p>Health Canada 화장품 신고</p></div>'+
+      '<div class="bc"><small>CNF</small><b>CAD '+CNF_CAD+'</b><p>Health Canada 화장품 신고 — OUAH 포털에서 바로 신청, GST 5% 별도</p></div>'+
       '<div class="bc"><small>OTC</small><b>'+money(PRICE.otc)+'</b><p>미국 OTC 의약품(자외선차단제 등) 등록</p></div>'+
       '<div class="bc"><small>NHP</small><b>'+money(PRICE.nhp)+'</b><p>Health Canada 천연건강제품 등록</p></div>'+
       '</div>'+
@@ -1177,7 +1181,7 @@ var PAGES_EN={
       '<div class="bc"><small>EXAMPLE · ONE COSMETIC SKU, US</small><b>'+money(PRICE.design+PRICE.fda)+'</b><p>Design package '+money(PRICE.design)+' plus FDA cosmetic product listing '+money(PRICE.fda)+'.</p></div>'+
       '<div class="bento-h">Registration · added per SKU · includes a label copy review report</div>'+
       '<div class="bc"><small>FDA</small><b>'+money(PRICE.fda)+'</b><p>US FDA cosmetic product listing</p></div>'+
-      '<div class="bc"><small>CNF</small><b>'+money(PRICE.cnf)+'</b><p>Health Canada cosmetic notification</p></div>'+
+      '<div class="bc"><small>CNF</small><b>CAD '+CNF_CAD+'</b><p>Health Canada cosmetic notification — apply directly on the OUAH portal, GST 5% extra</p></div>'+
       '<div class="bc"><small>OTC</small><b>'+money(PRICE.otc)+'</b><p>US OTC drug registration (e.g. sunscreen)</p></div>'+
       '<div class="bc"><small>NHP</small><b>'+money(PRICE.nhp)+'</b><p>Health Canada natural health product licence</p></div>'+
       '</div>'+
@@ -1403,18 +1407,18 @@ var QZ=[
   {k:'when',q:T('언제쯤 내보내실 계획인가요?','When do you plan to ship?'),o:[qo('3','3개월 안','Within 3 months'),qo('6','6개월 안','Within 6 months'),qo('unk','아직 몰라요','Not sure yet')]}
 ];
 /* 나라 × 제품 종류 → 예상 절차와 SKU당 등록비 범위. 확정이 아니라 「진단에서 확정」으로 안내한다 */
-function qr(ko,en,lo,hi,nko,nen){ return {ko:ko,t:T(ko,en),lo:lo,hi:hi,note:nko?T(nko,nen):''}; }
+function qr(ko,en,lo,hi,nko,nen,cad){ return {ko:ko,t:T(ko,en),lo:lo,hi:hi,note:nko?T(nko,nen):'',cad:cad||''}; }   /* cad: 'yes' CNF 확정 · 'maybe' CNF 일 수 있음 — 금액은 CNF_CAD(OUAH 포털) */
 var QROUTE={
   us:{gen:qr('FDA 화장품 리스팅을 하면 팔 수 있습니다','Sellable with an FDA cosmetic product listing',PRICE.fda,PRICE.fda),
       body:qr('FDA 화장품 리스팅을 하면 팔 수 있습니다','Sellable with an FDA cosmetic product listing',PRICE.fda,PRICE.fda),
       spf:qr('OTC 의약품 등록이 필요합니다 — 미국은 자외선차단제를 의약품으로 봅니다','Needs OTC drug registration — the US treats sunscreen as a drug',PRICE.otc,PRICE.otc),
       claim:qr('표현에 따라 화장품 리스팅만으로 되거나 OTC 의약품 등록이 필요합니다 — 진단에서 확정','A cosmetic listing may be enough, or OTC drug registration may be needed, depending on the claims — confirmed in the diagnosis',PRICE.fda,PRICE.otc),
       unk:qr('화장품 리스팅만으로 되는지, OTC 의약품 등록이 필요한지 진단에서 확정합니다','Whether a cosmetic listing is enough or OTC drug registration is needed is confirmed in the diagnosis',PRICE.fda,PRICE.otc)},
-  ca:{gen:qr('Health Canada 화장품 신고(CNF)를 하면 팔 수 있습니다','Sellable with a Health Canada cosmetic notification (CNF)',PRICE.cnf,PRICE.cnf),
-      body:qr('Health Canada 화장품 신고(CNF)를 하면 팔 수 있습니다','Sellable with a Health Canada cosmetic notification (CNF)',PRICE.cnf,PRICE.cnf),
+  ca:{gen:qr('Health Canada 화장품 신고(CNF)를 하면 팔 수 있습니다','Sellable with a Health Canada cosmetic notification (CNF)',0,0,'','','yes'),
+      body:qr('Health Canada 화장품 신고(CNF)를 하면 팔 수 있습니다','Sellable with a Health Canada cosmetic notification (CNF)',0,0,'','','yes'),
       spf:qr('천연건강제품(NHP)이나 의약품(DIN) 허가가 필요합니다 — 성분에 따라 다릅니다','Needs a natural health product (NHP) or drug (DIN) licence — depends on the ingredients',PRICE.nhp,PRICE.nhp,'의약품(DIN) 허가가 필요하면 따로 견적을 드립니다.','If it is a DIN drug, we quote separately.'),
-      claim:qr('표현을 고치면 화장품 신고(CNF)만으로 팔 수 있는지 먼저 검토합니다','We first check whether changing the claims makes it sellable with a cosmetic notification (CNF)',PRICE.cnf,PRICE.nhp),
-      unk:qr('화장품 신고(CNF)만으로 되는지, 다른 허가가 필요한지 진단에서 확정합니다','Whether a cosmetic notification (CNF) is enough or another licence is needed is confirmed in the diagnosis',PRICE.cnf,PRICE.nhp)}
+      claim:qr('표현을 고치면 화장품 신고(CNF)만으로 팔 수 있는지 먼저 검토합니다','We first check whether changing the claims makes it sellable with a cosmetic notification (CNF)',0,PRICE.nhp,'NHP 허가가 필요하면 SKU당 '+money(PRICE.nhp)+'입니다.','If an NHP licence is needed, it is '+money(PRICE.nhp)+' per SKU.','maybe'),
+      unk:qr('화장품 신고(CNF)만으로 되는지, 다른 허가가 필요한지 진단에서 확정합니다','Whether a cosmetic notification (CNF) is enough or another licence is needed is confirmed in the diagnosis',0,PRICE.nhp,'NHP 허가가 필요하면 SKU당 '+money(PRICE.nhp)+'입니다.','If an NHP licence is needed, it is '+money(PRICE.nhp)+' per SKU.','maybe')}
 };
 function qLabel(k,v){ var q=QZ.filter(function(x){ return x.k===k; })[0], o=q.o.filter(function(x){ return x.v===v; })[0]; return o||{ko:v,t:v}; }
 function qRange(lo,hi,plus){ return (lo===hi?money(lo):money(lo)+' ~ '+money(hi))+(plus?T(' 이상',' or more'):''); }
@@ -1427,6 +1431,9 @@ function quizResult(){
   routes.forEach(function(x){ per[0]+=x.r.lo; per[1]+=x.r.hi; });
   if(a.scope==='all'){ per[0]+=PRICE.design; per[1]+=PRICE.design; }
   var lo=per[0]*n[0], hi=per[1]*n[1], plus=a.sku==='4+';
+  var cad=''; routes.forEach(function(x){ if(x.r.cad) cad=x.r.cad; });
+  var portal=(a.cty==='ca' && a.scope==='reg' && a.kind!=='spf');   /* 캐나다·등록만 → OUAH 포털로 바로 (자외선차단제는 NHP·DIN 이라 진단) */
+  var cadAmt=(n[0]===n[1]?String(CNF_CAD*n[0]):(CNF_CAD*n[0])+' ~ '+(CNF_CAD*n[1]))+(plus?T(' 이상',' or more'):'');
   var miss=[];
   if(a.have.indexOf('inci')<0) miss.push(T('전성분표 — INCI 이름과 함량(%)','Ingredient list — INCI names and percentages'));
   if(a.have.indexOf('art')<0) miss.push(T('지금 라벨·단상자 전개도','Current label and carton dielines'));
@@ -1436,9 +1443,10 @@ function quizResult(){
   R.kind=qLabel('kind',a.kind).ko; R.sku=qLabel('sku',a.sku).ko; R.scope=qLabel('scope',a.scope).ko; R.when=qLabel('when',a.when).ko;
   R.have=a.have.map(function(v){ return qLabel('have',v).ko; }).join(', ');
   R.route=routes.map(function(x){ return (x.m==='us'?'미국':'캐나다')+': '+x.r.ko; }).join(' / ');
-  R.cost=(lo===hi?(lo/10000)+'만 원':(lo/10000)+'만 ~ '+(hi/10000)+'만 원')+(plus?' 이상':'')+' (부가세 별도, 진단 별도)';
+  var won=hi>0&&!(portal&&lo===0)?(lo===hi?(lo/10000)+'만 원':(lo/10000)+'만 ~ '+(hi/10000)+'만 원')+(plus?' 이상':'')+' (부가세 별도'+(portal?'':', 진단 별도')+')':'';
+  R.cost=[won,cad?(cad==='maybe'?'CNF 이면 ':'')+'캐나다 CNF CAD '+cadAmt+' (OUAH 포털, GST 5% 별도)':''].filter(Boolean).join(' + ');
   QUIZ.res=R;
-  return {routes:routes,lo:lo,hi:hi,plus:plus,miss:miss,n:n};
+  return {routes:routes,lo:lo,hi:hi,plus:plus,miss:miss,n:n,cad:cad,cadAmt:cadAmt,portal:portal};
 }
 function quizStepHtml(i){
   var q=QZ[i], a=QUIZ.a[q.k];
@@ -1476,21 +1484,28 @@ function quizResultHtml(){
   if(r.dir) return '<div class="qres"><h5>'+T('결과','RESULT')+'</h5><p class="qlead">'+T('나라부터 정하는 것이 순서입니다.','The first step is choosing the market.')+'</p>'+
     '<p>'+T('어느 나라부터, 어떤 제품부터 내보낼지 순서를 같이 정하는 방향 상담을 해 드립니다. 정해진 뒤에는 이 확인을 다시 하시면 예상 비용까지 보실 수 있습니다.','We run a direction session to decide which market and which product to start with. Once that is settled, run this check again to see a cost estimate.')+'</p></div>'+
     '<h4 class="psec">'+T('방향 상담 신청','Request a direction session')+'</h4>'+diagForm(true)+again;
-  var cost=qRange(r.lo,r.hi,r.plus);
-  var how=(QUIZ.a.scope==='all'?T('디자인 SKU당 ','Design ')+money(PRICE.design)+T(' + 등록',' per SKU + registration'):T('등록 SKU당 비용','Registration per SKU'))+
+  var wonShown=r.hi>0&&!(r.portal&&r.lo===0);
+  var cnfTxt=(r.cad==='maybe'?T('화장품 신고(CNF)로 되면 ','If it goes as a CNF, '):T('화장품 신고(CNF) ','cosmetic notification (CNF) '))+'CAD '+r.cadAmt+T(' · OUAH 포털에서 신청 · GST 5% 별도',' · applied on the OUAH portal · GST 5% extra');
+  var cost=wonShown?qRange(r.lo,r.hi,r.plus):'CAD '+r.cadAmt;
+  var regWon=r.routes.some(function(x){ return x.r.hi>0; });
+  var how=(QUIZ.a.scope==='all'?T('디자인 SKU당 ','Design ')+money(PRICE.design)+(regWon?T(' + 등록',' per SKU + registration'):T('',' per SKU')):T('등록 SKU당 비용','Registration per SKU'))+
     T(' × SKU ',' × ')+(r.n[0]===r.n[1]?r.n[0]:r.n[0]+'~'+r.n[1])+T('개',' SKUs')+'.';
   var notes=r.routes.map(function(x){ return x.r.note; }).filter(Boolean);
   return '<div class="qres">'+
     '<h5>'+T('팔려면 필요한 것','WHAT IT TAKES TO SELL')+'</h5><ul class="qroute">'+r.routes.map(function(x){ return '<li><b>'+(x.m==='us'?T('미국','US'):T('캐나다','Canada'))+'</b><span>'+x.r.t+'</span></li>'; }).join('')+'</ul>'+
     '<h5>'+T('예상 비용 · 부가세 별도','ESTIMATED COST · TAX EXTRA')+'</h5><p class="qcost">'+cost+'</p>'+
+    (r.cad&&wonShown?'<p class="qcad">+ '+T('캐나다 ','Canada ')+cnfTxt+'</p>':'')+
+    (r.portal?'<p class="qsub">'+T('캐나다 화장품 신고(CNF) 대행료는 SKU당 CAD '+CNF_CAD+'이고, GST 5%는 별도입니다. ','The Canadian cosmetic notification (CNF) fee is CAD '+CNF_CAD+' per SKU, plus 5% GST. ')+(r.cad==='maybe'?T('위 금액은 화장품 신고로 되는 경우입니다. ','The amount above applies if it goes as a CNF. '):'')+T('OUAH 포털에 전성분표를 올리면 팔 수 있는지와 정확한 견적이 바로 나옵니다.','Upload your ingredient list on the OUAH portal to see right away whether it can be sold and the exact quote.')+(notes.length?' '+notes.join(' '):'')+'</p>':
     '<p class="qsub">'+how+' '+(QUIZ.a.scope==='all'&&r.n[1]>1?T('디자인과 문구가 같고 용량만 다른 SKU는 디자인비를 50% 할인합니다. ','SKUs that differ only in size get 50% off design. '):'')+
-      T('시작 전 진단은 SKU당 ','The diagnosis before we start is ')+money(PRICE.diag)+T('이며, 30일 안에 계약하시면 전액 차감합니다.',' per SKU, fully credited if you sign within 30 days.')+(notes.length?' '+notes.join(' '):'')+'</p>'+
+      T('시작 전 진단은 SKU당 ','The diagnosis before we start is ')+money(PRICE.diag)+T('이며, 30일 안에 계약하시면 전액 차감합니다.',' per SKU, fully credited if you sign within 30 days.')+(notes.length?' '+notes.join(' '):'')+'</p>')+
     '<h5>'+T('준비하실 자료','WHAT TO PREPARE')+'</h5>'+ul(r.miss)+
-    '<h5>'+T('예상 기간','TIMELINE')+'</h5><p>'+T('보통 4주입니다. 기관의 심사·처리 기간은 따로 걸립니다.','About four weeks. Agency review and processing time is extra.')+'</p>'+
-    '<p class="pmeta">'+T('일반 기준에 따른 자동 안내입니다. 내 제품을 팔 수 있는지는 진단에서 확정하며, 등록이나 승인 결과를 보장하지 않습니다.','This is an automatic estimate based on general rules. Whether your product can be sold is confirmed in the diagnosis, and we do not guarantee registration or approval results.')+'</p>'+
+    '<h5>'+T('예상 기간','TIMELINE')+'</h5><p>'+(r.portal?T('포털에서 바로 신청합니다. Health Canada 처리 기간은 따로 걸립니다.','You can apply on the portal right away. Health Canada processing time is extra.'):T('보통 4주입니다. 기관의 심사·처리 기간은 따로 걸립니다.','About four weeks. Agency review and processing time is extra.'))+'</p>'+
+    '<p class="pmeta">'+T('일반 기준에 따른 자동 안내입니다. 내 제품을 팔 수 있는지는 '+(r.portal?'포털에서 담당자가 확인한 뒤':'진단에서')+' 확정하며, 등록이나 승인 결과를 보장하지 않습니다.','This is an automatic estimate based on general rules. Whether your product can be sold is confirmed in the diagnosis, and we do not guarantee registration or approval results.')+'</p>'+
     '</div>'+
-    (QUIZ.a.cty==='ca'&&QUIZ.a.scope==='reg'?canadaCard():'')+
-    '<h4 class="psec">'+T('이 결과로 진단 신청하기','Request a diagnosis')+'</h4>'+diagForm(false)+
+    (r.portal?
+      '<a class="pgo qportal" id="ouahGo" href="'+OUAH_PORTAL+'" target="_blank" rel="noopener">'+T('OUAH 포털에서 바로 신청하기 →','Apply directly on the OUAH portal →')+'</a>'+
+      '<p class="pmeta">'+T('캐나다 화장품 신고는 OUAH 포털에서 바로 진행합니다. 영·불 라벨 문안 보고서도 포털에서 받으실 수 있습니다. 동인천상회 대표가 이사로 있는 OUAH 의 포털입니다.','Canadian cosmetic notifications are handled directly on the OUAH portal, including the English and French label copy report. The portal belongs to OUAH, where our founder is a director.')+'</p>'
+    :'<h4 class="psec">'+T('이 결과로 진단 신청하기','Request a diagnosis')+'</h4>'+diagForm(false))+
     '<div class="qagain"><button type="button" class="qback" data-qrestart>'+T('처음부터 다시','Start over')+'</button>'+go('sprint',T('가격과 진행 순서 자세히 보기','See pricing and process in detail'),true)+'</div>';
 }
 function bindQuiz(){
