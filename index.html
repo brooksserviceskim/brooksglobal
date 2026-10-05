@@ -122,30 +122,25 @@ button{font:inherit;color:inherit;border:none;background:none;cursor:pointer}
 .wordmark .sub b{font-weight:900;font-size:clamp(15px,2.1vw,22px);letter-spacing:-.03em;color:var(--ink)}
 .wordmark .sub s{text-decoration:none;width:1px;height:13px;background:var(--line-2,#C9C4BA);display:block;flex:none}
 .wordmark em{font-style:normal;font-family:var(--mono);font-size:clamp(9px,1.2vw,11px);letter-spacing:.2em;color:var(--ink-3);white-space:nowrap}
-/* 첫 화면 글 블록 — 키커 · 대표 제목 · 설명 · 대표 CTA · 마이크로카피 */
+/* 첫 화면 글 블록 — 키커 · 소개 버튼 (제목과 설명은 아바타 소개로 옮김, 2026-10-05) */
 /* 폭 900 이상은 좌우 분할: 글은 왼쪽 열, 얼굴과 오브제는 오른쪽 (설계 0-1) */
 @media(min-width:900px){
   .wordmark{left:6vw;top:50%;transform:translateY(-50%);width:min(42vw,600px);text-align:left}
   .wordmark .en{margin:0;height:clamp(40px,5vw,72px)}
   .wordmark .sub{justify-content:flex-start}
   .hero-copy{margin-top:clamp(18px,3vh,30px)}
-  .hero-copy h1{font-size:clamp(28px,2.7vw,40px);line-height:1.25}
-  .hero-copy p{margin:14px 0 0;max-width:500px}
   .hero-cta{margin-top:22px}
   /* 분할 화면에서는 말풍선을 모자 바로 위로 — 오른쪽 위 04 오브제를 가리지 않게 */
   .hero .bubble{left:calc(var(--face-x,50%) - 40px);top:calc(var(--face-y) - var(--face-h)*0.5 - 72px)}
 }
 .hero-copy{margin-top:clamp(10px,1.6vh,16px);word-break:keep-all;overflow-wrap:break-word}
 .hero-copy .kicker{display:block;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.2em;color:var(--green)}
-.hero-copy h1{margin-top:6px;font-size:clamp(20px,1.9vw,27px);font-weight:900;letter-spacing:-.035em;color:var(--ink)}
-.hero-copy p{max-width:620px;margin:8px auto 0;font-size:clamp(13px,1.05vw,15px);line-height:1.6;color:var(--ink-2)}
 .hero-cta{pointer-events:auto;margin-top:14px;display:inline-block;background:var(--ink);color:#fff;font-weight:800;font-size:15px;line-height:1.3;
   padding:12px 22px;border-radius:99px;box-shadow:var(--shadow);transition:background .15s}
 .hero-cta:hover,.hero-cta:focus-visible{background:var(--green)}
-.hero-copy .micro{display:block;margin-top:8px;font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--ink-3)}
 @media(max-width:640px){ .wordmark .sub{gap:8px} .wordmark .sub s{display:none}
-  .wordmark{top:76px} .wordmark .sub{margin-top:6px} .hero-copy{margin-top:8px} .hero-cta{margin-top:10px} .hero-copy .micro{margin-top:6px}
-  .hero-copy p{display:none} .hero-copy h1{font-size:clamp(17px,4.6vw,20px)} .hero-cta{display:block;width:100%;font-size:14.5px}
+  .wordmark{top:76px} .wordmark .sub{margin-top:6px} .hero-copy{margin-top:8px} .hero-cta{margin-top:10px}
+  .hero-cta{display:block;width:100%;font-size:14.5px}
   /* 폰은 양옆 세로줄에 오브제가 서 있어서 말풍선을 모자 가운데 위로 (폭 172 이하라 두 줄 사이에 들어간다) */
   .hero .bubble{max-width:172px;font-size:14px;left:calc(var(--face-x,50%) - 86px);top:calc(var(--face-y) - var(--face-h)*0.5 - 4px)} }
 
@@ -192,6 +187,29 @@ button{font:inherit;color:inherit;border:none;background:none;cursor:pointer}
   box-shadow:var(--shadow);animation:wob 2.6s ease-in-out infinite}
 .bubble::after{content:"";position:absolute;left:18px;bottom:-9px;width:16px;height:16px;background:#fff;border-radius:3px;transform:rotate(45deg)}
 @keyframes wob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+
+/* 아바타 소개 (2026-10-05) — 질감은 기존 말풍선·오프화이트. 막은 히어로 안 z8, 얼굴은 z9 로 막 위에 */
+#tour{position:absolute;inset:0;z-index:8}
+#tour::before{content:"";position:absolute;inset:0;background:rgba(246,244,240,.95);backdrop-filter:blur(6px)}
+.hero.touring .avatar{z-index:9}
+.hero.touring .bubble{display:none}
+body.touring .topbar,body.touring .botnav{opacity:0;pointer-events:none;transition:opacity .3s}
+#tbubble{position:absolute;z-index:10;left:0;bottom:0;width:max-content;max-width:min(400px,86vw);background:#fff;color:var(--ink);border-radius:22px;
+  padding:16px 20px;font-size:19px;font-weight:800;line-height:1.5;box-shadow:var(--shadow);word-break:keep-all;overflow-wrap:break-word}
+#tbubble::after{content:"";position:absolute;left:var(--tail,50%);margin-left:-9px;bottom:-9px;width:18px;height:18px;background:#fff;border-radius:3px;transform:rotate(45deg)}
+#tbubble small{display:block;margin-top:8px;font-size:13px;font-weight:500;line-height:1.55;color:var(--ink-2)}
+#tbubble.pop{animation:tpop .45s cubic-bezier(.3,1.5,.5,1)}
+@keyframes tpop{from{transform:translateY(8px) scale(.95);opacity:.3}to{transform:none;opacity:1}}
+#tdots{position:absolute;z-index:10;left:50%;bottom:calc(30px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);display:flex;gap:8px}
+#tdots i{width:8px;height:8px;border-radius:50%;background:var(--line);transition:.3s}
+#tdots i.now{width:22px;border-radius:5px;background:var(--ink)}
+#tdots i.done{background:var(--ink-3)}
+#tskip{position:absolute;z-index:10;top:18px;right:20px;font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--ink-3);text-decoration:underline;text-underline-offset:3px}
+#tdoors{position:absolute;z-index:10;left:50%;bottom:calc(58px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);width:min(92vw,520px);
+  display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+#tdoors .pgo{width:auto;flex:1 1 220px}
+#thint{position:absolute;z-index:10;left:0;right:0;bottom:calc(8px + env(safe-area-inset-bottom,0px));text-align:center;font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--ink-3)}
+@media(prefers-reduced-motion:reduce){#tbubble.pop{animation:none}}
 
 /* HUD */
 .hud{position:absolute;left:0;right:0;bottom:58px;z-index:7;display:flex;align-items:center;justify-content:space-between;gap:14px;
@@ -398,10 +416,7 @@ button{font:inherit;color:inherit;border:none;background:none;cursor:pointer}
     <span class="sub"><b>동인천상회</b><s></s><em>DONGINCHEON TRADING CO.</em></span>
     <div class="hero-copy">
       <small class="kicker">K-BEAUTY EXPORT LAUNCH SYSTEM</small>
-      <h1 data-en="Regulatory review, packaging and English sales materials. Your overseas launch, prepared in one place.">규정 검토부터 패키지, 영문 판매자료까지 해외 출시 준비를 한곳에서 끝냅니다.</h1>
-      <p data-en="No more repeating the same brief to different vendors. We first confirm whether your product can be exported, then align the label, packaging, product page and registration documents to one standard.">업체마다 같은 설명을 되풀이하실 필요가 없습니다. 동인천상회가 수출 가능 여부를 먼저 확인하고, 라벨·패키지·상세페이지와 등록 서류를 같은 기준으로 맞춰 드립니다.</p>
-      <button class="hero-cta" id="heroCta" data-open="fit" data-en="Check your product&#39;s launch readiness →">내 제품의 출시 준비 확인하기 →</button>
-      <small class="micro" data-en="1–3 min · Projects with budget and timeline first">작성 1~3분 · 예산과 일정이 정해진 프로젝트를 먼저 진행합니다</small>
+      <button class="hero-cta" id="heroCta" type="button" data-en="What does Dongincheon Trading Co. do?">동인천상회는 무슨 일을 하는 회사인가요?</button>
     </div>
   </div>
   <div class="avatar" id="avatar" role="button" tabindex="0" aria-label="동인천김씨" data-en-aria="Dongincheon Kim">
@@ -412,6 +427,17 @@ button{font:inherit;color:inherit;border:none;background:none;cursor:pointer}
   </div>
   <div id="stage"></div>
   <div class="bubble" id="bubble" data-en="Tap me~">눌러봐~</div>
+  <!-- 아바타 소개 — portal.ouahco.ca 첫 방문 인사와 같은 방식(말풍선 타이핑 · 반응 클립 · 자동 넘김 · 점 · 건너뛰기) -->
+  <div id="tour" role="dialog" aria-label="동인천상회 소개" data-en-aria="About Dongincheon Trading Co." hidden>
+    <button id="tskip" type="button" data-en="Skip">건너뛰기</button>
+    <div id="tbubble" aria-live="polite"></div>
+    <div id="tdots" aria-hidden="true"></div>
+    <div id="tdoors" hidden>
+      <button type="button" class="pgo" id="tfit" data-en="Check if my product fits →">내 제품도 맞는지 확인하기 →</button>
+      <button type="button" class="pgo ghost" id="tsprint" data-en="See pricing and process">가격과 진행 순서 보기</button>
+    </div>
+    <div id="thint" data-en="Tap to continue · Esc to skip">눌러서 넘기기 · Esc 건너뛰기</div>
+  </div>
   <div class="hud">
     <button class="gswitch" id="gswitch" aria-pressed="false"><span data-en="Gravity">중력</span><i class="knob"></i></button>
     <div class="hint">DRAG · THROW · CLICK</div>
@@ -842,32 +868,32 @@ function canadaCard(){
 var PAGES={
   /* ---- 1-4 리뉴얼 패널 (설계 3.3~3.9). 가격 숫자는 넣지 않는다 — D1·D2·D3·D7·D9 결정 뒤 채움 ---- */
   sprint:{kicker:'ONE FLAGSHIP OFFER',title:'Export-Ready Launch Sprint',
-    lede:'해외 출시를 앞둔 화장품 브랜드와 약 4주 동안 집중해서 진행합니다. 규정 검토와 디자인을 따로 발주하면 생기는 누락, 반복 설명, 재작업을 줄입니다.',
+    lede:'미국·캐나다에 화장품을 처음 내보내는 브랜드를 위한 4주 상품입니다. 규정 확인, 라벨 문구, 용기·단상자 디자인, 영문 상세페이지, 등록까지 한 팀이 맡습니다.',
     html:function(){ return ''+
-      '<h4 class="psec">1) 이런 문제를 풉니다</h4>'+
-      '<p class="pquote">업체마다 같은 설명을 되풀이하지 않아도 되고, 규정 때문에 완성된 디자인을 다시 고치지 않아도 됩니다. 지금 무엇이 부족하고 다음에 누가 결정해야 하는지도 한눈에 보입니다.</p>'+
-      '<h4 class="psec">2) 4주 뒤에 받으시는 것</h4>'+
-      '<p>기술을 많이 쓰는 것이 목적이 아닙니다. 출시 전에 맞춰야 할 규정, 라벨, 패키지, 판매자료를 같은 기준으로 맞추는 것이 목적입니다.</p>'+
-      ul(['출시 준비 진단서','자료 누락 및 위험요소 목록','시장별 표기 문구 또는 검토 의견','패키지·라벨 수정안','영문 상세페이지 핵심 구조 또는 완성본','제출·제작·출시 체크리스트','캐나다 등록 포털 연계(필요한 경우)']) +
-      '<h4 class="psec">3) 들어가는 것과 빠지는 것</h4>'+
-      steps([['출시 전 점검','제품, 국가, 성분, 광고 문구, 지금 아트워크와 일정을 점검합니다.'],
-             ['규제 경로 확인','등록 경로, 금지·제한 성분과 문구, 필요한 자료와 외부 절차를 정리합니다.'],
-             ['라벨·패키지 문안','필수 표기와 영문·불문 등 나라별 문안을 잡고, 고칠 곳을 표시하거나 적용 파일을 만듭니다.'],
-             ['판매자료','패키지와 같은 표현을 쓰는 영문 상세페이지나 판매자료를 만듭니다.'],
-             ['인수인계','최종 파일, 제출·제작 체크리스트, 다음 담당자와 일정을 넘겨 드립니다.']])+
-      '<p class="pmeta">정부 수수료, 시험성적서 발급과 실험실 시험, 인쇄·용기·단상자 생산비, 제품 촬영·영상·모델·번역 감수 같은 외부 실비, 법률의견서와 승인 보장, 정한 횟수를 넘는 수정과 새 SKU 는 기본 범위에 들어가지 않습니다.</p>'+
-      '<h4 class="psec">4) 4주는 이렇게 갑니다</h4>'+
+      '<h4 class="psec">1) 이럴 때 맡기시면 됩니다</h4>'+
+      ul(['미국·캐나다에 처음 수출하는데 무엇부터 해야 할지 모르실 때',
+          '국내용 패키지를 그대로 써도 되는지 확인이 필요하실 때',
+          '디자인을 다 만든 뒤에 규정 때문에 다시 고치게 될까 걱정되실 때',
+          '규제 업체, 디자이너, 상세페이지 업체에 같은 설명을 여러 번 하고 계실 때'])+
+      '<p class="pmeta">나라·제품·일정이 아직 정해지지 않았거나 무료 시안, 무료 규정 판정을 원하시는 경우에는 맞지 않습니다.</p>'+
+      '<h4 class="psec">2) 4주 뒤 받으시는 것</h4>'+
+      ul(['출시 준비 진단서 — 지금 그 나라에서 팔 수 있는지, 무엇이 부족한지 정리한 문서',
+          '위험 목록 — 쓰면 안 되는 성분과 광고 문구, 빠진 서류',
+          '나라 기준에 맞춘 라벨 문구 — 영문, 캐나다는 불문 포함',
+          '인쇄용 용기·단상자 디자인 파일',
+          '영문 썸네일과 A+ 상세페이지',
+          'FDA·Health Canada 등록 — 선택하신 경우',
+          '생산과 출시 전에 확인할 체크리스트'])+
+      '<h4 class="psec">3) 진행 순서</h4>'+
       '<dl class="facts">'+
-      '<div class="fact"><dt>착수 전</dt><dd>유료 진단, 범위·가격 확정, 착수금, 자료 수령 — 고객이 국가·SKU·예산·승인권자를 정합니다</dd></div>'+
-      '<div class="fact"><dt>1주차</dt><dd>규제 경로, 자료 누락, 광고 문구 검토 — 진행 경로를 승인합니다</dd></div>'+
-      '<div class="fact"><dt>2주차</dt><dd>라벨·패키지 정보구조와 문안 — 문안과 구조를 승인합니다</dd></div>'+
-      '<div class="fact"><dt>3주차</dt><dd>디자인과 판매자료 제작 — 1차 시안을 승인합니다</dd></div>'+
-      '<div class="fact"><dt>4주차</dt><dd>수정, 검수, 제출·제작 체크리스트 — 최종 승인 뒤 잔금을 정산합니다</dd></div></dl>'+
-      '<h4 class="psec">5) 이런 팀에 맞습니다</h4>'+
-      ul(['첫 캐나다·미국 출시를 준비하는 한국 화장품 브랜드와 제조사','해외 진출 담당자는 있지만 사내 규제·글로벌 디자인 인력이 넉넉하지 않은 팀','패키지·전성분표·상세페이지는 있는데 나라마다 무엇을 바꿔야 하는지 모르는 팀','규제 대행사, 디자이너, 개발사 사이에서 자료와 책임이 흩어진 팀','1~6개월 안에 수출 일정이 있고, 예산 범위와 승인권자가 있는 팀'])+
-      '<p class="pmeta">나라·제품·일정이 아직 정해지지 않았거나, 무료 시안이나 무료 규제 판정을 원하시거나, 승인권자 없이 정보만 모으시는 경우는 뒤로 미룹니다. 예산과 구매 기준을 밝히기 어렵거나 법적 승인·판매 성공 보장이 필요한 경우도 같습니다.</p>'+
+      '<div class="fact"><dt>착수 전</dt><dd>유료 진단으로 범위와 가격을 정합니다. 나라, SKU, 최종 결정하실 분을 알려 주세요.</dd></div>'+
+      '<div class="fact"><dt>1주차</dt><dd>팔 수 있는 경로를 확인하고, 문제가 되는 성분·문구와 빠진 서류를 찾습니다.</dd></div>'+
+      '<div class="fact"><dt>2주차</dt><dd>라벨에 들어갈 문구와 표기 순서를 정합니다.</dd></div>'+
+      '<div class="fact"><dt>3주차</dt><dd>용기·단상자와 상세페이지 시안을 만듭니다.</dd></div>'+
+      '<div class="fact"><dt>4주차</dt><dd>수정과 최종 검수를 마치고 파일을 넘겨 드립니다. 잔금은 이때 정산합니다.</dd></div></dl>'+
+      '<p class="pmeta">매주 끝에 결과를 확인해 주시면 다음 단계로 넘어갑니다.</p>'+
       /* 2026-10-05 가격 확정(D1·D2, 부가세 별도). 바꿀 때는 볼트 log 의 결정 기록도 같이. 숫자는 PRICE 한 곳 */
-      '<h4 class="psec">6) 가격</h4>'+
+      '<h4 class="psec">4) 가격</h4>'+
       '<div class="bento">'+
       '<div class="bc wide key"><small>디자인 패키지 · SKU당</small><b>'+money(PRICE.design)+'</b><p>용기·단상자, 영문 썸네일과 A+ 상세페이지, 한국·미국·유럽 기준 라벨 문구까지 들어갑니다.</p></div>'+
       '<div class="bc"><small>유료 진단 · SKU당</small><b>'+money(PRICE.diag)+'</b><p>30일 안에 Sprint 를 계약하시면 전액 차감합니다.</p></div>'+
@@ -880,7 +906,7 @@ var PAGES={
       '</div>'+
       ul(['디자인과 문구가 같고 용량만 다른 SKU 는 50% 할인합니다',
           '월 유지관리는 Sprint 를 마친 뒤에만 제안합니다'])+
-      '<p class="pmeta">모든 가격은 부가세 별도입니다. 정부 수수료, 시험성적서, 인쇄·생산비는 들어가지 않습니다. FDA 제품 등록은 제조 시설이 FDA 에 등록되어 있는 경우를 기준으로 하며, 시설 등록과 미국 대리인은 맡지 않습니다. 필요하시면 따로 견적을 드립니다.</p>'+
+      '<p class="pmeta">모든 가격은 부가세 별도입니다. 정부 수수료, 시험성적서와 실험실 시험, 인쇄·생산비, 제품 촬영과 영상, 법률 의견서는 들어가지 않습니다. 등록 승인을 보장하지는 않으며, 정한 횟수를 넘는 수정은 따로 견적을 드립니다. FDA 제품 등록은 제조 시설이 FDA 에 등록되어 있는 경우를 기준으로 하며, 시설 등록과 미국 대리인은 맡지 않습니다. 필요하시면 따로 견적을 드립니다.</p>'+
       canadaCard()+
       go('fit','우리 제품도 맞는지 확인하기 →'); }},
   how:{kicker:'HOW IT WORKS',title:'적합성 확인부터 착수까지',
@@ -986,31 +1012,31 @@ var PAGES={
 /* 영어판 패널 (G6) — 한국어판과 같은 사실, 영어 업무 문체 */
 var PAGES_EN={
   sprint:{kicker:'ONE FLAGSHIP OFFER',title:'Export-Ready Launch Sprint',
-    lede:'An intensive four-week project for cosmetic brands preparing to launch overseas. It removes the gaps, repeated briefings and rework that come from ordering regulatory review and design separately.',
+    lede:'A four-week package for brands shipping cosmetics to the US or Canada for the first time. One team handles the regulatory check, label copy, container and carton design, English product page and registration.',
     html:function(){ return ''+
-      '<h4 class="psec">1) The problem we solve</h4>'+
-      '<p class="pquote">You stop repeating the same brief to different vendors, and finished artwork no longer has to be redone because of regulations. You can always see what is missing and who decides next.</p>'+
+      '<h4 class="psec">1) When to use it</h4>'+
+      ul(['You are exporting to the US or Canada for the first time and are not sure where to start',
+          'You need to know whether your domestic packaging can be used as is',
+          'You worry that finished artwork will have to be redone for regulatory reasons',
+          'You keep explaining the same product to regulatory consultants, designers and page builders'])+
+      '<p class="pmeta">It is not a fit if the market, product or timeline is still open, or if you are looking for free drafts or a free regulatory opinion.</p>'+
       '<h4 class="psec">2) What you receive in four weeks</h4>'+
-      '<p>The point is not to use more technology. It is to align regulations, labels, packaging and sales materials to one standard before launch.</p>'+
-      ul(['Launch readiness report','List of missing documents and risks','Market-specific label copy or review notes','Packaging and label revisions','Core structure or finished English product page','Submission, production and launch checklist','Link to the Canadian registration portal (where needed)'])+
-      '<h4 class="psec">3) What is included and what is not</h4>'+
-      steps([['Pre-launch check','We review the product, markets, ingredients, claims, current artwork and timeline.'],
-             ['Regulatory route','We map the registration route, prohibited and restricted ingredients and claims, required documents and outside procedures.'],
-             ['Label and packaging copy','We set the mandatory elements and market copy in English, French and other languages, then mark changes or prepare revised files.'],
-             ['Sales materials','We build an English product page or sales materials that use the same wording as the packaging.'],
-             ['Handover','We hand over the final files, the submission and production checklist, and the next owners and dates.']])+
-      '<p class="pmeta">Not included: government fees, test reports and laboratory testing, printing and container or carton production, outside costs such as photography, video, models and translation proofreading, legal opinions or approval guarantees, revisions beyond the agreed rounds, and additional SKUs.</p>'+
-      '<h4 class="psec">4) How the four weeks run</h4>'+
+      ul(['Launch readiness report — whether the product can be sold in that market and what is missing',
+          'Risk list — ingredients and claims to avoid, and missing documents',
+          'Label copy that meets each market’s rules — English, plus French for Canada',
+          'Print-ready container and carton design files',
+          'English thumbnails and an A+ product page',
+          'FDA or Health Canada registration — if you choose it',
+          'Checklist for production and launch'])+
+      '<h4 class="psec">3) How it runs</h4>'+
       '<dl class="facts">'+
-      '<div class="fact"><dt>BEFORE</dt><dd>Paid diagnosis, scope and price, deposit, materials — you confirm markets, SKUs, budget and approver</dd></div>'+
-      '<div class="fact"><dt>WEEK 1</dt><dd>Regulatory route, missing documents, claims review — you approve the route</dd></div>'+
-      '<div class="fact"><dt>WEEK 2</dt><dd>Label and packaging structure and copy — you approve the copy and structure</dd></div>'+
-      '<div class="fact"><dt>WEEK 3</dt><dd>Design and sales materials — you approve the first draft</dd></div>'+
-      '<div class="fact"><dt>WEEK 4</dt><dd>Revisions, QA, submission and production checklist — final approval and balance payment</dd></div></dl>'+
-      '<h4 class="psec">5) Who it is for</h4>'+
-      ul(['Cosmetic brands and manufacturers, especially from Korea, preparing a first launch in Canada or the US','Teams with an export manager but limited in-house regulatory or global design staff','Teams that already have packaging, ingredient lists and product pages but do not know what to change for each market','Teams whose documents and responsibilities are spread across regulatory agencies, designers and developers','Teams with an export date within one to six months, a budget range and an approver'])+
-      '<p class="pmeta">We put on hold projects with no market, product or timeline yet, requests for free drafts or free regulatory opinions, information gathering without an approver, projects that cannot share a budget or buying criteria, and requests for guaranteed approval or sales.</p>'+
-      '<h4 class="psec">6) Pricing</h4>'+
+      '<div class="fact"><dt>BEFORE</dt><dd>A paid diagnosis sets the scope and price. Tell us the markets, SKUs and who makes the final call.</dd></div>'+
+      '<div class="fact"><dt>WEEK 1</dt><dd>We confirm the route to market and find problem ingredients, claims and missing documents.</dd></div>'+
+      '<div class="fact"><dt>WEEK 2</dt><dd>We set the label copy and the order of required information.</dd></div>'+
+      '<div class="fact"><dt>WEEK 3</dt><dd>We design the container, carton and product page drafts.</dd></div>'+
+      '<div class="fact"><dt>WEEK 4</dt><dd>We finish revisions and final checks and hand over the files. The balance is due at this point.</dd></div></dl>'+
+      '<p class="pmeta">You review the results at the end of each week before we move on.</p>'+
+      '<h4 class="psec">4) Pricing</h4>'+
       '<div class="bento">'+
       '<div class="bc wide key"><small>DESIGN PACKAGE · PER SKU</small><b>'+money(PRICE.design)+'</b><p>Container and carton, English thumbnails and an A+ product page, with label copy meeting Korean, US and EU requirements.</p></div>'+
       '<div class="bc"><small>PAID DIAGNOSIS · PER SKU</small><b>'+money(PRICE.diag)+'</b><p>Fully credited if you sign the Sprint within 30 days.</p></div>'+
@@ -1022,7 +1048,7 @@ var PAGES_EN={
       '<div class="bc"><small>NHP</small><b>'+money(PRICE.nhp)+'</b><p>Health Canada natural health product licence</p></div>'+
       '</div>'+
       ul(['SKUs with identical design and copy that differ only in size are 50% off','Monthly maintenance is offered only after the Sprint'])+
-      '<p class="pmeta">Prices exclude applicable taxes. Government fees, test reports and printing or production costs are not included. FDA product listing assumes the manufacturing facility is already registered with FDA. We do not handle facility registration or US agent services, but we can quote them separately.</p>'+
+      '<p class="pmeta">Prices exclude applicable taxes. Not included: government fees, test reports and laboratory testing, printing and production, photography and video, and legal opinions. We do not guarantee registration approval, and revisions beyond the agreed rounds are quoted separately. FDA product listing assumes the manufacturing facility is already registered with FDA. We do not handle facility registration or US agent services, but we can quote them separately.</p>'+
       canadaCard()+
       go('fit','Check if your product fits →'); }},
   how:{kicker:'HOW IT WORKS',title:'From fit check to kickoff',
@@ -1364,8 +1390,90 @@ function closePanel(){
   if(lastFocus&&lastFocus.focus) lastFocus.focus();
 }
 document.getElementById('pclose').addEventListener('click',closePanel);
+
+/* ===== 아바타 소개 — 「동인천상회는 무슨 일을 하는 회사인가요?」 =====
+   portal.ouahco.ca 첫 방문 인사와 같은 방식: 말풍선에 글자를 하나씩, 장면마다 반응 클립, 가만두면 넘어가고 누르면 바로 넘어감.
+   마지막 장면에서 적합성 확인 · Sprint 패널로. 움직임 줄이기 설정이면 타이핑 없이 보여 준다 */
+var TOUR=T([
+  {say:'안녕하세요!<br>동인천상회예요.',clip:'cap'},
+  {say:'한국 화장품을 <b>미국·캐나다</b>에 내보낼 때 필요한 일을 한곳에서 해 드려요.',clip:'nod',wait:2600},
+  {say:'먼저 그 나라 규정으로 <b>팔 수 있는 제품인지</b> 확인하고, 그 기준으로 라벨 문구를 써요.',small:'미국 FDA · 캐나다 Health Canada 기준이에요.',clip:'chill',wait:3200},
+  {say:'용기·단상자 디자인과 <b>영문 상세페이지</b>도 같은 기준으로 만들어요.',small:'다 만든 디자인을 규정 때문에 다시 고칠 일이 줄어요.',clip:'shades',wait:3200},
+  {say:'<b>FDA·Health Canada 등록</b>까지 맡아요.',small:'디자인은 SKU당 '+money(PRICE.design)+', 등록은 '+money(PRICE.fda)+'부터예요.',clip:'nod',wait:3000},
+  {say:'보통 <b>4주</b>면 출시 준비가 끝나요.',small:'이 묶음을 Export-Ready Launch Sprint 라고 불러요.',clip:'chill',wait:2800},
+  {say:'내 제품도 되는지<br>확인해 볼까요?',clip:'nod',end:true}
+],[
+  {say:'Hi!<br>We’re Dongincheon Trading Co.',clip:'cap'},
+  {say:'We handle everything a cosmetic brand needs to launch in <b>the US and Canada</b>, in one place.',clip:'nod',wait:2600},
+  {say:'First we check that your product <b>can be sold</b> under the local rules, then write the label copy to that standard.',small:'US FDA and Health Canada requirements.',clip:'chill',wait:3200},
+  {say:'Containers, cartons and an <b>English product page</b> are designed to the same standard.',small:'So finished artwork does not need redoing because of regulations.',clip:'shades',wait:3200},
+  {say:'We also handle <b>FDA and Health Canada registration</b>.',small:'Design is '+money(PRICE.design)+' per SKU, registration from '+money(PRICE.fda)+'.',clip:'nod',wait:3000},
+  {say:'Most launches are ready in about <b>four weeks</b>.',small:'We call this the Export-Ready Launch Sprint.',clip:'chill',wait:2800},
+  {say:'Want to check<br>if your product fits?',clip:'nod',end:true}
+]);
+var tourEl=document.getElementById('tour'), tBub=document.getElementById('tbubble'), tDots=document.getElementById('tdots'), tDoors=document.getElementById('tdoors');
+var tStep=-1, tType=null, tNextT=null, tLastFocus=null;
+window.__tourOpen=function(){ return !tourEl.hidden; };
+function tourHtml(st){ return st.say+(st.small?'<small>'+st.small+'</small>':''); }
+/* 말풍선을 얼굴 머리 위에 — 완성된 글로 먼저 크기를 재고 그 크기로 고정한다(타이핑 중 크기가 흔들리지 않게) */
+function tourPlace(st){
+  tBub.style.width=''; tBub.style.minHeight=''; tBub.style.visibility='hidden'; tBub.innerHTML=tourHtml(st);
+  var br=tBub.getBoundingClientRect(), bw=Math.ceil(br.width)+1, bh=Math.ceil(br.height), hero=tourEl.getBoundingClientRect();   /* 올림 — 내림하면 마지막 글자가 다음 줄로 떨어진다 */
+  var av=document.getElementById('avatar').getBoundingClientRect();
+  var cx=av.left+av.width/2-hero.left, left=Math.max(12,Math.min(hero.width-bw-12,cx-bw/2));
+  var top=Math.max(56,av.top-hero.top-bh-20);
+  tBub.style.left=left+'px'; tBub.style.top=top+'px'; tBub.style.bottom='auto';
+  tBub.style.setProperty('--tail',Math.max(24,Math.min(bw-24,cx-left))+'px');
+  tBub.style.width=bw+'px'; tBub.style.minHeight=bh+'px'; tBub.style.visibility='';
+}
+function tourShow(i){
+  tStep=i; clearTimeout(tNextT); clearInterval(tType); tType=null;
+  var st=TOUR[i];
+  tDoors.hidden=!st.end;
+  tourPlace(st);
+  [].forEach.call(tDots.children,function(d,k){ d.className=k<i?'done':k===i?'now':''; });
+  if(st.clip && !HEAD.busy()) HEAD.use(st.clip);
+  tBub.classList.remove('pop'); void tBub.offsetWidth; tBub.classList.add('pop');
+  if(reduce){ tourSchedule(st); return; }
+  var cells=[], w=document.createTreeWalker(tBub,NodeFilter.SHOW_TEXT);
+  while(w.nextNode()){ cells.push([w.currentNode,w.currentNode.nodeValue]); w.currentNode.nodeValue=''; }
+  var a=0,b=0;
+  tType=setInterval(function(){
+    if(a>=cells.length){ clearInterval(tType); tType=null; tourSchedule(st); return; }
+    b++; cells[a][0].nodeValue=cells[a][1].slice(0,b);
+    if(b>=cells[a][1].length){ a++; b=0; }
+  },30);
+}
+function tourSchedule(st){ if(!st.end) tNextT=setTimeout(function(){ tourShow(tStep+1); },st.wait||1800); else document.getElementById('tfit').focus(); }
+function tourNext(){
+  if(tType){ clearInterval(tType); tType=null; tBub.innerHTML=tourHtml(TOUR[tStep]); tourSchedule(TOUR[tStep]); return; }   /* 타이핑 중이면 끝까지 보여 주기만 */
+  if(TOUR[tStep].end) return;
+  tourShow(tStep+1);
+}
+function tourOpen(){
+  tLastFocus=document.getElementById('heroCta');
+  tDots.innerHTML=TOUR.map(function(){ return '<i></i>'; }).join('');
+  tourEl.hidden=false; hero.classList.add('touring'); document.body.classList.add('touring');
+  document.querySelector('.topbar').inert=true; document.querySelector('.botnav').inert=true;
+  track('about_tour_start');
+  tourShow(0);
+  document.getElementById('tskip').focus({preventScroll:true});
+}
+function tourClose(then){
+  clearTimeout(tNextT); clearInterval(tType); tType=null;
+  track('about_tour_end',{step:tStep+1,of:TOUR.length});
+  tourEl.hidden=true; hero.classList.remove('touring'); document.body.classList.remove('touring');
+  document.querySelector('.topbar').inert=false; document.querySelector('.botnav').inert=false;
+  if(then) then(); else tLastFocus.focus({preventScroll:true});
+}
+document.getElementById('heroCta').addEventListener('click',tourOpen);
+tourEl.addEventListener('click',function(e){ if(e.target.closest('button')) return; tourNext(); });
+document.getElementById('tskip').addEventListener('click',function(){ tourClose(); });
+document.getElementById('tfit').addEventListener('click',function(){ tourClose(function(){ track('hero_fit_click',{from:'tour'}); openPage('fit'); }); });
+document.getElementById('tsprint').addEventListener('click',function(){ tourClose(function(){ openPage('sprint'); }); });
+window.addEventListener('resize',function(){ if(!tourEl.hidden && tStep>=0) tourPlace(TOUR[tStep]); });
 scrim.addEventListener('click',closePanel);
-document.addEventListener('keydown',function(e){ if(e.key==='Escape') closePanel(); });
+document.addEventListener('keydown',function(e){ if(e.key!=='Escape') return; if(window.__tourOpen&&window.__tourOpen()){ tourClose(); return; } closePanel(); });
 
 /* ===== physics playground ===== */
 var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1729,7 +1837,7 @@ function attachMouse(){
   hero.addEventListener('pointerdown',function(e){
     HEAD.touch();
     downAt={x:e.clientX,y:e.clientY}; downTime=Date.now();
-    uiDown = !!(e.target.closest && e.target.closest('.hud,.topbar,.hero-cta,.foot-link,#panel,#scrim'));
+    uiDown = !!(e.target.closest && e.target.closest('.hud,.topbar,.hero-cta,.foot-link,#tour,#panel,#scrim'));
     faceDown = !uiDown && onFace(e.clientX,e.clientY);
     if(uiDown && mc){ mc.constraint.bodyB=null; mc.body=null; }   /* 버튼 위에서는 큐브를 잡지 않는다 */
   });
