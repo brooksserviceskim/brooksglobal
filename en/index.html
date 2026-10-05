@@ -219,6 +219,11 @@ body.touring .topbar,body.touring .botnav{opacity:0;pointer-events:none;transiti
 #thint{position:absolute;z-index:10;left:0;right:0;bottom:calc(8px + env(safe-area-inset-bottom,0px));text-align:center;font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--ink-3)}
 @media(prefers-reduced-motion:reduce){#tbubble.pop{animation:none}}
 
+/* PROOF 블링원 */
+.pbling{display:flex;align-items:center;gap:16px;margin-top:18px;padding-top:16px;border-top:1px solid var(--line);word-break:keep-all;overflow-wrap:break-word}
+.pbling canvas{flex:none;width:120px;height:120px}
+.pbling p{margin:0;font-size:15px;font-weight:700;line-height:1.55;color:var(--ink)}
+.pbling.no3d canvas{display:none}
 /* 1분 출시 확인 */
 .quiz{word-break:keep-all;overflow-wrap:break-word}
 .qtop{display:flex;align-items:center;gap:14px;min-height:32px}
@@ -970,7 +975,7 @@ var PAGES={
     lede:'사례는 고객 승인을 받은 것만 올립니다. 지금 공개하는 사례는 OUAH 캐나다 등록 포털 하나입니다.',
     html:function(){ return ''+   /* 사례 2건은 D6. 카드 틀: 문제 / 무엇을 연결했는지 / 무엇이 줄었는지 / 산출물 / 승인된 수치·증언 */
       canadaCard()+
-      '<p class="pmeta">K-POP 아이돌 굿즈 브랜드 블링원의 디자인 파트너입니다.</p>'+
+      '<div class="pbling"><canvas id="blingGL" width="240" height="240" aria-hidden="true"></canvas><p>K-POP 아이돌 굿즈 브랜드 블링원의 디자인 파트너입니다.</p></div>'+
       go('fit','1분 출시 확인하기 →'); }},
   about:{kicker:'ABOUT',title:'디자인과 규정, 반복되는 서류 업무까지 한곳에서 맡습니다',
     lede:'동인천상회는 한국 화장품 브랜드가 해외에 나갈 때 규정 검토, 디자인, 등록을 따로 맡기면서 생기는 빈틈을 줄입니다. 규정을 아는 사람이 라벨과 패키지까지 직접 보기 때문에 판매 화면과 제출 서류가 같은 기준으로 만들어집니다. 반복 입력과 자료 확인은 시스템으로 줄이고, 판단과 책임은 사람이 집니다.',
@@ -1056,7 +1061,7 @@ var PAGES_EN={
     lede:'Cases are published only with client approval. The case we can show today is the OUAH Canadian registration portal.',
     html:function(){ return ''+
       canadaCard()+
-      '<p class="pmeta">Design partner of Blingone, a K-pop idol merchandise brand.</p>'+
+      '<div class="pbling"><canvas id="blingGL" width="240" height="240" aria-hidden="true"></canvas><p>Design partner of Blingone, a K-pop idol merchandise brand.</p></div>'+
       go('fit','Take the 1-minute check →'); }},
   about:{kicker:'ABOUT',title:'Design, regulations and the paperwork in between, in one place',
     lede:'Dongincheon Trading Co. closes the gaps that appear when a cosmetic brand orders regulatory review, design and registration separately for an overseas launch. Because the person who knows the rules also works on the label and packaging, the product page and the filing documents follow the same standard. The system cuts repetitive entry and checks; judgement and responsibility stay with people.',
@@ -1085,6 +1090,7 @@ function openPage(k){
   body.scrollTop=0;
   bindForm();
   bindQuiz();
+  blingMount();
   showPanel();
 }
 
@@ -1715,23 +1721,13 @@ function lineup(on){
    objects/ 폴더에 GLB 가 들어오면 build.py 가 data URI 로 채워 넣고, 그때만 이 층이 켜집니다.
    GLB 가 없거나 WebGL 이 없거나 로딩이 실패하면 지금 CSS 큐브가 그대로 보입니다. */
 /* 키는 SERVICES 의 id. 파일 대응은 build_deploy.py·build.py 의 GLBS 목록 */
+var BLING_GLB='../models/deco-bling.glb';   /* PROOF 패널의 블링원 로고 (2026-10-05) */
 var GLB={ra:'../models/step-1-regulatory.glb',label:'../models/obj-label.glb',pkg:'../models/obj-package.glb',detail:'../models/obj-detail.glb',sub:'../models/step-5-submission.glb',launch:'../models/deco-plane.glb'};
 function glbSrc(k){ var v=GLB[k]; if(!v || v.indexOf('__')===0) return null;
   return (v.slice(0,5)==='data:') ? (v.length>32 ? v : null) : v; }
 
-var OBJ3D=(function(){
-  var any=false; for(var k in GLB){ if(glbSrc(k)){ any=true; break; } }
-  if(!any || typeof THREE==='undefined' || typeof THREE.GLTFLoader!=='function') return null;
-
-  var cv=document.createElement('canvas'); cv.id='objgl'; cv.setAttribute('aria-hidden','true');
-  var r;
-  try{ r=new THREE.WebGLRenderer({canvas:cv,alpha:true,antialias:true,premultipliedAlpha:true}); }
-  catch(e){ return null; }
-  hero.insertBefore(cv,stage);
-  r.setClearAlpha(0);
-  r.setPixelRatio(Math.min(window.devicePixelRatio||1,2));
-  if(THREE.sRGBEncoding) r.outputEncoding=THREE.sRGBEncoding;
-
+/* 얼굴 마스터와 같은 스튜디오 — 홈 오브제와 PROOF 블링원 창이 같이 쓴다 */
+function studio(r){
   var scene=new THREE.Scene();
   /* ---- 얼굴 마스터와 같은 조명 ----
      오브제 이미지는 광택 없이 색의 면만 뽑아 오고, 광택과 방향광은 여기서 겁니다.
@@ -1756,26 +1752,42 @@ var OBJ3D=(function(){
     scene.environment=env;
     et.dispose(); pm.dispose();
   }catch(e){}
-
-  /* Tripo 가 구워 온 밋밋한 텍스처에 맑은 코팅을 씌워 얼굴과 같은 재질로 만듭니다 */
-  function glossify(root){
-    root.traverse(function(m){
-      if(!m.isMesh) return;
-      var src=m.material;
-      var mat=new THREE.MeshPhysicalMaterial({
-        color: (src&&src.color) ? src.color.clone() : new THREE.Color(0xffffff),
-        map:   (src&&src.map)   ? src.map : null,
-        roughness:0.40, metalness:0.0,
-        clearcoat:1.0, clearcoatRoughness:0.09,
-        envMapIntensity:0.45
-      });
-      if(src&&src.vertexColors) mat.vertexColors=true;
-      /* 법선이 없는 GLB 는 조명 계산이 전부 0이 되어 새까맣게 나옵니다 */
-      if(m.geometry && !m.geometry.attributes.normal) m.geometry.computeVertexNormals();
-      m.material=mat;
-      m.frustumCulled=false; m.castShadow=false;
+  return scene;
+}
+/* Tripo 가 구워 온 밋밋한 텍스처에 맑은 코팅을 씌워 얼굴과 같은 재질로 만듭니다 */
+function glossify(root){
+  root.traverse(function(m){
+    if(!m.isMesh) return;
+    var src=m.material;
+    var mat=new THREE.MeshPhysicalMaterial({
+      color: (src&&src.color) ? src.color.clone() : new THREE.Color(0xffffff),
+      map:   (src&&src.map)   ? src.map : null,
+      roughness:0.40, metalness:0.0,
+      clearcoat:1.0, clearcoatRoughness:0.09,
+      envMapIntensity:0.45
     });
-  }
+    if(src&&src.vertexColors) mat.vertexColors=true;
+    /* 법선이 없는 GLB 는 조명 계산이 전부 0이 되어 새까맣게 나옵니다 */
+    if(m.geometry && !m.geometry.attributes.normal) m.geometry.computeVertexNormals();
+    m.material=mat;
+    m.frustumCulled=false; m.castShadow=false;
+  });
+}
+
+var OBJ3D=(function(){
+  var any=false; for(var k in GLB){ if(glbSrc(k)){ any=true; break; } }
+  if(!any || typeof THREE==='undefined' || typeof THREE.GLTFLoader!=='function') return null;
+
+  var cv=document.createElement('canvas'); cv.id='objgl'; cv.setAttribute('aria-hidden','true');
+  var r;
+  try{ r=new THREE.WebGLRenderer({canvas:cv,alpha:true,antialias:true,premultipliedAlpha:true}); }
+  catch(e){ return null; }
+  hero.insertBefore(cv,stage);
+  r.setClearAlpha(0);
+  r.setPixelRatio(Math.min(window.devicePixelRatio||1,2));
+  if(THREE.sRGBEncoding) r.outputEncoding=THREE.sRGBEncoding;
+
+  var scene=studio(r);
 
   var cam=new THREE.OrthographicCamera(-1,1,1,-1,-4000,4000); cam.position.z=1200;
 
@@ -1868,6 +1880,43 @@ var OBJ3D=(function(){
   window.addEventListener('resize',resize);
   return {refresh:refresh,render:render,resize:resize};
 })();
+
+/* ===== PROOF 패널 블링원 로고 — 홈 오브제와 같은 조명·재질·회전 ===== */
+var BLING={r:null,scene:null,cam:null,obj:null,raf:0,t:0,last:0};
+function blingMount(){
+  var cv=document.getElementById('blingGL'); if(!cv) return;
+  var box=cv.parentNode;
+  if(!BLING_GLB || BLING_GLB.indexOf('__')===0 || typeof THREE==='undefined' || typeof THREE.GLTFLoader!=='function'){ box.classList.add('no3d'); return; }
+  var r;
+  try{ r=new THREE.WebGLRenderer({canvas:cv,alpha:true,antialias:true,premultipliedAlpha:true}); }catch(e){ box.classList.add('no3d'); return; }
+  if(BLING.r){ try{ BLING.r.dispose(); }catch(e){} }
+  cancelAnimationFrame(BLING.raf);
+  r.setClearAlpha(0); r.setPixelRatio(Math.min(window.devicePixelRatio||1,2));
+  if(THREE.sRGBEncoding) r.outputEncoding=THREE.sRGBEncoding;
+  r.setSize(cv.clientWidth||120,cv.clientHeight||120,false);
+  BLING.r=r; BLING.scene=studio(r);
+  BLING.cam=new THREE.OrthographicCamera(-1,1,1,-1,-10,10); BLING.cam.position.z=5;
+  function place(o){
+    var b=new THREE.Box3().setFromObject(o), c=new THREE.Vector3(), z=new THREE.Vector3(); b.getCenter(c); b.getSize(z);
+    var inner=new THREE.Group(); o.position.sub(c); inner.add(o); inner.scale.setScalar(1.7/(Math.max(z.x,z.y,z.z)||1));
+    BLING.scene.add(inner); return inner;
+  }
+  function go(src){ BLING.obj=place(src.clone(true)); BLING.last=0; BLING.raf=requestAnimationFrame(tick); }
+  function tick(now){
+    if(!document.body.contains(cv)){ try{ r.dispose(); }catch(e){} if(BLING.r===r) BLING.r=null; return; }   /* 패널이 바뀌면 멈춘다 */
+    var dt=BLING.last?Math.min(64,now-BLING.last):16; BLING.last=now;
+    if(!reduce) BLING.t+=dt/1000;
+    BLING.obj.rotation.y=BLING.t*0.6;
+    BLING.obj.rotation.x=Math.sin(BLING.t*0.5)*0.08;
+    r.render(BLING.scene,BLING.cam);
+    if(!reduce) BLING.raf=requestAnimationFrame(tick);
+  }
+  if(BLING.model){ go(BLING.model); return; }
+  new THREE.GLTFLoader().load(BLING_GLB,function(g){
+    var o=g.scene||(g.scenes&&g.scenes[0]); if(!o){ box.classList.add('no3d'); return; }
+    glossify(o); BLING.model=o; if(document.body.contains(cv)) go(o);
+  },null,function(){ box.classList.add('no3d'); });
+}
 
 function attachMouse(){
   mouse=Mouse.create(hero);
