@@ -269,6 +269,22 @@ button{font:inherit;color:inherit;border:none;background:none;cursor:pointer}
 .fld .row2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 @media(max-width:420px){.fld .row2{grid-template-columns:1fr}}
 .fld.sub{margin-top:-6px;padding-left:12px;border-left:3px solid var(--line)}
+/* 폼 상태 (G5, UX UI 레퍼런스 「Glassy OTP」의 동작) — 완료는 초록, 오류는 빨강. 색은 기존 토큰 */
+.fld.ok input:not([type=checkbox]),.fld.ok select,.fld.ok textarea{border-color:var(--green)}
+.fld.ok input:not([type=checkbox]):not([type=month]),.fld.ok textarea{padding-right:38px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231E7B45' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5 12.5 4.5 4.5L19 7.5'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-size:18px;background-position:right 12px top 13px}
+.fld .checks label:has(input:checked){border-color:var(--green);background:#fff}
+@keyframes shake{0%,100%{transform:none}20%,60%{transform:translateX(-5px)}40%,80%{transform:translateX(5px)}}
+.fld.bad.shake{animation:shake .32s ease}
+@media(prefers-reduced-motion:reduce){.fld.bad.shake{animation:none}}
+.fprog{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--ink-3)}
+.fprog i{flex:1;height:5px;border-radius:99px;background:var(--bg-2);overflow:hidden;position:relative}
+.fprog i b{position:absolute;inset:0 auto 0 0;width:0;background:var(--green);border-radius:inherit;transition:width .3s ease}
+.cok{width:56px;height:56px;border-radius:50%;background:var(--green);display:grid;place-items:center;margin-bottom:12px;animation:pop .45s cubic-bezier(.2,1.4,.4,1) both}
+.cok svg{width:28px;height:28px;fill:none;stroke:#fff;stroke-width:2.8;stroke-linecap:round;stroke-linejoin:round}
+@keyframes pop{from{transform:scale(.4);opacity:0}to{transform:none;opacity:1}}
+@media(prefers-reduced-motion:reduce){.cok{animation:none}}
 .cerr{font-size:13px;font-weight:700;color:var(--red);display:none}
 .cerr.on{display:block}
 .csend{background:var(--ink);color:#fff;padding:15px;border-radius:14px;font-weight:700;font-size:15px;text-align:center}
@@ -862,6 +878,7 @@ var PAGES={
       function req(t){ return t+' <em>필수</em>'; }
       function box(name,vals){ return vals.map(function(v){ return '<label><input type="checkbox" name="'+name+'" value="'+v+'">'+v+'</label>'; }).join(''); }
       return '<form id="cform" data-kind="fit" novalidate>'+
+        '<div class="fprog" aria-live="polite"><i><b id="fprogBar"></b></i><span id="fprogTxt">0 / 8</span></div>'+
         '<div class="fld"><span class="flabel">'+req('1) 회사와 담당자')+'</span>'+
           '<div class="row2"><input id="q_co" type="text" autocomplete="organization" placeholder="회사 또는 브랜드" aria-label="회사 또는 브랜드">'+
           '<input id="q_name" type="text" autocomplete="name" placeholder="담당자 이름" aria-label="담당자 이름"></div></div>'+
@@ -1030,7 +1047,7 @@ function showSent(d){
   if(!done) return;
   f.hidden=true; done.hidden=false;
   track('fit_form_complete');
-  done.innerHTML='<h4>적합성 확인 요청을 보냈습니다</h4><p>'+esc(d.name)+'님, 적어주신 내용을 보고 <b>'+esc(d.email)+'</b> 로 다음 단계를 안내드리겠습니다.</p>';
+  done.innerHTML='<div class="cok" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></div><h4>적합성 확인 요청을 보냈습니다</h4><p>'+esc(d.name)+'님, 적어주신 내용을 보고 <b>'+esc(d.email)+'</b> 로 다음 단계를 안내드리겠습니다.</p>';
   done.scrollIntoView({block:'nearest'});
 }
 function showFallback(d,why){
@@ -1070,14 +1087,43 @@ function bindFit(f){
     if(un&&dt){ dt.disabled=un.checked; if(un.checked) dt.value=''; toggle('q_date_when',un.checked); }
     /* 「아직 없음」과 다른 자료는 같이 고를 수 없게 */
   }
+  /* 칸별 완료 표시와 진행 막대 — 8개 항목 기준 */
+  function okVal(id){
+    var el=document.getElementById(id); if(!el) return false;
+    if(id==='q_mail') return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(el.value.trim());
+    if(el.tagName==='TEXTAREA') return el.value.trim().length>=2;
+    return !!el.value.trim();
+  }
+  function paint(){
+    var d=readFit(), n=0;
+    var g=[d.company&&d.name&&okVal('q_mail'),
+           d.sku&&d.cty.length&&(d.cty.join().indexOf('기타')<0||val('q_cty_etc')),
+           d.have.length,
+           d.budget&&(d.budget!=='미정'||d.budgetWhen),
+           d.who&&(d.who==='미정'?d.whoWhen:d.how),
+           d.date&&(d.date!=='미정'||d.dateWhen),
+           d.nobuy.length>=2, d.block.length>=2];
+    g.forEach(function(x){ if(x) n++; });
+    var bar=document.getElementById('fprogBar'), txt=document.getElementById('fprogTxt');
+    if(bar) bar.style.width=(n/8*100)+'%'; if(txt) txt.textContent=n+' / 8';
+    ['q_sku','q_cty_etc','q_budget','q_budget_when','q_who','q_how','q_who_when','q_date_when','q_nobuy','q_block'].forEach(function(id){
+      var el=document.getElementById(id); if(el) el.closest('.fld').classList.toggle('ok',okVal(id)); });
+    var top=document.getElementById('q_co'); if(top) top.closest('.fld').classList.toggle('ok',!!(d.company&&d.name));
+    var m=document.getElementById('q_mail'); if(m) m.closest('.fld').classList.toggle('ok',okVal('q_mail'));
+    var dt=document.getElementById('q_date'); if(dt) dt.closest('.fld').classList.toggle('ok',!!d.date);
+    [['q_cty',d.cty.length],['q_have',d.have.length]].forEach(function(x){ var el=document.getElementById(x[0]); if(el) el.closest('.fld').classList.toggle('ok',!!x[1]); });
+  }
+  /* 고치려고 입력을 시작하면 빨간 표시를 바로 지운다 */
+  f.addEventListener('input',function(e){ var box=e.target.closest&&e.target.closest('.fld'); if(box) box.classList.remove('bad','shake'); paint(); });
+  f.addEventListener('focusout',paint);
   f.addEventListener('change',function(e){
     if(e.target.name==='have'){
       var none=e.target.value==='아직 없음';
       [].slice.call(f.querySelectorAll('input[name="have"]')).forEach(function(x){ if(x!==e.target && e.target.checked && (none || x.value==='아직 없음')) x.checked=false; });
     }
-    sync();
+    sync(); paint();
   });
-  sync();
+  sync(); paint();
 }
 function bindForm(){
   var f=document.getElementById('cform'); if(!f) return;
@@ -1090,7 +1136,7 @@ function bindForm(){
     if(bot&&bot.checked) return;                        /* 스팸 봇 */
     var bad=validate(d);
     if(bad){ err.textContent=bad[0]; err.classList.add('on'); var el=document.getElementById(bad[1]);
-      if(el){ var tgt=el.matches('input,select,textarea')?el:el.querySelector('input,select,textarea'); if(tgt) tgt.focus(); el.scrollIntoView({block:'center'}); } return; }
+      if(el){ var bx=el.closest('.fld'); if(bx){ bx.classList.remove('shake'); void bx.offsetWidth; bx.classList.add('shake'); } var tgt=el.matches('input,select,textarea')?el:el.querySelector('input,select,textarea'); if(tgt) tgt.focus(); el.scrollIntoView({block:'center'}); } return; }
     err.classList.remove('on'); err.textContent='';
     if(!FORMKEY){ showFallback(d,'전송 설정이 아직 연결되지 않았습니다.'); return; }
     var label=btn.textContent; btn.disabled=true; btn.textContent='보내는 중…';
