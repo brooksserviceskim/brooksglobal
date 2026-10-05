@@ -74,8 +74,30 @@ button{font:inherit;color:inherit;border:none;background:none;cursor:pointer}
 .topnav .cta:hover{background:var(--green);color:#fff}
 /* 영문 메뉴는 모노 대문자. 한글 CTA(.cta)는 본문 글꼴 그대로 */
 .topnav button:not(.cta){font-family:var(--mono);font-size:11.5px;letter-spacing:.12em}
-/* 폰은 LAUNCH SPRINT(.keep)와 적합성 확인(.cta)만 */
-@media(max-width:720px){.topnav button:not(.cta):not(.keep){display:none}}
+/* 지금 보는 메뉴 표시 (G3) — 패널이 열려 있는 동안 */
+.topnav button.on{background:var(--bg-2);color:var(--ink)}
+.topnav .cta.on{background:var(--green);color:#fff}
+/* 폰 하단 알약 메뉴 (G2, UX UI 레퍼런스 「10 Navigation Ideas」의 배치) — 질감은 상단 메뉴와 같은 반투명 흰 알약 */
+.botnav{display:none}
+@media(max-width:720px){
+  .topbar{display:none}   /* 폰은 하단 메뉴로 */
+  .botnav{position:fixed;left:50%;bottom:calc(12px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:60;
+    display:flex;align-items:flex-end;width:min(94vw,380px);padding:6px 8px;border-radius:99px;
+    background:rgba(255,255,255,.82);backdrop-filter:blur(12px);border:1px solid var(--line);box-shadow:var(--shadow)}
+  .botnav button{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:7px 0 5px;border-radius:99px;
+    color:var(--ink-3);font-family:var(--mono);font-size:9px;letter-spacing:.06em;line-height:1.2;white-space:nowrap;transition:color .15s,background .15s}
+  .botnav svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .botnav button.on{color:var(--ink);background:var(--bg-2)}
+  .botnav .mid{flex:1.25;color:var(--ink);font-family:var(--sans);font-weight:700;font-size:10px;letter-spacing:-.01em}
+  .botnav .mid i{display:grid;place-items:center;width:52px;height:52px;margin-top:-28px;border-radius:50%;background:var(--ink);color:#fff;
+    box-shadow:var(--shadow);transition:background .15s,transform .15s}
+  .botnav .mid svg{width:22px;height:22px;stroke-width:2.2}
+  .botnav .mid:active i{transform:scale(.94)}
+  .botnav .mid.on{background:none}
+  .botnav .mid.on i{background:var(--green)}
+  .hero .hud{top:16px;bottom:auto}   /* 중력 스위치는 하단 메뉴 자리를 비우고 왼쪽 위로 */
+  .foot{display:none}          /* 회사 정보는 폰에서는 소개 패널 맨 아래에 */
+}
 
 /* ---------- 히어로 = 화면 전체 ---------- */
 .hero{--face-y:58%;--face-h:clamp(220px,48vh,450px);position:fixed;inset:0;overflow:hidden;touch-action:pan-y;user-select:none;
@@ -183,7 +205,6 @@ button{font:inherit;color:inherit;border:none;background:none;cursor:pointer}
   .foot{font-size:9px;letter-spacing:.04em;bottom:10px;padding:0 12px}
   .foot .sep{display:none}
   .foot .mbr{display:inline}
-  .hud{bottom:74px}
   .avatar{height:auto;width:min(56vw,270px);top:57%}
   .avatar canvas,.avatar .exp{width:100%;height:auto}}
 
@@ -319,13 +340,20 @@ button{font:inherit;color:inherit;border:none;background:none;cursor:pointer}
 
 <header class="topbar">
   <nav class="topnav">
-    <button class="keep" data-open="sprint">LAUNCH SPRINT</button>
+    <button data-open="sprint">LAUNCH SPRINT</button>
     <button data-open="canada">CANADA AI</button>
     <button data-open="how">HOW IT WORKS</button>
     <button data-open="proof">PROOF</button>
     <button class="cta" data-open="fit">적합성 확인</button>
   </nav>
 </header>
+<nav class="botnav" aria-label="메뉴">
+  <button data-open="sprint" data-from="botnav"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 3 8l9 5 9-5-9-5Z"/><path d="m3 13 9 5 9-5"/></svg>SPRINT</button>
+  <button data-open="canada" data-from="botnav"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>CANADA</button>
+  <button class="mid" data-open="fit" data-from="botnav" aria-label="적합성 확인"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i>적합성 확인</button>
+  <button data-open="how" data-from="botnav"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1"/><circle cx="4.5" cy="12" r="1"/><circle cx="4.5" cy="18" r="1"/></svg>HOW</button>
+  <button data-open="proof" data-from="botnav"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4.5 6v6c0 4.5 3.2 7.8 7.5 9 4.3-1.2 7.5-4.5 7.5-9V6L12 3Z"/><path d="m8.8 12 2.2 2.2 4.3-4.4"/></svg>PROOF</button>
+</nav>
 
 <div class="hero" id="top">
   <div class="wordmark" id="wordmark">
@@ -484,6 +512,17 @@ function track(name, props){
   if(window.gtag) try{ window.gtag('event', name, props||{}); }catch(e){}
 }
 var curView='';   /* 지금 열린 패널 — 이벤트가 어디서 났는지(from) 적는 데 쓴다 */
+/* 지금 보는 메뉴 표시 — 오브제 패널은 LAUNCH SPRINT, 적합성 확인 계열은 가운데 버튼 */
+var NAV_OF={sprint:'sprint',canada:'canada',how:'how',proof:'proof',fit:'fit',fitform:'fit',undecided:'fit',
+            ra:'sprint',label:'sprint',pkg:'sprint',detail:'sprint',sub:'sprint',launch:'sprint'};
+function markNav(view){
+  var g=NAV_OF[view]||'';
+  document.querySelectorAll('.topnav [data-open],.botnav [data-open]').forEach(function(b){
+    var on=!!g && b.getAttribute('data-open')===g;
+    b.classList.toggle('on',on);
+    if(on) b.setAttribute('aria-current','page'); else b.removeAttribute('aria-current');
+  });
+}
 /* 패널 안 버튼(data-go)으로 다른 패널을 열 때 — 측정을 여기 한 곳에서 */
 function goTo(target){
   var from=curView;
@@ -871,6 +910,7 @@ var PAGES={
       '<div class="fact"><dt>FIELD</dt><dd>미국 FDA · Health Canada 규정, 해외 라벨 표기, 패키지·상세페이지 디자인, 웹사이트 구축</dd></div>'+
       '<div class="fact"><dt>TALKS</dt><dd>아마존코리아 셀러 웨비나, 월마트 아시아퍼시픽 마켓플레이스 파트너 세션</dd></div>'+
       '<div class="fact"><dt>BASE</dt><dd>인천 동인천에 있고, 원격으로도 함께 일합니다</dd></div></dl>'+
+      '<p class="pmeta">Company name: Brooks Global · Jemulpo-gu, Incheon, Republic of Korea · © '+new Date().getFullYear()+' Brooks Global. All rights reserved.</p>'+
       go('fit','우리 제품도 맞는지 확인하기 →'); }}
 };
 function openPage(k){
@@ -880,7 +920,7 @@ function openPage(k){
   var body=document.getElementById('pbody');
   body.innerHTML='<p>'+pg.lede+'</p>'+pg.html();
   var cp=document.getElementById('mcopy'); if(cp) cp.addEventListener('click',function(){ copyMail(); });
-  curView=k;
+  curView=k; markNav(k);
   bindGo(body);
   body.scrollTop=0;
   bindForm();
@@ -1069,7 +1109,7 @@ function copyText(txt,msg){
 
 document.querySelectorAll('[data-open]').forEach(function(b){ b.addEventListener('click',function(){
   var k=b.getAttribute('data-open');
-  if(k==='fit') track('hero_fit_click',{from:b.id==='heroCta'?'hero':'nav'});
+  if(k==='fit') track('hero_fit_click',{from:b.id==='heroCta'?'hero':(b.getAttribute('data-from')||'nav')});
   openPage(k);
 }); });
 
@@ -1081,6 +1121,7 @@ function setInert(open){
   panel.inert=!open;
   document.querySelector('.hero').inert=open;
   document.querySelector('.topbar').inert=open;
+  document.querySelector('.botnav').inert=open;
 }
 function showPanel(){
   /* 패널 안에서 다른 패널로 넘어갈 때는 처음 연 자리(예: 대표 CTA)를 그대로 기억한다 — 닫으면 거기로 돌아간다 */
@@ -1110,7 +1151,7 @@ function openPanel(s){
     (s.cred?'<p class="pcred" style="--dot:'+s.color+'">'+s.cred+'</p>':'')+
     '<p class="pmeta">'+s.solo+'</p>'+
     go('fit','우리 제품도 맞는지 확인하기 →');
-  curView=s.id;
+  curView=s.id; markNav(s.id);
   bindGo(body);
   body.scrollTop=0;
   showPanel();
@@ -1118,6 +1159,7 @@ function openPanel(s){
 function closePanel(){
   panel.classList.remove('open'); scrim.classList.remove('open'); panel.setAttribute('aria-hidden','true');
   setInert(false);
+  markNav('');
   lineup(false);
   if(lastFocus&&lastFocus.focus) lastFocus.focus();
 }
