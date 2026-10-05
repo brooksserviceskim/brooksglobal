@@ -219,11 +219,162 @@ body.touring .topbar,body.touring .botnav{opacity:0;pointer-events:none;transiti
 #thint{position:absolute;z-index:10;left:0;right:0;bottom:calc(8px + env(safe-area-inset-bottom,0px));text-align:center;font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--ink-3)}
 @media(prefers-reduced-motion:reduce){#tbubble.pop{animation:none}}
 
+/* OUAH 포털 데모 — ouahco.ca 홈페이지 데모를 옮겨 온 것(2026-10-05 D5). 이름이 섞이지 않게 .odemo 아래로, 애니메이션은 od- 로 */
+.odemo{--brand: #5c3ffc; --brand-dark: #4328d4; --brand-weak: #ece9ff; --brand-soft: #f6f4ff; --ink: #1a1a24; --sub: #646473; --muted: #8c8c9c; --line: #e6e6ee; --paper: #fafafc; --white: #fff; --night: #130a2e; --ok: #0f7b4f; --radius: 20px; --shadow: 0 1px 2px rgba(20, 16, 50, .04), 0 8px 24px rgba(20, 16, 50, .06); --shadow-lg: 0 2px 4px rgba(20, 16, 50, .04), 0 30px 80px rgba(40, 20, 120, .16); --font: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Segoe UI', sans-serif; font-family:inherit;color:var(--ink);word-break:keep-all;overflow-wrap:break-word;margin:4px 0 22px}
+.odemo *{box-sizing:border-box}
+.odemo ol,.odemo ul{margin:0;padding:0}
+.odemo b{font-weight:800}
+.odemo .demo{max-width:none;box-shadow:0 2px 4px rgba(20,16,50,.04),0 18px 40px rgba(40,20,120,.12)}
+.odemo .demo-controls{max-width:none;margin-top:10px;gap:8px}
+.odemo .demo-controls button{padding:10px 12px;font-size:13px;font-family:inherit;cursor:pointer}
+.odemo .demo-controls button b{font-family:inherit}
+html[lang=en] .odemo [data-lang=kr],html:not([lang=en]) .odemo [data-lang=en]{display:none!important}
+@media(prefers-reduced-motion:reduce){.odemo *{animation:none!important;transition:none!important}}
+.odemo .demo{position: relative; max-width: 1040px; margin: 0 auto; border-radius: 22px; overflow: hidden; background: #fff; border: 1px solid #e3e1f0; box-shadow: var(--shadow-lg);}
+.odemo .demo-chrome{height: 42px; display: flex; align-items: center; gap: 7px; padding: 0 16px; background: #f4f3f8; border-bottom: 1px solid var(--line);}
+.odemo .demo-chrome .dot{width: 11px; height: 11px; border-radius: 50%; background: #dcdbe6;}
+.odemo .demo-chrome .dot:nth-child(1){background: #ff6159;}
+.odemo .demo-chrome .dot:nth-child(2){background: #ffbd2e;}
+.odemo .demo-chrome .dot:nth-child(3){background: #28c941;}
+.odemo .demo-url{margin: 0 auto; display: flex; align-items: center; gap: 6px; padding: 5px 16px; border-radius: 8px; background: #fff; font-size: 12px; color: var(--sub); border: 1px solid var(--line);}
+.odemo .demo-app{background: var(--paper);}
+.odemo .demo-top{display: flex; align-items: center; gap: 12px; padding: 14px 22px; background: #fff; border-bottom: 1px solid var(--line);}
+.odemo .demo-logo{height: 22px;}
+.odemo .demo-top-sub{font-size: 12px; color: var(--sub);}
+.odemo .demo-top-by{margin-left: auto; display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--muted);}
+.odemo .demo-top-by img{height: 18px;}
+.odemo .demo-body{display: grid; grid-template-columns: 1fr 220px; gap: 24px; padding: 26px 26px 30px; min-height: 430px;}
+.odemo .demo-main{position: relative; display: grid; grid-template-rows: auto 1fr; align-content: start;}
+.odemo .demo-main > .demo-steps{grid-row: 1; grid-column: 1;}
+.odemo .demo-steps{list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 18px;}
+.odemo .demo-steps li{display: flex; align-items: center; gap: 8px; padding: 9px 12px; border-radius: 12px; border: 1px solid var(--line); background: #fff; font-size: 13px; color: var(--muted); transition: all .35s ease;}
+.odemo .demo-steps li span{width: 22px; height: 22px; flex: none; display: grid; place-items: center; border-radius: 50%; background: #f1f0f6; font-size: 11px; font-weight: 700;}
+.odemo .demo-steps li.now{border-color: var(--brand); background: var(--brand-soft); color: var(--brand-dark);}
+.odemo .demo-steps li.now span{background: var(--brand); color: #fff;}
+.odemo .demo-steps li.done{color: var(--ok);}
+.odemo .demo-steps li.done span{background: #e3f4ec; color: var(--ok);}
+.odemo .demo-steps b{font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
+.odemo .scene{grid-row: 2; grid-column: 1; align-self: start; opacity: 0; transform: translateY(14px); transition: opacity .5s ease, transform .5s ease; pointer-events: none;}
+.odemo .scene.on{opacity: 1; transform: none;}
+.odemo .d-card{background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 22px; box-shadow: var(--shadow);}
+.odemo .d-card-title{font-weight: 800; font-size: 16px; margin-bottom: 14px;}
+.odemo .d-drop{position: relative; border: 2px dashed #cfc8ff; background: var(--brand-soft); border-radius: 14px; height: 120px; display: grid; place-items: center; overflow: hidden;}
+.odemo .d-file{display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 12px; background: #fff; box-shadow: var(--shadow); transform: translateY(-80px) scale(.9); opacity: 0;}
+.odemo .d-file-ic{font-size: 10px; font-weight: 800; color: #fff; background: #1f8f4e; border-radius: 6px; padding: 5px 6px;}
+.odemo .d-file-name{font-size: 13px; font-weight: 600;}
+.odemo .d-progress{position: absolute; left: 16px; right: 16px; bottom: 14px; height: 6px; border-radius: 6px; background: #e3defe; overflow: hidden; opacity: 0;}
+.odemo .d-progress i{display: block; height: 100%; width: 0; background: var(--brand); border-radius: 6px;}
+.odemo .d-ok{margin-top: 14px; padding: 12px 14px; border-radius: 12px; background: #e9f7f0; border: 1px solid #c4ead6; color: #0b5c3b; font-size: 13px; display: flex; flex-direction: column; gap: 2px; opacity: 0; transform: translateY(6px); transition: all .4s ease;}
+.odemo .scene.on .d-file{animation: od-drop .8s cubic-bezier(.2, .8, .2, 1) .3s forwards;}
+.odemo .scene.on .d-progress{animation: od-fadein .2s ease 1.1s forwards;}
+.odemo .scene.on .d-progress i{animation: od-fill 1.1s ease 1.2s forwards;}
+.odemo .scene.on .d-ok{opacity: 1; transform: none; transition-delay: 2.4s;}
+.odemo .d-q{display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px;}
+.odemo .d-q-grid{grid-template-columns: repeat(4, 1fr);}
+.odemo .d-opt{display: flex; align-items: center; gap: 8px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px; font-size: 13px; background: #fff; transition: all .25s ease;}
+.odemo .d-opt i{width: 16px; height: 16px; flex: none; border-radius: 50%; border: 2px solid #c9c6dc; transition: all .25s ease;}
+.odemo .d-opt.sq i{border-radius: 5px;}
+.odemo .d-opt.picked{border-color: var(--brand); background: var(--brand-soft);}
+.odemo .d-opt.picked i{border-color: var(--brand); background: var(--brand); box-shadow: inset 0 0 0 3px #fff;}
+.odemo .d-opt.sq.picked i{box-shadow: none; background: var(--brand) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='m5 12 5 5 9-10' stroke='white' stroke-width='3.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/12px no-repeat;}
+.odemo .d-btn{display: inline-flex; margin-top: 6px; padding: 11px 20px; border-radius: 12px; background: #e9e6fb; color: var(--brand-dark); font-weight: 700; font-size: 14px; transition: all .25s ease;}
+.odemo .d-btn.picked, .odemo .d-btn.solid{background: var(--brand); color: #fff;}
+.odemo .d-result{border-color: #c4ead6; background: linear-gradient(180deg, #f3fbf7, #fff 60%);}
+.odemo .d-badge{display: inline-block; padding: 3px 10px; border-radius: 999px; background: var(--ink); color: #fff; font-size: 11px; font-weight: 800; margin-bottom: 10px;}
+.odemo .d-result-title{font-size: 19px; font-weight: 800; margin-bottom: 14px;}
+.odemo .d-rows{border: 1px solid var(--line); border-radius: 14px; background: #fff; padding: 6px 16px;}
+.odemo .d-rows div{display: flex; justify-content: space-between; gap: 12px; padding: 9px 0; border-bottom: 1px dashed var(--line); font-size: 13px; color: var(--sub); opacity: 0; transform: translateX(-8px);}
+.odemo .d-rows div:last-child{border-bottom: 0;}
+.odemo .d-rows b{color: var(--ink);}
+.odemo .d-rows .tot{color: var(--ink); font-weight: 700;}
+.odemo .d-rows .tot b{font-size: 16px; color: var(--brand-dark);}
+.odemo .scene.on .d-rows div{animation: od-slidein .4s ease forwards;}
+.odemo .scene.on .d-rows div:nth-child(1){animation-delay: .4s;}
+.odemo .scene.on .d-rows div:nth-child(2){animation-delay: .6s;}
+.odemo .scene.on .d-rows div:nth-child(3){animation-delay: .8s;}
+.odemo .scene.on .d-rows div:nth-child(4){animation-delay: 1.1s;}
+.odemo .d-result .d-btn{margin-top: 14px;}
+.odemo .d-label{display: grid; grid-template-columns: 180px 1fr; gap: 16px; align-items: start;}
+.odemo .d-art{background: #f1f0f6; border-radius: 14px; padding: 16px; display: grid; place-items: center;}
+.odemo .d-art-box{position: relative; width: 120px; height: 170px; border-radius: 16px 16px 10px 10px; background: linear-gradient(180deg, #fff, #f6f4ff); border: 1px solid #ddd8f5; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; box-shadow: var(--shadow);}
+.odemo .d-art-box b{font-size: 11px; letter-spacing: .08em;}
+.odemo .d-art-box small{font-size: 10px; color: var(--muted);}
+.odemo .z{position: absolute; width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center; font-size: 10px; font-style: normal; font-weight: 800; color: #fff; transform: scale(0);}
+.odemo .z1{top: 58px; left: -8px; background: #e5484d;}
+.odemo .z2{top: 96px; right: -8px; background: #f59e0b;}
+.odemo .z3{bottom: 10px; left: 50%; margin-left: -10px; background: var(--brand);}
+.odemo .scene.on .z{animation: od-pop .35s cubic-bezier(.3, 1.6, .5, 1) forwards;}
+.odemo .scene.on .z1{animation-delay: .4s;}
+.odemo .scene.on .z2{animation-delay: .9s;}
+.odemo .scene.on .z3{animation-delay: 1.4s;}
+.odemo .d-zones{display: grid; gap: 8px;}
+.odemo .d-zone{display: flex; gap: 10px; align-items: flex-start; padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px; background: #fff; opacity: 0; transform: translateY(6px);}
+.odemo .d-zone i{flex: none; width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center; font-size: 10px; font-style: normal; font-weight: 800; color: #fff; background: #e5484d;}
+.odemo .d-zone:nth-child(2) i{background: #f59e0b;}
+.odemo .d-zone:nth-child(3) i{background: var(--brand);}
+.odemo .d-zone b{display: block; font-size: 13px;}
+.odemo .d-zone small{font-size: 12px; color: var(--sub);}
+.odemo .scene.on .d-zone{animation: od-slidein .4s ease forwards;}
+.odemo .scene.on .d-zone:nth-child(1){animation-delay: .6s;}
+.odemo .scene.on .d-zone:nth-child(2){animation-delay: 1.1s;}
+.odemo .scene.on .d-zone:nth-child(3){animation-delay: 1.6s;}
+.odemo .d-done{margin-top: 14px; padding: 11px 14px; border-radius: 12px; background: #e9f7f0; color: #0b5c3b; font-size: 13px; font-weight: 600; opacity: 0;}
+.odemo .scene.on .d-done{animation: od-fadein .4s ease 2.3s forwards;}
+.odemo .d-cursor{position: absolute; z-index: 5; left: 0; top: 0; width: 22px; height: 22px; pointer-events: none; opacity: 0; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 2l16 9-7 2-3 7z' fill='%231a1a24' stroke='white' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat; transition: transform .7s cubic-bezier(.4, 0, .2, 1), opacity .3s ease;}
+.odemo .d-cursor.click::after{content: ""; position: absolute; left: -8px; top: -8px; width: 24px; height: 24px; border-radius: 50%; border: 2px solid var(--brand); animation: od-ring .5s ease forwards;}
+.odemo .demo-side{position: relative; display: flex; flex-direction: column; align-items: center; justify-content: flex-end;}
+.odemo .demo-avatar{width: 170px; height: auto; filter: drop-shadow(0 16px 24px rgba(30, 20, 80, .18)); animation: od-bob 4s ease-in-out infinite;}
+.odemo .demo-bubble{position: relative; margin-bottom: 14px; min-height: 44px;}
+.odemo .demo-bubble .b{display: none; padding: 10px 14px; border-radius: 16px; background: #fff; box-shadow: var(--shadow); font-weight: 800; font-size: 14px; white-space: nowrap;}
+.odemo .demo-bubble .b.on{display: inline-block; animation: od-bubble .45s cubic-bezier(.3, 1.5, .5, 1);}
+.odemo .demo-bubble .b::after{content: ""; position: absolute; left: 50%; bottom: -6px; width: 12px; height: 12px; margin-left: -6px; background: #fff; transform: rotate(45deg);}
+.odemo .demo-controls{max-width: 1040px; margin: 18px auto 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;}
+.odemo .demo-controls button{position: relative; overflow: hidden; text-align: left; padding: 14px 16px; border-radius: 14px; border: 1px solid var(--line); background: #fff; color: var(--sub); font-size: 14px; font-weight: 600; transition: border-color .2s, color .2s;}
+.odemo .demo-controls button b{display: block; font-family: var(--font-display); font-size: 12px; color: var(--muted); margin-bottom: 2px;}
+.odemo .demo-controls button::after{content: ""; position: absolute; left: 0; bottom: 0; height: 3px; width: 0; background: var(--brand);}
+.odemo .demo-controls button.on{border-color: #cfc8ff; color: var(--ink);}
+.odemo .demo-controls button.on b{color: var(--brand);}
+.odemo .demo-controls button.on::after{animation: od-bar var(--dur, 5s) linear forwards;}
+@keyframes od-drop{to { transform: none; opacity: 1; }}
+@keyframes od-fadein{to { opacity: 1; }}
+@keyframes od-fill{to { width: 100%; }}
+@keyframes od-slidein{to { opacity: 1; transform: none; }}
+@keyframes od-pop{to { transform: scale(1); }}
+@keyframes od-ring{from { transform: scale(.4); opacity: 1; } to { transform: scale(1.4); opacity: 0; }}
+@keyframes od-bob{50% { transform: translateY(-6px); }}
+@keyframes od-bubble{from { transform: translateY(6px) scale(.9); opacity: 0; }}
+@keyframes od-bar{to { width: 100%; }}
+.odemo .demo-body{grid-template-columns:1fr;min-height:0;padding:16px}
+.odemo .demo-side{flex-direction:row;justify-content:flex-end;align-items:flex-end;gap:10px;margin-top:-6px}
+.odemo .demo-avatar{width:64px}
+.odemo .demo-bubble{margin-bottom:18px}
+.odemo .demo-bubble .b::after{left:auto;right:-5px;bottom:14px}
+.odemo .demo-chrome{height:34px}
+.odemo .demo-top-sub{display:none}
+.odemo .demo-steps{grid-template-columns:repeat(4,1fr);gap:4px}
+.odemo .demo-steps li{padding:7px;justify-content:center}
+.odemo .demo-steps b{display:none!important}
+.odemo .d-q-grid{grid-template-columns:1fr 1fr}
+.odemo .d-label{grid-template-columns:1fr}
+.odemo .d-art{display:none}
+.odemo .demo-controls{grid-template-columns:1fr 1fr}
+/* 패널 폭 안에서 줄어들게 — 그리드 칸이 글자 길이만큼 늘어나 오른쪽이 잘리던 것 */
+.odemo .demo-body,.odemo .demo-main{grid-template-columns:minmax(0,1fr)}
+.odemo .demo-steps{grid-template-columns:repeat(4,minmax(0,1fr))}
+.odemo .d-q{grid-template-columns:repeat(2,minmax(0,1fr))}
+.odemo .demo-controls{grid-template-columns:repeat(2,minmax(0,1fr))}
+.odemo .d-file{max-width:100%;min-width:0}
+.odemo .d-file-name{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.odemo .d-card{padding:18px}
+/* 패널 안 3D 로고 (블링원·OUAH) */
+.spin3d.no3d{display:none}
+.pcard3d{position:relative}
+.pcard3d .spin3d{position:absolute;right:10px;top:8px;width:88px;height:88px}
+.pcard3d small,.pcard3d h5{padding-right:92px}
 /* PROOF 블링원 */
 .pbling{display:flex;align-items:center;gap:16px;margin-top:18px;padding-top:16px;border-top:1px solid var(--line);word-break:keep-all;overflow-wrap:break-word}
 .pbling canvas{flex:none;width:120px;height:120px}
 .pbling p{margin:0;font-size:15px;font-weight:700;line-height:1.55;color:var(--ink)}
-.pbling.no3d canvas{display:none}
 /* 1분 출시 확인 */
 .quiz{word-break:keep-all;overflow-wrap:break-word}
 .qtop{display:flex;align-items:center;gap:14px;min-height:32px}
@@ -894,9 +1045,9 @@ function steps(arr){ return '<div class="steps">'+arr.map(function(x,i){ return 
 function go(target,label,ghost){ return '<button type="button" class="pgo'+(ghost?' ghost':'')+'" data-go="'+target+'">'+label+'</button>'; }
 /* 캐나다 카드 — 브리프 9.3. sprint · proof · 규제 모듈에서 같이 쓴다 */
 function canadaCard(){
-  return '<div class="pcard"><small>WORKING PROOF · CANADA</small><h5>'+T('전성분표 한 장에서 등록 준비까지','From one ingredient list to a registration-ready file')+'</h5>'+
-    '<p>'+T('캐나다에 팔 수 있는지만 먼저 알고 싶으시면, OUAH 포털에 전성분표를 올리고 몇 가지 질문에 답해 보세요. 팔 수 있는지와 비용을 먼저 보여 줍니다.',
-            'If you only want to know whether you can sell in Canada, upload your ingredient list to the OUAH portal and answer a few questions. It shows how the product can be sold there and what it costs.')+'</p>'+
+  return '<div class="pcard pcard3d"><canvas class="spin3d" data-glb="ouah" width="200" height="200" aria-hidden="true"></canvas><small>WORKING PROOF · CANADA</small><h5>'+T('전성분표 한 장에서 등록 준비까지','From one ingredient list to a registration-ready file')+'</h5>'+
+    '<p>'+T('캐나다에 팔 수 있는지만 먼저 알고 싶으시면, OUAH 포털에 전성분표를 올리고 몇 가지 질문에 답해 보세요. 팔 수 있는지와 비용을 먼저 보여 줍니다. 동인천상회 대표가 이사로 있는 OUAH 의 포털입니다.',
+            'If you only want to know whether you can sell in Canada, upload your ingredient list to the OUAH portal and answer a few questions. It shows how the product can be sold there and what it costs. The portal belongs to OUAH, where our founder is a director.')+'</p>'+
     go('canada',T('내 제품을 캐나다에 팔 수 있는지 확인하기 →','Check whether your product can be sold in Canada →'),true)+'</div>';
 }
 var PAGES={
@@ -960,8 +1111,8 @@ var PAGES={
     lede:T('여섯 가지만 골라 주시면 내 화장품을 그 나라에 팔 수 있는지, 비용은 얼마쯤인지, 무엇을 준비해야 하는지 바로 보여 드립니다.','Answer six quick questions and we will show you the likely procedure, cost and what to prepare.'),
     html:function(){ return '<div id="quiz" class="quiz"></div>'; }},
   canada:{kicker:'WORKING PROOF · CANADA',title:'전성분표 한 장에서 등록 준비까지',
-    lede:'OUAH AI 포털은 전성분표와 제품 질문을 바탕으로 내 화장품을 캐나다에 팔 수 있는지와 비용을 먼저 보여 줍니다. 영·불 라벨 문안과 제출자료 초안은 시스템이 준비하고, 최종 검토와 제출은 캐나다 현지 전문가가 맡습니다.',
-    html:function(){ return ''+   /* 포털 화면 캡처는 D5, 관계 문구는 D4 뒤 */
+    lede:'OUAH AI 포털은 전성분표와 제품 질문을 바탕으로 내 화장품을 캐나다에 팔 수 있는지와 비용을 먼저 보여 줍니다. 영·불 라벨 문안과 제출자료 초안은 시스템이 준비하고, 최종 검토와 제출은 캐나다 현지 전문가가 맡습니다. 동인천상회 대표 김현우는 OUAH Co. 의 이사로, 이 포털을 직접 만들고 운영합니다.',
+    html:function(){ return '<div class="odemo">'+ODEMO+'</div>'+
       steps([['전성분표 업로드','국제 성분명(INCI)으로 된 전성분표를 올리면 함량 합계부터 검증합니다.'],
              ['질문 응답','사용 방법과 광고 문구에 관한 질문에 답합니다.'],
              ['판매 가능 검토','화장품 신고(CNF)만으로 팔 수 있는지, 천연건강제품 허가(NHP)가 필요한지 알려 줍니다.'],
@@ -975,7 +1126,7 @@ var PAGES={
     lede:'사례는 고객 승인을 받은 것만 올립니다. 지금 공개하는 사례는 OUAH 캐나다 등록 포털 하나입니다.',
     html:function(){ return ''+   /* 사례 2건은 D6. 카드 틀: 문제 / 무엇을 연결했는지 / 무엇이 줄었는지 / 산출물 / 승인된 수치·증언 */
       canadaCard()+
-      '<div class="pbling"><canvas id="blingGL" width="240" height="240" aria-hidden="true"></canvas><p>K-POP 아이돌 굿즈 브랜드 블링원의 디자인 파트너입니다.</p></div>'+
+      '<div class="pbling"><canvas class="spin3d" data-glb="bling" width="240" height="240" aria-hidden="true"></canvas><p>K-POP 아이돌 굿즈 브랜드 블링원의 디자인 파트너입니다.</p></div>'+
       go('fit','1분 출시 확인하기 →'); }},
   about:{kicker:'ABOUT',title:'디자인과 규정, 반복되는 서류 업무까지 한곳에서 맡습니다',
     lede:'동인천상회는 한국 화장품 브랜드가 해외에 나갈 때 규정 검토, 디자인, 등록을 따로 맡기면서 생기는 빈틈을 줄입니다. 규정을 아는 사람이 라벨과 패키지까지 직접 보기 때문에 판매 화면과 제출 서류가 같은 기준으로 만들어집니다. 반복 입력과 자료 확인은 시스템으로 줄이고, 판단과 책임은 사람이 집니다.',
@@ -984,7 +1135,8 @@ var PAGES={
       '<dl class="facts">'+
       '<div class="fact"><dt>WHO</dt><dd>동인천김씨 · 김현우</dd></div>'+
       '<div class="fact"><dt>BRAND</dt><dd>동인천상회 (DONGINCHEON TRADING CO.)</dd></div>'+
-      '<div class="fact"><dt>ENTITY</dt><dd>동인천상회는 Brooks Global 의 서비스 브랜드입니다. 계약·세금계산서·해외 인보이스는 사업자 브룩스글로벌 명의로 발행합니다.</dd></div>'+   /* OUAH 협업 문장(브리프 3)은 D4 뒤 */
+      '<div class="fact"><dt>ENTITY</dt><dd>동인천상회는 Brooks Global 의 서비스 브랜드입니다. 계약·세금계산서·해외 인보이스는 사업자 브룩스글로벌 명의로 발행합니다.</dd></div>'+
+      '<div class="fact"><dt>OUAH</dt><dd>김현우는 캐나다 Health Canada 등록 회사 OUAH Co. 의 이사이며, OUAH AI 등록 포털을 만들고 운영합니다. 캐나다 제출은 OUAH 의 현지 전문가가 맡습니다. OUAH 는 동인천상회의 자회사가 아닌 별도 회사입니다.</dd></div>'+
       '<div class="fact"><dt>FIELD</dt><dd>미국 FDA · Health Canada 규정, 해외 라벨 표기, 패키지·상세페이지 디자인, 웹사이트 구축</dd></div>'+
       '<div class="fact"><dt>TALKS</dt><dd>아마존코리아 셀러 웨비나, 월마트 아시아퍼시픽 마켓플레이스 파트너 세션</dd></div>'+
       '<div class="fact"><dt>BASE</dt><dd>인천 동인천에 있고, 원격으로도 함께 일합니다</dd></div></dl>'+
@@ -1046,8 +1198,8 @@ var PAGES_EN={
       go('about','About Dongincheon Trading Co.',true)+
       go('fit','Take the 1-minute check →'); }},
   canada:{kicker:'WORKING PROOF · CANADA',title:'From one ingredient list to a registration-ready file',
-    lede:'The OUAH AI portal first shows how your product can be sold in Canada and what it costs, based on your ingredient list and product questions. The system drafts the English and French label copy and the submission files; a Canadian specialist makes the final review and files the submission.',
-    html:function(){ return ''+
+    lede:'The OUAH AI portal first shows how your product can be sold in Canada and what it costs, based on your ingredient list and product questions. The system drafts the English and French label copy and the submission files; a Canadian specialist makes the final review and files the submission. Brooks Hyeonwoo Kim, who runs Dongincheon Trading Co., is a director of OUAH Co. and built and runs this portal.',
+    html:function(){ return '<div class="odemo">'+ODEMO+'</div>'+
       steps([['Upload ingredients','Upload an ingredient list with INCI names, and the total concentration is checked first.'],
              ['Answer questions','Answer questions about how the product is used and what it claims.'],
              ['Procedure','See whether it can be sold with a cosmetic notification (CNF) or needs a natural health product licence (NHP).'],
@@ -1061,7 +1213,7 @@ var PAGES_EN={
     lede:'Cases are published only with client approval. The case we can show today is the OUAH Canadian registration portal.',
     html:function(){ return ''+
       canadaCard()+
-      '<div class="pbling"><canvas id="blingGL" width="240" height="240" aria-hidden="true"></canvas><p>Design partner of Blingone, a K-pop idol merchandise brand.</p></div>'+
+      '<div class="pbling"><canvas class="spin3d" data-glb="bling" width="240" height="240" aria-hidden="true"></canvas><p>Design partner of Blingone, a K-pop idol merchandise brand.</p></div>'+
       go('fit','Take the 1-minute check →'); }},
   about:{kicker:'ABOUT',title:'Design, regulations and the paperwork in between, in one place',
     lede:'Dongincheon Trading Co. closes the gaps that appear when a cosmetic brand orders regulatory review, design and registration separately for an overseas launch. Because the person who knows the rules also works on the label and packaging, the product page and the filing documents follow the same standard. The system cuts repetitive entry and checks; judgement and responsibility stay with people.',
@@ -1071,6 +1223,7 @@ var PAGES_EN={
       '<div class="fact"><dt>WHO</dt><dd>Brooks Hyeonwoo Kim (Dongincheon Kim)</dd></div>'+
       '<div class="fact"><dt>BRAND</dt><dd>Dongincheon Trading Co. (동인천상회)</dd></div>'+
       '<div class="fact"><dt>ENTITY</dt><dd>Dongincheon Trading Co. is a service brand of Brooks Global. Contracts, tax invoices and international invoices are issued by Brooks Global.</dd></div>'+
+      '<div class="fact"><dt>OUAH</dt><dd>Brooks Hyeonwoo Kim is a director of OUAH Co., a Canadian Health Canada registration company, and built and runs the OUAH AI registration portal. Canadian filings are made by OUAH’s local specialists. OUAH is a separate company, not a subsidiary of Dongincheon Trading Co.</dd></div>'+
       '<div class="fact"><dt>FIELD</dt><dd>US FDA and Health Canada regulations, overseas labelling, packaging and product page design, website development</dd></div>'+
       '<div class="fact"><dt>TALKS</dt><dd>Seller webinar for Amazon Korea, partner session for Walmart Asia-Pacific Marketplace</dd></div>'+
       '<div class="fact"><dt>BASE</dt><dd>Based in Dongincheon, Incheon, Korea, working with clients remotely</dd></div></dl>'+
@@ -1090,7 +1243,8 @@ function openPage(k){
   body.scrollTop=0;
   bindForm();
   bindQuiz();
-  blingMount();
+  spinMount();
+  odemoStart();
   showPanel();
 }
 
@@ -1349,7 +1503,7 @@ function bindQuiz(){
       box.innerHTML=quizResultHtml();
       var R=QUIZ.res||{};
       track('fit_result_view',{cty:QUIZ.a.cty,kind:QUIZ.a.kind||'',scope:QUIZ.a.scope||''});
-      bindGo(box); bindForm();
+      bindGo(box); bindForm(); spinMount();
       var cp=document.getElementById('mcopy'); if(cp) cp.addEventListener('click',function(){ copyMail(); });
     } else box.innerHTML=quizStepHtml(QUIZ.step);
     body.scrollTop=0;
@@ -1721,7 +1875,10 @@ function lineup(on){
    objects/ 폴더에 GLB 가 들어오면 build.py 가 data URI 로 채워 넣고, 그때만 이 층이 켜집니다.
    GLB 가 없거나 WebGL 이 없거나 로딩이 실패하면 지금 CSS 큐브가 그대로 보입니다. */
 /* 키는 SERVICES 의 id. 파일 대응은 build_deploy.py·build.py 의 GLBS 목록 */
-var BLING_GLB='models/deco-bling.glb';   /* PROOF 패널의 블링원 로고 (2026-10-05) */
+/* 패널 안에서 도는 3D 로고 — PROOF 블링원, OUAH 카드 (2026-10-05) */
+var SPIN_GLB={bling:'models/deco-bling.glb',ouah:'models/obj-ouah.glb'};
+/* ouahco.ca 홈페이지의 포털 데모(D5) — 문구는 「경로」 대신 「팔 수 있는지」로만 바꿈 */
+var ODEMO='<div class="demo" id="odemo" aria-label="OUAH AI portal demo"> <div class="demo-chrome"> <span class="dot"></span><span class="dot"></span><span class="dot"></span> <div class="demo-url"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"> <rect x="5" y="11" width="14" height="10" rx="2" stroke="currentColor" stroke-width="2" /> <path d="M8 11V8a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="2" /> </svg>portal.ouahco.ca</div> </div> <div class="demo-app"> <div class="demo-top"> <img src="media/ouah/ouah_logo.png" alt="" class="demo-logo"> <span class="demo-top-sub">Health Canada registration services</span> <span class="demo-top-by">Serviced by <img src="media/ouah/ai-dongincheon.png" alt="dongincheon"></span> </div> <div class="demo-body"> <div class="demo-main"> <ol class="demo-steps"> <li data-s="1"><span>1</span><b data-lang="kr">자료 올리기</b><b data-lang="en">Upload</b></li> <li data-s="2"><span>2</span><b data-lang="kr">결과 확인</b><b data-lang="en">Results</b></li> <li data-s="3"><span>3</span><b data-lang="kr">인보이스</b><b data-lang="en">Invoice</b></li> <li data-s="4"><span>4</span><b data-lang="kr">등록 진행</b><b data-lang="en">Registration</b></li> </ol> <!-- Scene 1 — upload --> <div class="scene" data-scene="1"> <div class="d-card"> <div class="d-card-title"><span data-lang="kr">INCI 단일 전성분표 (w/w %)</span><span data-lang="en">Single INCI full ingredient list (w/w %)</span></div> <div class="d-drop"> <div class="d-file"> <span class="d-file-ic">XLSX</span> <span class="d-file-name">SAMPLE_MOISTURE_CREAM.xlsx</span> </div> <div class="d-progress"><i></i></div> </div> <div class="d-ok"> <b>✓ <span data-lang="kr">전성분표 확인했습니다</span><span data-lang="en">Ingredient list verified</span></b> <span data-lang="kr">성분 6개 · 함량 합계 100.00%</span> <span data-lang="en">6 ingredients · total 100.00%</span> </div> </div> </div> <!-- Scene 2 — questions --> <div class="scene" data-scene="2"> <div class="d-card"> <div class="d-card-title"><span data-lang="kr">제품에 대해 두 가지만 알려 주세요</span><span data-lang="en">Just tell us two things</span></div> <div class="d-q"> <label class="d-opt" data-pick="a"><i></i><span data-lang="kr">바르고 그대로 두는 제품</span><span data-lang="en">Leave-on product</span></label> <label class="d-opt"><i></i><span data-lang="kr">쓰고 씻어내는 제품</span><span data-lang="en">Rinse-off product</span></label> </div> <div class="d-q d-q-grid"> <label class="d-opt sq"><i></i>SPF</label> <label class="d-opt sq"><i></i><span data-lang="kr">여드름</span><span data-lang="en">Acne</span></label> <label class="d-opt sq"><i></i><span data-lang="kr">미백</span><span data-lang="en">Whitening</span></label> <label class="d-opt sq" data-pick="b"><i></i><span data-lang="kr">보습 · 진정만</span><span data-lang="en">Moisturizing only</span></label> </div> <div class="d-btn" data-pick="c"><span data-lang="kr">결과 보기</span><span data-lang="en">See result</span></div> </div> </div> <!-- Scene 3 — result & quote --> <div class="scene" data-scene="3"> <div class="d-card d-result"> <span class="d-badge">CNF</span> <div class="d-result-title"><span data-lang="kr">화장품 신고(CNF)만으로 캐나다에 팔 수 있습니다</span><span data-lang="en">You can proceed with a Cosmetic Notification (CNF)</span></div> <div class="d-rows"> <div><span data-lang="kr">CNF 신고 대행 × 1</span><span data-lang="en">CNF filing service × 1</span><b>CAD 350.00</b></div> <div><span data-lang="kr">정부 수수료</span><span data-lang="en">Government fee</span><b>CAD 0.00</b></div> <div><span>GST 5%</span><b>CAD 17.50</b></div> <div class="tot"><span data-lang="kr">입금하실 금액</span><span data-lang="en">Amount to pay</span><b>CAD 367.50</b></div> </div> <div class="d-btn solid"><span data-lang="kr">인보이스 받고 진행하기</span><span data-lang="en">Get invoice &amp; proceed</span></div> </div> </div> <!-- Scene 4 — bilingual label --> <div class="scene" data-scene="4"> <div class="d-card"> <div class="d-card-title"><span data-lang="kr">영·불 라벨 문안 보고서</span><span data-lang="en">Bilingual label copy report</span></div> <div class="d-label"> <div class="d-art"> <div class="d-art-box"><b>MOISTURE CREAM</b><small>50 mL</small><i class="z z1">1</i><i class="z z2">2</i><i class="z z3">3</i></div> </div> <div class="d-zones"> <div class="d-zone"><i>1</i><div><b>Moisturizing Cream</b><small>Crème hydratante</small></div></div> <div class="d-zone"><i>2</i><div><b>50 mL</b><small>Net quantity · Quantité nette</small></div></div> <div class="d-zone"><i>3</i><div><b>Imported by / Importé par</b><small>OUAH CO. &amp; TRADING LTD.</small></div></div> </div> </div> <div class="d-done">✓ <span data-lang="kr">보고서 PDF 완성 — 메일과 「내 주문」에서 받기</span><span data-lang="en">Report PDF ready — sent by email and in “My orders”</span></div> </div> </div> <span class="d-cursor" aria-hidden="true"></span> </div> <aside class="demo-side" aria-hidden="true"> <div class="demo-bubble"> <span class="b" data-b="1"><span data-lang="kr">여기 올리셔요~</span><span data-lang="en">Upload here!</span></span> <span class="b" data-b="2"><span data-lang="kr">두 개만 골라유~</span><span data-lang="en">Just two questions!</span></span> <span class="b" data-b="3"><span data-lang="kr">맞아유~ CNF여유~</span><span data-lang="en">Looks good! It\'s a CNF!</span></span> <span class="b" data-b="4"><span data-lang="kr">영·불 다 됐어유~</span><span data-lang="en">English &amp; French — done!</span></span> </div> <img src="media/ouah/ai-brooks.webp" alt="" class="demo-avatar"> </aside> </div> </div> </div> <div class="demo-controls" role="tablist" aria-label="Demo steps"> <button type="button" data-dgo="1" role="tab"><b>01</b><span data-lang="kr">전성분표 올리기</span><span data-lang="en">Upload ingredient list</span></button> <button type="button" data-dgo="2" role="tab"><b>02</b><span data-lang="kr">질문 두 개</span><span data-lang="en">Two quick questions</span></button> <button type="button" data-dgo="3" role="tab"><b>03</b><span data-lang="kr">팔 수 있는지 · 견적</span><span data-lang="en">Can it be sold? · Quote</span></button> <button type="button" data-dgo="4" role="tab"><b>04</b><span data-lang="kr">영·불 라벨 문안</span><span data-lang="en">Bilingual label copy</span></button> </div>';
 var GLB={ra:'models/step-1-regulatory.glb',label:'models/obj-label.glb',pkg:'models/obj-package.glb',detail:'models/obj-detail.glb',sub:'models/step-5-submission.glb',launch:'models/deco-plane.glb'};
 function glbSrc(k){ var v=GLB[k]; if(!v || v.indexOf('__')===0) return null;
   return (v.slice(0,5)==='data:') ? (v.length>32 ? v : null) : v; }
@@ -1881,41 +2038,98 @@ var OBJ3D=(function(){
   return {refresh:refresh,render:render,resize:resize};
 })();
 
-/* ===== PROOF 패널 블링원 로고 — 홈 오브제와 같은 조명·재질·회전 ===== */
-var BLING={r:null,scene:null,cam:null,obj:null,raf:0,t:0,last:0};
-function blingMount(){
-  var cv=document.getElementById('blingGL'); if(!cv) return;
-  var box=cv.parentNode;
-  if(!BLING_GLB || BLING_GLB.indexOf('__')===0 || typeof THREE==='undefined' || typeof THREE.GLTFLoader!=='function'){ box.classList.add('no3d'); return; }
+/* ===== 패널 안 3D 로고 — 홈 오브제와 같은 조명·재질·회전(rotation.y = 시간 × 0.6, 계속 한 바퀴씩) =====
+   canvas.spin3d[data-glb=키] 마다 렌더러 하나. 패널이 바뀌어 캔버스가 문서에서 빠지면 멈추고 정리한다 */
+var SPINS=[], SPIN_MODEL={}, SPIN_WAIT={};
+function spinMount(){
+  document.querySelectorAll('#pbody canvas.spin3d').forEach(function(cv){ if(!cv.__spin) spinOne(cv); });
+}
+function spinOne(cv){
+  cv.__spin=true;
+  var key=cv.getAttribute('data-glb'), src=SPIN_GLB[key];
+  function off(){ cv.classList.add('no3d'); var c=cv.closest('.pcard3d'); if(c) c.classList.remove('pcard3d'); }
+  if(!src || src.indexOf('__')===0 || typeof THREE==='undefined' || typeof THREE.GLTFLoader!=='function'){ off(); return; }
   var r;
-  try{ r=new THREE.WebGLRenderer({canvas:cv,alpha:true,antialias:true,premultipliedAlpha:true}); }catch(e){ box.classList.add('no3d'); return; }
-  if(BLING.r){ try{ BLING.r.dispose(); }catch(e){} }
-  cancelAnimationFrame(BLING.raf);
+  try{ r=new THREE.WebGLRenderer({canvas:cv,alpha:true,antialias:true,premultipliedAlpha:true}); }catch(e){ off(); return; }
   r.setClearAlpha(0); r.setPixelRatio(Math.min(window.devicePixelRatio||1,2));
   if(THREE.sRGBEncoding) r.outputEncoding=THREE.sRGBEncoding;
-  r.setSize(cv.clientWidth||120,cv.clientHeight||120,false);
-  BLING.r=r; BLING.scene=studio(r);
-  BLING.cam=new THREE.OrthographicCamera(-1,1,1,-1,-10,10); BLING.cam.position.z=5;
-  function place(o){
-    var b=new THREE.Box3().setFromObject(o), c=new THREE.Vector3(), z=new THREE.Vector3(); b.getCenter(c); b.getSize(z);
-    var inner=new THREE.Group(); o.position.sub(c); inner.add(o); inner.scale.setScalar(1.7/(Math.max(z.x,z.y,z.z)||1));
-    BLING.scene.add(inner); return inner;
-  }
-  function go(src){ BLING.obj=place(src.clone(true)); BLING.last=0; BLING.raf=requestAnimationFrame(tick); }
+  r.setSize(cv.clientWidth||100,cv.clientHeight||100,false);
+  var S={r:r,scene:studio(r),cam:new THREE.OrthographicCamera(-1,1,1,-1,-10,10),obj:null,raf:0,t:0,last:0};
+  S.cam.position.z=5; SPINS.push(S);
   function tick(now){
-    if(!document.body.contains(cv)){ try{ r.dispose(); }catch(e){} if(BLING.r===r) BLING.r=null; return; }   /* 패널이 바뀌면 멈춘다 */
-    var dt=BLING.last?Math.min(64,now-BLING.last):16; BLING.last=now;
-    if(!reduce) BLING.t+=dt/1000;
-    BLING.obj.rotation.y=BLING.t*0.6;
-    BLING.obj.rotation.x=Math.sin(BLING.t*0.5)*0.08;
-    r.render(BLING.scene,BLING.cam);
-    if(!reduce) BLING.raf=requestAnimationFrame(tick);
+    if(!document.body.contains(cv)){ try{ r.dispose(); }catch(e){} SPINS.splice(SPINS.indexOf(S),1); return; }
+    var dt=S.last?Math.min(64,now-S.last):16; S.last=now;
+    if(!reduce) S.t+=dt/1000;
+    S.obj.rotation.y=S.t*0.6;
+    S.obj.rotation.x=Math.sin(S.t*0.5)*0.08;
+    r.render(S.scene,S.cam);
+    if(!reduce) S.raf=requestAnimationFrame(tick);
   }
-  if(BLING.model){ go(BLING.model); return; }
-  new THREE.GLTFLoader().load(BLING_GLB,function(g){
-    var o=g.scene||(g.scenes&&g.scenes[0]); if(!o){ box.classList.add('no3d'); return; }
-    glossify(o); BLING.model=o; if(document.body.contains(cv)) go(o);
-  },null,function(){ box.classList.add('no3d'); });
+  function go(model){
+    var o=model.clone(true), b=new THREE.Box3().setFromObject(o), c=new THREE.Vector3(), z=new THREE.Vector3(); b.getCenter(c); b.getSize(z);
+    var inner=new THREE.Group(); o.position.sub(c); inner.add(o); inner.scale.setScalar(1.7/(Math.max(z.x,z.y,z.z)||1));
+    S.scene.add(inner); S.obj=inner; S.raf=requestAnimationFrame(tick);
+  }
+  if(SPIN_MODEL[key]){ go(SPIN_MODEL[key]); return; }
+  if(SPIN_WAIT[key]){ SPIN_WAIT[key].push([go,off]); return; }
+  SPIN_WAIT[key]=[[go,off]];
+  new THREE.GLTFLoader().load(src,function(g){
+    var o=g.scene||(g.scenes&&g.scenes[0]); var w=SPIN_WAIT[key]; SPIN_WAIT[key]=null;
+    if(!o){ w.forEach(function(x){ x[1](); }); return; }
+    glossify(o); SPIN_MODEL[key]=o; w.forEach(function(x){ x[0](o); });
+  },null,function(){ var w=SPIN_WAIT[key]||[]; SPIN_WAIT[key]=null; w.forEach(function(x){ x[1](); }); });
+}
+
+/* ===== OUAH 포털 데모 — ouahco.ca 의 script.js 5번(포털 데모)을 옮겨 옴. 패널이 닫히면 멈춘다 ===== */
+function odemoStart(){
+  var wrap=document.querySelector('#pbody .odemo'); if(!wrap) return;
+  var demo=wrap.querySelector('#odemo');
+  var scenes=demo.querySelectorAll('.scene'), steps=demo.querySelectorAll('.demo-steps li'), bubbles=demo.querySelectorAll('.demo-bubble .b');
+  var tabs=wrap.querySelectorAll('.demo-controls button'), cursor=demo.querySelector('.d-cursor'), main=demo.querySelector('.demo-main');
+  var DUR={1:4800,2:5200,3:5000,4:5600}, cur=0, timer=null, clicks=[], paused=false, visible=true;
+  function alive(){ if(document.body.contains(demo)) return true; clearTimeout(timer); clicks.forEach(clearTimeout); return false; }
+  function moveCursor(el,click){
+    if(!el||!cursor||!alive()) return;
+    var a=el.getBoundingClientRect(), b=main.getBoundingClientRect();
+    cursor.style.opacity='1';
+    cursor.style.transform='translate('+(a.left-b.left+a.width*0.6)+'px,'+(a.top-b.top+a.height*0.55)+'px)';
+    if(click) clicks.push(setTimeout(function(){ cursor.classList.remove('click'); void cursor.offsetWidth; cursor.classList.add('click'); el.classList.add('picked'); },720));
+  }
+  function show(n){
+    if(!alive()) return;
+    cur=n; clicks.forEach(clearTimeout); clicks=[];
+    scenes.forEach(function(x){ x.classList.toggle('on',+x.getAttribute('data-scene')===n); });
+    var step={1:1,2:1,3:2,4:4}[n];
+    steps.forEach(function(x){ var k=+x.getAttribute('data-s'); x.classList.toggle('now',k===step); x.classList.toggle('done',k<step); });
+    bubbles.forEach(function(x){ x.classList.toggle('on',+x.getAttribute('data-b')===n); });
+    tabs.forEach(function(t){
+      var on=+t.getAttribute('data-dgo')===n;
+      t.classList.toggle('on',on); t.setAttribute('aria-selected',String(on));
+      t.style.setProperty('--dur',(paused?0:DUR[n])+'ms');
+      if(on){ t.classList.remove('on'); void t.offsetWidth; t.classList.add('on'); }
+    });
+    demo.querySelectorAll('.picked').forEach(function(e){ e.classList.remove('picked'); });
+    if(cursor) cursor.style.opacity='0';
+    if(n===2 && !reduce){
+      var a=demo.querySelector('[data-pick="a"]'), b=demo.querySelector('[data-pick="b"]'), c=demo.querySelector('[data-pick="c"]');
+      clicks.push(setTimeout(function(){ moveCursor(a,true); },500));
+      clicks.push(setTimeout(function(){ moveCursor(b,true); },1900));
+      clicks.push(setTimeout(function(){ moveCursor(c,true); },3300));
+    }
+    if(n===2 && reduce) demo.querySelectorAll('[data-pick]').forEach(function(e){ e.classList.add('picked'); });
+    clearTimeout(timer);
+    if(!paused && !reduce && visible) timer=setTimeout(function(){ show(n%4+1); },DUR[n]);
+  }
+  tabs.forEach(function(t){ t.addEventListener('click',function(){ paused=false; show(+t.getAttribute('data-dgo')); track('ouah_demo_step',{step:+t.getAttribute('data-dgo')}); }); });
+  demo.addEventListener('mouseenter',function(){ paused=true; clearTimeout(timer); });
+  demo.addEventListener('mouseleave',function(){ paused=false; clearTimeout(timer); timer=setTimeout(function(){ show(cur%4+1); },1800); });
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(es){ es.forEach(function(e){
+      visible=e.isIntersecting;
+      if(visible && !paused){ clearTimeout(timer); timer=setTimeout(function(){ show(cur%4+1); },DUR[cur]||1000); } else clearTimeout(timer);
+    }); },{threshold:0.25}).observe(demo);
+  }
+  show(1);
 }
 
 function attachMouse(){
