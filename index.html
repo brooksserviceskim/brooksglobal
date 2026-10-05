@@ -1066,9 +1066,18 @@ document.querySelectorAll('[data-open]').forEach(function(b){ b.addEventListener
 
 /* ===== panel ===== */
 var panel=document.getElementById('panel'), scrim=document.getElementById('scrim'), lastFocus=null;
+panel.inert=true;   /* 처음엔 닫혀 있다 */
+/* 키보드·화면 낭독기: 닫힌 패널 안으로 Tab 이 들어가지 않게, 열린 패널 뒤로 Tab 이 새지 않게 (1-11) */
+function setInert(open){
+  panel.inert=!open;
+  document.querySelector('.hero').inert=open;
+  document.querySelector('.topbar').inert=open;
+}
 function showPanel(){
-  lastFocus=document.activeElement;
+  /* 패널 안에서 다른 패널로 넘어갈 때는 처음 연 자리(예: 대표 CTA)를 그대로 기억한다 — 닫으면 거기로 돌아간다 */
+  if(!panel.classList.contains('open')) lastFocus=document.activeElement;
   panel.classList.add('open'); scrim.classList.add('open'); panel.setAttribute('aria-hidden','false');
+  setInert(true);
   lineup(true);
   document.getElementById('pclose').focus();
 }
@@ -1099,6 +1108,7 @@ function openPanel(s){
 }
 function closePanel(){
   panel.classList.remove('open'); scrim.classList.remove('open'); panel.setAttribute('aria-hidden','true');
+  setInert(false);
   lineup(false);
   if(lastFocus&&lastFocus.focus) lastFocus.focus();
 }
