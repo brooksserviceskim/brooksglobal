@@ -172,7 +172,7 @@ button{font:inherit;color:inherit;border:none;background:none;cursor:pointer}
 .objlabel{position:absolute;left:50%;top:100%;transform:translateX(-50%);margin-top:6px;text-align:center;white-space:nowrap;
   word-break:keep-all;overflow-wrap:break-word;pointer-events:none}
 .objlabel b{display:block;font-weight:900;font-size:13px;letter-spacing:-.02em;color:var(--ink)}
-/* 이름표: 데스크톱은 「01 규제 경로」, 폰은 「01 규제」 */
+/* 이름표: 데스크톱은 「01 판매 가능 검토」, 폰은 「01 검토」 */
 .objlabel .short{display:none}
 @media(max-width:640px){.objlabel{margin-top:4px}.objlabel b{font-size:11px;letter-spacing:-.03em}.objlabel .long{display:none}.objlabel .short{display:block}}
 
@@ -510,12 +510,12 @@ function T(ko,en){ return LANG==='en'?en:ko; }
 /* ===== content ===== */
 /* 2026-10-04 리뉴얼 — Sprint 6단계 순서(브리프 8.2). 이 배열 순서가 오브제 자리와 정렬 순서다 */
 var SERVICES=[
- {id:'ra',art:'ra',color:'#4A5568',kicker:'SPRINT 01 · REGULATORY',tag:'01 규제 경로',short:'01 규제',
-  title:'갈 수 있는 길부터 확인합니다',
-  lede:'디자인을 시작하기 전에 제품이 수출할 나라에 어떤 경로로 들어갈 수 있는지부터 확인합니다. 캐나다는 OUAH 포털로 먼저 확인하고, 현지 전문가가 최종 검토합니다.',
-  role:['갈 수 있는 경로와 필요한 자료, 외부 절차를 정리합니다',
+ {id:'ra',art:'ra',color:'#4A5568',kicker:'SPRINT 01 · REGULATORY',tag:'01 판매 가능 검토',short:'01 검토',
+  title:'그 나라에 팔 수 있는지부터 검토합니다',
+  lede:'디자인을 시작하기 전에, 내 화장품을 수출할 나라에서 팔 수 있는지부터 검토합니다. 캐나다는 OUAH 포털로 먼저 확인하고, 현지 전문가가 최종 검토합니다.',
+  role:['팔 수 있는지, 팔려면 무엇이 더 필요한지 정리합니다',
         '금지·제한 성분과 쓰면 안 되는 문구를 먼저 걸러 냅니다',
-        '여기서 정한 경로가 라벨·패키지·판매자료의 기준이 됩니다'],
+        '여기서 검토한 결과가 라벨·패키지·판매자료의 기준이 됩니다'],
   solo:'규정 검토나 등록만 따로 맡기실 수도 있습니다.',
   items:['미국 화장품 규정(MoCRA)에 따라 제품 등록에 무엇이 필요한지 정리해 드립니다',
          '성분이 쓸 수 있는 것인지, 한도를 넘지 않는지 봅니다',
@@ -528,7 +528,7 @@ var SERVICES=[
  {id:'label',art:'label',color:'#2A8C86',kicker:'SPRINT 02 · LABEL',tag:'02 표기 문구',short:'02 표기',
   title:'번역이 아니라 시장별로 다시 씁니다',
   lede:'광고 문구와 필수 표기를 수출할 나라의 기준에 맞게 정리합니다. 한국어 문구를 옮겨 적지 않고, 그 나라 규정에 맞춰 새로 씁니다.',
-  role:['01 단계에서 정한 경로에 맞춰 필수 표기 항목을 정리합니다',
+  role:['01 단계에서 검토한 결과에 맞춰 필수 표기 항목을 정리합니다',
         '영문·불문 등 시장별 문안을 쓰고, 기능성이나 의약품 주장으로 읽히는 표현을 걸러 냅니다',
         '전성분을 국제 성분명(INCI)으로 정리합니다'],
   solo:'라벨 표기 문구만 따로 맡기실 수도 있습니다.',
@@ -537,7 +537,7 @@ var SERVICES=[
          '건강기능식품은 Supplement Facts, 일반식품은 Nutrition Facts, OTC는 Drug Facts로 구성합니다',
          '기능성으로 읽히는 표현, 의약품 주장이 되는 표현을 걸러 냅니다',
          '수출만 하실지 국내에서도 판매하실지에 따라 표기를 나눠 드립니다'],
-  meta:'국내에 유통하는 화장품은 화장품법 제10조에 따라 1차·2차 포장에 한글 표기가 있어야 합니다. 국내에서도 판매하실 제품이라면 처음부터 한글과 영문을 함께 표기하는 편이 낫습니다. 유럽 기준 라벨 문구도 함께 잡아 드리며, 유럽 화장품 등록(CPNP) 절차는 따로 상담합니다.'},
+  meta:'국내에 유통하는 화장품은 화장품법 제10조에 따라 1차·2차 포장에 한글 표기가 있어야 합니다. 국내에서도 판매하실 제품이라면 처음부터 한글과 영문을 함께 표기하는 편이 낫습니다. 유럽 기준 라벨 문구도 함께 잡아 드리며, 유럽 화장품 등록(CPNP)은 따로 상담합니다.'},
  {id:'pkg',art:'pkg',color:'#1E7B45',kicker:'SPRINT 03 · PACKAGE',tag:'03 패키지',short:'03 패키지',
   title:'만들기 전에 먼저 확인합니다',
   lede:'규정과 필수 표기를 먼저 잡아 두고 디자인을 시작합니다. 다 그려 놓고 문구 때문에 다시 뜯어고치는 일을 줄입니다.',
@@ -605,7 +605,7 @@ var SERVICES=[
   meta:'정부 수수료, 시험성적서 발급, 인쇄·용기·단상자 생산비는 포함되지 않습니다.'}
 ];
 /* 영어판 문안 (G6) — 같은 사실을 영어 업무 문체로. 가격·사례·실적은 한국어판과 같다 */
-var SERVICES_EN={"ra": {"tag": "01 Regulatory route", "short": "01 Route", "title": "We confirm the route first", "lede": "Before any design work, we confirm how the product can enter the target market. For Canada, the OUAH portal gives a first answer and a Canadian specialist makes the final review.", "role": ["We map the available route, the required documents and any outside procedures", "We flag prohibited or restricted ingredients and claims that cannot be used", "The route set here becomes the basis for the label, packaging and sales materials"], "solo": "Regulatory review or registration can also be ordered on its own.", "items": ["We list what the product needs for registration under the US cosmetics law (MoCRA)", "We check that every ingredient is permitted and within its limits", "For Canada, we check the Cosmetic Notification requirements", "We review the label and product page against the rules and show what to fix", "If a shipment was held at customs, we analyse the reason and plan the resubmission"], "cred": "Ran seller webinars for Amazon Korea and Walmart Asia-Pacific Marketplace.", "meta": "We handle US FDA product listing and Health Canada notifications and licences. We do not handle facility registration that requires a US agent, but we can quote it separately."}, "label": {"tag": "02 Label copy", "short": "02 Label", "title": "Rewritten for each market, not translated", "lede": "We prepare claims and mandatory statements to the rules of the target market. Korean copy is not simply translated; it is rewritten for that market’s regulations.", "role": ["We set the mandatory label elements according to the route from step 01", "We write market copy in English, French and other languages, removing wording that reads as a functional or drug claim", "We list the ingredients by INCI name"], "solo": "Label copy can also be ordered on its own.", "items": ["We write Korean and English copy and decide whether they share one panel or are split", "We list the ingredients by INCI name", "Supplements use Supplement Facts, foods use Nutrition Facts and OTC drugs use Drug Facts", "We remove wording that reads as a functional or drug claim", "We separate the labelling for export-only products from products also sold in Korea"], "meta": "Cosmetics sold in Korea must carry Korean labelling on the primary and secondary packaging under Article 10 of the Korean Cosmetics Act. If the product will also be sold in Korea, it is better to plan Korean and English labelling from the start. EU label copy is included; the EU notification (CPNP) itself is discussed separately."}, "pkg": {"tag": "03 Packaging", "short": "03 Pack", "title": "We check before we design", "lede": "We set the regulatory and mandatory elements first and then start the design, so the artwork never has to be redone because of wording.", "role": ["We reserve space for mandatory elements at the draft stage", "We mark what needs to change on existing packaging or prepare the revised files", "We finish with print-ready files"], "solo": "Container and packaging design can also be ordered on its own.", "items": ["Pouches and containers are drawn on the dieline, and you receive the print-ready AI file and a PDF", "Cartons are laid out on the die-cut supplied by the printer", "Ingredients and mandatory statements are placed at the draft stage", "Products sold in Korea and export-only products need different labelling, so we confirm which one first", "We also design merchandise packaging with K-pop IP or characters", "Two rounds of revisions are included after the first draft"], "cred": "Design partner of Blingone, a K-pop idol merchandise brand.", "meta": "Product photography, models and studio, printing and press checks, components and extra font licences are not included. The aim is to stop files coming back after they go to print."}, "detail": {"tag": "04 Sales page", "short": "04 Sales", "title": "The product page matches the pack", "lede": "We plan the product page within the claims you are allowed to make and use the same wording as the packaging.", "role": ["We write sales copy within the claims set for the packaging and label", "We build the core structure or the finished English product page", "If buyers and customers need a brand website, we build it to the same standard"], "solo": "Product pages or a brand website can also be ordered on their own.", "items": ["English product pages are 860 px wide and delivered with 2x files", "One master page is made for both your own store and marketplaces", "We highlight what sets the product apart and remove wording you cannot use", "Korean pages, extra languages and extra products are quoted separately", "Two rounds of revisions are included after the first draft"], "more": [{"h": "Brand website", "items": ["One person handles planning, design and build: brand sites, company sites and demo sites for proposals", "Built for desktop, tablet and mobile", "We connect your domain and set up HTTPS", "We add titles, descriptions, share images and a sitemap, and register the site with Google Search Console and Naver Search Advisor", "We connect the contact form to your email", "You receive the full source, the live site and an operating guide", "Defects found within 30 days of launch are fixed free of charge"], "meta": "Online stores, sign-up, booking, message boards and admin screens are not included; we can quote them separately. Additional languages are quoted per language."}], "cred": "This website was built the same way.", "meta": "860 px is the standard width on Korean platforms such as Naver Smart Store and Cafe24. We do not make a separate size for each channel."}, "sub": {"tag": "05 Submission", "short": "05 Submit", "title": "Repetitive paperwork goes to the system", "lede": "Document checks, quotes, drafts and status tracking are automated. Decisions stay with people.", "role": ["We check that every document needed for submission and production is in place", "The system cuts repetitive entry and drafting; regulatory judgement and final approval stay with people", "You can see at a glance where things stand and who decides next"], "solo": "Office workflow automation can also be ordered on its own.", "items": ["Two-week diagnosis — we take your current files as they are and sort repetitive work into rules, AI, integrations and people, including work better left as it is", "Messenger bots — upload a file and the converted version comes back as a reply in the Slack you already use: invoice conversion, order consolidation, registration forms and daily reports", "Meeting notes — record a meeting and the transcript, summary and action items arrive in your messenger", "Scheduled collection and alerts — notices and data are collected, assessed and sent at a set time every day, even when your PC is off", "Regulatory review automation — cosmetic ingredient lists and copy are checked against a rule table to produce a review draft, used together with US and Canada regulatory advice", "Social media automation — Instagram performance data is connected and card images are generated automatically"], "rules": ["Remove, standardise, integrate, automate, then AI. AI never comes first", "Work that rules can handle is not given to AI. If it is right 99 times and wrong once, people cannot catch that one", "We run old and new side by side before switching and show the before and after in numbers", "We do not produce material for cutting staff, and we do not take personal or confidential data"], "meta": "Designed for repetitive office work at brands, manufacturers and SMEs with 5 to 50 staff. The first bot follows one to two weeks after the two-week diagnosis, and pricing is quoted by scope after the diagnosis. Your systems must be able to export files; we do not do screen-clicking automation (RPA)."}, "launch": {"tag": "06 Launch", "short": "06 Launch", "title": "Final files and a launch checklist", "lede": "You receive final files ready for the printer and manufacturer, and a checklist of what remains before launch, who does it and when.", "role": ["Final files ready to hand to the printer and manufacturer", "One checklist covering submission, production and launch", "A handover note listing who receives what and when, with owners and dates"], "solo": "Monthly maintenance is offered only after the Sprint.", "meta": "Government fees, test reports and printing, container and carton production are not included."}};
+var SERVICES_EN={"ra": {"tag": "01 Can it be sold?", "short": "01 Check", "title": "First we check whether it can be sold there", "lede": "Before any design work, we check whether your product can be sold in the target market. For Canada, the OUAH portal gives a first answer and a Canadian specialist makes the final review.", "role": ["We set out whether it can be sold and what else is needed to sell it", "We flag prohibited or restricted ingredients and claims that cannot be used", "This check becomes the basis for the label, packaging and sales materials"], "solo": "Regulatory review or registration can also be ordered on its own.", "items": ["We list what the product needs for registration under the US cosmetics law (MoCRA)", "We check that every ingredient is permitted and within its limits", "For Canada, we check the Cosmetic Notification requirements", "We review the label and product page against the rules and show what to fix", "If a shipment was held at customs, we analyse the reason and plan the resubmission"], "cred": "Ran seller webinars for Amazon Korea and Walmart Asia-Pacific Marketplace.", "meta": "We handle US FDA product listing and Health Canada notifications and licences. We do not handle facility registration that requires a US agent, but we can quote it separately."}, "label": {"tag": "02 Label copy", "short": "02 Label", "title": "Rewritten for each market, not translated", "lede": "We prepare claims and mandatory statements to the rules of the target market. Korean copy is not simply translated; it is rewritten for that market’s regulations.", "role": ["We set the mandatory label elements according to the check in step 01", "We write market copy in English, French and other languages, removing wording that reads as a functional or drug claim", "We list the ingredients by INCI name"], "solo": "Label copy can also be ordered on its own.", "items": ["We write Korean and English copy and decide whether they share one panel or are split", "We list the ingredients by INCI name", "Supplements use Supplement Facts, foods use Nutrition Facts and OTC drugs use Drug Facts", "We remove wording that reads as a functional or drug claim", "We separate the labelling for export-only products from products also sold in Korea"], "meta": "Cosmetics sold in Korea must carry Korean labelling on the primary and secondary packaging under Article 10 of the Korean Cosmetics Act. If the product will also be sold in Korea, it is better to plan Korean and English labelling from the start. EU label copy is included; the EU notification (CPNP) itself is discussed separately."}, "pkg": {"tag": "03 Packaging", "short": "03 Pack", "title": "We check before we design", "lede": "We set the regulatory and mandatory elements first and then start the design, so the artwork never has to be redone because of wording.", "role": ["We reserve space for mandatory elements at the draft stage", "We mark what needs to change on existing packaging or prepare the revised files", "We finish with print-ready files"], "solo": "Container and packaging design can also be ordered on its own.", "items": ["Pouches and containers are drawn on the dieline, and you receive the print-ready AI file and a PDF", "Cartons are laid out on the die-cut supplied by the printer", "Ingredients and mandatory statements are placed at the draft stage", "Products sold in Korea and export-only products need different labelling, so we confirm which one first", "We also design merchandise packaging with K-pop IP or characters", "Two rounds of revisions are included after the first draft"], "cred": "Design partner of Blingone, a K-pop idol merchandise brand.", "meta": "Product photography, models and studio, printing and press checks, components and extra font licences are not included. The aim is to stop files coming back after they go to print."}, "detail": {"tag": "04 Sales page", "short": "04 Sales", "title": "The product page matches the pack", "lede": "We plan the product page within the claims you are allowed to make and use the same wording as the packaging.", "role": ["We write sales copy within the claims set for the packaging and label", "We build the core structure or the finished English product page", "If buyers and customers need a brand website, we build it to the same standard"], "solo": "Product pages or a brand website can also be ordered on their own.", "items": ["English product pages are 860 px wide and delivered with 2x files", "One master page is made for both your own store and marketplaces", "We highlight what sets the product apart and remove wording you cannot use", "Korean pages, extra languages and extra products are quoted separately", "Two rounds of revisions are included after the first draft"], "more": [{"h": "Brand website", "items": ["One person handles planning, design and build: brand sites, company sites and demo sites for proposals", "Built for desktop, tablet and mobile", "We connect your domain and set up HTTPS", "We add titles, descriptions, share images and a sitemap, and register the site with Google Search Console and Naver Search Advisor", "We connect the contact form to your email", "You receive the full source, the live site and an operating guide", "Defects found within 30 days of launch are fixed free of charge"], "meta": "Online stores, sign-up, booking, message boards and admin screens are not included; we can quote them separately. Additional languages are quoted per language."}], "cred": "This website was built the same way.", "meta": "860 px is the standard width on Korean platforms such as Naver Smart Store and Cafe24. We do not make a separate size for each channel."}, "sub": {"tag": "05 Submission", "short": "05 Submit", "title": "Repetitive paperwork goes to the system", "lede": "Document checks, quotes, drafts and status tracking are automated. Decisions stay with people.", "role": ["We check that every document needed for submission and production is in place", "The system cuts repetitive entry and drafting; regulatory judgement and final approval stay with people", "You can see at a glance where things stand and who decides next"], "solo": "Office workflow automation can also be ordered on its own.", "items": ["Two-week diagnosis — we take your current files as they are and sort repetitive work into rules, AI, integrations and people, including work better left as it is", "Messenger bots — upload a file and the converted version comes back as a reply in the Slack you already use: invoice conversion, order consolidation, registration forms and daily reports", "Meeting notes — record a meeting and the transcript, summary and action items arrive in your messenger", "Scheduled collection and alerts — notices and data are collected, assessed and sent at a set time every day, even when your PC is off", "Regulatory review automation — cosmetic ingredient lists and copy are checked against a rule table to produce a review draft, used together with US and Canada regulatory advice", "Social media automation — Instagram performance data is connected and card images are generated automatically"], "rules": ["Remove, standardise, integrate, automate, then AI. AI never comes first", "Work that rules can handle is not given to AI. If it is right 99 times and wrong once, people cannot catch that one", "We run old and new side by side before switching and show the before and after in numbers", "We do not produce material for cutting staff, and we do not take personal or confidential data"], "meta": "Designed for repetitive office work at brands, manufacturers and SMEs with 5 to 50 staff. The first bot follows one to two weeks after the two-week diagnosis, and pricing is quoted by scope after the diagnosis. Your systems must be able to export files; we do not do screen-clicking automation (RPA)."}, "launch": {"tag": "06 Launch", "short": "06 Launch", "title": "Final files and a launch checklist", "lede": "You receive final files ready for the printer and manufacturer, and a checklist of what remains before launch, who does it and when.", "role": ["Final files ready to hand to the printer and manufacturer", "One checklist covering submission, production and launch", "A handover note listing who receives what and when, with owners and dates"], "solo": "Monthly maintenance is offered only after the Sprint.", "meta": "Government fees, test reports and printing, container and carton production are not included."}};
 if(LANG==='en') SERVICES.forEach(function(s){ var e=SERVICES_EN[s.id]; if(e) Object.keys(e).forEach(function(k){ s[k]=e[k]; }); });
 /* 장식 오브제(하트·별·수출·OK·OUAH 로고)는 2026-10-04 첫 화면 재설계로 뺐습니다. 블링원·OUAH 는 패널 글로 옮깁니다 */
 var MAIL='brooksservices.kim@brooksglobal.co.kr';
@@ -890,7 +890,7 @@ function go(target,label,ghost){ return '<button type="button" class="pgo'+(ghos
 /* 캐나다 카드 — 브리프 9.3. sprint · proof · 규제 모듈에서 같이 쓴다 */
 function canadaCard(){
   return '<div class="pcard"><small>WORKING PROOF · CANADA</small><h5>'+T('전성분표 한 장에서 등록 준비까지','From one ingredient list to a registration-ready file')+'</h5>'+
-    '<p>'+T('캐나다에 팔 수 있는지만 먼저 알고 싶으시면, OUAH 포털에 전성분표를 올리고 몇 가지 질문에 답해 보세요. 어떤 절차로 팔 수 있는지와 비용을 먼저 보여 줍니다.',
+    '<p>'+T('캐나다에 팔 수 있는지만 먼저 알고 싶으시면, OUAH 포털에 전성분표를 올리고 몇 가지 질문에 답해 보세요. 팔 수 있는지와 비용을 먼저 보여 줍니다.',
             'If you only want to know whether you can sell in Canada, upload your ingredient list to the OUAH portal and answer a few questions. It shows how the product can be sold there and what it costs.')+'</p>'+
     go('canada',T('내 제품을 캐나다에 팔 수 있는지 확인하기 →','Check whether your product can be sold in Canada →'),true)+'</div>';
 }
@@ -904,7 +904,7 @@ var PAGES={
           '국내용 패키지를 그대로 써도 되는지 확인이 필요하실 때',
           '디자인을 다 만든 뒤에 규정 때문에 다시 고치게 될까 걱정되실 때',
           '규제 업체, 디자이너, 상세페이지 업체에 같은 설명을 여러 번 하고 계실 때'])+
-      '<p class="pmeta">나라·제품·일정이 아직 정해지지 않았거나 무료 시안, 무료 규정 판정을 원하시는 경우에는 맞지 않습니다.</p>'+
+      '<p class="pmeta">나라·제품·일정이 아직 정해지지 않았거나 무료 시안이나 무료 검토를 원하시는 경우에는 맞지 않습니다.</p>'+
       '<h4 class="psec">2) 4주 뒤 받으시는 것</h4>'+
       ul(['출시 준비 진단서 — 지금 그 나라에서 팔 수 있는지, 무엇이 부족한지 정리한 문서',
           '위험 목록 — 쓰면 안 되는 성분과 광고 문구, 빠진 서류',
@@ -916,7 +916,7 @@ var PAGES={
       '<h4 class="psec">3) 진행 순서</h4>'+
       '<dl class="facts">'+
       '<div class="fact"><dt>착수 전</dt><dd>유료 진단으로 범위와 가격을 정합니다. 나라, SKU, 최종 결정하실 분을 알려 주세요.</dd></div>'+
-      '<div class="fact"><dt>1주차</dt><dd>팔 수 있는 경로를 확인하고, 문제가 되는 성분·문구와 빠진 서류를 찾습니다.</dd></div>'+
+      '<div class="fact"><dt>1주차</dt><dd>그 나라에 팔 수 있는지 검토하고, 문제가 되는 성분·문구와 빠진 서류를 찾습니다.</dd></div>'+
       '<div class="fact"><dt>2주차</dt><dd>라벨에 들어갈 문구와 표기 순서를 정합니다.</dd></div>'+
       '<div class="fact"><dt>3주차</dt><dd>용기·단상자와 상세페이지 시안을 만듭니다.</dd></div>'+
       '<div class="fact"><dt>4주차</dt><dd>수정과 최종 검수를 마치고 파일을 넘겨 드립니다. 잔금은 이때 정산합니다.</dd></div></dl>'+
@@ -941,29 +941,29 @@ var PAGES={
   how:{kicker:'HOW IT WORKS',title:'1분 확인부터 착수까지',
     lede:'순서가 정해져 있습니다. 단계마다 고객이 무엇을 정하는지 먼저 알려 드립니다.',
     html:function(){ return steps([
-        ['1분 출시 확인과 진단 신청','질문 여섯 개에 답하시면 예상 절차와 비용이 바로 나옵니다. 그 결과로 진단을 신청하시면 2영업일 안에 메일 드립니다.'],
+        ['1분 출시 확인과 진단 신청','질문 여섯 개에 답하시면 그 나라에 팔 수 있는지와 예상 비용이 바로 나옵니다. 그 결과로 진단을 신청하시면 2영업일 안에 메일 드립니다.'],
         ['유료 진단','제품, 국가, 성분, 광고 문구, 지금 아트워크와 일정을 점검합니다. SKU당 '+money(PRICE.diag)+'이고, 인보이스는 메일로 보내 드립니다. 30일 안에 Sprint 를 계약하시면 전액 차감합니다. 진단 결과를 보고 Sprint 를 할지 정하십니다.'],
         ['제안·계약','범위와 가격을 확정합니다. 국가·SKU·예산·승인권자를 여기서 정합니다.'],
         ['착수금·자료','착수금을 받은 뒤 자료를 받습니다. 착수금 전에는 시안이나 고해상도 맞춤 작업을 만들지 않습니다.'],
-        ['4주 Sprint','주마다 승인할 것이 하나씩 있습니다. 경로, 문안과 구조, 1차 시안, 최종 승인 순서입니다.'],
+        ['4주 Sprint','주마다 승인할 것이 하나씩 있습니다. 판매 가능 검토 결과, 문안과 구조, 1차 시안, 최종 승인 순서입니다.'],
         ['월 유지관리','Sprint 를 마친 뒤에만 제안합니다. 규제·라벨 자문, SKU·아트워크 변경 검토, 웹·상세페이지 업데이트를 맡습니다.']])+   /* 범위·시작 조건 D9 */
       '<p class="pmeta">맞춤 제안서는 예산, 최종 결정권자, 희망일, 진행하지 않을 조건을 확인한 뒤에 씁니다. 이 내용은 진단 신청 뒤 메일과 진단에서 여쭙니다. 제안서 전에 필요한 맞춤 분석은 유료 진단으로 합니다.</p>'+
       go('about','동인천상회 소개 보기',true)+
       go('fit','1분 출시 확인하기 →'); }},
   /* 2026-10-05 전환설계 — 탭 6번으로 예상 절차·비용·준비 자료를 먼저 보여 주고, 그 결과로 짧은 진단 신청을 받는다 (D10·D11) */
   fit:{kicker:'CHECK LAUNCH FIT',title:T('1분 출시 확인','1-minute launch check'),
-    lede:T('여섯 가지만 골라 주시면 예상 절차와 비용, 준비하실 자료를 바로 보여 드립니다.','Answer six quick questions and we will show you the likely procedure, cost and what to prepare.'),
+    lede:T('여섯 가지만 골라 주시면 내 화장품을 그 나라에 팔 수 있는지, 비용은 얼마쯤인지, 무엇을 준비해야 하는지 바로 보여 드립니다.','Answer six quick questions and we will show you the likely procedure, cost and what to prepare.'),
     html:function(){ return '<div id="quiz" class="quiz"></div>'; }},
   canada:{kicker:'WORKING PROOF · CANADA',title:'전성분표 한 장에서 등록 준비까지',
-    lede:'OUAH AI 포털은 전성분표와 제품 질문을 바탕으로 캐나다에서 어떤 절차로 팔 수 있는지와 비용을 먼저 보여 줍니다. 영·불 라벨 문안과 제출자료 초안은 시스템이 준비하고, 최종 검토와 제출은 캐나다 현지 전문가가 맡습니다.',
+    lede:'OUAH AI 포털은 전성분표와 제품 질문을 바탕으로 내 화장품을 캐나다에 팔 수 있는지와 비용을 먼저 보여 줍니다. 영·불 라벨 문안과 제출자료 초안은 시스템이 준비하고, 최종 검토와 제출은 캐나다 현지 전문가가 맡습니다.',
     html:function(){ return ''+   /* 포털 화면 캡처는 D5, 관계 문구는 D4 뒤 */
       steps([['전성분표 업로드','국제 성분명(INCI)으로 된 전성분표를 올리면 함량 합계부터 검증합니다.'],
              ['질문 응답','사용 방법과 광고 문구에 관한 질문에 답합니다.'],
-             ['절차 판정','화장품 신고(CNF)로 팔 수 있는지, 천연건강제품 허가(NHP)가 필요한지 보여 줍니다.'],
+             ['판매 가능 검토','화장품 신고(CNF)만으로 팔 수 있는지, 천연건강제품 허가(NHP)가 필요한지 알려 줍니다.'],
              ['견적','대행료, 정부 수수료, 세금을 나눠서 보여 줍니다.'],
              ['영·불 라벨 초안과 제출 자료','영어·불어 라벨 문안 보고서와 신고·허가 신청에 들어갈 제출 자료를 준비합니다.'],
              ['현지 전문가 검토·제출','캐나다 현지 전문가가 최종 검토하고 제출합니다.']])+
-      '<p class="pmeta">자동 결과는 제출 전 사전 검토이며, 최종 경로는 전문가가 검토한 뒤 확정합니다. 화장품 신고(CNF)는 허가가 아니라 신고입니다. 천연건강제품 허가번호(NPN)와 의약품 식별번호(DIN)의 승인 여부와 처리 기간은 Health Canada 심사에 따르며 보장하지 않습니다. 결과는 보내 주신 자료가 정확한지에 따라 달라집니다.</p>'+
+      '<p class="pmeta">자동 결과는 제출 전 사전 검토이며, 팔 수 있는지는 전문가가 검토한 뒤 확정합니다. 화장품 신고(CNF)는 허가가 아니라 신고입니다. 천연건강제품 허가번호(NPN)와 의약품 식별번호(DIN)의 승인 여부와 처리 기간은 Health Canada 심사에 따르며 보장하지 않습니다. 결과는 보내 주신 자료가 정확한지에 따라 달라집니다.</p>'+
       '<a class="pgo" id="ouahGo" href="'+OUAH_PORTAL+'" target="_blank" rel="noopener">OUAH 포털에서 내 제품을 캐나다에 팔 수 있는지 확인하기 →</a>'+
       go('fit','캐나다 등록 말고 다른 준비도 필요합니다',true); }},
   proof:{kicker:'PROOF',title:'권리를 확인한 사례만 올립니다',
@@ -1008,7 +1008,7 @@ var PAGES_EN={
       '<h4 class="psec">3) How it runs</h4>'+
       '<dl class="facts">'+
       '<div class="fact"><dt>BEFORE</dt><dd>A paid diagnosis sets the scope and price. Tell us the markets, SKUs and who makes the final call.</dd></div>'+
-      '<div class="fact"><dt>WEEK 1</dt><dd>We confirm the route to market and find problem ingredients, claims and missing documents.</dd></div>'+
+      '<div class="fact"><dt>WEEK 1</dt><dd>We check whether the product can be sold in each market and find problem ingredients, claims and missing documents.</dd></div>'+
       '<div class="fact"><dt>WEEK 2</dt><dd>We set the label copy and the order of required information.</dd></div>'+
       '<div class="fact"><dt>WEEK 3</dt><dd>We design the container, carton and product page drafts.</dd></div>'+
       '<div class="fact"><dt>WEEK 4</dt><dd>We finish revisions and final checks and hand over the files. The balance is due at this point.</dd></div></dl>'+
@@ -1035,7 +1035,7 @@ var PAGES_EN={
         ['Paid diagnosis','We review the product, markets, ingredients, claims, current artwork and timeline. It costs '+money(PRICE.diag)+' per SKU, invoiced by email, and is fully credited if you sign the Sprint within 30 days. You decide on the Sprint after seeing the results.'],
         ['Proposal and contract','We confirm scope and price. Markets, SKUs, budget and approver are fixed here.'],
         ['Deposit and materials','We receive your materials after the deposit. No drafts or high-resolution custom work are produced before the deposit.'],
-        ['Four-week Sprint','There is one approval each week: route, copy and structure, first draft, final approval.'],
+        ['Four-week Sprint','There is one approval each week: the sellability check, copy and structure, first draft, final approval.'],
         ['Monthly maintenance','Offered only after the Sprint: regulatory and label advice, SKU and artwork change reviews, and website or product page updates.']])+
       '<p class="pmeta">We write a custom proposal only after confirming the budget, final decision-maker, target date and no-go conditions. We ask about these by email after your request and during the diagnosis. Any custom analysis needed before a proposal is done as a paid diagnosis.</p>'+
       go('about','About Dongincheon Trading Co.',true)+
@@ -1049,7 +1049,7 @@ var PAGES_EN={
              ['Quote','The service fee, government fees and taxes are shown separately.'],
              ['Label drafts and filing documents','An English and French label copy report and the documents for the notification or licence application are prepared.'],
              ['Specialist review and filing','A Canadian specialist reviews and files the submission.']])+
-      '<p class="pmeta">Automated results are a pre-submission review, and the final route is confirmed after a specialist review. A cosmetic notification (CNF) is a notification, not an approval. Approval and timelines for natural product numbers (NPN) and drug identification numbers (DIN) depend on Health Canada review and are not guaranteed. Results depend on the accuracy of the information you provide.</p>'+
+      '<p class="pmeta">Automated results are a pre-submission review, and whether it can be sold is confirmed after a specialist review. A cosmetic notification (CNF) is a notification, not an approval. Approval and timelines for natural product numbers (NPN) and drug identification numbers (DIN) depend on Health Canada review and are not guaranteed. Results depend on the accuracy of the information you provide.</p>'+
       '<a class="pgo" id="ouahGo" href="'+OUAH_PORTAL+'" target="_blank" rel="noopener">Check on the OUAH portal whether your product can be sold in Canada →</a>'+
       go('fit','I need more than Canadian registration',true); }},
   proof:{kicker:'PROOF',title:'We only publish approved cases',
@@ -1133,7 +1133,7 @@ function readDiag(){
   d.subject='[동인천상회'+(LANG==='en'?' · EN':'')+'] '+(dir?'방향 상담 신청':'진단 신청')+' — '+d.company+' · '+(R.cty||'-');
   var rows=[['회사·브랜드',d.company],['담당자',d.name],['회신 메일',d.email],['연락처',d.tel||'-'],
             ['나라',R.cty||'-'],['제품 종류',R.kind||'-'],['SKU 수',R.sku||'-'],['보유 자료',R.have||'-'],['맡길 범위',R.scope||'-'],['시기',R.when||'-'],
-            ['예상 절차',R.route||'-'],['예상 비용',R.cost||'-']];
+            ['팔려면 필요한 것',R.route||'-'],['예상 비용',R.cost||'-']];
   if(!dir) rows.push(['예산 안에 드는지',d.bud]);
   rows.push(['최종 결정',d.dec],['지금 가장 막힌 점',d.block||'-']);
   d.text=rows.map(function(r){ return r[0]+': '+r[1]; }).join('\n');
@@ -1245,16 +1245,16 @@ var QZ=[
 /* 나라 × 제품 종류 → 예상 절차와 SKU당 등록비 범위. 확정이 아니라 「진단에서 확정」으로 안내한다 */
 function qr(ko,en,lo,hi,nko,nen){ return {ko:ko,t:T(ko,en),lo:lo,hi:hi,note:nko?T(nko,nen):''}; }
 var QROUTE={
-  us:{gen:qr('FDA 화장품 리스팅','FDA cosmetic product listing',PRICE.fda,PRICE.fda),
-      body:qr('FDA 화장품 리스팅','FDA cosmetic product listing',PRICE.fda,PRICE.fda),
-      spf:qr('OTC 의약품 절차 — 미국은 자외선차단제를 의약품으로 봅니다','OTC drug procedure — the US treats sunscreen as a drug',PRICE.otc,PRICE.otc),
-      claim:qr('표현에 따라 화장품 리스팅 또는 OTC 의약품 — 진단에서 확정','Cosmetic listing or OTC drug depending on the claims — confirmed in the diagnosis',PRICE.fda,PRICE.otc),
-      unk:qr('화장품 리스팅인지 OTC 의약품인지 진단에서 확정','Cosmetic listing or OTC drug — confirmed in the diagnosis',PRICE.fda,PRICE.otc)},
-  ca:{gen:qr('Health Canada 화장품 신고(CNF)','Health Canada cosmetic notification (CNF)',PRICE.cnf,PRICE.cnf),
-      body:qr('Health Canada 화장품 신고(CNF)','Health Canada cosmetic notification (CNF)',PRICE.cnf,PRICE.cnf),
-      spf:qr('천연건강제품(NHP) 또는 의약품(DIN) — 성분에 따라 갈립니다','Natural health product (NHP) or drug (DIN) — depends on the ingredients',PRICE.nhp,PRICE.nhp,'의약품(DIN) 경로면 따로 견적을 드립니다.','If it is a DIN drug, we quote separately.'),
-      claim:qr('표현을 고치면 화장품 신고(CNF)로 갈 수 있는지 먼저 봅니다','We first check whether changing the claims lets it go as a cosmetic (CNF)',PRICE.cnf,PRICE.nhp),
-      unk:qr('화장품 신고(CNF)인지 다른 절차인지 진단에서 확정','Cosmetic notification (CNF) or another procedure — confirmed in the diagnosis',PRICE.cnf,PRICE.nhp)}
+  us:{gen:qr('FDA 화장품 리스팅을 하면 팔 수 있습니다','Sellable with an FDA cosmetic product listing',PRICE.fda,PRICE.fda),
+      body:qr('FDA 화장품 리스팅을 하면 팔 수 있습니다','Sellable with an FDA cosmetic product listing',PRICE.fda,PRICE.fda),
+      spf:qr('OTC 의약품 등록이 필요합니다 — 미국은 자외선차단제를 의약품으로 봅니다','Needs OTC drug registration — the US treats sunscreen as a drug',PRICE.otc,PRICE.otc),
+      claim:qr('표현에 따라 화장품 리스팅만으로 되거나 OTC 의약품 등록이 필요합니다 — 진단에서 확정','A cosmetic listing may be enough, or OTC drug registration may be needed, depending on the claims — confirmed in the diagnosis',PRICE.fda,PRICE.otc),
+      unk:qr('화장품 리스팅만으로 되는지, OTC 의약품 등록이 필요한지 진단에서 확정합니다','Whether a cosmetic listing is enough or OTC drug registration is needed is confirmed in the diagnosis',PRICE.fda,PRICE.otc)},
+  ca:{gen:qr('Health Canada 화장품 신고(CNF)를 하면 팔 수 있습니다','Sellable with a Health Canada cosmetic notification (CNF)',PRICE.cnf,PRICE.cnf),
+      body:qr('Health Canada 화장품 신고(CNF)를 하면 팔 수 있습니다','Sellable with a Health Canada cosmetic notification (CNF)',PRICE.cnf,PRICE.cnf),
+      spf:qr('천연건강제품(NHP)이나 의약품(DIN) 허가가 필요합니다 — 성분에 따라 다릅니다','Needs a natural health product (NHP) or drug (DIN) licence — depends on the ingredients',PRICE.nhp,PRICE.nhp,'의약품(DIN) 허가가 필요하면 따로 견적을 드립니다.','If it is a DIN drug, we quote separately.'),
+      claim:qr('표현을 고치면 화장품 신고(CNF)만으로 팔 수 있는지 먼저 검토합니다','We first check whether changing the claims makes it sellable with a cosmetic notification (CNF)',PRICE.cnf,PRICE.nhp),
+      unk:qr('화장품 신고(CNF)만으로 되는지, 다른 허가가 필요한지 진단에서 확정합니다','Whether a cosmetic notification (CNF) is enough or another licence is needed is confirmed in the diagnosis',PRICE.cnf,PRICE.nhp)}
 };
 function qLabel(k,v){ var q=QZ.filter(function(x){ return x.k===k; })[0], o=q.o.filter(function(x){ return x.v===v; })[0]; return o||{ko:v,t:v}; }
 function qRange(lo,hi,plus){ return (lo===hi?money(lo):money(lo)+' ~ '+money(hi))+(plus?T(' 이상',' or more'):''); }
@@ -1321,13 +1321,13 @@ function quizResultHtml(){
     T(' × SKU ',' × ')+(r.n[0]===r.n[1]?r.n[0]:r.n[0]+'~'+r.n[1])+T('개',' SKUs')+'.';
   var notes=r.routes.map(function(x){ return x.r.note; }).filter(Boolean);
   return '<div class="qres">'+
-    '<h5>'+T('예상 절차','LIKELY PROCEDURE')+'</h5><ul class="qroute">'+r.routes.map(function(x){ return '<li><b>'+(x.m==='us'?T('미국','US'):T('캐나다','Canada'))+'</b><span>'+x.r.t+'</span></li>'; }).join('')+'</ul>'+
+    '<h5>'+T('팔려면 필요한 것','WHAT IT TAKES TO SELL')+'</h5><ul class="qroute">'+r.routes.map(function(x){ return '<li><b>'+(x.m==='us'?T('미국','US'):T('캐나다','Canada'))+'</b><span>'+x.r.t+'</span></li>'; }).join('')+'</ul>'+
     '<h5>'+T('예상 비용 · 부가세 별도','ESTIMATED COST · TAX EXTRA')+'</h5><p class="qcost">'+cost+'</p>'+
     '<p class="qsub">'+how+' '+(QUIZ.a.scope==='all'&&r.n[1]>1?T('디자인과 문구가 같고 용량만 다른 SKU는 디자인비를 50% 할인합니다. ','SKUs that differ only in size get 50% off design. '):'')+
       T('시작 전 진단은 SKU당 ','The diagnosis before we start is ')+money(PRICE.diag)+T('이며, 30일 안에 계약하시면 전액 차감합니다.',' per SKU, fully credited if you sign within 30 days.')+(notes.length?' '+notes.join(' '):'')+'</p>'+
     '<h5>'+T('준비하실 자료','WHAT TO PREPARE')+'</h5>'+ul(r.miss)+
     '<h5>'+T('예상 기간','TIMELINE')+'</h5><p>'+T('보통 4주입니다. 기관의 심사·처리 기간은 따로 걸립니다.','About four weeks. Agency review and processing time is extra.')+'</p>'+
-    '<p class="pmeta">'+T('일반 기준에 따른 자동 안내입니다. 제품별 절차는 진단에서 확정하며, 등록이나 승인 결과를 보장하지 않습니다.','This is an automatic estimate based on general rules. The procedure for your product is confirmed in the diagnosis, and we do not guarantee registration or approval results.')+'</p>'+
+    '<p class="pmeta">'+T('일반 기준에 따른 자동 안내입니다. 내 제품을 팔 수 있는지는 진단에서 확정하며, 등록이나 승인 결과를 보장하지 않습니다.','This is an automatic estimate based on general rules. Whether your product can be sold is confirmed in the diagnosis, and we do not guarantee registration or approval results.')+'</p>'+
     '</div>'+
     (QUIZ.a.cty==='ca'&&QUIZ.a.scope==='reg'?canadaCard():'')+
     '<h4 class="psec">'+T('이 결과로 진단 신청하기','Request a diagnosis')+'</h4>'+diagForm(false)+
@@ -1458,13 +1458,13 @@ document.getElementById('pclose').addEventListener('click',closePanel);
 var TOUR=T([
   {say:'안녕하세요!<br>동인천상회예요.',small:'한국 화장품을 미국·캐나다에 내보낼 때 필요한 라벨, 패키지, 등록 서류를 준비해 드려요.',clip:'cap'},
   {say:'국내에서 잘 팔리는 제품도 <b>라벨을 그대로</b> 가져가면 그 나라에서는 못 팔 수 있어요.',small:'나라마다 꼭 넣어야 하는 문구와 쓰면 안 되는 표현이 달라서요.',clip:'chill'},
-  {say:'예를 들면 이런 것들이에요.',list:['캐나다는 라벨에 <b>영어와 불어</b>를 함께 써야 해요.','「미백」「여드름 개선」 같은 표현이 들어가면 화장품이 아니라 <b>의약품</b>으로 분류될 수 있어요.','자외선차단제는 미국에서 <b>OTC 의약품</b>이라 절차가 따로 있어요.'],clip:'shades'},
-  {say:'그래서 먼저 <b>전성분표</b>를 보고, 어떤 절차로 팔 수 있는지 판정해요.',small:'화장품 신고로 되는지, 의약품이나 천연건강제품 절차가 필요한지 가려요.',clip:'nod'},
-  {say:'판정한 기준대로 <b>라벨 문구</b>를 써 드려요.',small:'지금 라벨 위에 「여기를 지우고 이 문장을 넣으세요」라고 표시해 드려요. 디자이너가 그대로 옮기면 돼요.',clip:'chill'},
+  {say:'예를 들면 이런 것들이에요.',list:['캐나다는 라벨에 <b>영어와 불어</b>를 함께 써야 해요.','「미백」「여드름 개선」 같은 표현이 들어가면 화장품이 아니라 <b>의약품</b>으로 분류될 수 있어요.','자외선차단제는 미국에서 <b>OTC 의약품</b>이라 따로 등록해야 해요.'],clip:'shades'},
+  {say:'그래서 먼저 <b>전성분표</b>를 보고, 그 나라에 <b>팔 수 있는지</b> 검토해요.',small:'화장품 신고만으로 되는지, 의약품이나 천연건강제품 허가가 필요한지 가려요.',clip:'nod'},
+  {say:'검토한 결과대로 <b>라벨 문구</b>를 써 드려요.',small:'지금 라벨 위에 「여기를 지우고 이 문장을 넣으세요」라고 표시해 드려요. 디자이너가 그대로 옮기면 돼요.',clip:'chill'},
   {say:'용기·단상자 디자인과 <b>영문 상세페이지</b>까지 같은 문구로 만들어요.',small:'규정을 모르는 디자이너가 만든 뒤 다시 고치는 일이 없어요.',clip:'shades'},
   {say:'미국 <b>FDA 화장품 리스팅</b>과 <b>Health Canada</b> 신고·등록도 이어서 준비해요.',small:'캐나다 제출은 현지 전문가가 맡아요.',clip:'nod'},
   {say:'비용은 이렇게 돼요.',price:[['진단 · SKU당',money(PRICE.diag),'계약하면 전액 차감'],['디자인 · SKU당',money(PRICE.design),'라벨 문구 포함'],['등록 · SKU당',money(PRICE.fda)+'부터',''],['예) 일반 화장품 1개, 미국',money(PRICE.design+PRICE.fda),'']],small:'보통 4주 걸려요. 부가세는 별도예요.',clip:'chill'},
-  {say:'제품 하나만 알려 주시면 어떤 절차가 필요하고 <b>얼마쯤 드는지</b> 바로 보여 드릴게요.',clip:'nod',end:true}
+  {say:'제품 하나만 알려 주시면 그 나라에 <b>팔 수 있는지</b>, 얼마쯤 드는지 바로 보여 드릴게요.',clip:'nod',end:true}
 ],[
   {say:'Hi!<br>We’re Dongincheon Trading Co.',small:'We prepare the labels, packaging and registration files Korean cosmetic brands need to sell in the US and Canada.',clip:'cap'},
   {say:'A product that sells well in Korea may not be sellable abroad <b>with the same label</b>.',small:'Each market has its own mandatory wording and its own banned claims.',clip:'chill'},
