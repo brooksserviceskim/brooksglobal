@@ -187,6 +187,11 @@ button{font:inherit;color:inherit;border:none;background:none;cursor:pointer}
 /* ---------- 패널 (모든 내용은 여기서) ---------- */
 #scrim{position:fixed;inset:0;z-index:100;background:rgba(23,26,31,.35);backdrop-filter:blur(4px);opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s}
 #scrim.open{opacity:1;visibility:visible}
+/* 1-9 정렬(lineup) 중에는 줄이 보이게 가림막을 옅게, 왼쪽 글과 말풍선은 잠시 흐리게 (데스크톱만) */
+#scrim.lineup{background:rgba(23,26,31,.12);backdrop-filter:none}
+.hero .wordmark,.hero .bubble{transition:opacity .35s}
+.hero.lineup .wordmark{opacity:.12}
+.hero.lineup .bubble{opacity:0}
 #panel{position:fixed;z-index:101;right:16px;top:16px;bottom:16px;width:min(520px,calc(100% - 32px));background:var(--card);border-radius:24px;
   box-shadow:0 40px 80px -30px rgba(23,26,31,.5);transform:translateX(calc(100% + 32px));transition:transform .38s cubic-bezier(.22,.9,.28,1);display:flex;flex-direction:column;overflow:hidden}
 #panel.open{transform:none}
@@ -1054,6 +1059,7 @@ var panel=document.getElementById('panel'), scrim=document.getElementById('scrim
 function showPanel(){
   lastFocus=document.activeElement;
   panel.classList.add('open'); scrim.classList.add('open'); panel.setAttribute('aria-hidden','false');
+  lineup(true);
   document.getElementById('pclose').focus();
 }
 function openPanel(s){
@@ -1083,6 +1089,7 @@ function openPanel(s){
 }
 function closePanel(){
   panel.classList.remove('open'); scrim.classList.remove('open'); panel.setAttribute('aria-hidden','true');
+  lineup(false);
   if(lastFocus&&lastFocus.focus) lastFocus.focus();
 }
 document.getElementById('pclose').addEventListener('click',closePanel);
@@ -1213,11 +1220,37 @@ function drift(){
   for(var i=0;i<items.length;i++){
     var b=items[i].body, h=b.home; if(!h) continue;
     /* the anchor itself bobs a little so the piece hovers instead of sitting dead still */
-    b.spring.pointA.x=h.x+Math.sin(driftT*0.6+i*1.7)*10;
-    b.spring.pointA.y=h.y+Math.cos(driftT*0.5+i*2.3)*14;
+    var amp=lined?0.3:1;   /* 정렬 중에는 덜 흔들려야 줄이 반듯해 보인다 */
+    b.spring.pointA.x=h.x+Math.sin(driftT*0.6+i*1.7)*10*amp;
+    b.spring.pointA.y=h.y+Math.cos(driftT*0.5+i*2.3)*14*amp;
     /* settle the spin back to upright between throws */
     Body.setAngularVelocity(b, b.angularVelocity*0.96 - b.angle*0.002);
   }
+}
+
+/* ===== 정렬(lineup) — 설계 3.11 · 0-1 =====
+   패널이 열리면 오브제 6개가 01→06 순서로 패널에 가리지 않는 왼쪽에 한 줄로 선다. 닫으면 원래 자리로.
+   home 만 바꾸면 스프링이 끌어간다. 폰(분할 화면이 아닐 때)과 중력이 켜졌을 때는 하지 않는다 */
+var lined=false, lineT=null;
+function lineup(on){
+  if(on && (W<900 || engine.gravity.y!==0)) on=false;
+  if(!on && !lined) return;
+  lined=on;
+  hero.classList.toggle('lineup',on); scrim.classList.toggle('lineup',on);
+  var n=items.length; if(!n) return;
+  var left=Math.max(48,W*0.05), right=W-552-40, avail=right-left, size=items[0].size;
+  var perRow=(avail/n>=size*1.15)?n:Math.ceil(n/2), rows=Math.ceil(n/perRow), step=avail/perRow;
+  items.forEach(function(it,i){
+    var b=it.body; if(!b.home0) b.home0={x:b.home.x,y:b.home.y};
+    if(on){ var r=Math.floor(i/perRow), c=i%perRow;
+      b.home={x:left+step*(c+0.5), y:H*(rows===1?0.5:(r===0?0.36:0.64))}; }
+    else b.home={x:b.home0.x,y:b.home0.y};
+    if(reduce){ Body.setPosition(b,b.home); Body.setVelocity(b,{x:0,y:0}); b.spring.pointA.x=b.home.x; b.spring.pointA.y=b.home.y; }
+    else b.spring.stiffness=0.006;   /* 1초 안에 모이게 잠깐 세게 */
+  });
+  if(reduce){ sync(); return; }
+  clearTimeout(lineT);
+  lineT=setTimeout(function(){ if(engine.gravity.y===0) items.forEach(function(it){ it.body.spring.stiffness=0.0025; }); },1200);
 }
 
 /* ===== 오브제 3D (GLB) =====
@@ -1526,6 +1559,8 @@ window.addEventListener('resize',function(){
     stop();
     if(mc){ World.remove(world,mc); mc=null; }
     buildWorld(); sync();
+    lined=false; hero.classList.remove('lineup'); scrim.classList.remove('lineup');
+    if(panel.classList.contains('open')) lineup(true);   /* 패널이 열린 채로 창 크기가 바뀌면 새 자리로 다시 정렬 */
     if(!reduce){ attachMouse(); start(); }
   },220);
 });
