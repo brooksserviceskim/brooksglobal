@@ -466,6 +466,28 @@ var SERVICES=[
 ];
 /* 장식 오브제(하트·별·수출·OK·OUAH 로고)는 2026-10-04 첫 화면 재설계로 뺐습니다. 블링원·OUAH 는 패널 글로 옮깁니다 */
 var MAIL='brooksservices.kim@brooksglobal.co.kr';
+
+/* ===== 측정 (브리프 11, 설계 3.12) =====
+   dataLayer 에만 쌓는다. GA4 측정 ID(D8)가 정해지면 build_deploy.py 가 gtag 를 head 에 넣고, 그때부터 gtag 로도 간다.
+   paid_diagnostic_booked · proposal_sent · contract_signed · deposit_received 는 사이트가 아니라 CRM·수기 기록이다 */
+window.dataLayer = window.dataLayer || [];
+function track(name, props){
+  try{ window.dataLayer.push(Object.assign({event:name}, props||{})); }catch(e){}
+  if(window.gtag) try{ window.gtag('event', name, props||{}); }catch(e){}
+}
+var curView='';   /* 지금 열린 패널 — 이벤트가 어디서 났는지(from) 적는 데 쓴다 */
+/* 패널 안 버튼(data-go)으로 다른 패널을 열 때 — 측정을 여기 한 곳에서 */
+function goTo(target){
+  var from=curView;
+  if(target==='fit') track('hero_fit_click',{from:'panel:'+from});
+  if(from==='fit' && target==='fitform') track('path_sprint_select');
+  if(from==='fit' && target==='canada') track('path_canada_select');
+  openPage(target);
+}
+function bindGo(body){
+  body.querySelectorAll('[data-go]').forEach(function(btn){ btn.addEventListener('click',function(){ goTo(btn.getAttribute('data-go')); }); });
+  var og=body.querySelector('#ouahGo'); if(og) og.addEventListener('click',function(){ track('ouah_portal_click',{from:'panel:'+curView}); });
+}
 var MAILTO='mailto:'+MAIL+'?subject=';
 
 /* ===== avatar faces =====
@@ -834,7 +856,8 @@ function openPage(k){
   var body=document.getElementById('pbody');
   body.innerHTML='<p>'+pg.lede+'</p>'+pg.html();
   var cp=document.getElementById('mcopy'); if(cp) cp.addEventListener('click',function(){ copyMail(); });
-  body.querySelectorAll('[data-go]').forEach(function(btn){ btn.addEventListener('click',function(){ openPage(btn.getAttribute('data-go')); }); });
+  curView=k;
+  bindGo(body);
   body.scrollTop=0;
   bindForm();
   showPanel();
@@ -923,6 +946,7 @@ function showSent(d){
   var f=document.getElementById('cform'), done=document.getElementById('cdone');
   if(!done) return;
   f.hidden=true; done.hidden=false;
+  track('fit_form_complete');
   done.innerHTML='<h4>적합성 확인 요청을 보냈습니다</h4><p>'+esc(d.name)+'님, 적어주신 내용을 보고 <b>'+esc(d.email)+'</b> 로 다음 단계를 안내드리겠습니다.</p>';
   done.scrollIntoView({block:'nearest'});
 }
@@ -950,6 +974,9 @@ function showFallback(d,why){
 }
 function esc(t){ return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 function bindFit(f){
+  /* 첫 포커스나 첫 입력 중 먼저 오는 쪽에서 한 번 — 자동완성은 포커스 없이 값이 들어온다 */
+  var started=false; function start(){ if(started) return; started=true; track('fit_form_start'); }
+  ['focusin','input','change'].forEach(function(t){ f.addEventListener(t,start); });
   function toggle(id,on){ var el=document.getElementById(id); if(!el) return; el.parentNode.hidden=!on; if(!on) el.value=''; }
   function sync(){
     toggle('q_budget_when',val('q_budget')==='미정');
@@ -1016,7 +1043,11 @@ function copyText(txt,msg){
   toast(ok?msg:'아래 내용을 직접 복사해주세요');
 }
 
-document.querySelectorAll('[data-open]').forEach(function(b){ b.addEventListener('click',function(){ openPage(b.getAttribute('data-open')); }); });
+document.querySelectorAll('[data-open]').forEach(function(b){ b.addEventListener('click',function(){
+  var k=b.getAttribute('data-open');
+  if(k==='fit') track('hero_fit_click',{from:b.id==='heroCta'?'hero':'nav'});
+  openPage(k);
+}); });
 
 /* ===== panel ===== */
 var panel=document.getElementById('panel'), scrim=document.getElementById('scrim'), lastFocus=null;
@@ -1045,7 +1076,8 @@ function openPanel(s){
     (s.cred?'<p class="pcred" style="--dot:'+s.color+'">'+s.cred+'</p>':'')+
     '<p class="pmeta">'+s.solo+'</p>'+
     go('fit','우리 제품도 맞는지 확인하기 →');
-  body.querySelectorAll('[data-go]').forEach(function(btn){ btn.addEventListener('click',function(){ openPage(btn.getAttribute('data-go')); }); });
+  curView=s.id;
+  bindGo(body);
   body.scrollTop=0;
   showPanel();
 }
