@@ -137,13 +137,15 @@ button{font:inherit;color:inherit;border:none;background:none;cursor:pointer}
   .hero .bubble{left:calc(var(--face-x,50%) - 40px);top:calc(var(--face-y) - var(--face-h)*0.5 - 72px)}
 }
 .hero-copy{margin-top:clamp(10px,1.6vh,16px);word-break:keep-all;overflow-wrap:break-word}
-.hero-copy .kicker{display:block;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.2em;color:var(--green)}
+.hero-h{font-weight:900;font-size:clamp(25px,3.1vw,44px);letter-spacing:-.045em;line-height:1.2;color:var(--ink);word-break:keep-all;overflow-wrap:break-word}
+.hero-p{margin-top:10px;font-size:clamp(14px,1.2vw,17px);line-height:1.55;color:var(--ink-2);word-break:keep-all;overflow-wrap:break-word}
 .hero-cta{pointer-events:auto;margin-top:14px;display:inline-block;background:var(--ink);color:#fff;font-weight:800;font-size:15px;line-height:1.3;
   padding:12px 22px;border-radius:99px;box-shadow:var(--shadow);transition:background .15s}
 .hero-cta:hover,.hero-cta:focus-visible{background:var(--green)}
 @media(max-width:640px){ .wordmark .sub{gap:8px} .wordmark .sub s{display:none}
   .wordmark{top:76px} .wordmark .sub{margin-top:6px} .hero-copy{margin-top:8px} .hero-cta{margin-top:10px}
   .hero-cta{display:block;width:100%;font-size:14.5px}
+  .hero-h{font-size:24px;text-align:center} .hero-p{margin-top:6px;font-size:13.5px;text-align:center}
   /* 폰은 양옆 세로줄에 오브제가 서 있어서 말풍선을 모자 가운데 위로 (폭 172 이하라 두 줄 사이에 들어간다) */
   .hero .bubble{max-width:172px;font-size:14px;left:calc(var(--face-x,50%) - 86px);top:calc(var(--face-y) - var(--face-h)*0.5 - 4px)} }
 
@@ -374,6 +376,23 @@ html[lang=en] .odemo [data-lang=kr],html:not([lang=en]) .odemo [data-lang=en]{di
 .pcard3d{position:relative}
 .pcard3d .spin3d{position:absolute;right:10px;top:8px;width:88px;height:88px}
 .pcard3d small,.pcard3d h5{padding-right:92px}
+/* 출시 상담 갈림길 · 도구 · 블링원 사례 (2026-11-17) */
+.doors,.tools{display:grid;gap:12px;margin-top:16px;word-break:keep-all;overflow-wrap:break-word}
+.door{display:flex;flex-direction:column;gap:6px;width:100%;text-align:left;padding:18px 20px;border:1px solid var(--line);border-radius:16px;background:var(--card);transition:border-color .15s,box-shadow .15s}
+.door:hover,.door:focus-visible{border-color:var(--green);box-shadow:inset 0 0 0 1px var(--green)}
+.door small{font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--green);font-weight:700}
+.door b{font-size:19px;font-weight:900;letter-spacing:-.03em;color:var(--ink)}
+.door span{font-size:14px;line-height:1.55;color:var(--ink-2)}
+.tool .pgo{margin-top:4px}
+.wimg{flex:none;margin:4px 0 14px;border-radius:16px;overflow:hidden;background:var(--bg-2)}
+.wimg img{display:block;width:100%;height:auto}
+.wlogo{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+.wlogo img{height:56px;width:auto}
+.wlogo canvas{width:64px;height:64px}
+.wcard{flex-direction:row;flex-wrap:wrap;align-items:center;gap:12px 14px;margin-top:16px}
+.wcard-logo{height:30px;width:auto;flex:none}
+.wcard > div{flex:1 1 200px;display:flex;flex-direction:column;gap:6px}
+.wcard .pgo{flex:1 1 100%}
 /* PROOF 블링원 */
 .pbling{display:flex;align-items:center;gap:16px;margin-top:18px;padding-top:16px;border-top:1px solid var(--line);word-break:keep-all;overflow-wrap:break-word}
 .pbling canvas{flex:none;width:120px;height:120px}
@@ -586,28 +605,29 @@ html[lang=en] .odemo [data-lang=kr],html:not([lang=en]) .odemo [data-lang=en]{di
 
 <header class="topbar">
   <nav class="topnav">
-    <button data-open="sprint">LAUNCH SPRINT</button>
-    <button data-open="canada">CANADA AI</button>
-    <button data-open="how">HOW IT WORKS</button>
-    <button data-open="proof">PROOF</button>
-    <button class="cta" data-open="fit" data-en="1-min check">1분 출시 확인</button>
+    <button data-open="brands">BRANDS</button>
+    <button data-open="artists">ARTISTS</button>
+    <button data-open="work">WORK</button>
+    <button data-open="tools">TOOLS</button>
+    <button class="cta" data-open="fit" data-en="Launch inquiry">출시 상담</button>
     <a class="lang" href="../" data-en="KO" data-en-aria="한국어" aria-label="English">EN</a>
   </nav>
 </header>
 <nav class="botnav" aria-label="메뉴" data-en-aria="Menu">
-  <button data-open="sprint" data-from="botnav"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 3 8l9 5 9-5-9-5Z"/><path d="m3 13 9 5 9-5"/></svg>SPRINT</button>
-  <button data-open="canada" data-from="botnav"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>CANADA</button>
-  <button class="mid" data-open="fit" data-from="botnav" aria-label="1분 출시 확인" data-en-aria="1-minute launch check"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i><span data-en="1-min check">1분 확인</span></button>
-  <button data-open="how" data-from="botnav"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1"/><circle cx="4.5" cy="12" r="1"/><circle cx="4.5" cy="18" r="1"/></svg>HOW</button>
-  <button data-open="proof" data-from="botnav"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4.5 6v6c0 4.5 3.2 7.8 7.5 9 4.3-1.2 7.5-4.5 7.5-9V6L12 3Z"/><path d="m8.8 12 2.2 2.2 4.3-4.4"/></svg>PROOF</button>
+  <button data-open="brands" data-from="botnav"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 3 8l9 5 9-5-9-5Z"/><path d="m3 13 9 5 9-5"/></svg>BRANDS</button>
+  <button data-open="artists" data-from="botnav"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></svg>ARTISTS</button>
+  <button class="mid" data-open="fit" data-from="botnav" aria-label="출시 상담" data-en-aria="Launch inquiry"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i><span data-en="Inquiry">출시 상담</span></button>
+  <button data-open="work" data-from="botnav"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4.5 6v6c0 4.5 3.2 7.8 7.5 9 4.3-1.2 7.5-4.5 7.5-9V6L12 3Z"/><path d="m8.8 12 2.2 2.2 4.3-4.4"/></svg>WORK</button>
+  <button data-open="tools" data-from="botnav"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 6.5a4 4 0 0 0-5.3 5.2L3.5 17.4l3.1 3.1 5.7-5.7a4 4 0 0 0 5.2-5.3l-2.5 2.5-2.6-.5-.5-2.6 2.6-2.4Z"/></svg>TOOLS</button>
 </nav>
 
 <div class="hero" id="top">
   <div class="wordmark" id="wordmark">
     <img class="en" src="../media/wordmark.webp" alt="Brooks Global">
-    <span class="sub"><b>브룩스글로벌</b><s></s><em>K-CULTURE LAUNCH STUDIO</em></span>
+    <span class="sub"><b data-en="Brooks Global">브룩스글로벌</b><s></s><em>K-CULTURE LAUNCH STUDIO</em></span>
     <div class="hero-copy">
-      <small class="kicker">K-BEAUTY EXPORT LAUNCH SYSTEM</small>
+      <h1 class="hero-h" data-en="We make launch day<br> for K-culture.">K-컬처가 세상에 나가는<br> 첫날을 만듭니다.</h1>
+      <p class="hero-p" data-en="From the first plan to the first fan, for brands and artists.">브랜드와 아티스트의 첫 출시를 처음부터 끝까지 맡습니다.</p>
       <button class="hero-cta" id="heroCta" type="button" data-en="What does Brooks Global do?">브룩스글로벌은 무슨 일을 하나요?</button>
     </div>
   </div>
@@ -781,8 +801,9 @@ function track(name, props){
 }
 var curView='';   /* 지금 열린 패널 — 이벤트가 어디서 났는지(from) 적는 데 쓴다 */
 /* 지금 보는 메뉴 표시 — 오브제 패널은 LAUNCH SPRINT, 1분 출시 확인은 가운데 버튼 */
-var NAV_OF={sprint:'sprint',canada:'canada',how:'how',proof:'proof',fit:'fit',
-            ra:'sprint',label:'sprint',pkg:'sprint',detail:'sprint',sub:'sprint',launch:'sprint'};
+var NAV_OF={brands:'brands',sprint:'brands',canada:'brands',how:'brands',
+            ra:'brands',label:'brands',pkg:'brands',detail:'brands',sub:'brands',launch:'brands',
+            artists:'artists',work:'work',proof:'work',tools:'tools',fit:'fit',fitbrand:'fit',fitartist:'fit'};
 function markNav(view){
   var g=NAV_OF[view]||'';
   document.querySelectorAll('.topnav [data-open],.botnav [data-open]').forEach(function(b){
@@ -794,12 +815,14 @@ function markNav(view){
 /* 패널 안 버튼(data-go)으로 다른 패널을 열 때 — 측정을 여기 한 곳에서 */
 function goTo(target){
   var from=curView;
-  if(target==='fit') track('hero_fit_click',{from:'panel:'+from});
+  if(target==='fit'||target==='fitbrand'||target==='fitartist') track('hero_fit_click',{from:'panel:'+from,to:target});
+  if(target==='fitbrand'||target==='fitartist') track('fit_door',{door:target==='fitbrand'?'brand':'artist',from:'panel:'+from});
   openPage(target);
 }
 function bindGo(body){
   body.querySelectorAll('[data-go]').forEach(function(btn){ btn.addEventListener('click',function(){ goTo(btn.getAttribute('data-go')); }); });
   var og=body.querySelector('#ouahGo'); if(og) og.addEventListener('click',function(){ track('ouah_portal_click',{from:'panel:'+curView}); });
+  body.querySelectorAll('[data-tool]').forEach(function(a){ a.addEventListener('click',function(){ track('tool_click',{tool:a.getAttribute('data-tool'),from:'panel:'+curView}); }); });
 }
 var MAILTO='mailto:'+MAIL+'?subject=';
 
@@ -1100,7 +1123,7 @@ var PAGES={
           '월 유지관리는 Sprint 를 마친 뒤에만 제안합니다'])+
       '<p class="pmeta">모든 가격은 부가세 별도입니다. 정부 수수료, 시험성적서와 실험실 시험, 인쇄·생산비, 제품 촬영과 영상, 법률 의견서는 들어가지 않습니다. 등록 승인을 보장하지는 않으며, 정한 횟수를 넘는 수정은 따로 견적을 드립니다. FDA 화장품 리스팅은 제조 시설이 FDA 에 등록되어 있는 경우를 기준으로 하며, 시설 등록과 미국 대리인은 맡지 않습니다. 필요하시면 따로 견적을 드립니다.</p>'+
       canadaCard()+
-      go('fit','1분 출시 확인하기 →'); }},
+      go('fitbrand','1분 출시 확인하기 →'); }},
   how:{kicker:'HOW IT WORKS',title:'1분 확인부터 착수까지',
     lede:'순서가 정해져 있습니다. 단계마다 고객이 무엇을 정하는지 먼저 알려 드립니다.',
     html:function(){ return steps([
@@ -1112,9 +1135,9 @@ var PAGES={
         ['월 유지관리','Sprint 를 마친 뒤에만 제안합니다. 규제·라벨 자문, SKU·아트워크 변경 검토, 웹·상세페이지 업데이트를 맡습니다.']])+   /* 범위·시작 조건 D9 */
       '<p class="pmeta">맞춤 제안서는 예산, 최종 결정권자, 희망일, 진행하지 않을 조건을 확인한 뒤에 씁니다. 이 내용은 진단 신청 뒤 메일과 진단에서 여쭙니다. 제안서 전에 필요한 맞춤 분석은 유료 진단으로 합니다.</p>'+
       go('about','브룩스글로벌 소개 보기',true)+
-      go('fit','1분 출시 확인하기 →'); }},
+      go('fitbrand','1분 출시 확인하기 →'); }},
   /* 2026-10-05 전환설계 — 탭 6번으로 예상 절차·비용·준비 자료를 먼저 보여 주고, 그 결과로 짧은 진단 신청을 받는다 (D10·D11) */
-  fit:{kicker:'CHECK LAUNCH FIT',title:T('1분 출시 확인','1-minute launch check'),
+  fitbrand:{kicker:'FOR BRANDS · 1-MIN CHECK',title:T('1분 출시 확인','1-minute launch check'),
     lede:T('여섯 가지만 골라 주시면 내 화장품을 그 나라에 팔 수 있는지, 비용은 얼마쯤인지, 무엇을 준비해야 하는지 바로 보여 드립니다.','Answer six quick questions and we will show you the likely procedure, cost and what to prepare.'),
     html:function(){ return '<div id="quiz" class="quiz"></div>'; }},
   canada:{kicker:'WORKING PROOF · CANADA',title:'전성분표 한 장에서 등록 준비까지',
@@ -1128,13 +1151,13 @@ var PAGES={
              ['현지 전문가 검토·제출','캐나다 현지 전문가가 최종 검토하고 제출합니다.']])+
       '<p class="pmeta">자동 결과는 제출 전 사전 검토이며, 팔 수 있는지는 전문가가 검토한 뒤 확정합니다. 화장품 신고(CNF)는 허가가 아니라 신고입니다. 천연건강제품 허가번호(NPN)와 의약품 식별번호(DIN)의 승인 여부와 처리 기간은 Health Canada 심사에 따르며 보장하지 않습니다. 결과는 보내 주신 자료가 정확한지에 따라 달라집니다.</p>'+
       '<a class="pgo" id="ouahGo" href="'+OUAH_PORTAL+'" target="_blank" rel="noopener">OUAH 포털에서 내 제품을 캐나다에 팔 수 있는지 확인하기 →</a>'+
-      go('fit','캐나다 등록 말고 다른 준비도 필요합니다',true); }},
+      go('fitbrand','캐나다 등록 말고 다른 준비도 필요합니다',true); }},
   proof:{kicker:'PROOF',title:'권리를 확인한 사례만 올립니다',
     lede:'사례는 고객 승인을 받은 것만 올립니다. 지금 공개하는 사례는 OUAH 캐나다 등록 포털 하나입니다.',
     html:function(){ return ''+   /* 사례 2건은 D6. 카드 틀: 문제 / 무엇을 연결했는지 / 무엇이 줄었는지 / 산출물 / 승인된 수치·증언 */
       canadaCard()+
       '<div class="pbling"><canvas class="spin3d" data-glb="bling" width="240" height="240" aria-hidden="true"></canvas><p>K-POP 아이돌 굿즈 브랜드 블링원의 디자인 파트너입니다.</p></div>'+
-      go('fit','1분 출시 확인하기 →'); }},
+      go('fitbrand','1분 출시 확인하기 →'); }},
   about:{kicker:'ABOUT',title:'디자인과 규정, 반복되는 서류 업무까지 한곳에서 맡습니다',
     lede:'브룩스글로벌은 한국 화장품 브랜드가 해외에 나갈 때 규정 검토, 디자인, 등록을 따로 맡기면서 생기는 빈틈을 줄입니다. 규정을 아는 사람이 라벨과 패키지까지 직접 보기 때문에 판매 화면과 제출 서류가 같은 기준으로 만들어집니다. 반복 입력과 자료 확인은 시스템으로 줄이고, 판단과 책임은 사람이 집니다.',
     html:function(){ return '<div class="portrait"><img src="../media/portrait.webp" alt="김현우"></div>'+
@@ -1147,7 +1170,7 @@ var PAGES={
       '<div class="fact"><dt>TALKS</dt><dd>아마존코리아 셀러 웨비나, 월마트 아시아퍼시픽 마켓플레이스 파트너 세션</dd></div>'+
       '<div class="fact"><dt>BASE</dt><dd>인천에 있고, 원격으로도 함께 일합니다</dd></div></dl>'+
       '<p class="pmeta">Company name: Brooks Global · Jemulpo-gu, Incheon, Republic of Korea · © '+new Date().getFullYear()+' Brooks Global. All rights reserved.</p>'+
-      go('fit','1분 출시 확인하기 →'); }}
+      go('fitbrand','1분 출시 확인하기 →'); }}
 };
 /* 영어판 패널 (G6) — 한국어판과 같은 사실, 영어 업무 문체 */
 var PAGES_EN={
@@ -1190,7 +1213,7 @@ var PAGES_EN={
       ul(['SKUs with identical design and copy that differ only in size are 50% off','Monthly maintenance is offered only after the Sprint'])+
       '<p class="pmeta">Prices exclude applicable taxes. Not included: government fees, test reports and laboratory testing, printing and production, photography and video, and legal opinions. We do not guarantee registration approval, and revisions beyond the agreed rounds are quoted separately. FDA cosmetic product listing assumes the manufacturing facility is already registered with FDA. We do not handle facility registration or US agent services, but we can quote them separately.</p>'+
       canadaCard()+
-      go('fit','Take the 1-minute check →'); }},
+      go('fitbrand','Take the 1-minute check →'); }},
   how:{kicker:'HOW IT WORKS',title:'From the 1-minute check to kickoff',
     lede:'The order is fixed, and we tell you in advance what you decide at each step.',
     html:function(){ return steps([
@@ -1202,7 +1225,7 @@ var PAGES_EN={
         ['Monthly maintenance','Offered only after the Sprint: regulatory and label advice, SKU and artwork change reviews, and website or product page updates.']])+
       '<p class="pmeta">We write a custom proposal only after confirming the budget, final decision-maker, target date and no-go conditions. We ask about these by email after your request and during the diagnosis. Any custom analysis needed before a proposal is done as a paid diagnosis.</p>'+
       go('about','About Brooks Global',true)+
-      go('fit','Take the 1-minute check →'); }},
+      go('fitbrand','Take the 1-minute check →'); }},
   canada:{kicker:'WORKING PROOF · CANADA',title:'From one ingredient list to a registration-ready file',
     lede:'The OUAH AI portal first shows how your product can be sold in Canada and what it costs, based on your ingredient list and product questions. The system drafts the English and French label copy and the submission files; a Canadian specialist makes the final review and files the submission. Brooks Hyeonwoo Kim of Brooks Global is a director of OUAH Co. and built and runs this portal.',
     html:function(){ return '<div class="odemo">'+ODEMO+'</div>'+
@@ -1214,13 +1237,13 @@ var PAGES_EN={
              ['Specialist review and filing','A Canadian specialist reviews and files the submission.']])+
       '<p class="pmeta">Automated results are a pre-submission review, and whether it can be sold is confirmed after a specialist review. A cosmetic notification (CNF) is a notification, not an approval. Approval and timelines for natural product numbers (NPN) and drug identification numbers (DIN) depend on Health Canada review and are not guaranteed. Results depend on the accuracy of the information you provide.</p>'+
       '<a class="pgo" id="ouahGo" href="'+OUAH_PORTAL+'" target="_blank" rel="noopener">Check on the OUAH portal whether your product can be sold in Canada →</a>'+
-      go('fit','I need more than Canadian registration',true); }},
+      go('fitbrand','I need more than Canadian registration',true); }},
   proof:{kicker:'PROOF',title:'We only publish approved cases',
     lede:'Cases are published only with client approval. The case we can show today is the OUAH Canadian registration portal.',
     html:function(){ return ''+
       canadaCard()+
       '<div class="pbling"><canvas class="spin3d" data-glb="bling" width="240" height="240" aria-hidden="true"></canvas><p>Design partner of Blingone, a K-pop idol merchandise brand.</p></div>'+
-      go('fit','Take the 1-minute check →'); }},
+      go('fitbrand','Take the 1-minute check →'); }},
   about:{kicker:'ABOUT',title:'Design, regulations and the paperwork in between, in one place',
     lede:'Brooks Global closes the gaps that appear when a cosmetic brand orders regulatory review, design and registration separately for an overseas launch. Because the person who knows the rules also works on the label and packaging, the product page and the filing documents follow the same standard. The system cuts repetitive entry and checks; judgement and responsibility stay with people.',
     html:function(){ return '<div class="portrait"><img src="../media/portrait.webp" alt="Brooks Hyeonwoo Kim"></div>'+
@@ -1233,9 +1256,100 @@ var PAGES_EN={
       '<div class="fact"><dt>TALKS</dt><dd>Seller webinar for Amazon Korea, partner session for Walmart Asia-Pacific Marketplace</dd></div>'+
       '<div class="fact"><dt>BASE</dt><dd>Based in Incheon, Korea, working with clients remotely</dd></div></dl>'+
       '<p class="pmeta">Company name: Brooks Global · Jemulpo-gu, Incheon, Republic of Korea · © '+new Date().getFullYear()+' Brooks Global. All rights reserved.</p>'+
-      go('fit','Take the 1-minute check →'); }}
+      go('fitbrand','Take the 1-minute check →'); }}
 };
 if(LANG==='en') Object.keys(PAGES_EN).forEach(function(k){ PAGES[k]=PAGES_EN[k]; });
+/* ===== 2차 리뉴얼 패널 (2026-11-17 설계 3.3~3.6 · 3.10). 한국어·영어를 T() 로 함께 쓴다 ===== */
+var BLING_GROUP='../media/blingone_group.webp', BLING_LOGO='../media/blingone_logo.webp';
+var TOOL_UTM='utm_source=brooksglobal&utm_medium=site&utm_campaign=tools';
+function door(target,small,title,desc){ return '<button type="button" class="door" data-go="'+target+'"><small>'+small+'</small><b>'+title+'</b><span>'+desc+'</span></button>'; }
+function toolCard(id,small,title,desc,href,label){ return '<div class="pcard tool"><small>'+small+'</small><h5>'+title+'</h5><p>'+desc+'</p>'+
+  '<a class="pgo ghost" data-tool="'+id+'" href="'+href+'" target="_blank" rel="noopener">'+label+'</a></div>'; }
+function workCard(){
+  return '<div class="pcard wcard"><img src="'+BLING_LOGO+'" alt="Blingone" class="wcard-logo"><div><small>WORK · BLINGONE</small><h5>'+T('블링원 SNS PD','SNS PD for Blingone')+'</h5>'+
+    '<p>'+T('K-POP 아이돌 그룹 블링원의 SNS 인큐베이팅을 3년 동안 맡고 있습니다.','We run SNS incubation for the K-pop idol group Blingone under a three-year contract.')+'</p></div>'+
+    go('work',T('사례 보기 →','See the case →'),true)+'</div>';
+}
+function artistForm(){
+  function chk(name,v,label){ return '<label><input type="checkbox" name="'+name+'" value="'+v+'">'+label+'</label>'; }
+  function rad(name,v,label){ return '<label><input type="radio" name="'+name+'" value="'+v+'">'+label+'</label>'; }
+  var req=' <em>'+T('필수','Required')+'</em>';
+  return '<form id="cform" data-kind="artist" novalidate>'+
+    '<div class="fld"><span class="flabel">'+T('회사와 담당자','Company and contact')+req+'</span>'+
+      '<div class="row2"><input id="q_co" type="text" autocomplete="organization" placeholder="'+T('소속사 또는 회사','Agency or company')+'" aria-label="'+T('소속사 또는 회사','Agency or company')+'">'+
+      '<input id="q_name" type="text" autocomplete="name" placeholder="'+T('담당자 이름','Contact name')+'" aria-label="'+T('담당자 이름','Contact name')+'"></div></div>'+
+    '<div class="fld"><input id="q_mail" type="email" inputmode="email" autocomplete="email" placeholder="'+T('회신 받으실 메일','Reply email')+'" aria-label="'+T('회신 받으실 메일','Reply email')+'"></div>'+
+    '<div class="fld"><input id="q_tel" type="tel" autocomplete="tel" placeholder="'+T('연락처 (선택)','Phone (optional)')+'" aria-label="'+T('연락처 (선택)','Phone (optional)')+'"></div>'+
+    '<div class="fld"><span class="flabel">'+T('아티스트·IP','Artist or IP')+req+'</span>'+
+      '<input id="q_artist" type="text" placeholder="'+T('아티스트 또는 IP 이름','Artist or IP name')+'" aria-label="'+T('아티스트 또는 IP 이름','Artist or IP name')+'"></div>'+
+    '<div class="fld"><input id="q_ch" type="text" inputmode="url" placeholder="'+T('지금 운영 중인 채널 주소 (선택)','Current channel links (optional)')+'" aria-label="'+T('지금 운영 중인 채널 주소 (선택)','Current channel links (optional)')+'"></div>'+
+    '<div class="fld"><span class="flabel" id="q_want_l">'+T('맡기고 싶은 것 (여러 개)','What you want help with (choose any)')+req+'</span><div class="checks" id="q_want" role="group" aria-labelledby="q_want_l">'+
+      chk('want','SNS 인큐베이팅',T('SNS 인큐베이팅','SNS incubation'))+chk('want','IP 화장품·굿즈',T('IP 화장품·굿즈','IP cosmetics and goods'))+chk('want','팝업·공연',T('팝업·공연','Pop-ups and shows'))+'</div></div>'+
+    '<div class="fld"><span class="flabel" id="q_when_l">'+T('희망 시기','Timing')+'</span><div class="checks" id="q_when" role="radiogroup" aria-labelledby="q_when_l">'+
+      rad('when','3개월 안',T('3개월 안','Within 3 months'))+rad('when','6개월 안',T('6개월 안','Within 6 months'))+rad('when','아직 정하지 않음',T('아직 정하지 않았어요','Not decided yet'))+'</div></div>'+
+    '<div class="fld"><textarea id="q_block" rows="2" placeholder="'+T('하고 싶은 일이나 지금 막힌 점 (선택)','What you want to do, or what is blocking you (optional)')+'" aria-label="'+T('하고 싶은 일이나 지금 막힌 점 (선택)','What you want to do, or what is blocking you (optional)')+'"></textarea></div>'+
+    '<input type="checkbox" name="botcheck" id="f_bot" class="botcheck" tabindex="-1" autocomplete="off">'+
+    '<p class="cerr" id="cerr" role="alert"></p>'+
+    '<button type="submit" class="csend" id="csend">'+T('아티스트 출시 상담 신청하기','Request an artist launch call')+'</button>'+
+    '<p class="cnote">'+T('2영업일 안에 메일 드립니다. 범위와 비용은 상담 뒤 안내합니다. 보내주신 내용은 회신에만 씁니다. 양식이 보내지지 않으면 메일로 보내주셔도 됩니다 — ',
+      'We reply within two business days and explain scope and cost after the call. We use your details only to reply. If the form does not send, you can email us — ')+
+      '<button type="button" class="lnk" id="mcopy">'+T(MAIL+' 복사','Copy '+MAIL)+'</button></p>'+
+    '</form><div class="cdone" id="cdone" hidden></div>';
+}
+var PAGES2={
+  fit:{kicker:'LAUNCH INQUIRY',title:T('출시 상담','Launch inquiry'),
+    lede:T('어느 쪽이세요? 고르시면 맞는 질문으로 바로 넘어갑니다.','Which one are you? Pick one and we go straight to the right questions.'),
+    html:function(){ return '<div class="doors">'+
+      door('fitbrand','FOR BRANDS',T('화장품 브랜드예요','I run a cosmetic brand'),T('해외에 팔 수 있는지와 예상 비용을 1분 만에 확인합니다.','See in one minute whether your product can be sold abroad and what it costs.'))+
+      door('fitartist','FOR ARTISTS & IP',T('아티스트·IP예요','I represent an artist or IP'),T('SNS, IP 화장품·굿즈, 팝업·공연 중 필요한 것을 알려 주세요.','Tell us what you need: SNS, IP cosmetics and goods, or pop-ups and shows.'))+
+      '</div>'; }},
+  fitartist:{kicker:'FOR ARTISTS · IP LAUNCH',title:T('아티스트 출시 상담','Artist launch inquiry'),
+    lede:T('아티스트와 지금 채널, 맡기고 싶은 것을 알려 주시면 2영업일 안에 메일 드립니다.','Tell us about the artist, the current channels and what you want help with. We reply within two business days.'),
+    html:function(){ return artistForm(); }},
+  brands:{kicker:'FOR BRANDS',title:T('한국 화장품을 해외 매대까지','Korean cosmetics, all the way to shelves abroad'),
+    lede:T('팔 수 있는지부터 확인하고, 라벨·패키지·판매자료·등록을 한 흐름으로 준비합니다.','We first check whether your product can be sold there, then prepare the label, packaging, sales materials and registration in one flow.'),
+    html:function(){ return '<h4 class="psec">'+T('대표 상품 · Export-Ready Launch Sprint','Flagship offer · Export-Ready Launch Sprint')+'</h4>'+
+      PAGES.sprint.html()+go('how',T('진행 순서 보기','See how it works'),true); }},
+  artists:{kicker:'FOR ARTISTS & IP',title:T('아티스트가 팬을 처음 만나는 날까지','Up to the day an artist first meets the fans'),
+    lede:T('SNS 채널을 키우고, 아티스트의 이름으로 상품을 만들고, 팬을 만나는 현장을 엽니다.','We grow the SNS channels, make products in the artist’s name and open the places where fans meet them.'),
+    html:function(){ return '<h4 class="psec">IP Launch</h4>'+
+      steps([[T('SNS 인큐베이팅','SNS incubation'),T('콘텐츠 기획, 편집, 게시, 성과관리까지 맡습니다.','Content planning, editing, posting and performance tracking.')],
+             [T('IP 화장품·굿즈','IP cosmetics and goods'),T('아티스트의 이름을 건 화장품과 굿즈를 기획부터 제조, 패키지까지 만듭니다.','Cosmetics and goods in the artist’s name, from planning to manufacturing and packaging.')],
+             [T('팝업·공연','Pop-ups and shows'),T('팬을 만나는 현장을 기획하고 진행합니다.','We plan and run the places where fans meet the artist.')]])+
+      '<p class="pmeta">'+T('해외 팬에게 IP 화장품을 팔려면 그 나라 규정을 통과해야 합니다. 브룩스글로벌은 미국·캐나다 화장품 규정 실무를 함께 봅니다. 범위와 비용은 상담 뒤 안내합니다.',
+        'To sell IP cosmetics to fans abroad, the product has to meet that country’s rules. We handle US and Canadian cosmetic regulations as well. Scope and cost are explained after the call.')+'</p>'+
+      workCard()+
+      go('fitartist',T('아티스트 출시 상담 →','Artist launch inquiry →')); }},
+  work:{kicker:'WORK',title:T('블링원 SNS PD','SNS PD for Blingone'),
+    lede:T('K-POP 아이돌 그룹 블링원의 SNS 인큐베이팅을 3년 동안 맡고 있습니다. 콘텐츠 기획부터 편집, 게시, 성과관리까지 합니다.',
+      'We run SNS incubation for the K-pop idol group Blingone under a three-year contract: content planning, editing, posting and performance tracking.'),
+    html:function(){ return '<figure class="wimg"><img src="'+BLING_GROUP+'" alt="'+T('블링원 단체 사진','Blingone group photo')+'" loading="lazy"></figure>'+
+      '<div class="wlogo"><img src="'+BLING_LOGO+'" alt="Blingone"><canvas class="spin3d" data-glb="bling" width="200" height="200" aria-hidden="true"></canvas></div>'+
+      '<dl class="facts">'+
+      '<div class="fact"><dt>SNS</dt><dd>'+T('SNS 인큐베이팅 3년 — 콘텐츠 기획, 편집, 게시, 성과관리','Three-year SNS incubation — content planning, editing, posting and performance tracking')+'</dd></div>'+
+      '<div class="fact"><dt>PRODUCT</dt><dd>'+T('블링원 스킨케어 라인(발주 ㈜아루가)의 기획과 패키지 디자인, 블링원 굿즈 기획','Planning and package design for the Blingone skincare line (ordered by Aruga Co., Ltd.), and Blingone goods')+'</dd></div>'+
+      '<div class="fact"><dt>LIVE</dt><dd>'+T('성수 S팩토리 크리스마스마켓(2026년 12월 23~24일) 블링원 참여 기획·진행','Blingone at the Christmas market at S Factory, Seongsu, Seoul (23–24 December 2026): planning and operation')+'</dd></div>'+
+      '</dl>'+
+      '<h4 class="psec">'+T('다른 작업','Other work')+'</h4>'+
+      canadaCard()+
+      go('fitartist',T('아티스트 출시 상담 →','Artist launch inquiry →')); }},
+  tools:{kicker:'TOOLS WE BUILT',title:T('일이 반복되면 도구로 만듭니다','When work repeats, we build a tool'),
+    lede:T('사람이 판단할 일과 시스템이 할 일을 나눕니다. 아래 도구는 브룩스글로벌이 직접 만들고 운영합니다.','We split what people must judge from what a system can do. We built and run the tools below ourselves.'),
+    html:function(){ return '<div class="tools">'+
+      toolCard('dewbot','COSMETIC OEM · ODM',T('DEWBOT 화장품 OEM·ODM 포털','DEWBOT cosmetic OEM and ODM portal'),
+        T('진단부터 제조사 견적 비교, 발주, 입고까지 한 화면에서 진행합니다.','From the first check to comparing manufacturer quotes, ordering and receiving, on one screen.'),
+        'https://dewbot.ai/'+(LANG==='en'?'en':'')+'?'+TOOL_UTM,T('DEWBOT 열기 →','Open DEWBOT →'))+
+      toolCard('fda','US · FDA',T('FDA 화장품 포털','FDA cosmetics portal'),
+        T('미국 화장품 등록 자료 준비를 돕습니다.','Helps you prepare US cosmetic registration files.'),
+        'https://fda.brooksglobal.co.kr/?'+TOOL_UTM,T('FDA 포털 열기 →','Open the FDA portal →'))+
+      toolCard('ouah','CANADA · OUAH Co.',T('OUAH 캐나다 등록 포털','OUAH Canadian registration portal'),
+        T('전성분표로 캐나다에서 팔 수 있는지와 비용을 먼저 보여 줍니다. 캐나다 OUAH Co. 와 협업합니다.','Shows from your ingredient list whether you can sell in Canada and what it costs. Run with OUAH Co. in Canada.'),
+        OUAH_PORTAL,T('OUAH 포털 열기 →','Open the OUAH portal →'))+
+      '</div>'+go('fit',T('출시 상담하기 →','Launch inquiry →')); }}
+};
+Object.keys(PAGES2).forEach(function(k){ PAGES[k]=PAGES2[k]; });
+PAGES.proof=PAGES.work;   /* 옛 PROOF 링크·북마크 */
+
 function openPage(k){
   var pg=PAGES[k]; if(!pg) return;
   document.getElementById('pkicker').textContent=pg.kicker;
@@ -1290,7 +1404,27 @@ function markBad(id,bad){ var el=document.getElementById(id); var box=el&&((el.c
 /* 폼은 1분 출시 확인 결과 아래의 진단 신청 하나. d.subject / d.text / d.payload 를 readDiag 가 만든다 */
 function formText(d){ return d.text; }
 function checked(name){ return [].slice.call(document.querySelectorAll('#cform input[name="'+name+'"]:checked')).map(function(x){ return x.value; }); }
-function readForm(){ return readDiag(); }
+function readForm(){ var f=document.getElementById('cform'); return f&&f.getAttribute('data-kind')==='artist'?readArtist():readDiag(); }
+function readArtist(){
+  var d={kind:'artist',company:val('q_co'),name:val('q_name'),email:val('q_mail'),tel:val('q_tel'),artist:val('q_artist'),ch:val('q_ch'),want:checked('want'),when:checked('when')[0]||'',block:val('q_block')};
+  d.subject='[브룩스글로벌'+(LANG==='en'?' · EN':'')+'] 아티스트 상담 — '+(d.artist||'-')+' · '+d.company;
+  var rows=[['소속사·회사',d.company],['담당자',d.name],['회신 메일',d.email],['연락처',d.tel||'-'],['아티스트·IP',d.artist],['채널',d.ch||'-'],
+            ['맡기고 싶은 것',d.want.join(', ')],['희망 시기',d.when||'-'],['하고 싶은 일·막힌 점',d.block||'-']];
+  d.text=rows.map(function(r){ return r[0]+': '+r[1]; }).join('\n');
+  d.payload={}; rows.forEach(function(r){ d.payload[r[0]]=r[1]; });
+  return d;
+}
+function validateArtist(d){
+  ['q_co','q_name','q_mail','q_artist','q_want'].forEach(function(i){ markBad(i,false); });
+  function bad(id,msg){ markBad(id,true); return [msg,id]; }
+  if(!d.company) return bad('q_co',T('소속사 또는 회사 이름을 적어주세요.','Please enter the agency or company.'));
+  if(!d.name) return bad('q_name',T('담당자 이름을 적어주세요.','Please enter a contact name.'));
+  if(!d.email) return bad('q_mail',T('회신 받으실 메일 주소를 적어주세요.','Please enter an email for our reply.'));
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(d.email)) return bad('q_mail',T('메일 주소를 다시 확인해주세요.','Please check the email address.'));
+  if(!d.artist) return bad('q_artist',T('아티스트 또는 IP 이름을 적어주세요.','Please enter the artist or IP name.'));
+  if(!d.want.length) return bad('q_want',T('맡기고 싶은 것을 하나 이상 골라주세요.','Please choose at least one thing you want help with.'));
+  return null;
+}
 function readDiag(){
   var f=document.getElementById('cform'), dir=f&&f.getAttribute('data-kind')==='direction';
   var d={kind:dir?'direction':'diag',company:val('q_co'),name:val('q_name'),email:val('q_mail'),tel:val('q_tel'),bud:checked('bud')[0]||'',dec:checked('dec')[0]||'',block:val('q_block')};
@@ -1316,14 +1450,15 @@ function validateDiag(d){
   if(!d.dec) return bad('q_dec',T('최종 결정은 누가 하시는지 골라주세요.','Please tell us who makes the final decision.'));
   return null;
 }
-function validate(d){ return validateDiag(d); }
+function validate(d){ return d.kind==='artist'?validateArtist(d):validateDiag(d); }
 function showSent(d){
   var f=document.getElementById('cform'), done=document.getElementById('cdone');
   if(!done) return;
   f.hidden=true; done.hidden=false;
   track('fit_form_complete',{kind:d.kind});
   done.innerHTML='<div class="cok" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></div><h4>'+T('신청을 받았습니다','Request received')+'</h4><p>'+T(esc(d.name)+'님, 2영업일 안에 <b>'+esc(d.email)+'</b> 로 메일 드립니다.','Thank you, '+esc(d.name)+'. We will email <b>'+esc(d.email)+'</b> within two business days.')+'</p>'+
-    '<ol class="plist qnext"><li>'+T('보내 주신 답을 보고 진단 범위를 확인합니다.','We check the scope of the diagnosis against your answers.')+'</li><li>'+T('진단 인보이스와 필요한 자료 목록을 메일로 보내 드립니다.','We email the diagnosis invoice and the list of files we need.')+'</li><li>'+T('자료를 받으면 진단 결과와 제안을 드립니다.','Once we have the files, we send the diagnosis and a proposal.')+'</li></ol>';
+    (d.kind==='artist'?'<ol class="plist qnext"><li>'+T('보내 주신 내용을 보고 지금 채널과 하고 싶은 일을 확인합니다.','We review your channels and what you want to do.')+'</li><li>'+T('상담 일정을 메일로 여쭙니다.','We email you to set up a call.')+'</li><li>'+T('상담 뒤 범위와 비용을 안내합니다.','After the call we send scope and cost.')+'</li></ol>':
+    '<ol class="plist qnext"><li>'+T('보내 주신 답을 보고 진단 범위를 확인합니다.','We check the scope of the diagnosis against your answers.')+'</li><li>'+T('진단 인보이스와 필요한 자료 목록을 메일로 보내 드립니다.','We email the diagnosis invoice and the list of files we need.')+'</li><li>'+T('자료를 받으면 진단 결과와 제안을 드립니다.','Once we have the files, we send the diagnosis and a proposal.')+'</li></ol>');
   done.scrollIntoView({block:'nearest'});
 }
 function showFallback(d,why){
@@ -1613,7 +1748,7 @@ function openPanel(s){
     (!s.items&&s.meta?'<p class="pmeta">'+s.meta+'</p>':'')+
     (s.cred?'<p class="pcred" style="--dot:'+s.color+'">'+s.cred+'</p>':'')+
     '<p class="pmeta">'+s.solo+'</p>'+
-    go('fit',T('1분 출시 확인하기 →','Take the 1-minute check →'));
+    go('fitbrand',T('1분 출시 확인하기 →','Take the 1-minute check →'));
   curView=s.id; markNav(s.id);
   bindGo(body);
   body.scrollTop=0;
