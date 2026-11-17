@@ -550,7 +550,6 @@ html[lang=en] .odemo [data-lang=kr],html:not([lang=en]) .odemo [data-lang=en]{di
 .plinks{display:flex;flex-direction:column;gap:8px}
 /* 1-4 리뉴얼 패널 부품 — 절 제목 · 인용 · 카드 · 패널 안 버튼 */
 .psec{font-size:15px;font-weight:900;margin-top:8px;word-break:keep-all;overflow-wrap:break-word}
-.pquote{margin:0;border-left:3px solid var(--green);padding:4px 0 4px 14px;font-size:15px;font-weight:700;line-height:1.65;color:var(--ink);word-break:keep-all;overflow-wrap:break-word}
 .pcard{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:16px 18px;display:flex;flex-direction:column;gap:10px;word-break:keep-all;overflow-wrap:break-word}
 .pcard small{font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--green);font-weight:700}
 .pcard h5{margin:0;font-size:16px;font-weight:900;color:var(--ink)}
@@ -645,8 +644,8 @@ html[lang=en] .odemo [data-lang=kr],html:not([lang=en]) .odemo [data-lang=en]{di
     <div id="tbubble" aria-live="polite"></div>
     <div id="tdots" aria-hidden="true"></div>
     <div id="tdoors" hidden>
-      <button type="button" class="pgo" id="tfit" data-en="Start the 1-minute check →">1분 출시 확인 시작 →</button>
-      <button type="button" class="pgo ghost" id="tsprint" data-en="See pricing and process">가격과 진행 순서 보기</button>
+      <button type="button" class="pgo" id="tfit" data-en="I run a cosmetic brand →">화장품 브랜드예요 →</button>
+      <button type="button" class="pgo" id="tsprint" data-en="I represent an artist or IP →">아티스트·IP예요 →</button>
     </div>
     <div id="thint" data-en="Tap to continue · Esc to skip">눌러서 넘기기 · Esc 건너뛰기</div>
   </div>
@@ -1158,19 +1157,19 @@ var PAGES={
       canadaCard()+
       '<div class="pbling"><canvas class="spin3d" data-glb="bling" width="240" height="240" aria-hidden="true"></canvas><p>K-POP 아이돌 굿즈 브랜드 블링원의 디자인 파트너입니다.</p></div>'+
       go('fitbrand','1분 출시 확인하기 →'); }},
-  about:{kicker:'ABOUT',title:'디자인과 규정, 반복되는 서류 업무까지 한곳에서 맡습니다',
-    lede:'브룩스글로벌은 한국 화장품 브랜드가 해외에 나갈 때 규정 검토, 디자인, 등록을 따로 맡기면서 생기는 빈틈을 줄입니다. 규정을 아는 사람이 라벨과 패키지까지 직접 보기 때문에 판매 화면과 제출 서류가 같은 기준으로 만들어집니다. 반복 입력과 자료 확인은 시스템으로 줄이고, 판단과 책임은 사람이 집니다.',
+  about:{kicker:'ABOUT · FOUNDER · K-CULTURE LAUNCH PRODUCER',title:'김현우',
+    lede:'브룩스글로벌은 한국의 브랜드와 아티스트가 세상에 처음 나갈 때 필요한 기획, 제품, 규정, 현장을 한 사람이 끝까지 맡는 K-컬처 런치 스튜디오입니다. 화장품 해외 출시 실무와 블링원 SNS PD 일을 함께 합니다. 반복되는 일은 도구로 만들고, 판단과 책임은 사람이 집니다.',
     html:function(){ return '<div class="portrait"><img src="../media/portrait.webp" alt="김현우"></div>'+
-      '<p class="pquote">인천 개항장 뒷골목 상회들이 그랬듯, 간판보다 물건이 실제로 나가는 쪽에 무게를 둡니다.</p>'+
       '<dl class="facts">'+
       '<div class="fact"><dt>WHO</dt><dd>김현우 (Brooks Hyeonwoo Kim)</dd></div>'+
-      '<div class="fact"><dt>ENTITY</dt><dd>계약·세금계산서·해외 인보이스는 사업자 브룩스글로벌 명의로 발행합니다.</dd></div>'+
+      '<div class="fact"><dt>ROLE</dt><dd>블링원 SNS PD · 화장품 해외 출시 실무</dd></div>'+
+      '<div class="fact"><dt>FIELD</dt><dd>K-POP 아티스트 SNS·IP 상품·팝업, 미국 FDA · Health Canada 규정, 해외 라벨 표기, 패키지·상세페이지 디자인, 업무 자동화 포털</dd></div>'+
       '<div class="fact"><dt>OUAH</dt><dd>김현우는 캐나다 Health Canada 등록 회사 OUAH Co. 의 이사이며, OUAH AI 등록 포털을 만들고 운영합니다. 캐나다 제출은 OUAH 의 현지 전문가가 맡습니다. OUAH 는 브룩스글로벌의 자회사가 아닌 별도 회사입니다.</dd></div>'+
-      '<div class="fact"><dt>FIELD</dt><dd>미국 FDA · Health Canada 규정, 해외 라벨 표기, 패키지·상세페이지 디자인, 웹사이트 구축</dd></div>'+
       '<div class="fact"><dt>TALKS</dt><dd>아마존코리아 셀러 웨비나, 월마트 아시아퍼시픽 마켓플레이스 파트너 세션</dd></div>'+
+      '<div class="fact"><dt>ENTITY</dt><dd>계약·세금계산서·해외 인보이스는 사업자 브룩스글로벌 명의로 발행합니다.</dd></div>'+
       '<div class="fact"><dt>BASE</dt><dd>인천에 있고, 원격으로도 함께 일합니다</dd></div></dl>'+
       '<p class="pmeta">Company name: Brooks Global · Jemulpo-gu, Incheon, Republic of Korea · © '+new Date().getFullYear()+' Brooks Global. All rights reserved.</p>'+
-      go('fitbrand','1분 출시 확인하기 →'); }}
+      go('fit','출시 상담하기 →'); }}
 };
 /* 영어판 패널 (G6) — 한국어판과 같은 사실, 영어 업무 문체 */
 var PAGES_EN={
@@ -1244,19 +1243,19 @@ var PAGES_EN={
       canadaCard()+
       '<div class="pbling"><canvas class="spin3d" data-glb="bling" width="240" height="240" aria-hidden="true"></canvas><p>Design partner of Blingone, a K-pop idol merchandise brand.</p></div>'+
       go('fitbrand','Take the 1-minute check →'); }},
-  about:{kicker:'ABOUT',title:'Design, regulations and the paperwork in between, in one place',
-    lede:'Brooks Global closes the gaps that appear when a cosmetic brand orders regulatory review, design and registration separately for an overseas launch. Because the person who knows the rules also works on the label and packaging, the product page and the filing documents follow the same standard. The system cuts repetitive entry and checks; judgement and responsibility stay with people.',
+  about:{kicker:'ABOUT · FOUNDER · K-CULTURE LAUNCH PRODUCER',title:'Brooks Hyeonwoo Kim',
+    lede:'Brooks Global is a K-culture launch studio. When Korean brands and artists go out into the world for the first time, one person takes care of the plan, the product, the rules and the live events, all the way through. We work on overseas cosmetic launches and serve as SNS PD for Blingone. Repetitive work becomes a tool; judgement and responsibility stay with people.',
     html:function(){ return '<div class="portrait"><img src="../media/portrait.webp" alt="Brooks Hyeonwoo Kim"></div>'+
-      '<p class="pquote">Like the old merchant shops in the back streets of Incheon’s open port, we care more about goods actually shipping than about the sign above the door.</p>'+
       '<dl class="facts">'+
       '<div class="fact"><dt>WHO</dt><dd>Brooks Hyeonwoo Kim</dd></div>'+
-      '<div class="fact"><dt>ENTITY</dt><dd>Contracts, tax invoices and international invoices are issued by Brooks Global.</dd></div>'+
+      '<div class="fact"><dt>ROLE</dt><dd>SNS PD for Blingone · overseas cosmetic launches</dd></div>'+
+      '<div class="fact"><dt>FIELD</dt><dd>SNS, IP products and pop-ups for K-pop artists; US FDA and Health Canada regulations; overseas labelling; packaging and product page design; workflow automation portals</dd></div>'+
       '<div class="fact"><dt>OUAH</dt><dd>Brooks Hyeonwoo Kim is a director of OUAH Co., a Canadian Health Canada registration company, and built and runs the OUAH AI registration portal. Canadian filings are made by OUAH’s local specialists. OUAH is a separate company, not a subsidiary of Brooks Global.</dd></div>'+
-      '<div class="fact"><dt>FIELD</dt><dd>US FDA and Health Canada regulations, overseas labelling, packaging and product page design, website development</dd></div>'+
       '<div class="fact"><dt>TALKS</dt><dd>Seller webinar for Amazon Korea, partner session for Walmart Asia-Pacific Marketplace</dd></div>'+
+      '<div class="fact"><dt>ENTITY</dt><dd>Contracts, tax invoices and international invoices are issued by Brooks Global.</dd></div>'+
       '<div class="fact"><dt>BASE</dt><dd>Based in Incheon, Korea, working with clients remotely</dd></div></dl>'+
       '<p class="pmeta">Company name: Brooks Global · Jemulpo-gu, Incheon, Republic of Korea · © '+new Date().getFullYear()+' Brooks Global. All rights reserved.</p>'+
-      go('fitbrand','Take the 1-minute check →'); }}
+      go('fit','Launch inquiry →'); }}
 };
 if(LANG==='en') Object.keys(PAGES_EN).forEach(function(k){ PAGES[k]=PAGES_EN[k]; });
 /* ===== 2차 리뉴얼 패널 (2026-11-17 설계 3.3~3.6 · 3.10). 한국어·영어를 T() 로 함께 쓴다 ===== */
@@ -1767,25 +1766,17 @@ document.getElementById('pclose').addEventListener('click',closePanel);
    portal.ouahco.ca 첫 방문 인사와 같은 방식: 말풍선에 글자를 하나씩, 장면마다 반응 클립, 가만두면 넘어가고 누르면 바로 넘어감.
    마지막 장면에서 1분 출시 확인 · Sprint 패널로. 움직임 줄이기 설정이면 타이핑 없이 보여 준다 */
 var TOUR=T([
-  {say:'안녕하세요!<br>브룩스글로벌 김현우예요.',small:'한국 화장품을 미국·캐나다에 내보낼 때 필요한 라벨, 패키지, 등록 서류를 준비해 드려요.',clip:'cap'},
-  {say:'국내에서 잘 팔리는 제품도 <b>라벨을 그대로</b> 가져가면 그 나라에서는 못 팔 수 있어요.',small:'나라마다 꼭 넣어야 하는 문구와 쓰면 안 되는 표현이 달라서요.',clip:'chill'},
-  {say:'예를 들면 이런 것들이에요.',list:['캐나다는 라벨에 <b>영어와 불어</b>를 함께 써야 해요.','「미백」「여드름 개선」 같은 표현이 들어가면 화장품이 아니라 <b>의약품</b>으로 분류될 수 있어요.','자외선차단제는 미국에서 <b>OTC 의약품</b>이라 따로 등록해야 해요.'],clip:'shades'},
-  {say:'그래서 먼저 <b>전성분표</b>를 보고, 그 나라에 <b>팔 수 있는지</b> 검토해요.',small:'화장품 신고만으로 되는지, 의약품이나 천연건강제품 허가가 필요한지 가려요.',clip:'nod'},
-  {say:'검토한 결과대로 <b>라벨 문구</b>를 써 드려요.',small:'지금 라벨 위에 「여기를 지우고 이 문장을 넣으세요」라고 표시해 드려요. 디자이너가 그대로 옮기면 돼요.',clip:'chill'},
-  {say:'용기·단상자 디자인과 <b>영문 상세페이지</b>까지 같은 문구로 만들어요.',small:'규정을 모르는 디자이너가 만든 뒤 다시 고치는 일이 없어요.',clip:'shades'},
-  {say:'미국 <b>FDA 화장품 리스팅</b>과 <b>Health Canada</b> 신고·등록도 이어서 준비해요.',small:'캐나다 제출은 현지 전문가가 맡아요.',clip:'nod'},
-  {say:'비용은 이렇게 돼요.',price:[['진단 · SKU당',money(PRICE.diag),'계약하면 전액 차감'],['디자인 · SKU당',money(PRICE.design),'라벨 문구 포함'],['등록 · SKU당',money(PRICE.fda)+'부터',''],['예) 일반 화장품 1개, 미국',money(PRICE.design+PRICE.fda),'']],small:'보통 4주 걸려요. 부가세는 별도예요.',clip:'chill'},
-  {say:'제품 하나만 알려 주시면 그 나라에 <b>팔 수 있는지</b>, 얼마쯤 드는지 바로 보여 드릴게요.',clip:'nod',end:true}
+  {say:'안녕하세요!<br>브룩스글로벌 김현우예요.',small:'K-컬처가 세상에 나가는 첫날을 만들어요.',clip:'cap'},
+  {say:'<b>화장품 브랜드</b>라면',small:'해외에서 팔 수 있는지부터 보고, 라벨·패키지·판매자료·등록까지 한 흐름으로 준비해요.',clip:'nod'},
+  {say:'<b>아티스트</b>라면',small:'블링원 SNS PD로 일하고 있어요. SNS, IP 화장품·굿즈, 팬을 만나는 현장까지 맡아요.',clip:'shades'},
+  {say:'반복되는 일은 <b>도구</b>로 만들어요.',small:'화장품 OEM·ODM 포털, FDA 포털, 캐나다 등록 포털을 직접 만들고 운영해요.',clip:'chill'},
+  {say:'어느 쪽이세요?',clip:'nod',end:true}
 ],[
-  {say:'Hi!<br>I’m Brooks Hyeonwoo Kim of Brooks Global.',small:'We prepare the labels, packaging and registration files Korean cosmetic brands need to sell in the US and Canada.',clip:'cap'},
-  {say:'A product that sells well in Korea may not be sellable abroad <b>with the same label</b>.',small:'Each market has its own mandatory wording and its own banned claims.',clip:'chill'},
-  {say:'For example:',list:['Canada requires labels in <b>English and French</b>.','Claims like “whitening” or “treats acne” can make a cosmetic count as a <b>drug</b>.','In the US, sunscreen is an <b>OTC drug</b> with its own procedure.'],clip:'shades'},
-  {say:'So we start with your <b>ingredient list</b> and work out how the product can legally be sold.',small:'Cosmetic notification, or a drug or natural health product procedure.',clip:'nod'},
-  {say:'Then we write the <b>label copy</b> to that standard.',small:'We mark your current label: “delete this, put this sentence here.” Your designer just follows it.',clip:'chill'},
-  {say:'Containers, cartons and the <b>English product page</b> use the same copy.',small:'No redesign after a designer who did not know the rules has finished.',clip:'shades'},
-  {say:'We also prepare <b>FDA cosmetic product listing</b> and <b>Health Canada</b> filings.',small:'Canadian filings are submitted by a local specialist.',clip:'nod'},
-  {say:'Here is what it costs.',price:[['Diagnosis · per SKU',money(PRICE.diag),'credited if you sign'],['Design · per SKU',money(PRICE.design),'label copy included'],['Registration · per SKU','from '+money(PRICE.fda),''],['e.g. one cosmetic, US',money(PRICE.design+PRICE.fda),'']],small:'Most projects take about four weeks. Taxes are extra.',clip:'chill'},
-  {say:'Tell us about one product and we will show you the procedure and <b>a cost estimate</b> right away.',clip:'nod',end:true}
+  {say:'Hi!<br>I’m Brooks Hyeonwoo Kim of Brooks Global.',small:'We make launch day for K-culture.',clip:'cap'},
+  {say:'For <b>cosmetic brands</b>',small:'We first check whether you can sell abroad, then prepare the label, packaging, sales materials and registration in one flow.',clip:'nod'},
+  {say:'For <b>artists</b>',small:'I work as SNS PD for Blingone. We handle SNS, IP cosmetics and goods, and the places where fans meet the artist.',clip:'shades'},
+  {say:'When work repeats, we build a <b>tool</b>.',small:'We built and run a cosmetic OEM and ODM portal, an FDA portal and a Canadian registration portal.',clip:'chill'},
+  {say:'Which one are you?',clip:'nod',end:true}
 ]);
 var tourEl=document.getElementById('tour'), tBub=document.getElementById('tbubble'), tDots=document.getElementById('tdots'), tDoors=document.getElementById('tdoors');
 var tStep=-1, tType=null, tNextT=null, tLastFocus=null;
@@ -1859,8 +1850,8 @@ function tourClose(then){
 document.getElementById('heroCta').addEventListener('click',tourOpen);
 tourEl.addEventListener('click',function(e){ if(e.target.closest('button')) return; tourNext(); });
 document.getElementById('tskip').addEventListener('click',function(){ tourClose(); });
-document.getElementById('tfit').addEventListener('click',function(){ tourClose(function(){ track('hero_fit_click',{from:'tour'}); openPage('fit'); }); });
-document.getElementById('tsprint').addEventListener('click',function(){ tourClose(function(){ openPage('sprint'); }); });
+document.getElementById('tfit').addEventListener('click',function(){ tourClose(function(){ track('hero_fit_click',{from:'tour'}); track('fit_door',{door:'brand',from:'tour'}); openPage('fitbrand'); }); });
+document.getElementById('tsprint').addEventListener('click',function(){ tourClose(function(){ track('hero_fit_click',{from:'tour'}); track('fit_door',{door:'artist',from:'tour'}); openPage('fitartist'); }); });
 window.addEventListener('resize',function(){ if(!tourEl.hidden && tStep>=0) tourPlace(TOUR[tStep]); });
 scrim.addEventListener('click',closePanel);
 document.addEventListener('keydown',function(e){ if(e.key!=='Escape') return; if(window.__tourOpen&&window.__tourOpen()){ tourClose(); return; } closePanel(); });
