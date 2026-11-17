@@ -646,10 +646,10 @@ html[lang=en] .odemo [data-lang=kr],html:not([lang=en]) .odemo [data-lang=en]{di
       <div class="svcs" aria-label="브룩스글로벌과 함께하는 서비스" data-en-aria="Services with Brooks Global">
         <small data-en="SERVICES WITH BROOKS GLOBAL">브룩스글로벌과 함께하는 서비스</small>
         <div class="svc-row">
-        <a class="svc" data-svc="dewbot" href="https://dewbot.ai/?utm_source=brooksglobal&amp;utm_medium=site&amp;utm_campaign=home_services" target="_blank" rel="noopener"><canvas class="spin3d" data-glb="dewbot" width="160" height="160" aria-hidden="true"></canvas><span>DEWBOT</span></a>
-        <a class="svc" data-svc="fda" href="https://fda.brooksglobal.co.kr/?utm_source=brooksglobal&amp;utm_medium=site&amp;utm_campaign=home_services" target="_blank" rel="noopener"><canvas class="spin3d" data-glb="fda" width="160" height="160" aria-hidden="true"></canvas><span>FDA<em> Portal</em></span></a>
-        <a class="svc" data-svc="ouah" href="https://portal.ouahco.ca/?utm_source=brooksglobal&amp;utm_medium=site&amp;utm_campaign=home_services" target="_blank" rel="noopener"><canvas class="spin3d" data-glb="ouah" width="160" height="160" aria-hidden="true"></canvas><span>OUAH<em> Portal</em></span></a>
-        <a class="svc" data-svc="bling" href="https://blingoneshop.com/?utm_source=brooksglobal&amp;utm_medium=site&amp;utm_campaign=home_services" target="_blank" rel="noopener"><canvas class="spin3d" data-glb="bling" width="160" height="160" aria-hidden="true"></canvas><span>Blingone<em> Shop</em></span></a>
+        <a class="svc" data-svc="dewbot" href="https://dewbot.ai/?utm_source=brooksglobal&amp;utm_medium=site&amp;utm_campaign=home_services" target="_blank" rel="noopener"><canvas class="spin3d" data-glb="dewbot" data-sway width="160" height="160" aria-hidden="true"></canvas><span>DEWBOT</span></a>
+        <a class="svc" data-svc="fda" href="https://fda.brooksglobal.co.kr/?utm_source=brooksglobal&amp;utm_medium=site&amp;utm_campaign=home_services" target="_blank" rel="noopener"><canvas class="spin3d" data-glb="fda" data-sway width="160" height="160" aria-hidden="true"></canvas><span>FDA<em> Portal</em></span></a>
+        <a class="svc" data-svc="ouah" href="https://portal.ouahco.ca/?utm_source=brooksglobal&amp;utm_medium=site&amp;utm_campaign=home_services" target="_blank" rel="noopener"><canvas class="spin3d" data-glb="ouah" data-sway width="160" height="160" aria-hidden="true"></canvas><span>OUAH<em> Portal</em></span></a>
+        <a class="svc" data-svc="bling" href="https://blingoneshop.com/?utm_source=brooksglobal&amp;utm_medium=site&amp;utm_campaign=home_services" target="_blank" rel="noopener"><canvas class="spin3d" data-glb="bling" data-sway width="160" height="160" aria-hidden="true"></canvas><span>Blingone<em> Shop</em></span></a>
         </div>
       </div>
     </div>
@@ -2236,12 +2236,13 @@ function spinOne(cv){
   r.setSize(cv.clientWidth||100,cv.clientHeight||100,false);
   var S={r:r,scene:studio(r),cam:new THREE.OrthographicCamera(-1,1,1,-1,-10,10),obj:null,raf:0,t:0,last:0};
   S.cam.position.z=5; SPINS.push(S);
+  S.sway=cv.hasAttribute('data-sway'); S.yaw=parseFloat(cv.getAttribute('data-yaw')||'0')||0;
   function tick(now){
     if(!document.body.contains(cv)){ try{ r.dispose(); }catch(e){} SPINS.splice(SPINS.indexOf(S),1); return; }
     var dt=S.last?Math.min(64,now-S.last):16; S.last=now;
     if(!reduce) S.t+=dt/1000;
-    S.obj.rotation.y=S.t*0.6;
-    S.obj.rotation.x=Math.sin(S.t*0.5)*0.08;
+    if(S.sway){ S.obj.rotation.y=S.yaw+Math.sin(S.t*0.9)*0.42; S.obj.rotation.x=Math.sin(S.t*0.6)*0.06; }   /* 앞을 보고 좌우로만 흔든다 — 눈·글자가 늘 보이게 */
+    else{ S.obj.rotation.y=S.t*0.6; S.obj.rotation.x=Math.sin(S.t*0.5)*0.08; }
     r.render(S.scene,S.cam);
     if(!reduce) S.raf=requestAnimationFrame(tick);
   }
