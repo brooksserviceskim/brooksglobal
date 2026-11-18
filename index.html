@@ -134,8 +134,12 @@ button{font:inherit;color:inherit;border:none;background:none;cursor:pointer}
   .hero-copy{margin-top:clamp(18px,3vh,30px)}
   .hero-cta{margin-top:22px}
   /* 분할 화면에서는 말풍선을 모자 바로 위로 — 오른쪽 위 04 오브제를 가리지 않게 */
-  .hero .bubble{left:calc(var(--face-x,50%) - 40px);top:calc(var(--face-y) - var(--face-h)*0.5 - 72px)}
+  .hero .bubble{left:calc(var(--face-x,50%) - 62px);top:calc(var(--face-y) - var(--face-h)*0.5 - 72px);max-width:176px;font-size:15px}
 }
+/* 태블릿(641~899)은 양옆 세로줄에 오브제가 있어 말풍선을 모자 가운데 위로 */
+@media(min-width:641px) and (max-width:899px){ .hero .bubble{max-width:180px;font-size:15px;left:calc(var(--face-x,50%) - 90px);top:calc(var(--face-y) - var(--face-h)*0.5 + 4px)} }
+/* 좁은 분할(900~1099)은 모자 위가 오브제로 막혀 말풍선을 턱 아래로, 꼬리는 위로 */
+@media(min-width:900px) and (max-width:1099px){ .hero .bubble{max-width:200px;left:calc(var(--face-x,50%) - 100px);top:calc(var(--face-y) + var(--face-h)*0.5 + 4px)} .hero .bubble::after{bottom:auto;top:-7px;left:50%;margin-left:-8px} }
 .hero-copy{margin-top:clamp(10px,1.6vh,16px);word-break:keep-all;overflow-wrap:break-word}
 .hero-h{font-weight:900;font-size:clamp(25px,3.1vw,44px);letter-spacing:-.045em;line-height:1.2;color:var(--ink);word-break:keep-all;overflow-wrap:break-word}
 .hero-p{margin-top:10px;font-size:clamp(14px,1.2vw,17px);line-height:1.55;color:var(--ink-2);word-break:keep-all;overflow-wrap:break-word}
@@ -157,6 +161,9 @@ button{font:inherit;color:inherit;border:none;background:none;cursor:pointer}
   .svc{width:auto;flex:1 1 0;flex-direction:row;justify-content:center;gap:2px;padding:2px 4px 2px 2px;font-size:9.5px;border-radius:99px;min-width:0}
   .svc span{white-space:nowrap} .svc em{display:none}
   .svc canvas{width:26px;height:26px;flex:none} }
+/* 좌우 분할이 좁은 폭(900~1099): 타일 넷이 한 줄에 들어가게 줄인다 */
+@media(min-width:900px) and (max-width:1099px){ .svc-row{gap:7px;flex-wrap:nowrap} .svc{width:82px;font-size:10.5px} .svc canvas{width:48px;height:48px} }
+@media(max-width:380px){ .svc-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px} .svc{font-size:8.5px;padding:1px 3px 1px 1px;gap:1px;overflow:hidden} .svc canvas{width:20px;height:20px} }
 @media(max-width:640px){ .wordmark .sub{gap:8px} .wordmark .sub s{display:none}
   .wordmark{top:76px} .wordmark .sub{margin-top:6px} .hero-copy{margin-top:8px} .hero-cta{margin-top:10px}
   .hero-cta{display:block;width:100%;font-size:14.5px}
@@ -191,7 +198,7 @@ button{font:inherit;color:inherit;border:none;background:none;cursor:pointer}
 .obj.is3d .cube{visibility:hidden}
 .objlabel{position:absolute;left:50%;top:100%;transform:translateX(-50%);margin-top:6px;text-align:center;white-space:nowrap;
   word-break:keep-all;overflow-wrap:break-word;pointer-events:none}
-.objlabel b{display:block;font-weight:900;font-size:13px;letter-spacing:-.02em;color:var(--ink)}
+.objlabel b{display:block;font-weight:900;font-size:13px;letter-spacing:-.02em;color:var(--ink);padding:1px 7px;border-radius:9px;background:rgba(255,255,255,.72)}   /* 얼굴 위에 걸쳐도 읽히게 */
 /* 이름표: 데스크톱은 「01 판매 가능 검토」, 폰은 「01 검토」 */
 .objlabel .short{display:none}
 @media(max-width:640px){.objlabel{margin-top:4px}.objlabel b{font-size:11px;letter-spacing:-.03em}.objlabel .long{display:none}.objlabel .short{display:block}}
@@ -480,12 +487,14 @@ html[lang=en] .odemo [data-lang=kr],html:not([lang=en]) .odemo [data-lang=en]{di
   box-shadow:0 40px 80px -30px rgba(23,26,31,.5);transform:translateX(calc(100% + 32px));transition:transform .38s cubic-bezier(.22,.9,.28,1);display:flex;flex-direction:column;overflow:hidden}
 #panel.open{transform:none}
 @media(max-width:600px){#panel{right:0;left:0;top:auto;bottom:0;width:100%;height:88svh;border-radius:24px 24px 0 0;transform:translateY(102%)}}
-.phead{position:relative;padding:26px 28px 18px;border-bottom:1px solid var(--line)}
+.phead{position:relative;padding:26px 64px 18px 28px;border-bottom:1px solid var(--line)}   /* 오른쪽 64px 은 닫기 버튼 자리 — 긴 제목이 × 밑으로 들어가지 않게 */
+.phead h3,.phead span{word-break:keep-all;overflow-wrap:break-word}
 .phead .chip{display:none}
 .phead span{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--ink-3);display:block}
 .phead h3{font-size:24px;font-weight:900;letter-spacing:-.02em;margin-top:6px}
 .pclose{position:absolute;right:16px;top:16px;width:36px;height:36px;border-radius:50%;background:var(--bg-2);display:grid;place-items:center;font-size:18px;line-height:1}
 .pbody{padding:22px 28px 30px;overflow-y:auto;display:flex;flex-direction:column;gap:18px}
+.pbody > *{flex-shrink:0}   /* 세로 flex 안에서 사진·카드가 0 높이로 눌리지 않게 (소개 사진·블링원 사진 사고) */
 .pbody > p{font-size:15px;color:var(--ink-2);font-weight:500}
 .plist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
 .plist li{display:grid;grid-template-columns:18px 1fr;gap:10px;font-size:14px;color:var(--ink)}
@@ -1939,7 +1948,8 @@ function makeCube(cfg,size,i){
    글 블록 높이가 화면마다 달라서 고정 % 로는 CTA 가 모자 위에 겹친다. 말풍선·물리 원은 이 값을 따라간다 */
 function fitFace(){
   if(W>=900){                                 /* 좌우 분할 — 글은 왼쪽 열, 얼굴은 오른쪽 영역 가운데 */
-    var hs=Math.min(H*0.58,520);
+    var wmR=document.getElementById('wordmark').getBoundingClientRect().right;
+    var hs=Math.min(H*0.58,520,(W-wmR)*0.66);   /* 좁은 분할 폭에서 얼굴이 왼쪽 줄 오브제를 덮지 않게 */
     hero.style.setProperty('--face-x',Math.round(W*0.71)+'px');
     hero.style.setProperty('--face-h',hs+'px');
     hero.style.setProperty('--face-y',Math.round(H*0.52)+'px');
@@ -1972,17 +1982,24 @@ function buildWorld(){
     {isStatic:true,restitution:.7});
   World.add(world,avBody);
 
-  var all=HOME_OBJ.map(function(s){return {cfg:s,size:S.svc};});
   var mobile=W<640;
-  /* 폰: 글 블록(서비스 줄 포함) 아래부터 하단 메뉴 위까지 세 줄로 나눈다 */
-  var mTop=document.getElementById('wordmark').getBoundingClientRect().bottom+S.svc*0.75, mBot=H-150-S.svc*0.5;
-  function my(k){ return Math.max(0.3,(mTop+(mBot-mTop)*k)/H); }
+  /* 폰·태블릿: 글 블록(서비스 줄 포함) 아래부터 하단 메뉴·중력 스위치 위까지를 세 줄로 나눈다.
+     줄 간격이 오브제+이름표보다 좁으면 오브제를 줄인다 (작은 폰에서 이름표가 겹치던 문제) */
+  var wmB=document.getElementById('wordmark').getBoundingClientRect().bottom;
+  var mTop, mBot;
+  function band(){ mTop=wmB+S.svc*0.62; mBot=H-(mobile?112:150)-S.svc*0.55; }
+  band();
+  if(W<900 && (mBot-mTop)/2 < S.svc+44){ S.svc=Math.max(44,Math.floor((mBot-mTop)/2)-44); band(); }
+  function my(k){ return Math.max(0.2,(mTop+(mBot-mTop)*k)/H); }
+  var all=HOME_OBJ.map(function(s){return {cfg:s,size:S.svc};});
   /* 2026-10-04 첫 화면 재설계 — 6단계 오브제. 왼쪽 줄 01·02·03, 오른쪽 줄 04·05·06 (위에서 아래로)
      split(폭 900 이상)은 글이 왼쪽이라 오브제가 얼굴(가로 70%) 둘레에만 선다 */
   var split=W>=900;
+  /* 좌우 분할: 왼쪽 줄 오브제는 글 블록 오른쪽 끝에서 오브제 0.75개만큼 띄운다 (1024 폭에서 제목에 닿던 문제) */
+  var wmR=document.getElementById('wordmark').getBoundingClientRect().right, lx=function(x){ return Math.max(x,(wmR+S.svc*0.75)/W); };
   var SLOT_S = mobile ? [[0.12,my(0)],[0.12,my(0.5)],[0.12,my(1)],[0.88,my(0)],[0.88,my(0.5)],[0.88,my(1)]]
-             : split  ? [[0.53,0.27],[0.51,0.53],[0.56,0.80],[0.89,0.27],[0.92,0.53],[0.86,0.80]]
-                      : [[0.13,0.36],[0.13,0.63],[0.31,0.80],[0.87,0.36],[0.87,0.63],[0.69,0.80]];
+             : split  ? [[lx(0.53),0.27],[lx(0.51),0.53],[lx(0.56),0.80],[0.89,0.27],[0.92,0.53],[0.86,0.80]]
+                      : [[0.12,my(0)],[0.12,my(0.5)],[0.12,my(1)],[0.88,my(0)],[0.88,my(0.5)],[0.88,my(1)]];
   all.forEach(function(o,i){
     var slot = SLOT_S[i];
     if(!slot) return;
@@ -2018,7 +2035,7 @@ function drift(){
   for(var i=0;i<items.length;i++){
     var b=items[i].body, h=b.home; if(!h) continue;
     /* the anchor itself bobs a little so the piece hovers instead of sitting dead still */
-    var amp=lined?0.3:1;   /* 정렬 중에는 덜 흔들려야 줄이 반듯해 보인다 */
+    var amp=(lined?0.3:1)*(W<640?0.45:1);   /* 폰은 줄 간격이 좁아 덜 흔든다 */   /* 정렬 중에는 덜 흔들려야 줄이 반듯해 보인다 */
     b.spring.pointA.x=h.x+Math.sin(driftT*0.6+i*1.7)*10*amp;
     b.spring.pointA.y=h.y+Math.cos(driftT*0.5+i*2.3)*14*amp;
     /* settle the spin back to upright between throws */
@@ -2496,7 +2513,7 @@ if(location.hash.indexOf('debug')>=0) window.addEventListener('message',function
     try{ e.source.postMessage(rep,'*'); }catch(err){}
   }, d.wait||0);
 });
-if(location.hash.indexOf('debug')>=0){ window.DK={engine:engine,Body:Body,get items(){return items;},get avBody(){return avBody;},setFace:setFace,head:HEAD}; }
+if(location.hash.indexOf('debug')>=0){ window.DK={engine:engine,Body:Body,get items(){return items;},get avBody(){return avBody;},setFace:setFace,head:HEAD,openPage:openPage,openPanel:openPanel,pages:Object.keys(PAGES),homeObj:HOME_OBJ,services:SERVICES}; }
 
 /* ===== loader =====
    진행률은 「몇 번 그렸는가」가 아니라 「실제로 몇 초 지났는가」로 셉니다.
